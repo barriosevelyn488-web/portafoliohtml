@@ -1,0 +1,1294 @@
+/* 
+  ================================================================================
+  ARCHIVO: styles_comentado.css
+  PROPÓSITO: Estilos CSS del portafolio con explicaciones línea por línea
+  INVOCADO POR: <link rel="stylesheet" href="styles.css"> en index.html
+  ================================================================================
+*/
+
+/* 
+  ================================================================================
+  SECCIÓN 1: VARIABLES CSS (COLOR SCHEME / PALETA DE COLORES)
+  ================================================================================
+  :root { } = define variables globales usables en todo el documento
+  
+  SINTAXIS: --nombre-variable: valor;
+  USO: var(--nombre-variable)
+  
+  VENTAJA: Cambiar el color en un lugar afecta todo el sitio
+  EJEMPLO: Si cambias --accent de #7c3aed a #ff0000, todos los elementos
+           púrpuras se vuelven rojos automáticamente
+*/
+
+:root {
+  /* Color de fondo principal de la página */
+  --bg: #ffffff;                /* Blanco puro */
+  
+  /* Color de fondo de las tarjetas */
+  --card: #f8fafc;              /* Gris muy muy claro (casi blanco) */
+  
+  /* Color principal de texto */
+  --text: #1f2937;              /* Gris oscuro / casi negro */
+  
+  /* Color de texto secundario / deshabilitado */
+  --muted: #6b7280;             /* Gris medio (menos prominente) */
+  
+  /* Color de acento (botones, enlaces, títulos importantes) */
+  --accent: #7c3aed;            /* Púrpura vibrante */
+  
+  /* Color de bordes */
+  --border: #e5e7eb;            /* Gris muy claro (casi blanco) */
+  
+  /* Color de superficies secundarias */
+  --surface: #f1f5f9;           /* Gris muy claro (ligeramente más oscuro que --bg) */
+}
+
+/* 
+  ================================================================================
+  SECCIÓN 2: ESTILOS GLOBALES (RESET Y BASE)
+  ================================================================================
+  Estos estilos se aplican a TODOS los elementos de la página
+*/
+
+/* 
+  * { }:
+  - * = selector universal (TODOS los elementos)
+  - box-sizing: border-box; = cambia cómo se calcula el tamaño
+  
+  EXPLICACIÓN:
+  - Por defecto, el padding y border se agregan al tamaño
+  - ANTES: <div style="width: 100px; padding: 10px;"> = 120px total
+  - DESPUÉS: <div style="width: 100px; padding: 10px;"> = 100px total
+  
+  BENEFICIO: Mucho más predecible y fácil de calcular tamaños
+*/
+* {
+  box-sizing: border-box;
+}
+
+/* 
+  body { }:
+  - Estilos que se aplican al cuerpo del documento (todo lo visible)
+*/
+
+body {
+  /* margin: 0; = quita el margen por defecto del navegador */
+  margin: 0;
+  
+  /* 
+    font-family: "Inter", system-ui, sans-serif;:
+    - Define qué fuente usar
+    - "Inter" = fuente preferida (si está disponible)
+    - system-ui = fuente del sistema si "Inter" no está disponible
+    - sans-serif = fuente genérica sin serifa como último recurso
+    
+    ORDEN IMPORTANTE: Prueba en orden hasta encontrar una disponible
+  */
+  font-family: "Inter", system-ui, sans-serif;
+  
+  /* 
+    background: var(--bg);:
+    - Usa la variable CSS definida en :root
+    - Resultado: #ffffff (blanco)
+    - Se aplica a toda la página
+  */
+  background: var(--bg);
+  
+  /* 
+    color: var(--text);:
+    - Color del texto por defecto
+    - Se hereda a todos los elementos que no tengan color especificado
+  */
+  color: var(--text);
+  
+  /* 
+    line-height: 1.1;:
+    - Altura de la línea (espaciado vertical entre líneas de texto)
+    - 1.1 = 1.1 veces el tamaño de la fuente
+    - EJEMPLO: Si la fuente es 16px, la altura es 17.6px
+    - NOTA: Podría ser 1.5 o 1.6 para más legibilidad (el original 1.1 es compacto)
+  */
+  line-height: 1.1;
+}
+
+/* 
+  a { }:
+  - Estilos para TODOS los enlaces (<a>)
+*/
+
+a {
+  /* Color de los enlaces */
+  color: var(--accent);        /* Púrpura */
+  
+  /* 
+    text-decoration: none;:
+    - Quita el subrayado por defecto
+    - SIN ESTO: todos los <a> estarían subrayados automáticamente
+  */
+  text-decoration: none;
+}
+
+/* 
+  ================================================================================
+  SECCIÓN 3: ESTILOS DEL ENCABEZADO (HEADER)
+  ================================================================================
+*/
+
+/* 
+  .site-header { }:
+  - Clase del <header class="site-header">
+  - Estilos para el encabezado fijo en la parte superior
+*/
+
+.site-header {
+  /* 
+    background: #3dc8f3;:
+    - Color de fondo azul celeste
+    - APARECE EN HTML: <header class="site-header"> (línea ~76)
+  */
+  background: #3dc8f3;
+  
+  /* 
+    border-bottom: 5px solid #0d8196;:
+    - Borde en la parte inferior
+    - 5px = grosor de 5 píxeles
+    - solid = línea continua
+    - #0d8196 = azul oscuro
+    
+    QUE VES: Línea gruesa oscura bajo el header
+  */
+  border-bottom: 5px solid #0d8196;
+  
+  /* 
+    position: sticky;:
+    - El header se queda pegado al hacer scroll
+    - Mientras bajas, el header sigue visible arriba
+    
+    DIFERENCIA:
+    - position: fixed = pegado a la ventana (no se mueve al scroll)
+    - position: sticky = se pega solo cuando desaparece del viewport
+  */
+  position: sticky;
+  
+  /* top: 0; = pegado al borde superior */
+  top: 0;
+  
+  /* 
+    z-index: 10;:
+    - Nivel de superposición (profundidad)
+    - Números más altos = encima de números más bajos
+    - BENEFICIO: El header aparece sobre otros contenidos al hacer scroll
+  */
+  z-index: 10;
+}
+
+/* 
+  .header-inner { }:
+  - Clase del <div class="container header-inner"> dentro del header
+  - Distribuye el logo y el menú horizontalmente
+*/
+
+.header-inner {
+  /* max-width: 1000px; = ancho máximo de 1000px */
+  max-width: 1000px;
+  
+  /* 
+    margin: 0 auto;:
+    - Centra el contenedor horizontalmente
+    - 0 = sin margen arriba/abajo
+    - auto = margen automático izquierda/derecha (centrado)
+  */
+  margin: 0 auto;
+  
+  /* 
+    display: flex;:
+    - Activa Flexbox (diseño flexible)
+    - Los elementos hijo se distribuyen según reglas flex
+  */
+  display: flex;
+  
+  /* 
+    justify-content: space-between;:
+    - Distribuye elementos horizontalmente
+    - space-between = máximo espacio entre elementos
+    - RESULTADO: Logo a la izquierda, menú a la derecha
+  */
+  justify-content: space-between;
+  
+  /* 
+    align-items: center;:
+    - Alinea elementos verticalmente al centro
+    - Logo y menú quedan al mismo nivel
+  */
+  align-items: center;
+  
+  /* 
+    gap: 1rem;:
+    - Espaciado entre elementos hijos
+    - 1rem = ~16px (depende del tamaño base)
+  */
+  gap: 1rem;
+  
+  /* 
+    padding: 1rem 1.5rem;:
+    - Espaciado interno
+    - 1rem = arriba y abajo (~16px)
+    - 1.5rem = izquierda y derecha (~24px)
+  */
+  padding: 1rem 1.5rem;
+}
+
+/* 
+  .brand-name { }:
+  - Clase del <p class="brand-name">Mi portafolio ~</p>
+  - Nombre/logo del portafolio
+*/
+
+.brand-name {
+  /* margin: 0; = quita el margen por defecto del <p> */
+  margin: 0;
+  
+  /* 
+    font-size: 1.8rem;:
+    - Tamaño de fuente grande
+    - rem = unidad relativa al tamaño base (16px)
+    - 1.8rem = 1.8 × 16px = 28.8px
+  */
+  font-size: 1.8rem;
+  
+  /* 
+    font-weight: 700;:
+    - Peso de la fuente (grosor)
+    - 700 = negrita (100-900, donde 400 es normal y 700 es bold)
+  */
+  font-weight: 700;
+  
+  /* Color del nombre */
+  color: #0f172a;                /* Azul oscuro casi negro */
+}
+
+/* 
+  .brand-role { }:
+  - Nota: Esta clase NO se usa en el HTML actual
+  - Podría ser para un subtítulo del nombre
+*/
+
+.brand-role {
+  margin: 0.25rem 0 0;
+  color: #334155;
+  font-size: 1.9 rem;            /* Nota: hay espacio antes de 'rem', error de tipeo */
+}
+
+/* 
+  .nav-menu { }:
+  - Clase del <nav class="nav-menu"> 
+  - Contenedor del menú de navegación
+*/
+
+.nav-menu {
+  /* 
+    display: flex;:
+    - Activa Flexbox
+    - Los enlaces se distribuyen horizontalmente
+  */
+  display: flex;
+  
+  /* 
+    gap: 1rem;:
+    - Espaciado entre enlaces
+    - 1rem = ~16px
+  */
+  gap: 1rem;
+  
+  /* 
+    flex-wrap: wrap;:
+    - Los elementos pueden pasar a la siguiente línea si no caben
+    - En móvil, los enlaces pueden verse en dos líneas
+  */
+  flex-wrap: wrap;
+}
+
+/* 
+  .nav-menu a { }:
+  - Estilos para TODOS los <a> dentro de .nav-menu
+  - Aplica a los enlaces de navegación (INICIO, SOBRE MI, etc.)
+*/
+
+.nav-menu a {
+  /* Color de los enlaces menú */
+  color: #000000;               /* Negro */
+  
+  /* Peso de fuente */
+  font-weight: 500;             /* Semibold */
+  
+  /* 
+    padding: 0.45rem 0.75rem;:
+    - Espaciado interno del enlace
+    - 0.45rem = arriba y abajo
+    - 0.75rem = izquierda y derecha
+  */
+  padding: 0.45rem 0.75rem;
+  
+  /* 
+    border-radius: 999px;:
+    - Bordes muy redondeados
+    - 999px = lo máximo posible (efectivamente circular si es un cuadrado)
+    - RESULTADO: Botones con bordes suave/redondeados
+  */
+  border-radius: 999px;
+  
+  /* 
+    transition: background 0.2s ease, color 0.2s ease;:
+    - Transiciones suaves al cambiar propiedades
+    - background = cambio de fondo suave en 0.2 segundos
+    - color = cambio de color suave en 0.2 segundos
+    - ease = aceleración suave (no instantánea)
+  */
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* 
+  .nav-menu a:hover { }:
+  - Estilos cuando pasas el MOUSE sobre un enlace del menú
+  - :hover = pseudoclase (estado especial)
+*/
+
+.nav-menu a:hover {
+  /* Cambiar color al pasar mouse */
+  color: #040b1d;               /* Azul oscuro muy oscuro */
+}
+
+/* 
+  .contact-button { }:
+  - Clase especial del enlace de CONTACTO
+  - <a href="#contacto" class="contact-button">CONTACTO</a> (línea ~123)
+  - Diferente al resto del menú (botón destacado)
+*/
+
+.contact-button {
+  /* 
+    background: #1d4ed8;:
+    - Fondo azul oscuro
+    - Diferente a los otros enlaces (que tienen fondo transparente)
+  */
+  background: #1d4ed8;
+  
+  /* Color del texto blanco */
+  color: white;
+  
+  /* 
+    padding: 0.65rem 1rem;:
+    - Más espaciado que los otros enlaces
+    - 0.65rem = arriba y abajo
+    - 1rem = izquierda y derecha
+    - RESULTADO: Botón más "grueso" y destacado
+  */
+  padding: 0.65rem 1rem;
+  
+  /* Bordes muy redondeados */
+  border-radius: 999px;
+  
+  /* 
+    border: 1px solid transparent;:
+    - Borde invisible de 1px (para consistencia de espaciado)
+    - transparent = transparente (no se ve)
+  */
+  border: 1px solid transparent;
+}
+
+/* 
+  .contact-button:hover { }:
+  - Estilos cuando pasas mouse over el botón CONTACTO
+*/
+
+.contact-button:hover {
+  /* Fondo más claro al pasar mouse */
+  background: #2563eb;           /* Azul un poco más claro */
+  
+  /* Mantener el texto blanco */
+  color: white;
+}
+
+/* 
+  ================================================================================
+  SECCIÓN 4: CONTENEDOR PRINCIPAL
+  ================================================================================
+*/
+
+/* 
+  .container { }:
+  - Clase del <div class="container"> que envuelve el contenido principal
+  - Limita el ancho máximo y centra el contenido
+*/
+
+.container {
+  /* 
+    max-width: 1000px;:
+    - Ancho máximo de 1000px
+    - En pantallas más pequeñas, ocupa todo el ancho
+    - En pantallas más grandes, se queda en 1000px
+  */
+  max-width: 1000px;
+  
+  /* 
+    margin: 2rem auto 2rem;:
+    - 2rem = espacio arriba y abajo (~32px)
+    - auto = centrado horizontalmente
+    - auto a los lados: (margin-left: auto; margin-right: auto;)
+  */
+  margin: 2rem auto 2rem;
+  
+  /* 
+    padding: 0 1.5rem;:
+    - 0 = sin espaciado arriba y abajo
+    - 1.5rem = espaciado izquierda y derecha (~24px)
+    
+    RAZÓN: En pantallas pequeñas, el contenido no toca el borde
+  */
+  padding: 0 1.5rem;
+}
+
+/* 
+  ================================================================================
+  SECCIÓN 5: TARJETAS (.card)
+  ================================================================================
+  Las secciones (Sobre mí, Habilidades, Proyectos, Contacto) tienen class="card"
+*/
+
+/* 
+  .card { }:
+  - Estilos base para todas las tarjetas
+*/
+
+.card {
+  /* 
+    background: var(--card);:
+    - Usa variable CSS
+    - Resultado: #f8fafc (gris muy claro)
+  */
+  background: var(--card);
+  
+  /* border: none; = sin borde */
+  border: none;
+  
+  /* 
+    border-radius: 16px;:
+    - Bordes redondeados
+    - 16px = redondeado moderadamente
+  */
+  border-radius: 16px;
+  
+  /* 
+    padding: 2.5rem;:
+    - Espaciado interno amplio
+    - 2.5rem = ~40px
+    - Es el mismo en todos los lados (superior, inferior, izquierda, derecha)
+  */
+  padding: 2.5rem;
+  
+  /* 
+    margin-bottom: 2rem;:
+    - Espaciado externo abajo
+    - 2rem = ~32px
+    - Separa esta tarjeta de la siguiente
+  */
+  margin-bottom: 2rem;
+  
+  /* 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);:
+    - Sombra suave alrededor de la tarjeta
+    - 0 = sin desplazamiento horizontal
+    - 10px = sombra desplazada 10px hacia abajo
+    - 30px = sombra difuminada 30px
+    - rgba(0, 0, 0, 0.08) = negro muy transparente (8% opacidad)
+    
+    EFECTO: La tarjeta parece "elevada" del fondo
+  */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  
+  /* 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;:
+    - Dos transiciones suaves:
+      1. transform = cambio de tamaño/posición suave
+      2. box-shadow = cambio de sombra suave
+    - 0.3s = 0.3 segundos de duración
+    - CUÁNDO OCURRE: Cuando el usuario pasa el mouse (:hover)
+  */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 
+  .card:hover { }:
+  - Estilos cuando pasas mouse sobre una tarjeta
+*/
+
+.card:hover {
+  /* 
+    transform: translateY(-2px);:
+    - Mueve la tarjeta hacia arriba 2px
+    - Y (vertical) negativo = hacia arriba
+    
+    EFECTO: La tarjeta "sube" al pasar mouse
+  */
+  transform: translateY(-2px);
+  
+  /* 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);:
+    - Sombra más profunda y oscura
+    - 0 = sin desplazamiento horizontal
+    - 15px = más hacia abajo (en lugar de 10px)
+    - 40px = más difuminada (en lugar de 30px)
+    - rgba(0, 0, 0, 0.12) = negro un poco más oscuro (12%)
+    
+    EFECTO: La tarjeta parece más "flotante" / elevada
+  */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* 
+  ================================================================================
+  SECCIÓN 6: SECCIÓN HERO (PORTADA)
+  ================================================================================
+*/
+
+/* 
+  .hero-section { }:
+  - Estilos de la sección de presentación con imagen de fondo
+  - Contiene: foto de Evelyn, texto "Hola soy Evelyn", etc.
+*/
+
+.hero-section {
+  /* 
+    background: url('Evelyn Barrios (1).png') center/cover no-repeat;:
+    - Imagen de fondo
+    - url('...') = ruta del archivo de imagen
+    - center = centrar la imagen
+    - /cover = cubrir todo el espacio (mantener proporciones)
+    - no-repeat = no repetir la imagen
+  */
+  background: url('Evelyn Barrios (1).png') center/cover no-repeat;
+  
+  /* 
+    background-attachment: fixed;:
+    - Efecto parallax
+    - La imagen no se mueve al hacer scroll
+    - El contenido pasa sobre la imagen
+  */
+  background-attachment: fixed;
+  
+  /* 
+    padding: 5rem 1.5rem;:
+    - Espaciado interno
+    - 5rem = arriba y abajo (~80px)
+    - 1.5rem = izquierda y derecha (~24px)
+  */
+  padding: 5rem 1.5rem;
+  
+  /* position: relative; = para que .hero-overlay funcione correctamente */
+  position: relative;
+  
+  /* 
+    min-height: 500px;:
+    - Altura mínima de 500px
+    - En pantallas pequeñas puede ser más alto según contenido
+  */
+  min-height: 500px;
+  
+  /* display: flex; = usa flexbox */
+  display: flex;
+  
+  /* align-items: center; = centra verticalmente */
+  align-items: center;
+  
+  /* justify-content: center; = centra horizontalmente */
+  justify-content: center;
+}
+
+/* 
+  .hero-overlay { }:
+  - Capa transparente sobre la imagen de fondo
+  - Sirve para oscurecer/clarificar la imagen (si fuera necesario)
+*/
+
+.hero-overlay {
+  /* 
+    position: absolute;:
+    - Posicionamiento absoluto
+    - Se posiciona relativo a .hero-section (position: relative)
+  */
+  position: absolute;
+  
+  /* Esquina superior izquierda */
+  top: 0;
+  left: 0;
+  
+  /* Ocupa todo el espacio */
+  width: 100%;
+  height: 100%;
+  
+  /* 
+    background: rgba(0, 0, 0, 0);:
+    - Fondo transparente
+    - rgba(R, G, B, Alpha):
+      * R (Red) = 0
+      * G (Green) = 0
+      * B (Blue) = 0
+      * A (Alpha) = 0 (transparencia: 0 = totalmente transparente, 1 = opaco)
+    - rgba(0,0,0,0) = negro 100% transparente (no hace nada)
+    
+    NOTA: Podrías cambiar a rgba(0,0,0,0.3) para oscurecer la imagen
+  */
+  background: rgba(0, 0, 0, 0);
+}
+
+/* 
+  .hero-section .container { }:
+  - El .container DENTRO de .hero-section
+  - Necesita posicionamiento especial para estar sobre .hero-overlay
+*/
+
+.hero-section .container {
+  /* 
+    position: relative;:
+    - Posicionamiento relativo
+    - Aparecerá sobre los elementos con posición absolute
+  */
+  position: relative;
+  
+  /* 
+    z-index: 2;:
+    - Nivel de superposición
+    - z-index: 2 es mayor que el .hero-overlay (que no tiene z-index)
+    - RESULTADO: El contenido aparece sobre la imagen
+  */
+  z-index: 2;
+}
+
+/* 
+  .hero-content { }:
+  - Contenedor que agrupa la foto y el texto en la sección hero
+*/
+
+.hero-content {
+  /* 
+    max-width: 1000px;:
+    - Ancho máximo
+  */
+  max-width: 1000px;
+  
+  /* Centrado */
+  margin: 0 auto;
+  
+  /* Usa flexbox */
+  display: flex;
+  
+  /* 
+    flex-direction: row;:
+    - row = horizontal (foto a la izqu, texto a la derecha)
+    - column = sería vertical (foto arriba, texto abajo)
+  */
+  flex-direction: row;
+  
+  /* Centra verticalmente */
+  align-items: center;
+  
+  /* 
+    gap: 3rem;:
+    - Espaciado entre foto y texto
+    - 3rem = ~48px
+  */
+  gap: 3rem;
+  
+  /* Texto alineado a la izquierda */
+  text-align: left;
+}
+
+/* 
+  .hero-photo { }:
+  - Estilos de la imagen de Evelyn en la sección hero
+*/
+
+.hero-photo {
+  /* Ancho máximo de 320px */
+  max-width: 320px;
+  
+  /* Ancho automático (no cambiar) */
+  width: auto;
+  
+  /* Altura automática (mantiene proporciones) */
+  height: auto;
+  
+  /* Fondo transparente */
+  background: transparent;
+  
+  /* Sin bordes redondeados */
+  border-radius: 0;
+  
+  /* Sin borde */
+  border: none;
+  
+  /* 
+    box-shadow: 0 12px 32px rgba(0,0,0,0.18);:
+    - Sombra moderada
+    - 0 = sin desplazamiento horizontal
+    - 12px = hacia abajo
+    - 32px = difuminada
+    - rgba(0,0,0,0.18) = negro semi-transparente (18%)
+  */
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  
+  /* 
+    flex-shrink: 0;:
+    - No se encoge
+    - Mantiene su tamaño original
+  */
+  flex-shrink: 0;
+  
+  /* 
+    display: block;:
+    - display: inline = no ocupa su propio espacio
+    - display: block = ocupa su propio espacio (línea completa)
+  */
+  display: block;
+}
+
+/* 
+  .hero-text { }:
+  - Contenedor del texto en la sección hero
+*/
+
+.hero-text {
+  /* 
+    flex: 1;:
+    - Ocupa todo el espacio disponible
+    - En un flex container, flex: 1 significa "toma el resto del espacio"
+  */
+  flex: 1;
+}
+
+/* 
+  .hero-text h1 { }:
+  - El <h1>Hola, soy Evelyn</h1> dentro de .hero-text
+*/
+
+.hero-text h1 {
+  /* Sin margen externo */
+  margin: 0;
+  
+  /* Tamaño muy grande */
+  font-size: 3rem;              /* 3 × 16px = 48px */
+  
+  /* Color azul oscuro casi negro */
+  color: rgb(0, 0, 8);          /* RGB: R=0, G=0, B=8 (casi negro) */
+  
+  /* 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);:
+    - Sombra de texto
+    - 2px = desplazamiento 2px a la derecha
+    - 2px = desplazamiento 2px abajo
+    - 4px = difuminada 4px
+    - rgba(0,0,0,0.3) = negro 30% opaco (sombra visible)
+    
+    EFECTO: El texto tiene una sombra suave que lo hace más legible
+  */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  
+  /* 
+    letter-spacing: -0.5px;:
+    - Espaciado entre letras
+    - Negativo = acerca las letras (más compacto)
+    - Positivo = aleja las letras (más espaciado)
+  */
+  letter-spacing: -0.5px;
+}
+
+/* 
+  .hero-text p { }:
+  - Párrafos dentro de .hero-text
+  - Se aplica a ambos <p> de la sección hero
+*/
+
+.hero-text p {
+  /* 
+    margin: 0.8rem 0;:
+    - 0.8rem = arriba y abajo
+    - 0 = izquierda y derecha
+  */
+  margin: 0.8rem 0;
+  
+  /* Negro casi puro (muy oscuro) */
+  color: rgba(0, 0, 0, 0.95);   /* 95% opaco = casi totalmente opaco */
+  
+  /* Tamaño mediano */
+  font-size: 1.2rem;            /* 1.2 × 16px = 19.2px */
+  
+  /* Sombra suave de texto */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    /* 1px derecha, 1px abajo, 3px difuminada, negro 20% opaco */
+}
+
+/* 
+  ================================================================================
+  SECCIÓN 7: TÍTULOS DE SECCIONES (.card h2)
+  ================================================================================
+*/
+
+/* 
+  .card h2 { }:
+  - Títulos <h2> dentro de tarjetas
+  - Se aplica a: "Sobre mí", "Habilidades", "Proyectos", "Contacto"
+*/
+
+.card h2 {
+  /* Sin margen arriba */
+  margin-top: 0;
+  
+  /* 
+    color: var(--accent);:
+    - Usa variable CSS
+    - Resultado: #7c3aed (púrpura)
+  */
+  color: var(--accent);
+  
+  /* Tamaño grande */
+  font-size: 1.8rem;            /* 1.8 × 16px = 28.8px */
+  
+  /* 
+    border-bottom: 3px solid var(--accent);:
+    - Línea gruesa debajo del título
+    - 3px = grosor
+    - solid = línea continua
+    - var(--accent) = mismo púrpura que el texto
+  */
+  border-bottom: 3px solid var(--accent);
+  
+  /* 
+    padding-bottom: 0.75rem;:
+    - Espaciado interno abajo (entre texto y línea)
+    - 0.75rem = ~12px
+  */
+  padding-bottom: 0.75rem;
+  
+  /* 
+    display: inline-block;:
+    - inline = flujo de texto
+    - block = ocupa su propio espacio
+    - inline-block = lo mejor de ambos
+    - RESULTADO: La línea se ajusta al ancho del texto (no ocupa toda la línea)
+  */
+  display: inline-block;
+}
+
+/* 
+  ================================================================================
+  SECCIÓN 8: LISTAS
+  ================================================================================
+*/
+
+/* 
+  .card ul { }:
+  - Listas dentro de tarjetas
+*/
+
+.card ul {
+  /* Indentación a la izquierda */
+  padding-left: 1.25rem;        /* ~20px */
+}
+
+/* 
+  .skills-list { }:
+  - Lista especial de habilidades
+*/
+
+.skills-list {
+  /* 
+    list-style: disc;:
+    - Tipo de viñeta
+    - disc = círculos llenos (●)
+    - none = sin viñetas
+    - circle = círculos vacíos (○)
+    - square = cuadrados (■)
+  */
+  list-style: disc;
+  
+  /* Indentación */
+  padding-left: 1.25rem;
+}
+
+/* 
+  ================================================================================
+  SECCIÓN 9: GRILLA DE PROYECTOS
+  ================================================================================
+*/
+
+/* 
+  .grid { }:
+  - Contenedor de la grilla de proyectos
+*/
+
+.grid {
+  /* 
+    display: grid;:
+    - Activa CSS Grid (sistema de diseño por cuadrículas)
+  */
+  display: grid;
+  
+  /* 
+    gap: 1rem;:
+    - Espaciado entre elementos de la grilla
+    - 1rem = ~16px
+  */
+  gap: 1rem;
+  
+  /* 
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));:
+    - Define cuántas columnas y qué tamaño
+    
+    DESGLOSE:
+    - repeat(...) = repetir patrón
+    - auto-fit = ajustar automáticamente el número de columnas
+    - minmax(240px, 1fr) = mínimo 240px, máximo 1 fracción
+      * 240px = ancho mínimo de columna
+      * 1fr = fracción del espacio disponible
+    
+    RESULTADO:
+    - Pantalla grande (1200px): 3 columnas de ~240px cada una
+    - Pantalla mediana (900px): 2 columnas
+    - Pantalla pequeña (480px): 1 columna
+    - ADAPTATIVO SIN MEDIA QUERIES
+  */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* 
+  ================================================================================
+  SECCIÓN 10: TARJETAS DE PROYECTOS
+  ================================================================================
+*/
+
+/* 
+  .project-card { }:
+  - Estilos de cada tarjeta de proyecto
+  - Hay 3: Calculadora, Gestor de Tareas, Portafolio
+*/
+
+.project-card {
+  /* Fondo blanco */
+  background: white;
+  
+  /* Sin borde */
+  border: none;
+  
+  /* Bordes ligeramente redondeados */
+  border-radius: 12px;
+  
+  /* Espaciado interno */
+  padding: 1.5rem;
+  
+  /* Usa flexbox */
+  display: flex;
+  
+  /* 
+    flex-direction: column;:
+    - column = vertical (elemento sobre otro)
+    - Los elementos se apilan: imagen, título, descripción, enlace
+  */
+  flex-direction: column;
+  
+  /* Espaciado entre elementos */
+  gap: 0.75rem;
+  
+  /* Sombra moderada */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  
+  /* Transición suave */
+  transition: all 0.3s ease;
+}
+
+/* 
+  .project-card:hover { }:
+  - Efecto cuando pasas mouse sobre una tarjeta de proyecto
+*/
+
+.project-card:hover {
+  /* 
+    transform: translateY(-4px);:
+    - Sube 4px más que .card:hover (que sube 2px)
+    - Efecto más pronunciado
+  */
+  transform: translateY(-4px);
+  
+  /* Sombra más profunda */
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+}
+
+/* 
+  .project-card h3 { }:
+  - Títulos <h3> dentro de tarjetas de proyectos
+  - Ejemplo: "Calculadora en Python", "Gestor de Tareas", etc.
+*/
+
+.project-card h3 {
+  /* Sin margen externo */
+  margin: 0;
+}
+
+/* 
+  .project-tech { }:
+  - Párrafo que muestra las tecnologías usadas
+  - Ejemplo: "Tecnologías: Python"
+*/
+
+.project-tech {
+  /* Sin margen */
+  margin: 0;
+  
+  /* 
+    color: var(--muted);:
+    - Usa variable CSS
+    - Resultado: #6b7280 (gris apagado)
+    - EFECTO: Texto menos prominente (menos importante visualmente)
+  */
+  color: var(--muted);
+  
+  /* Tamaño pequeño */
+  font-size: 0.95rem;           /* 95% del tamaño normal */
+}
+
+/* 
+  .project-link { }:
+  - Enlaces "Ver en GitHub" dentro de proyectos
+*/
+
+.project-link {
+  /* 
+    margin-top: auto;:
+    - Empuja el enlace hacia abajo (al final de la tarjeta)
+    - auto = toma el máximo espacio disponible
+    
+    EFECTO: El enlace siempre aparece al pie de la tarjeta
+  */
+  margin-top: auto;
+  
+  /* Color púrpura (variable CSS) */
+  color: var(--accent);
+  
+  /* Peso de fuente más grueso */
+  font-weight: 600;             /* Semibold, 600 es más grueso que 500 */
+}
+
+/* 
+  .project-image-placeholder { }:
+  - Área donde deberían ir imágenes de proyectos
+  - Actualmente muestra "Proyecto 1", "Proyecto 2", "Proyecto 3"
+*/
+
+.project-image-placeholder {
+  /* 
+    background: var(--surface);:
+    - Usa variable CSS
+    - Resultado: #f1f5f9 (gris muy claro)
+  */
+  background: var(--surface);
+  
+  /* Altura fija */
+  height: 160px;                /* 160 píxeles */
+  
+  /* Bordes redondeados */
+  border-radius: 12px;
+  
+  /* Espaciado abajo (separa de contenido) */
+  margin-bottom: 1rem;
+  
+  /* 
+    display: grid;:
+    - Usa grid para centrar
+  */
+  display: grid;
+  
+  /* 
+    place-items: center;:
+    - Centra el contenido (horizontal y vertical)
+    - Equivalente a: align-items: center; justify-items: center;
+  */
+  place-items: center;
+  
+  /* Color del texto */
+  color: var(--muted);          /* Gris apagado */
+  
+  /* Peso de fuente */
+  font-weight: 600;             /* Semibold */
+  
+  /* 
+    border: 2px dashed var(--border);:
+    - Borde punteado
+    - 2px = grosor
+    - dashed = línea punteada (---- en lugar de ——)
+    - var(--border) = gris claro (#e5e7eb)
+    
+    EFECTO: Parece un área para arrastra-y-suelta (placeholder)
+  */
+  border: 2px dashed var(--border);
+}
+
+/* 
+  ================================================================================
+  SECCIÓN 11: PIE DE PÁGINA (FOOTER)
+  ================================================================================
+*/
+
+/* 
+  .footer { }:
+  - Estilos del pie de página
+*/
+
+.footer {
+  /* 
+    text-align: center;:
+    - Alinea el texto al centro
+  */
+  text-align: center;
+  
+  /* Espaciado interno */
+  padding: 1.2rem 1.5rem 2rem;
+    /* 1.2rem = arriba, 1.5rem = left/right, 2rem = abajo */
+  
+  /* Color de texto gris apagado */
+  color: var(--muted);
+}
+
+/* 
+  ================================================================================
+  SECCIÓN 12: MEDIA QUERIES (RESPONSIVE / ADAPTABLE)
+  ================================================================================
+  Media queries cambian estilos según el tamaño de pantalla
+  Permiten que el sitio se vea bien en móvil, tablet, desktop
+*/
+
+/* 
+  @media (max-width: 840px) { }:
+  - Estilos que se aplican SOLO en pantallas con ancho máximo de 840px
+  - Tablets y pantallas medianas
+*/
+
+@media (max-width: 840px) {
+  /* 
+    .presentation-grid { }:
+    - Nota: Esta clase NO se usa en el HTML actual
+    - Podría usarse en futuro
+  */
+  .presentation-grid {
+    /* 
+      grid-template-columns: 1fr;:
+      - Una sola columna
+      - Los elementos se apilan verticalmente en lugar de lado a lado
+    */
+    grid-template-columns: 1fr;
+  }
+
+  /* 
+    .hero-content { }:
+    - Sección hero en pantallas pequeñas
+  */
+  .hero-content {
+    /* 
+      flex-direction: column;:
+      - Cambia de horizontal a vertical
+      - La foto va arriba, el texto abajo
+    */
+    flex-direction: column;
+    
+    /* Texto centrado en lugar de alineado a la izquierda */
+    text-align: center;
+  }
+}
+
+/* 
+  @media (max-width: 640px) { }:
+  - Estilos para pantallas pequeñas (móviles)
+  - Máximo 640px de ancho
+*/
+
+@media (max-width: 640px) {
+  /* 
+    .header-inner { }:
+    - Header en pantallas pequeñas
+  */
+  .header-inner {
+    /* 
+      flex-direction: column;:
+      - Cambia de horizontal a vertical
+      - Logo arriba, menú abajo
+    */
+    flex-direction: column;
+    
+    /* Menú alineado a la izquierda */
+    align-items: flex-start;
+  }
+
+  /* 
+    .container { }:
+    - Contenedor en pantallas pequeñas
+  */
+  .container {
+    /* Menos espaciado arriba */
+    margin-top: 1rem;           /* En lugar de 2rem */
+  }
+
+  /* 
+    .hero-content { }:
+    - Sección hero en móvil
+  */
+  .hero-content {
+    /* Centra elementos */
+    align-items: center;
+  }
+}
+
+/* 
+  ================================================================================
+  RESUMEN DE ESTRUCTURA CSS
+  ================================================================================
+
+  1. VARIABLES CSS (:root)
+     - Define colores que se usan en todo el sitio
+     - Fácil cambiar todos los colores en un lugar
+
+  2. ESTILOS GLOBALES (*, body, a)
+     - Estilos que se aplican a todo el documento
+     - Reset de márgenes, fuente base, etc.
+
+  3. HEADER
+     - .site-header = encabezado pegadizo
+     - .nav-menu = menú de navegación
+     - .contact-button = botón especial de contacto
+
+  4. CONTENEDOR PRINCIPAL
+     - .container = limita ancho y centra
+
+  5. TARJETAS
+     - .card = tarjetas con sombra y efecto hover
+     - Usadas en todas las secciones principales
+
+  6. SECCIÓN HERO
+     - .hero-section = portada con imagen
+     - .hero-photo = foto de Evelyn
+     - .hero-text = texto de presentación
+
+  7. LISTAS
+     - .card ul = listas en tarjetas
+     - .skills-list = lista de habilidades
+
+  8. GRILLA DE PROYECTOS
+     - .grid = contenedor adaptativo
+     - .project-card = cada tarjeta de proyecto
+     - .project-tech = texto de tecnologías
+
+  9. FOOTER
+     - .footer = pie de página
+
+  10. RESPONSIVE
+      - @media queries para móvil, tablet, desktop
+
+  ================================================================================
+*/

@@ -1,0 +1,829 @@
+<!-- 
+  ================================================================================
+  ARCHIVO: index_comentado.html
+  PROPÓSITO: Estructura HTML del portafolio de Evelyn con explicaciones en español
+  NOTA: Este archivo muestra cada línea comentada para aprender
+  ================================================================================
+-->
+
+<!-- 
+  DOCTYPE html: Le dice al navegador que este es un documento HTML5 moderno
+  Ejemplo: Tu navegador sabe cómo interpretar las etiquetas <html>, <body>, etc.
+-->
+<!DOCTYPE html>
+
+<!-- 
+  <html lang="es">: 
+  - <html> = etiqueta raíz que contiene todo el documento
+  - lang="es" = atributo que especifica el idioma (español)
+  Beneficio: El navegador y buscadores saben que el contenido está en español
+-->
+<html lang="es">
+
+<!-- 
+  <head>: Sección de metadatos (información sobre la página, no visible en pantalla)
+  Aquí van: título, enlaces a CSS, fuentes, configuración, etc.
+-->
+<head>
+
+  <!-- 
+    <meta charset="UTF-8">: 
+    - Especifica la codificación de caracteres
+    - UTF-8 soporta caracteres especiales (acentos: é, á, ñ, etc.)
+    IMPORTANTE: Debe ser lo primero en <head>
+  -->
+  <meta charset="UTF-8">
+
+  <!-- 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">:
+    - "viewport" = configuración para dispositivos móviles
+    - "width=device-width" = hace que el ancho sea igual al ancho del dispositivo
+    - "initial-scale=1.0" = el zoom inicial es 100% (no está ni ampliado ni reducido)
+    BENEFICIO: Tu sitio se ve bien en celulares, tablets y computadoras
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 
+    <title>Portafolio de evelyn</title>:
+    - Título que aparece en la pestaña del navegador
+    - También usado por Google para el SEO (posicionamiento en buscadores)
+    QUE VES: "Portafolio de evelyn" aparece en la pestaña del navegador
+  -->
+  <title>Portafolio de evelyn</title>
+
+  <!-- 
+    <link rel="stylesheet" href="styles.css">:
+    - <link> = conecta archivos externos a HTML
+    - rel="stylesheet" = especifica que es una hoja de estilos (CSS)
+    - href="styles.css" = ruta del archivo CSS
+    CONEXIÓN: Este <link> conecta el archivo HTML con el archivo CSS (styles.css)
+    SIN ESTO: La página sería blanca y sin colores, sin ningún diseño
+  -->
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<!-- 
+  <body>: Aquí va TODO lo visible en la página
+  Es el contenedor principal de todo el contenido que el usuario ve
+-->
+<body>
+
+  <!-- 
+    ============================================================================
+    SECCIÓN 1: ENCABEZADO (HEADER)
+    ============================================================================
+    <header class="site-header">:
+    - <header> = etiqueta semántica que marca el encabezado de la página
+    - class="site-header" = clase CSS para estilizar este header
+    - En CSS verás: .site-header { background: #3dc8f3; ... }
+    
+    ESTILOS APLICADOS EN CSS (styles.css línea ~29):
+    - background: #3dc8f3 = fondo azul claro
+    - border-bottom: 5px solid #0d8196 = línea oscura en la parte inferior
+    - position: sticky = se queda pegado en la parte superior al hacer scroll
+    - z-index: 10 = está encima de otros elementos
+  -->
+  <header class="site-header">
+
+    <!-- 
+      <div class="container header-inner">:
+      - <div> = contenedor genérico (división)
+      - class="container header-inner" = dos clases CSS:
+        * "container" = ancho máximo de 1000px, centrado
+        * "header-inner" = distribuye espacios internos con flex
+      
+      EN CSS (línea ~30-38):
+      .header-inner {
+        display: flex; = distribuye elementos en línea (horizontal)
+        justify-content: space-between; = separa elementos (logo a la izq, menú a la der)
+        align-items: center; = alinea verticalmente al centro
+      }
+    -->
+    <div class="container header-inner">
+
+      <!-- 
+        <div class="brand">:
+        - Brand = marca personal (el logo/nombre del portafolio)
+        - Es un contenedor para el nombre de Evelyn
+      -->
+      <div class="brand">
+
+        <!-- 
+          <p class="brand-name">Mi portafolio ~</p>:
+          - <p> = párrafo (etiqueta de texto)
+          - class="brand-name" = clase para estilizar este texto
+          
+          EN CSS (línea ~44-49):
+          .brand-name {
+            font-size: 1.8rem; = tamaño grande (1.8 veces el tamaño base)
+            font-weight: 700; = peso 700 (negrita, muy grueso)
+            color: #0f172a; = color azul oscuro casi negro
+          }
+          
+          QUE VES: "Mi portafolio ~" grande y en negrita
+        -->
+        <p class="brand-name">Mi portafolio ~</p>
+
+      </div>
+
+      <!-- 
+        <nav class="nav-menu">:
+        - <nav> = etiqueta semántica para navegación (menú)
+        - class="nav-menu" = clase CSS para estilizar los enlaces del menú
+        
+        EN CSS (línea ~51-59):
+        .nav-menu {
+          display: flex; = distribuye los enlaces en línea horizontal
+          gap: 1rem; = espaciado entre enlaces (1 rem = ~16px)
+        }
+      -->
+      <nav class="nav-menu">
+
+        <!-- 
+          <a href="#presentacion">INICIO</a>:
+          - <a> = ancla (enlace)
+          - href="#presentacion" = vincula a una sección con id="presentacion"
+            * El # hace que sea un "ancla interna" (va a esa sección en la misma página)
+            * SIN # iría a otra página
+          
+          REFERENCIA EN HTML: Línea ~73 (<section id="presentacion" ...>)
+          
+          EN CSS (línea ~60-63):
+          .nav-menu a {
+            color: #000000; = color negro
+            font-weight: 500; = semi-negrita
+            padding: 0.45rem 0.75rem; = espaciado interno
+            border-radius: 999px; = bordes muy redondeados (para efecto de botón)
+            transition: background 0.2s ease; = transición suave de 0.2 segundos
+          }
+          
+          Y en CSS (línea ~64-66):
+          .nav-menu a:hover {
+            color: #040b1d; = cambia color al pasar mouse (más oscuro)
+          }
+          
+          QUE VES: Enlaces negros que cambian color cuando pasas el mouse
+        -->
+        <a href="#presentacion">INICIO</a>
+
+        <!-- 
+          <a href="#sobre-mi">SOBRE MI</a>:
+          - Mismo concepto que el anterior
+          - href="#sobre-mi" vincula a <section id="sobre-mi" ...> en la línea ~91
+          - Mismo estiloCSS que los otros enlaces
+        -->
+        <a href="#sobre-mi">SOBRE MI</a>
+
+        <!-- 
+          <a href="#habilidades">HABILIDADES</a>:
+          - Vincula a <section id="habilidades" ...> en la línea ~105
+        -->
+        <a href="#habilidades">HABILIDADES</a>
+
+        <!-- 
+          <a href="#proyectos">PROYECTOS</a>:
+          - Vincula a <section id="proyectos" ...> en la línea ~115
+        -->
+        <a href="#proyectos">PROYECTOS</a>
+
+        <!-- 
+          <a href="#contacto" class="contact-button">CONTACTO</a>:
+          - href="#contacto" vincula a <section id="contacto" ...> en la línea ~143
+          - class="contact-button" = clase especial DIFERENTE a los otros enlaces
+          
+          EN CSS (línea ~68-74):
+          .contact-button {
+            background: #1d4ed8; = fondo azul oscuro (diferente a otros botones)
+            color: white; = texto blanco
+            padding: 0.65rem 1rem; = más relleno que otros enlaces
+            border-radius: 999px; = bordes redondeados
+          }
+          
+          Y en CSS (línea ~75-78):
+          .contact-button:hover {
+            background: #2563eb; = fondo azul más claro al pasar mouse
+            color: white; = mantiene blanco
+          }
+          
+          QUE VES: Botón azul diferente al resto del menú
+          RAZÓN: Es un botón importante (llamada a acción)
+        -->
+        <a href="#contacto" class="contact-button">CONTACTO</a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- 
+    ============================================================================
+    SECCIÓN 2: SECCIÓN HERO (PORTADA/PRESENTACIÓN)
+    ============================================================================
+    <section id="presentacion" class="hero-section">:
+    - <section> = etiqueta semántica que agrupa contenido relacionado
+    - id="presentacion" = identificador único
+      * Usado por: <a href="#presentacion"> en el menú (línea ~99)
+      * También en el menú: enlace de INICIO apunta aquí
+    - class="hero-section" = clase CSS para estilizar esta sección
+    
+    EN CSS (línea ~91-106):
+    .hero-section {
+      background: url('Evelyn Barrios (1).png') center/cover no-repeat;
+        = imagen de fondo (archivo "Evelyn Barrios (1).png")
+        = centro: centrada
+        = cover: cubre toda el área
+        = no-repeat: no se repite
+      padding: 5rem 1.5rem; = espaciado interno grande
+      position: relative; = posicionamiento relativo (para que .hero-overlay funcione)
+      min-height: 500px; = altura mínima de 500px
+      display: flex; = distribuye contenido con flexbox
+      align-items: center; = centra verticalmente
+      justify-content: center; = centra horizontalmente
+    }
+  -->
+  <section id="presentacion" class="hero-section">
+
+    <!-- 
+      <div class="hero-overlay"></div>:
+      - <div> vacío que cubre toda la sección
+      - class="hero-overlay" = capa semitransparente
+      
+      EN CSS (línea ~108-116):
+      .hero-overlay {
+        position: absolute; = positioned sobre la imagen
+        top: 0; left: 0; = desde la esquina superior izquierda
+        width: 100%; height: 100%; = ocupa todo el espacio
+        background: rgba(0, 0, 0, 0); = transparente (sin oscurecer)
+      }
+      
+      FUNCIÓN: Capa cubre la imagen para que el texto sea legible
+      NOTA: El rgba(0, 0, 0, 0) = RGBA significa:
+        * R (Red) = 0 (sin rojo)
+        * G (Green) = 0 (sin verde)
+        * B (Blue) = 0 (sin azul)
+        * A (Alpha) = 0 (sin opacidad = totalmente transparente)
+    -->
+    <div class="hero-overlay"></div>
+
+    <!-- 
+      <div class="container">:
+      - class="container" = ancho máximo de 1000px, centrado
+      - Contiene el contenido principal de la sección hero
+      
+      EN CSS (línea ~80-86):
+      .container {
+        max-width: 1000px; = ancho máximo 1000px
+        margin: 2rem auto 2rem; = centrado horizontalmente (auto en los lados)
+        padding: 0 1.5rem; = espaciado interno a los lados
+      }
+    -->
+    <div class="container">
+
+      <!-- 
+        <div class="hero-content">:
+        - Contenedor que agrupa la foto y el texto
+        - class="hero-content" = clase para distribuir foto y texto
+        
+        EN CSS (línea ~118-126):
+        .hero-content {
+          display: flex; = distribuye en línea
+          flex-direction: row; = horizontal (foto a la izq, texto a la der)
+          align-items: center; = centra verticalmente
+          gap: 3rem; = 3rem de espaciado entre foto y texto
+          text-align: left; = texto alineado a la izquierda
+        }
+      -->
+      <div class="hero-content">
+
+        <!-- 
+          <img src="yo.png" alt="Foto de Evelyn" class="hero-photo">:
+          - <img> = etiqueta de imagen
+          - src="yo.png" = ruta del archivo de imagen (yo.png)
+          - alt="Foto de Evelyn" = texto alternativo (se muestra si la imagen no carga)
+            * IMPORTANTE PARA ACCESIBILIDAD: Lectores de pantalla leen esto
+          - class="hero-photo" = clase CSS para estilizar la imagen
+          
+          EN CSS (línea ~128-140):
+          .hero-photo {
+            max-width: 320px; = ancho máximo 320px
+            width: auto; = ajusta automáticamente
+            height: auto; = mantiene proporciones
+            border-radius: 0; = sin bordes redondeados
+            box-shadow: 0 12px 32px rgba(0,0,0,0.18); = sombra suave
+            flex-shrink: 0; = no se encoge (mantiene tamaño)
+            display: block; = ocupa su propio espacio
+          }
+          
+          QUE VES: Foto de Evelyn con sombra suave, alineada a la izquierda
+        -->
+        <img src="yo.png" alt="Foto de Evelyn" class="hero-photo">
+
+        <!-- 
+          <div class="hero-text">:
+          - Contenedor para el texto principal
+          - class="hero-text" = clase CSS
+          
+          EN CSS (línea ~142-143):
+          .hero-text {
+            flex: 1; = ocupa todo el espacio disponible (a la derecha)
+          }
+        -->
+        <div class="hero-text">
+
+          <!-- 
+            <h1>Hola, soy Evelyn</h1>:
+            - <h1> = encabezado nivel 1 (el más importante, usualmente uno por página)
+            - Texto principal de presentación
+            
+            EN CSS (línea ~145-151):
+            .hero-text h1 {
+              margin: 0; = sin espaciado externo
+              font-size: 3rem; = tamaño muy grande (3 veces el tamaño base)
+              color: rgb(0, 0, 8); = azul oscuro casi negro
+              text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                = sombra de texto: desplazada 2px derecha, 2px abajo, difuminada 4px
+                = color negro semi-transparente (0.3 opacidad)
+              letter-spacing: -0.5px; = reduce espacio entre letras
+            }
+            
+            QUE VES: Texto grande, oscuro, con sombra suave
+          -->
+          <h1>Hola, soy Evelyn</h1>
+
+          <!-- 
+            <p>programadora full stack en formación• estudiante de campusland actualmente</p>:
+            - <p> = párrafo (texto normal)
+            - Subtítulo de presentación
+            
+            EN CSS (línea ~153-158):
+            .hero-text p {
+              margin: 0.8rem 0; = espaciado arriba y abajo
+              color: rgba(0, 0, 0, 0.95); = negro casi puro
+              font-size: 1.2rem; = tamaño un poco más grande
+              text-shadow: 1px 1px 3px rgba(0,0,0,0.2); = sombra sutil
+            }
+            
+            QUE VES: Texto mediano con sombra suave
+          -->
+          <p>programadora full stack en formación• estudiante de campusland actualmente</p>
+
+          <!-- 
+            <p>Me especializo en crear soluciones funcionales y atractivas.</p>:
+            - Mismo <p> que el anterior, aplicados los mismos estilos CSS
+            - Párrafo adicional de descripción
+          -->
+          <p>Me especializo en crear soluciones funcionales y atractivas.</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- 
+    ============================================================================
+    SECCIÓN 3: CONTENIDO PRINCIPAL (MAIN)
+    ============================================================================
+    <main class="container">:
+    - <main> = etiqueta semántica que marca el contenido principal de la página
+    - class="container" = ancho máximo 1000px, centrado
+    - Contiene todas las secciones: Sobre mí, Habilidades, Proyectos, Contacto
+  -->
+  <main class="container">
+
+    <!-- 
+      ========================================================================
+      SUBSECCIÓN: SOBRE MÍ
+      ========================================================================
+      <section id="sobre-mi" class="card">:
+      - <section> = agrupa contenido relacionado
+      - id="sobre-mi" = identificador (usado por <a href="#sobre-mi"> en menú)
+      - class="card" = clase CSS para estilizar como "tarjeta" (card)
+      
+      EN CSS (línea ~159-168):
+      .card {
+        background: var(--card); = color de fondo de variable CSS
+        border: none; = sin borde
+        border-radius: 16px; = bordes bien redondeados
+        padding: 2.5rem; = espaciado interno amplio
+        margin-bottom: 2rem; = espaciado externo abajo
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); = sombra suave
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+          = transición suave de 0.3s cuando cambien propiedades
+      }
+      
+      Y cuando pasas mouse (línea ~170-173):
+      .card:hover {
+        transform: translateY(-2px); = sube 2px
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); = sombra más intenso
+      }
+      
+      QUE VES: Tarjeta blanca redondeada con sombra, sube y crece sombra al pasar mouse
+    -->
+    <section id="sobre-mi" class="card">
+
+      <!-- 
+        <h2>Sobre mí</h2>:
+        - <h2> = encabezado nivel 2 (menos importante que h1)
+        - Título de la sección
+        
+        EN CSS (línea ~175-181):
+        .card h2 {
+          margin-top: 0; = sin espaciado arriba
+          color: var(--accent); = color acentuado (variable CSS: #7c3aed púrpura)
+          font-size: 1.8rem; = tamaño grande
+          border-bottom: 3px solid var(--accent); = línea púrpura abajo
+          padding-bottom: 0.75rem; = espaciado bajo la línea
+          display: inline-block; = el ancho se ajusta al contenido
+        }
+        
+        QUE VES: "Sobre mí" en púrpura con una línea debajo
+      -->
+      <h2>Sobre mí</h2>
+
+      <!-- 
+        <p>Hola, soy Evelyn. Me gusta aprender a diseñar páginas web...</p>:
+        - <p> = párrafo de texto normal
+        - Párrafo introductorio
+      -->
+      <p>Hola, soy Evelyn. Me gusta aprender a diseñar páginas web y trabajar en proyectos que me ayudan a mejorar cada día.</p>
+
+      <!-- 
+        <ul>:
+        - <ul> = lista desordenada (unordered list)
+        - Crea puntos (bullets)
+        
+        EN CSS (línea ~183-185):
+        .card ul {
+          padding-left: 1.25rem; = indentación a la izquierda
+        }
+      -->
+      <ul>
+
+        <!-- 
+          <li>Quién soy: estudiante de programación web en formación.</li>:
+          - <li> = elemento de lista (list item)
+          - Cada línea en la lista
+        -->
+        <li>Quién soy: estudiante de programación web en formación.</li>
+
+        <li>Qué me gusta: crear sitios limpios, ordenados y fáciles de usar.</li>
+
+        <li>Qué estoy aprendiendo: HTML, CSS y la estructura correcta de páginas.</li>
+
+        <li>Qué me interesa: mejorar en diseño y crear proyectos reales.</li>
+
+      </ul>
+
+    </section>
+
+    <!-- 
+      ========================================================================
+      SUBSECCIÓN: HABILIDADES
+      ========================================================================
+      <section id="habilidades" class="card">:
+      - id="habilidades" = identificador (usado por <a href="#habilidades"> en menú)
+      - class="card" = mismo estilo que sección anterior (tarjeta)
+    -->
+    <section id="habilidades" class="card">
+
+      <!-- <h2>Habilidades</h2>: Título con mismo estilo que otro h2 -->
+      <h2>Habilidades</h2>
+
+      <!-- 
+        <ul class="skills-list">:
+        - <ul> = lista desordenada
+        - class="skills-list" = clase CSS especial para esta lista
+        
+        EN CSS (línea ~187-189):
+        .skills-list {
+          list-style: disc; = puntos redondos (bullets)
+          padding-left: 1.25rem; = indentación
+        }
+      -->
+      <ul class="skills-list">
+
+        <!-- Cada habilidad es un <li> -->
+        <li>HTML</li>
+
+        <li>CSS</li>
+
+        <li>Git</li>
+
+        <li>Trabajo en equipo</li>
+
+        <li>Resolución de problemas</li>
+
+      </ul>
+
+    </section>
+
+    <!-- 
+      ========================================================================
+      SUBSECCIÓN: PROYECTOS
+      ========================================================================
+      <section id="proyectos" class="card">:
+      - id="proyectos" = identificador
+      - class="card" = estilo de tarjeta
+    -->
+    <section id="proyectos" class="card">
+
+      <!-- <h2>Proyectos</h2>: Título de sección -->
+      <h2>Proyectos</h2>
+
+      <!-- 
+        <div class="grid">:
+        - <div> = contenedor
+        - class="grid" = clase CSS para crear una grilla de proyectos
+        
+        EN CSS (línea ~191-195):
+        .grid {
+          display: grid; = distribuye en cuadrículas (grid)
+          gap: 1rem; = espaciado entre elementos
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            = crea columnas automáticas:
+            = mínimo 240px, máximo según espacio disponible
+            = RESULTADO: 1 columna en móvil, 2-3 en desktop
+        }
+        
+        QUE VES: Tarjetas de proyectos distribuidas en grilla adaptable
+      -->
+      <div class="grid">
+
+        <!-- 
+          ====================================================================
+          PROYECTO 1
+          ====================================================================
+          <article class="project-card">:
+          - <article> = etiqueta semántica para artículos independientes
+          - class="project-card" = clase CSS para estilizar cada proyecto
+          
+          EN CSS (línea ~197-208):
+          .project-card {
+            background: white; = fondo blanco
+            border: none; = sin borde
+            border-radius: 12px; = bordes redondeados
+            padding: 1.5rem; = espaciado interno
+            display: flex; = distribuye contenido verticalmente
+            flex-direction: column; = en columna (de arriba a abajo)
+            gap: 0.75rem; = espaciado entre elementos
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08); = sombra suave
+            transition: all 0.3s ease; = transición suave
+          }
+          
+          Y al pasar mouse (línea ~210-213):
+          .project-card:hover {
+            transform: translateY(-4px); = sube 4px
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15); = sombra más intenso
+          }
+          
+          QUE VES: Tarjeta blanca que sube al pasar mouse
+        -->
+        <article class="project-card">
+
+          <!-- 
+            <div class="project-image-placeholder">Proyecto 1</div>:
+            - <div> = contenedor para imagen
+            - class="project-image-placeholder" = clase CSS para placeholder
+            - Contenido: "Proyecto 1" (texto temporal)
+            
+            EN CSS (línea ~230-240):
+            .project-image-placeholder {
+              background: var(--surface); = color de fondo suave
+              height: 160px; = altura fija 160px
+              border-radius: 12px; = bordes redondeados
+              display: grid; = usa grid para centrar
+              place-items: center; = centra el contenido
+              color: var(--muted); = color gris apagado
+              font-weight: 600; = semibold
+              border: 2px dashed var(--border); = borde punteado
+            }
+            
+            QUE VES: Recuadro gris con línea punteada y texto "Proyecto 1"
+            NOTA: Es un placeholder = espacio reservado para una imagen real
+          -->
+          <div class="project-image-placeholder">Proyecto 1</div>
+
+          <!-- 
+            <h3>Calculadora en Python</h3>:
+            - <h3> = encabezado nivel 3 (menos importante que h2)
+            - Nombre del proyecto
+            
+            EN CSS (línea ~215-216):
+            .project-card h3 {
+              margin: 0; = sin espaciado externo
+            }
+          -->
+          <h3>Calculadora en Python</h3>
+
+          <!-- 
+            <p>Programa básico para realizar operaciones matemáticas simples.</p>:
+            - <p> = párrafo de descripción
+          -->
+          <p>Programa básico para realizar operaciones matemáticas simples.</p>
+
+          <!-- 
+            <p class="project-tech">Tecnologías: Python</p>:
+            - <p> = párrafo
+            - class="project-tech" = clase CSS especial
+            
+            EN CSS (línea ~218-221):
+            .project-tech {
+              margin: 0; = sin espaciado
+              color: var(--muted); = color gris apagado
+              font-size: 0.95rem; = tamaño pequeño
+            }
+            
+            QUE VES: Texto pequeño gris con las tecnologías
+          -->
+          <p class="project-tech">Tecnologías: Python</p>
+
+          <!-- 
+            <a href="https://github.com/tuusuario/calculadora-python" target="_blank" class="project-link">Ver en GitHub</a>:
+            - <a> = enlace
+            - href="https://github.com/..." = URL externa
+            - target="_blank" = abre en pestana nueva (no reemplaza la página actual)
+            - class="project-link" = clase CSS
+            
+            EN CSS (línea ~223-225):
+            .project-link {
+              margin-top: auto; = va al final de la tarjeta
+              color: var(--accent); = color púrpura
+              font-weight: 600; = semibold
+            }
+            
+            QUE VES: Enlace "Ver en GitHub" en púrpura, al final de la tarjeta
+          -->
+          <a href="https://github.com/tuusuario/calculadora-python" target="_blank" class="project-link">Ver en GitHub</a>
+
+        </article>
+
+        <!-- 
+          ====================================================================
+          PROYECTO 2
+          ====================================================================
+          <article class="project-card">:
+          - Mismo estructura que Proyecto 1
+          - Los estilos CSS se aplican igual
+        -->
+        <article class="project-card">
+
+          <div class="project-image-placeholder">Proyecto 2</div>
+
+          <h3>Gestor de Tareas</h3>
+
+          <p>Aplicación para organizar tareas diarias con interfaz simple.</p>
+
+          <p class="project-tech">Tecnologías: Python, CSV</p>
+
+          <a href="https://github.com/tuusuario/gestor-tareas" target="_blank" class="project-link">Ver en GitHub</a>
+
+        </article>
+
+        <!-- 
+          ====================================================================
+          PROYECTO 3
+          ====================================================================
+          <article class="project-card">:
+          - Mismo que los anteriores
+        -->
+        <article class="project-card">
+
+          <div class="project-image-placeholder">Proyecto 3</div>
+
+          <h3>Portafolio Web</h3>
+
+          <p>Sitio web personal creado con HTML y CSS puro.</p>
+
+          <p class="project-tech">Tecnologías: HTML, CSS</p>
+
+          <!-- 
+            <a href="#presentacion" class="project-link">Ver arriba</a>:
+            - href="#presentacion" = enlace interno a la sección hero
+            - NO lleva target="_blank" porque es mismo sitio
+          -->
+          <a href="#presentacion" class="project-link">Ver arriba</a>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- 
+      ========================================================================
+      SUBSECCIÓN: CONTACTO
+      ========================================================================
+      <section id="contacto" class="card">:
+      - id="contacto" = identificador
+      - class="card" = estilo de tarjeta
+    -->
+    <section id="contacto" class="card">
+
+      <!-- <h2>Contacto</h2>: Título de sección -->
+      <h2>Contacto</h2>
+
+      <!-- <p>Estoy disponible para...</p>: Párrafo introductorio -->
+      <p>Estoy disponible para proyectos y prácticas. Escríbeme para saber más sobre mi trabajo.</p>
+
+      <!-- 
+        <p><a href="mailto:evelyn@example.com">✉ Envíame un email</a></p>:
+        - <p> = párrafo que contiene un enlace
+        - <a href="mailto:..."> = enlace especial para email
+        - mailto: = protocolo que abre el cliente de email del usuario
+        - ✉ = emoji de sobre
+        
+        QUE PASA: Al hacer click, se abre el programa de email del usuario
+      -->
+      <p><a href="mailto:evelyn@example.com">✉ Envíame un email</a></p>
+
+      <!-- 
+        <p><a href="https://wa.me/+50233235828" target="_blank">💬 WhatsApp</a></p>:
+        - href="https://wa.me/+50233235828" = URL especial de WhatsApp
+        - target="_blank" = abre en pestaña nueva
+        - 💬 = emoji de chat
+        
+        QUE PASA: Abre WhatsApp Web con el número especificado
+      -->
+      <p><a href="https://wa.me/+50233235828" target="_blank">💬 WhatsApp</a></p>
+
+      <!-- <p><a href="https://github.com/tuusuario" target="_blank">💻 Mi GitHub</a></p>: Enlace a GitHub -->
+      <p><a href="https://github.com/tuusuario" target="_blank">💻 Mi GitHub</a></p>
+
+      <!-- <p><a href="https://linkedin.com/in/tuusuario" target="_blank">💼 LinkedIn</a></p>: Enlace a LinkedIn -->
+      <p><a href="https://linkedin.com/in/tuusuario" target="_blank">💼 LinkedIn</a></p>
+
+    </section>
+
+  </main>
+
+  <!-- 
+    ============================================================================
+    SECCIÓN 4: PIE DE PÁGINA (FOOTER)
+    ============================================================================
+    <footer class="footer">:
+    - <footer> = etiqueta semántica para pie de página
+    - class="footer" = clase CSS
+    
+    EN CSS (línea ~242-246):
+    .footer {
+      text-align: center; = texto centrado
+      padding: 1.2rem 1.5rem 2rem; = espaciado interno
+      color: var(--muted); = color gris apagado
+    }
+    
+    NOTA: Esta línea está incompleta en el archivo original (termina sin cerrar)
+    Debería ser: </footer></body></html>
+  -->
+  <footer class="footer"></footer>
+
+</body>
+
+</html>
+
+<!-- 
+  ================================================================================
+  RESUMEN GENERAL DE ESTRUCTURA
+  ================================================================================
+
+  1. HEADER (encabezado fijo en la parte superior)
+     ├─ Marca/Logo: "Mi portafolio ~"
+     └─ Menú de navegación con enlaces internos a secciones
+
+  2. HERO SECTION (portada con imagen y presentación)
+     ├─ Imagen de fondo
+     ├─ Foto de Evelyn (pequeña)
+     └─ Texto de bienvenida
+
+  3. MAIN (contenido principal)
+     ├─ Sección "Sobre mí" (tarjeta con información y lista)
+     ├─ Sección "Habilidades" (tarjeta con lista)
+     ├─ Sección "Proyectos" (tarjeta con grilla de 3 proyectos)
+     └─ Sección "Contacto" (tarjeta con enlaces a redes sociales)
+
+  4. FOOTER (pie de página)
+     └─ Contenedor vacío (sin contenido visible)
+
+  ================================================================================
+  VARIABLES CSS USADAS
+  ================================================================================
+  
+  En el CSS verás definidas en :root (línea 1-8):
+  - --bg: #ffffff (fondo blanco)
+  - --card: #f8fafc (fondo de tarjetas gris muy claro)
+  - --text: #1f2937 (color de texto oscuro)
+  - --muted: #6b7280 (color gris apagado)
+  - --accent: #7c3aed (color púrpura principal)
+  - --border: #e5e7eb (color de bordes gris claro)
+  - --surface: #f1f5f9 (color de superficies gris muy claro)
+
+  Se usan así: color: var(--accent); para aplicar el color púrpura
+  BENEFICIO: Si quieres cambiar el color púrpura en todo el sitio,
+             solo cambias --accent una vez en :root
+
+  ================================================================================
+-->
