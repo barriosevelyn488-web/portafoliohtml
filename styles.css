@@ -117,9 +117,9 @@ z-index: 10 -> se pone encima de todo*/
   }
   
   /* CONTENEDOR GENERAL
-     max-width + margin auto = centrado en pantalla*/
+     max-width + margin auto = centrado en pantalla de las secciones*/
   .container {
-    max-width: 1100px;
+    max-width: 1500px;
     margin: 2rem auto;
     padding: 0 1.5rem;
   }
@@ -127,7 +127,7 @@ z-index: 10 -> se pone encima de todo*/
   /* SECCIÓN HERO (presentación)
      background-attachment: fixed -> efecto parallax*/
   .hero-section {
-    background: url('Evelyn Barrios (1).png') center/cover no-repeat;
+    background: url('img/Evelyn\ Barrios\ \(1\).png') center/cover no-repeat;
     background-attachment: fixed;
     padding: 6rem 1.5rem;
     position: relative;
@@ -194,7 +194,7 @@ z-index: 10 -> se pone encima de todo*/
     margin: 0.6rem 0;
     color: #1e3a5f;
     font-size: 1.15rem;
-    font-weight: 500;
+    font-weight: 700;
   }
   
   /*
@@ -210,15 +210,15 @@ z-index: 10 -> se pone encima de todo*/
       transform: translateY(0);
     }
   }
-  
+  /*esto es para las tarjetas generales de cada sección */
     .card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 25px;
       padding: 2.5rem;
       margin-bottom: 1rem;
-      /* Sombra suave con tono azulado */
-      box-shadow: 0 4px 24px rgba(29, 78, 216, 0.06);
+      /* Sombra suave con tono azulado y al pasar el maouse se levanta cada tarjeta*/
+      box-shadow: 0 5px 24px rgba(29, 78, 216, 0.06);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     
@@ -299,9 +299,9 @@ z-index: 10 -> se pone encima de todo*/
   /* Placeholder de imagen del proyecto */
   .project-image-placeholder {
     background: var(--surface);
-    height: 150px;
-    border-radius: 12px;
-    margin-bottom: 0.5rem;
+    height: 100px;
+    border-radius: 40px;
+    margin-bottom: 6.5rem;
     display: grid;
     place-items: center;
     color: var(--accent);
@@ -310,7 +310,23 @@ z-index: 10 -> se pone encima de todo*/
     border: 2px dashed var(--border);
     letter-spacing: 0.05em;
   }
-  
+
+  /*aca se modifica la imagen del primer articulo */
+.project-card-image {
+  width: 100%;
+  height: 180px;        
+  margin-bottom: 1rem;
+  display: block;
+  border: 1px solid var(--border);
+  cursor: zoom-in;       /* Cambia el cursor a una lupa */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Efecto visual al pasar el mouse por la foto opacidad */
+.project-card-image:hover {
+  opacity: 0.85;
+  transform: scale(1.02); /* Crece un poquito para indicar que es clickeable */
+}
   /*CONTACTO - Links con estilo*/
   #contacto a {
     display: inline-block;
