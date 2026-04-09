@@ -1,8 +1,5 @@
-/* =============================================
-   VARIABLES: Define tus colores una sola vez.
-   Luego úsalos con var(--nombre).
-   ============================================= */
-   :root {
+/*Varbles*/
+  :root {
     --bg: #f0f9ff;           /* fondo general: celeste muy claro */
     --card: #ffffff;          /* cards blancas para contraste */
     --text: #0f172a;          /* texto oscuro, fácil de leer */
@@ -16,9 +13,7 @@
     --border: #bae6fd;        /* borde suave celeste */
   }
   
-  /* =============================================
-     RESET Y BASE
-     ============================================= */
+
   * {
     box-sizing: border-box;
   }
@@ -41,11 +36,9 @@
     text-decoration: underline;
   }
   
-  /* =============================================
-     NAVBAR - Sticky, más alta y con hover brillante
-     position: sticky -> se queda fija al hacer scroll
-     z-index: 10 -> se pone encima de todo
-     ============================================= */
+  /*NAVBAR - Sticky, más alta y con hover brillante
+position: sticky -> se queda fija al hacer scroll
+z-index: 10 -> se pone encima de todo*/
   .site-header {
     background: var(--nav-bg);
     border-bottom: 4px solid var(--nav-border);
@@ -63,7 +56,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    /* CAMBIO: más padding = navbar más grande */
+    /*más padding = navbar más grande */
     padding: 1.4rem 2rem;
   }
   
@@ -77,10 +70,7 @@
     letter-spacing: -0.5px;
   }
   
-  /* =============================================
-     NAVEGACIÓN - Efecto hover brillante
-     transition: hace que el cambio sea suave (no brusco)
-     ============================================= */
+  /*NAVEGACIÓN - Efecto hover brillante transicion: hace que el cambio sea suave (no brusco)*/
   .nav-menu {
     display: flex;
     gap: 0.5rem;
@@ -126,20 +116,16 @@
     text-decoration: none;
   }
   
-  /* =============================================
-     CONTENEDOR GENERAL
-     max-width + margin auto = centrado en pantalla
-     ============================================= */
+  /* CONTENEDOR GENERAL
+     max-width + margin auto = centrado en pantalla*/
   .container {
     max-width: 1100px;
     margin: 2rem auto;
     padding: 0 1.5rem;
   }
   
-  /* =============================================
-     SECCIÓN HERO (presentación)
-     background-attachment: fixed -> efecto parallax
-     ============================================= */
+  /* SECCIÓN HERO (presentación)
+     background-attachment: fixed -> efecto parallax*/
   .hero-section {
     background: url('Evelyn Barrios (1).png') center/cover no-repeat;
     background-attachment: fixed;
@@ -211,10 +197,9 @@
     font-weight: 500;
   }
   
-  /* =============================================
-     @keyframes: define la animación paso a paso
-     from = estado inicial | to = estado final
-     ============================================= */
+  /*
+     @keyframes: la animación paso a paso
+     from = estado inicial | to = estado final */
   @keyframes fadeUp {
     from {
       opacity: 0;
@@ -259,13 +244,7 @@
     padding-left: 1.25rem;
     line-height: 1.9;
   }
-  
-  /* HABILIDADES - Lista con estilo visual*/
-  
-  
-  /* li: cada habilidad es una "pastilla" */
-  /*GRID DE PROYECTOS
-     auto-fit + minmax = responsive automático*/
+
   .grid {
     display: grid;
     gap: 1.25rem;
