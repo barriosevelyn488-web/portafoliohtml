@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evelyn Barrios | Técnica en Desarrollo de Software</title>
-  <meta name="description" content="Portafolio profesional de Evelyn Noemí Barrios Méndez — Técnica en Desarrollo de Software. Desarrollo Backend y Full-Stack con Node.js, Express, PostgreSQL, MySQL, POO, SOLID, Flutter y liderazgo de equipos con Scrum." />
+  <title>Evelyn Barrios | Desarrolladora Backend &amp; Full-Stack</title>
+  <meta name="description" content="Portafolio profesional de Evelyn Noemí Barrios Méndez — Técnica en Desarrollo de Software. Backend y desarrollo de APIs REST con Node.js, Express, PostgreSQL, MySQL, principios SOLID, Clean Architecture y Flutter." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800;900&display=swap" rel="stylesheet" />
@@ -13,9 +13,11 @@
 <body>
   <div class="section-transition-bar" id="sectionTransitionBar" aria-hidden="true"></div>
 
+  <!-- Cabecera principal fija / flotante -->
   <header class="site-header" id="top">
     <div class="header-pill-bar">
-      <a href="#inicio" class="header-brand" data-tab-target="inicio">
+      <!-- Marca / Logo -->
+      <a href="#inicio" class="header-brand" data-tab-target="inicio" aria-label="Ir a Inicio">
         <span class="brand-circle-icon">EB</span>
         <span class="brand-text-block">
           <strong>Evelyn</strong>
@@ -23,17 +25,20 @@
         </span>
       </a>
 
-      <nav class="nav-pills" id="navLinks" aria-label="Navegación de secciones">
+      <!-- Navegación de escritorio (visible en Desktop / oculta en móvil) -->
+      <nav class="nav-pills nav-desktop-menu" id="navLinks" aria-label="Navegación de secciones">
         <button type="button" class="nav-pill-btn active" data-tab-target="inicio">Inicio</button>
         <button type="button" class="nav-pill-btn" data-tab-target="sobre-mi">Sobre mí</button>
-        <button type="button" class="nav-pill-btn" data-tab-target="proyectos">Proyectos &amp; OMS</button>
+        <button type="button" class="nav-pill-btn" data-tab-target="proyectos">Proyectos</button>
         <button type="button" class="nav-pill-btn" data-tab-target="stack">Habilidades</button>
         <button type="button" class="nav-pill-btn" data-tab-target="trayectoria">Currículum</button>
         <button type="button" class="nav-pill-btn" data-tab-target="contacto">Contacto</button>
       </nav>
 
+      <!-- Controles de cabecera -->
       <div class="header-controls">
-        <button type="button" class="header-cv-btn" id="openCvModalBtn">
+        <!-- Botón Descargar CV (Desktop) -->
+        <button type="button" class="header-cv-btn header-cv-desktop" id="openCvModalBtn" title="Descargar Currículum Vitae">
           <span>Descargar CV</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -42,20 +47,108 @@
           </svg>
         </button>
 
-        <button type="button" class="mode-pill-btn" id="themeToggleBtn" aria-label="Cambiar entre modo claro y modo oscuro">
+        <!-- Toggle Modo Oscuro / Claro -->
+        <button type="button" class="mode-pill-btn" id="themeToggleBtn" aria-label="Cambiar entre modo claro y modo oscuro" title="Cambiar tema">
+          <span class="theme-icon-slot" aria-hidden="true">
+            <svg class="theme-mode-icon icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="theme-mode-icon icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
           <span id="themeLabel">Modo Oscuro</span>
         </button>
 
-        <button type="button" class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Abrir menú" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
+        <!-- Botón Menú Hamburguesa animado (Móvil) -->
+        <button type="button" class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Abrir menú de navegación" aria-expanded="false">
+          <span class="hamburger-bar bar-1"></span>
+          <span class="hamburger-bar bar-2"></span>
+          <span class="hamburger-bar bar-3"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú Desplegable Hamburguesa Móvil -->
+    <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" hidden></div>
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Menú móvil de secciones" hidden>
+      <div class="drawer-header">
+        <span class="drawer-title">Navegación</span>
+        <button type="button" class="drawer-close-btn" id="closeDrawerBtn" aria-label="Cerrar menú">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="drawer-nav-list" id="drawerNavList">
+        <button type="button" class="drawer-nav-item active" data-tab-target="inicio">
+          <span class="drawer-item-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          </span>
+          <span>Inicio</span>
+        </button>
+
+        <button type="button" class="drawer-nav-item" data-tab-target="sobre-mi">
+          <span class="drawer-item-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </span>
+          <span>Sobre mí</span>
+        </button>
+
+        <button type="button" class="drawer-nav-item" data-tab-target="proyectos">
+          <span class="drawer-item-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          </span>
+          <span>Proyectos</span>
+        </button>
+
+        <button type="button" class="drawer-nav-item" data-tab-target="stack">
+          <span class="drawer-item-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </span>
+          <span>Habilidades</span>
+        </button>
+
+        <button type="button" class="drawer-nav-item" data-tab-target="trayectoria">
+          <span class="drawer-item-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          <span>Currículum</span>
+        </button>
+
+        <button type="button" class="drawer-nav-item" data-tab-target="contacto">
+          <span class="drawer-item-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          </span>
+          <span>Contacto</span>
+        </button>
+      </div>
+
+      <div class="drawer-footer-actions">
+        <button type="button" class="drawer-cv-btn" id="drawerCvBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Descargar Currículum (CV)</span>
         </button>
       </div>
     </div>
   </header>
 
   <div class="myour-layout">
+    <!-- Panel visual izquierdo con fotografía y efectos dinámicos -->
     <aside class="myour-left-panel" id="leftShowcasePanel" aria-label="Fotografía de Evelyn Barrios">
       <div class="left-bg-decor" aria-hidden="true">
         <div class="bg-glow-orb"></div>
@@ -70,15 +163,18 @@
         <div class="cutout-halo-ring" aria-hidden="true"></div>
         <img
           src="img/evelyn-azul-sin-fondo.png"
-          alt="Evelyn Noemí Barrios Méndez — Técnica en Desarrollo de Software"
+          alt="Evelyn Noemí Barrios Méndez — Desarrolladora Backend &amp; Full-Stack"
           class="evelyn-cutout-img"
           id="mainPortraitImg"
         />
       </div>
     </aside>
 
+    <!-- Contenedor principal derecho -->
     <div class="myour-right-area">
       <main class="main-stage" id="workspaceContainer">
+
+        <!-- 1. SECCIÓN HERO -->
         <section class="lui-section is-revealed" data-tab-panel="inicio" id="inicio">
           <div class="hero-card-showcase interactive-hover-card">
             <div class="lui-subtitle-top">
@@ -92,26 +188,55 @@
 
             <div class="myour-typewriter-row">
               <span class="typewriter-prefix">Perfil</span>
-              <span class="typewriter-text" id="typewriterRole">Técnica en Desarrollo de Software</span>
+              <span class="typewriter-text" id="typewriterRole">Desarrolladora Backend &amp; Full-Stack</span>
             </div>
 
             <p class="lui-hero-description">
-              Desarrolladora de software con base práctica en <strong>Backend y Full-Stack</strong>. Construyo aplicaciones web, APIs REST y bases de datos relacionales aplicando <strong>Programación Orientada a Objetos (POO)</strong>, principios <strong>SOLID</strong> y <strong>Clean Architecture</strong> para mantener el código claro, modular y escalable.
+              Desarrolladora de software con enfoque práctico en <strong>Backend y desarrollo de APIs REST</strong>. Construyo servicios modulares, modelo bases de datos relacionales y aplico principios SOLID y código limpio para crear soluciones ordenadas y escalables. Cuento con experiencia previa en atención comercial y ventas, lo que fortalece mi comunicación efectiva, el entendimiento de requerimientos de negocio y el trabajo en equipo bajo metodologías ágiles.
             </p>
 
             <div class="hero-keyword-pills">
-              <span class="kw-pill">Node.js &amp; Express</span>
-              <span class="kw-pill">PostgreSQL &amp; MySQL</span>
-              <span class="kw-pill">POO · SOLID · Clean Architecture</span>
-              <span class="kw-pill">JavaScript ES6+</span>
-              <span class="kw-pill">Flutter &amp; Firebase</span>
-              <span class="kw-pill">Docker &amp; Linux</span>
-              <span class="kw-pill">Scrum &amp; Git</span>
+              <span class="kw-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2l9 5.2v10.4L12 22.8 3 17.6V7.2L12 2zm0 2.3L4.8 8.5v7l7.2 4.2 7.2-4.2v-7L12 4.3z"/></svg>
+                Node.js &amp; Express
+              </span>
+              <span class="kw-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="8" ry="3"></ellipse><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"></path><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"></path></svg>
+                PostgreSQL &amp; MySQL
+              </span>
+              <span class="kw-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M3 3h18v18H3V3zm13.7 13.9c.8 0 1.4-.4 1.7-.9l1.4.9c-.6 1-1.6 1.7-3.1 1.7-2.3 0-3.6-1.5-3.6-3.7 0-2.4 1.5-3.8 3.7-3.8 1.8 0 2.9 1 3.2 2.1l-1.5.7c-.2-.6-.7-1.1-1.7-1.1-1.2 0-2 .8-2 2.2 0 1.4.7 2.2 1.9 2.2zm-6.2.7c0 .8-.5 1.2-1.3 1.2-.7 0-1.2-.4-1.5-.9l-1.3.8c.6 1 1.5 1.6 2.8 1.6 1.7 0 2.8-.9 2.8-2.6v-6.9H8v1.5h1.5v5.3z"/></svg>
+                JavaScript ES6+
+              </span>
+              <span class="kw-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M3 3h18v18H3V3zm8.2 8.7V10H6v1.7h1.6v6.9h1.9v-6.9h1.7zm3.1 5.4c.7.4 1.5.6 2.3.6.8 0 1.3-.3 1.3-.8 0-.5-.4-.7-1.4-1.1-1.5-.5-2.5-1.2-2.5-2.5 0-1.5 1.2-2.6 3.1-2.6.9 0 1.7.2 2.4.6l-.6 1.5c-.6-.3-1.2-.5-1.8-.5-.7 0-1.2.3-1.2.8 0 .5.4.7 1.4 1.1 1.6.5 2.5 1.2 2.5 2.5 0 1.6-1.3 2.6-3.3 2.6-1.1 0-2.1-.3-2.9-.8l.7-1.4z"/></svg>
+                TypeScript
+              </span>
+              <span class="kw-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M14.3 2.5L3.5 13.3l3.3 3.3L20.9 2.5h-6.6zm0 10.4l-4.9 4.9 4.9 4.9h6.6l-8.2-8.2 1.6-1.6z"/></svg>
+                Dart &amp; Flutter
+              </span>
+              <span class="kw-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M11.9 2c-3.4 0-5.4 1.5-5.4 4.4v2.2h5.4v.7H4.3C2 9.3 1 11.2 1 14.1c0 3 1.5 4.9 4.4 4.9h1.6v-2.3c0-1.8 1.6-3.3 3.5-3.3h5.3c1.6 0 2.9-1.3 2.9-2.9V6.4c0-2.7-2.1-4.4-6.8-4.4zm-2.4 1.8c.6 0 1.1.5 1.1 1.1s-.5 1.1-1.1 1.1-1.1-.5-1.1-1.1.5-1.1 1.1-1.1zm2.6 18.2c3.4 0 5.4-1.5 5.4-4.4v-2.2h-5.4v-.7h7.6c2.3 0 3.3-1.9 3.3-4.8 0-3-1.5-4.9-4.4-4.9h-1.6v2.3c0 1.8-1.6 3.3-3.5 3.3H10c-1.6 0-2.9 1.3-2.9 2.9v4.1c0 2.7 2.1 4.4 6.8 4.4zm2.4-1.8c-.6 0-1.1-.5-1.1-1.1s.5-1.1 1.1-1.1 1.1.5 1.1 1.1-.5 1.1-1.1 1.1z"/></svg>
+                Python
+              </span>
+              <span class="kw-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M22.5 11.5c-.3-.2-1.7-.3-2.6.4-.3.2-.5.5-.7.9-.9-.5-2.2-.4-2.8-.2-.5-1.5-1.9-2.6-3.6-2.6h-.3V8.5h3V6h-3V3.5h-2.5V6H8V3.5H5.5V6H3V8.5h7v1.5H3c-.6 0-1 .4-1 1 0 4.1 3.2 7.5 7.3 7.8 1.4.1 2.8-.2 4-.8 2.2-1.1 3.7-3.2 4.1-5.7.9-.1 2.3-.4 2.8-1.5.2-.4.4-.8.4-1.3-.1.6-.6 1.7-1.1 2z"/></svg>
+                Docker
+              </span>
+              <span class="kw-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2C9.5 2 8 3.8 8 6.5v4c-.8.5-1.5 1.5-1.5 2.5 0 1.5.7 2.5 1.5 3-.5 1-1.5 1.8-3 2-.5.1-.9.5-.8 1 .1.5.5.9 1 .8 2.5-.3 4-1.8 4.5-3.3.8.3 1.6.5 2.3.5s1.5-.2 2.3-.5c.5 1.5 2 3 4.5 3.3.5.1.9-.3 1-.8.1-.5-.3-.9-.8-1-1.5-.2-2.5-1-3-2 .8-.5 1.5-1.5 1.5-3 0-1-.7-2-1.5-2.5v-4C16 3.8 14.5 2 12 2z"/></svg>
+                Linux
+              </span>
+              <span class="kw-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M21.7 10.7l-8.4-8.4c-.4-.4-1.1-.4-1.5 0l-1.9 1.9 2.4 2.4c.5-.2 1.1-.1 1.5.3.4.4.5 1 .3 1.5l2.3 2.3c.5-.2 1.1-.1 1.5.3.6.6.6 1.6 0 2.2s-1.6.6-2.2 0c-.4-.4-.5-1-.3-1.5l-2.2-2.2v5.1c.2.1.3.3.4.4.6.6.6 1.6 0 2.2s-1.6.6-2.2 0-1.6-.6 0-2.2c.4-.4 1-.5 1.5-.3V8.8c-.5-.2-1-.7-1.2-1.2L9.5 10l-7.2 7.2c-.4.4-.4 1.1 0 1.5l8.4 8.4c.4.4 1.1.4 1.5 0l9.5-9.5c.4-.4.4-1.1 0-1.5z"/></svg>
+                Git &amp; Scrum
+              </span>
             </div>
 
             <div class="lui-cta-group">
               <button type="button" class="lui-btn lui-btn-primary" data-tab-target="proyectos">
-                Explorar Proyectos (10)
+                Explorar Proyectos
               </button>
               <button type="button" class="lui-btn lui-btn-secondary" data-tab-target="contacto">
                 Contactar
@@ -122,22 +247,23 @@
           <div class="lui-bg-title" aria-hidden="true">DEVELOPER</div>
         </section>
 
+        <!-- 2. SECCIÓN SOBRE MÍ -->
         <section class="lui-section" data-tab-panel="sobre-mi" id="sobre-mi">
           <div class="lui-section-header">
             <span class="lui-eyebrow">SOBRE MÍ</span>
-            <h2 class="lui-title">Enfoque de trabajo y perfil humano</h2>
+            <h2 class="lui-title">Enfoque de trabajo y perfil profesional</h2>
             <p class="lui-lead">
-              Combinación de formación técnica continua, orden en la arquitectura del código y facilidad para coordinar equipos.
+              Base técnica sólida en desarrollo Backend, código limpio y capacidad para coordinar entregas de forma responsable.
             </p>
           </div>
 
           <article class="neo-card about-story-card interactive-hover-card">
             <h3>Mi recorrido y forma de colaborar</h3>
             <p>
-              Curso <strong>Ingeniería en Sistemas en la Universidad Mariano Gálvez de Guatemala (UMG)</strong> y me formé de manera práctica e intensiva como <strong>Técnica en Desarrollo de Software en Campuslands</strong>, desarrollando sistemas individuales y en equipo bajo metodologías ágiles.
+              Soy técnica en desarrollo de software con base sólida en desarrollo Backend y gestión de bases de datos. Me formé en un entorno intensivo y práctico en Campuslands, donde colaboré en el desarrollo de arquitecturas de software, APIs y aplicaciones móviles.
             </p>
             <p>
-              Antes de dedicarme al software trabajé en atención al cliente y ventas, lo que me dio escucha activa, responsabilidad y facilidad para comunicarme con claridad, entender requerimientos reales y apoyar la organización de mis compañeros en proyectos como <strong>OMS Backend</strong>, <strong>KarenFlix</strong> y <strong>Proyecto Alba</strong>.
+              Antes de ingresar al área tecnológica, trabajé durante 3 años en atención al cliente y ventas, una experiencia clave que hoy me permite escuchar a usuarios y clientes, comunicar ideas técnicas con claridad y coordinar entregas de manera responsable. Busco aportar a equipos de desarrollo con código limpio, adaptabilidad y enfoque en resolución de problemas.
             </p>
           </article>
 
@@ -150,8 +276,8 @@
                   <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
                 </svg>
               </div>
-              <h4>Código Ordenado y Mantenible</h4>
-              <p>Separación de responsabilidades entre rutas, controladores, lógica de negocio y acceso a datos para facilitar el mantenimiento.</p>
+              <h4>Código Modular y Mantenible</h4>
+              <p>Separación de responsabilidades entre rutas, middlewares, controladores, lógica de negocio y capas de acceso a datos.</p>
             </article>
 
             <article class="neo-card service-card interactive-hover-card">
@@ -163,8 +289,8 @@
                   <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
               </div>
-              <h4>Coordinación con Scrum</h4>
-              <p>Organización de tableros de tareas, división de módulos, revisión de avances e integración ordenada de ramas en Git y GitHub.</p>
+              <h4>Trabajo en Equipo y Scrum</h4>
+              <p>Coordinación de sprints, gestión de tableros de tareas, división ordenada de módulos y flujo colaborativo con Git.</p>
             </article>
 
             <article class="neo-card service-card interactive-hover-card">
@@ -174,28 +300,30 @@
                 </svg>
               </div>
               <h4>Comunicación y Adaptabilidad</h4>
-              <p>Trato empático, disposición para aprender nuevas herramientas con rapidez y enfoque práctico para resolver bloqueos en equipo.</p>
+              <p>Escucha activa orientada al negocio, rápida curva de aprendizaje para nuevas tecnologías y resolución ágil de bloqueos.</p>
             </article>
           </div>
 
           <div class="lui-bg-title" aria-hidden="true">SOBRE MI</div>
         </section>
 
+        <!-- 3. SECCIÓN PROYECTOS -->
         <section class="lui-section" data-tab-panel="proyectos" id="proyectos">
           <div class="lui-section-header">
             <span class="lui-eyebrow">PORTAFOLIO DE PROYECTOS</span>
-            <h2 class="lui-title">Proyectos Desplegados y Liderazgo en OMS Backend</h2>
+            <h2 class="lui-title">Proyectos Destacados y Arquitectura de Software</h2>
             <p class="lui-lead">
-              Sistemas publicados en Vercel y GitHub Pages, bases de datos SQL y arquitectura de servidor donde he participado.
+              Sistemas desplegados, APIs REST, bases de datos relacionales y aplicaciones móviles con código modular y escalable.
             </p>
           </div>
 
+          <!-- Consola interactiva de arquitectura OMS Backend -->
           <div class="oms-showcase-card interactive-hover-card">
             <div class="oms-showcase-info">
               <span class="lui-eyebrow">PROYECTO BACKEND DESTACADO</span>
-              <h3>OMS Backend &amp; Plataforma PostgreSQL (Softplus)</h3>
+              <h3>OMS Backend &amp; Plataforma PostgreSQL</h3>
               <p>
-                Lideré al equipo backend en el <strong>Sistema de Gestión de Órdenes (OMS)</strong> para organizar las entregas. Al ser un proyecto de servidor, puedes alternar en esta consola entre el flujo en tiempo real (<strong>Node.js, Redis y WebSocket</strong>), los contenedores en <strong>Docker con Prometheus y Grafana</strong> y los respaldos automatizados en <strong>PostgreSQL</strong>.
+                Núcleo backend para un sistema de gestión de órdenes y pedidos en tiempo real. Diseñé y normalicé la base de datos relacional en PostgreSQL, implementé el manejo centralizado de errores, validaciones y servicios con Node.js, Express, Redis y WebSockets. Apoyé en la coordinación de sprints, flujo de trabajo en Git y pruebas de endpoints con Bruno/Postman y Docker.
               </p>
               <div class="oms-console-tabs">
                 <button type="button" class="oms-tab-btn active" data-oms-view="realtime">1 · API &amp; Tiempo Real (Redis / WS)</button>
@@ -220,41 +348,43 @@
                 <span class="console-title">oms-backend · servidor-postgresql</span>
               </div>
               <pre class="oms-console-body" id="omsConsoleOutput">Flujo Backend OMS: Creación y notificación de orden en tiempo real
-POST /api/orders  -->  Middleware de Validación y Manejo de Errores
-  ├─ 1. Validación de estructura y stock en PostgreSQL (Base normalizada)
-  ├─ 2. Registro de transacción en tablas de órdenes
-  └─ 3. Publicación de evento en Redis y emisión por WebSocket
+POST /api/orders  -->  Middleware de Validación y Manejo Centralizado de Errores
+  ├─ 1. Validación de estructura y stock en PostgreSQL (Base normalizada 3NF)
+  ├─ 2. Registro de transacción atómica en tablas de órdenes
+  └─ 3. Publicación de evento en Redis y emisión bidireccional por WebSockets
 
 Respuesta emitida en tiempo real:
 {
   "order_id": "OMS-2026-0842",
   "status": "CONFIRMED",
-  "channel": "websocket_realtime",
-  "database": "PostgreSQL (Normalizada)",
+  "channel": "orders_realtime_ws",
+  "database": "PostgreSQL 3NF (Normalizada)",
   "error_handler": "CentralizedMiddleware"
 }</pre>
             </div>
           </div>
 
+          <!-- Botones de filtro de categorías requeridos -->
           <div class="project-filters" role="tablist" aria-label="Filtrar proyectos por categoría">
-            <button class="filter-btn active" data-filter="all" type="button">Todos (10)</button>
-            <button class="filter-btn" data-filter="fullstack" type="button">Full-Stack, Backend &amp; SQL</button>
-            <button class="filter-btn" data-filter="liderazgo" type="button">Liderazgo de Equipo</button>
-            <button class="filter-btn" data-filter="frontend" type="button">Frontend Web</button>
-            <button class="filter-btn" data-filter="python-ia" type="button">Python &amp; Automatización</button>
+            <button class="filter-btn active" data-filter="all" type="button">Todos</button>
+            <button class="filter-btn" data-filter="backend" type="button">APIs &amp; Backend</button>
+            <button class="filter-btn" data-filter="frontend" type="button">Frontend &amp; Web</button>
+            <button class="filter-btn" data-filter="mobile" type="button">Mobile</button>
           </div>
 
+          <!-- Cuadrícula dinámica de tarjetas de proyectos -->
           <div class="projects-showcase-grid" id="projectsGrid"></div>
 
           <div class="lui-bg-title" aria-hidden="true">PROYECTOS</div>
         </section>
 
+        <!-- 4. SECCIÓN HABILIDADES -->
         <section class="lui-section" data-tab-panel="stack" id="stack">
           <div class="lui-section-header">
             <span class="lui-eyebrow">HABILIDADES TÉCNICAS</span>
             <h2 class="lui-title">Stack Tecnológico Aplicado</h2>
             <p class="lui-lead">
-              Dominio práctico por área y tecnologías utilizadas en cada proyecto.
+              Competencias prácticas demostradas en bases de datos, desarrollo backend, arquitecturas de software y aplicaciones móviles.
             </p>
           </div>
 
@@ -268,7 +398,7 @@ Respuesta emitida en tiempo real:
                 <span class="svg-ring-value">85%</span>
               </div>
               <h4>Backend &amp; APIs REST</h4>
-              <p>Node.js, Express, Swagger UI, Redis &amp; WebSocket</p>
+              <p>Node.js, Express, Swagger UI, Redis &amp; WebSockets</p>
             </article>
 
             <article class="neo-card circle-skill-card interactive-hover-card">
@@ -279,8 +409,8 @@ Respuesta emitida en tiempo real:
                 </svg>
                 <span class="svg-ring-value">85%</span>
               </div>
-              <h4>Bases de Datos SQL</h4>
-              <p>PostgreSQL, MySQL 8, SQLite 3NF &amp; PL/pgSQL</p>
+              <h4>Bases de Datos Relacionales</h4>
+              <p>PostgreSQL, MySQL, SQLite (3NF) &amp; PL/pgSQL</p>
             </article>
 
             <article class="neo-card circle-skill-card interactive-hover-card">
@@ -291,8 +421,8 @@ Respuesta emitida en tiempo real:
                 </svg>
                 <span class="svg-ring-value">88%</span>
               </div>
-              <h4>Frontend &amp; Móvil</h4>
-              <p>JavaScript ES6+, HTML5, CSS3, Tailwind &amp; Flutter</p>
+              <h4>Frontend &amp; Mobile</h4>
+              <p>JavaScript ES6+, TypeScript, Flutter &amp; Dart</p>
             </article>
 
             <article class="neo-card circle-skill-card interactive-hover-card">
@@ -303,92 +433,112 @@ Respuesta emitida en tiempo real:
                 </svg>
                 <span class="svg-ring-value">90%</span>
               </div>
-              <h4>Scrum, Git &amp; DevOps</h4>
-              <p>Git/GitHub, Docker Compose, Linux &amp; Kanban</p>
+              <h4>DevOps, Linux &amp; Scrum</h4>
+              <p>Docker, Linux, Git/GitHub &amp; Metodologías Ágiles</p>
             </article>
           </div>
 
           <div class="luique-dotted-skills-grid">
             <div class="dotted-skill-item interactive-hover-card">
               <div class="dotted-skill-top">
-                <span class="dotted-skill-name">Node.js &amp; Express</span>
-                <span class="dotted-skill-tag">Librarian · KarenFlix · OMS</span>
+                <span class="dotted-skill-name">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2l9 5.2v10.4L12 22.8 3 17.6V7.2L12 2zm0 2.3L4.8 8.5v7l7.2 4.2 7.2-4.2v-7L12 4.3z"/></svg>
+                  Node.js &amp; Express
+                </span>
+                <span class="dotted-skill-tag">OMS · Librarian · KarenFlix</span>
               </div>
               <div class="luique-dots-row" aria-hidden="true">
-                <span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot"></span>
+                <span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot"></span><span class="lui-dot"></span>
               </div>
               <p class="dotted-skill-context">Rutas modulares, middlewares de validación, CORS, Rate Limiting y documentación Swagger UI.</p>
             </div>
 
             <div class="dotted-skill-item interactive-hover-card">
               <div class="dotted-skill-top">
-                <span class="dotted-skill-name">PostgreSQL, MySQL &amp; SQLite</span>
-                <span class="dotted-skill-tag">OMS · Tech Zone · ACME School</span>
+                <span class="dotted-skill-name">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="8" ry="3"></ellipse><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"></path><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"></path></svg>
+                  PostgreSQL &amp; MySQL
+                </span>
+                <span class="dotted-skill-tag">OMS · Tech Zone · SQLite 3NF</span>
               </div>
               <div class="luique-dots-row" aria-hidden="true">
-                <span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot"></span>
+                <span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot"></span><span class="lui-dot"></span>
               </div>
               <p class="dotted-skill-context">Modelado relacional en 3NF, consultas JOIN, funciones, triggers PL/pgSQL y respaldos automatizados.</p>
             </div>
 
             <div class="dotted-skill-item interactive-hover-card">
               <div class="dotted-skill-top">
-                <span class="dotted-skill-name">JavaScript (ES6+), POO &amp; SOLID</span>
-                <span class="dotted-skill-tag">Librarian · Campus Parking</span>
-              </div>
-              <div class="luique-dots-row" aria-hidden="true">
-                <span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot"></span>
-              </div>
-              <p class="dotted-skill-context">Módulos ES6, programación funcional (.map, .filter, .find), clases POO y Clean Architecture.</p>
-            </div>
-
-            <div class="dotted-skill-item interactive-hover-card">
-              <div class="dotted-skill-top">
-                <span class="dotted-skill-name">HTML5, CSS3 &amp; Tailwind CSS</span>
-                <span class="dotted-skill-tag">Campus Shop · KarenFlix</span>
-              </div>
-              <div class="luique-dots-row" aria-hidden="true">
-                <span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot"></span>
-              </div>
-              <p class="dotted-skill-context">Maquetación semántica, diseño responsivo adaptable y sistemas de temas con variables CSS.</p>
-            </div>
-
-            <div class="dotted-skill-item interactive-hover-card">
-              <div class="dotted-skill-top">
-                <span class="dotted-skill-name">Flutter, Dart &amp; Firebase</span>
-                <span class="dotted-skill-tag">Proyecto Alba Guatemala</span>
+                <span class="dotted-skill-name">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 3h18v18H3V3zm13.7 13.9c.8 0 1.4-.4 1.7-.9l1.4.9c-.6 1-1.6 1.7-3.1 1.7-2.3 0-3.6-1.5-3.6-3.7 0-2.4 1.5-3.8 3.7-3.8 1.8 0 2.9 1 3.2 2.1l-1.5.7c-.2-.6-.7-1.1-1.7-1.1-1.2 0-2 .8-2 2.2 0 1.4.7 2.2 1.9 2.2zm-6.2.7c0 .8-.5 1.2-1.3 1.2-.7 0-1.2-.4-1.5-.9l-1.3.8c.6 1 1.5 1.6 2.8 1.6 1.7 0 2.8-.9 2.8-2.6v-6.9H8v1.5h1.5v5.3z"/></svg>
+                  JavaScript ES6+ &amp; TypeScript
+                </span>
+                <span class="dotted-skill-tag">POO · SOLID · Clean Code</span>
               </div>
               <div class="luique-dots-row" aria-hidden="true">
                 <span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot"></span><span class="lui-dot"></span>
               </div>
-              <p class="dotted-skill-context">Interfaces móviles multiplataforma con autenticación por roles y sincronización en Cloud Firestore.</p>
+              <p class="dotted-skill-context">Módulos ES6, programación funcional (.map, .filter, .find), clases POO y tipado estático con TypeScript.</p>
             </div>
 
             <div class="dotted-skill-item interactive-hover-card">
               <div class="dotted-skill-top">
-                <span class="dotted-skill-name">Python, Docker, Linux &amp; n8n</span>
-                <span class="dotted-skill-tag">Force Tech · TutorBot · Softplus</span>
+                <span class="dotted-skill-name">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M14.3 2.5L3.5 13.3l3.3 3.3L20.9 2.5h-6.6zm0 10.4l-4.9 4.9 4.9 4.9h6.6l-8.2-8.2 1.6-1.6z"/></svg>
+                  Dart &amp; Flutter
+                </span>
+                <span class="dotted-skill-tag">Proyecto Alba · SQLite &amp; Firebase</span>
+              </div>
+              <div class="luique-dots-row" aria-hidden="true">
+                <span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot"></span><span class="lui-dot"></span><span class="lui-dot"></span>
+              </div>
+              <p class="dotted-skill-context">Desarrollo de interfaces móviles multiplataforma, funcionamiento offline-first y persistencia local.</p>
+            </div>
+
+            <div class="dotted-skill-item interactive-hover-card">
+              <div class="dotted-skill-top">
+                <span class="dotted-skill-name">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M22.5 11.5c-.3-.2-1.7-.3-2.6.4-.3.2-.5.5-.7.9-.9-.5-2.2-.4-2.8-.2-.5-1.5-1.9-2.6-3.6-2.6h-.3V8.5h3V6h-3V3.5h-2.5V6H8V3.5H5.5V6H3V8.5h7v1.5H3c-.6 0-1 .4-1 1 0 4.1 3.2 7.5 7.3 7.8 1.4.1 2.8-.2 4-.8 2.2-1.1 3.7-3.2 4.1-5.7.9-.1 2.3-.4 2.8-1.5.2-.4.4-.8.4-1.3-.1.6-.6 1.7-1.1 2z"/></svg>
+                  Docker &amp; Linux
+                </span>
+                <span class="dotted-skill-tag">Servidores · Contenedores</span>
               </div>
               <div class="luique-dots-row" aria-hidden="true">
                 <span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot"></span><span class="lui-dot"></span>
               </div>
-              <p class="dotted-skill-context">Sistemas modulares en Python, despliegue con Docker Compose, monitoreo en Linux y flujos con n8n.</p>
+              <p class="dotted-skill-context">Despliegue multi-contenedor con Docker Compose, variables de entorno, volúmenes y comandos Linux.</p>
+            </div>
+
+            <div class="dotted-skill-item interactive-hover-card">
+              <div class="dotted-skill-top">
+                <span class="dotted-skill-name">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M21.7 10.7l-8.4-8.4c-.4-.4-1.1-.4-1.5 0l-1.9 1.9 2.4 2.4c.5-.2 1.1-.1 1.5.3.4.4.5 1 .3 1.5l2.3 2.3c.5-.2 1.1-.1 1.5.3.6.6.6 1.6 0 2.2s-1.6.6-2.2 0c-.4-.4-.5-1-.3-1.5l-2.2-2.2v5.1c.2.1.3.3.4.4.6.6.6 1.6 0 2.2s-1.6.6-2.2 0-1.6-.6 0-2.2c.4-.4 1-.5 1.5-.3V8.8c-.5-.2-1-.7-1.2-1.2L9.5 10l-7.2 7.2c-.4.4-.4 1.1 0 1.5l8.4 8.4c.4.4 1.1.4 1.5 0l9.5-9.5c.4-.4.4-1.1 0-1.5z"/></svg>
+                  Git &amp; Python
+                </span>
+                <span class="dotted-skill-tag">Control de Versiones · Automatización</span>
+              </div>
+              <div class="luique-dots-row" aria-hidden="true">
+                <span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot filled"></span><span class="lui-dot"></span><span class="lui-dot"></span>
+              </div>
+              <p class="dotted-skill-context">Flujo de trabajo en equipo con Git/GitHub, pull requests, resolución de conflictos y scripts en Python.</p>
             </div>
           </div>
 
           <div class="lui-bg-title" aria-hidden="true">HABILIDADES</div>
         </section>
 
+        <!-- 5. SECCIÓN CURRÍCULUM / TRAYECTORIA -->
         <section class="lui-section" data-tab-panel="trayectoria" id="trayectoria">
           <div class="lui-section-header">
-            <span class="lui-eyebrow">CURRÍCULUM INTERACTIVO</span>
-            <h2 class="lui-title">Formación Académica, Liderazgo y Experiencia</h2>
+            <span class="lui-eyebrow">CURRÍCULUM PROFESIONAL</span>
+            <h2 class="lui-title">Formación Académica y Trayectoria Técnica</h2>
             <p class="lui-lead">
-              Haz clic en cada tarjeta para desplegar o contraer los detalles.
+              Haz clic en cada tarjeta para desplegar o contraer los detalles académicos y laborales.
             </p>
           </div>
 
           <div class="luique-resume-grid">
+            <!-- Columna 01: Formación Académica -->
             <div>
               <h3 class="resume-col-title">
                 <span class="resume-col-badge">01</span>
@@ -396,34 +546,37 @@ Respuesta emitida en tiempo real:
               </h3>
 
               <div class="lui-accordion-list">
+                <!-- 1. Técnico en Desarrollo de Software -->
                 <article class="lui-accordion-item is-open">
                   <button type="button" class="lui-accordion-header">
                     <div class="acc-title-group">
                       <h4>Técnico en Desarrollo de Software</h4>
-                      <span class="acc-subtitle">Campuslands · Guatemala</span>
+                      <span class="acc-subtitle">Campuslands Guatemala</span>
                     </div>
                     <span class="acc-toggle-icon">−</span>
                   </button>
                   <div class="lui-accordion-body">
-                    <span class="acc-year-pill">Julio 2025 – Mayo 2026</span>
-                    <p>Formación intensiva basada en proyectos reales abarcando desarrollo Frontend y Backend (HTML, CSS, JavaScript, Node.js, Express, SQL, Python, Git, Docker y Scrum).</p>
+                    <span class="acc-year-pill">2026 | En fase de graduación</span>
+                    <p>10 meses intensivos de desarrollo Full-Stack y Backend. Formación práctica enfocada en diseño y construcción de arquitecturas de software, desarrollo de APIs REST modulares con Node.js y Express, modelado de bases de datos relacionales (PostgreSQL, MySQL, SQLite en 3NF), aplicación de principios SOLID y POO, desarrollo de aplicaciones móviles con Flutter y trabajo colaborativo bajo metodologías ágiles (Scrum y Git).</p>
                   </div>
                 </article>
 
+                <!-- 2. Administración de Empresas -->
                 <article class="lui-accordion-item is-open">
                   <button type="button" class="lui-accordion-header">
                     <div class="acc-title-group">
-                      <h4>Ingeniería en Sistemas</h4>
-                      <span class="acc-subtitle">Universidad Mariano Gálvez de Guatemala (UMG)</span>
+                      <h4>Administración de Empresas</h4>
+                      <span class="acc-subtitle">Universidad de San Carlos de Guatemala (USAC)</span>
                     </div>
                     <span class="acc-toggle-icon">−</span>
                   </button>
                   <div class="lui-accordion-body">
-                    <span class="acc-year-pill">Febrero 2024 – Actualidad</span>
-                    <p>Formación universitaria en ciencias de la computación, análisis de sistemas, lógica algorítmica y estructuras de datos.</p>
+                    <span class="acc-year-pill">1 año completado</span>
+                    <p>Investigación de campo y gestión administrativa. Desarrollo de competencias en análisis de procesos operativos, gestión de recursos, comunicación efectiva y entendimiento de requerimientos de negocio.</p>
                   </div>
                 </article>
 
+                <!-- 3. Bachillerato en Computación -->
                 <article class="lui-accordion-item">
                   <button type="button" class="lui-accordion-header">
                     <div class="acc-title-group">
@@ -434,72 +587,77 @@ Respuesta emitida en tiempo real:
                   </button>
                   <div class="lui-accordion-body">
                     <span class="acc-year-pill">Enero 2022 – Noviembre 2023</span>
-                    <p>Bases de programación, ofimática, mantenimiento de sistemas e introducción al desarrollo de software.</p>
+                    <p>Fundamentos de lógica algorítmica, programación estructurada, ofimática avanzada y arquitectura de computadoras.</p>
                   </div>
                 </article>
               </div>
             </div>
 
+            <!-- Columna 02: Experiencia Técnica y Laboral -->
             <div>
               <h3 class="resume-col-title">
                 <span class="resume-col-badge">02</span>
-                <span>Liderazgo y Experiencia Laboral</span>
+                <span>Experiencia Técnica y Trayectoria Laboral</span>
               </h3>
 
               <div class="lui-accordion-list">
+                <!-- OMS Backend -->
                 <article class="lui-accordion-item is-open">
                   <button type="button" class="lui-accordion-header">
                     <div class="acc-title-group">
-                      <h4>Líder de Equipo Backend — Proyecto OMS</h4>
-                      <span class="acc-subtitle">Node.js · PostgreSQL · Redis · WebSocket · Docker</span>
+                      <h4>Desarrolladora Backend &amp; Coordinación Técnica</h4>
+                      <span class="acc-subtitle">OMS Backend · Softplus</span>
                     </div>
                     <span class="acc-toggle-icon">−</span>
                   </button>
                   <div class="lui-accordion-body">
-                    <span class="acc-year-pill">Liderazgo Técnico</span>
-                    <p>Coordinación del equipo backend para cumplir entregas. Diseño de base de datos normalizada en PostgreSQL, validaciones de stock, manejo de errores centralizado y monitoreo con Docker, Prometheus y Grafana.</p>
+                    <span class="acc-year-pill">Backend &amp; Sprints</span>
+                    <p>Diseño y normalización de la base de datos relacional en PostgreSQL (3NF). Implementación del manejo centralizado de errores, validaciones y servicios con Node.js, Express, Redis y WebSockets. Apoyo en la coordinación técnica de sprints, flujo de trabajo en Git y pruebas de endpoints con Bruno/Postman y Docker.</p>
                   </div>
                 </article>
 
+                <!-- KarenFlix -->
                 <article class="lui-accordion-item is-open">
                   <button type="button" class="lui-accordion-header">
                     <div class="acc-title-group">
-                      <h4>Scrum Master &amp; Desarrolladora Backend — KarenFlix</h4>
-                      <span class="acc-subtitle">Node.js · Express · MySQL (Aiven) · Swagger UI</span>
+                      <h4>Desarrolladora Backend &amp; Coordinación Ágil</h4>
+                      <span class="acc-subtitle">KarenFlix · Node.js &amp; MySQL</span>
                     </div>
                     <span class="acc-toggle-icon">−</span>
                   </button>
                   <div class="lui-accordion-body">
-                    <span class="acc-year-pill">Coordinación Ágil &amp; Backend</span>
-                    <p>Gestión del tablero Scrum en GitHub Projects, asignación de historias de usuario, desarrollo de endpoints REST y documentación interactiva con Swagger UI.</p>
+                    <span class="acc-year-pill">Backend &amp; Scrum</span>
+                    <p>Desarrollo de API RESTful organizada por capas, autenticación con JWT y cookies HttpOnly. Gestión del tablero de tareas en GitHub Projects bajo Scrum y documentación interactiva de endpoints con Swagger UI.</p>
                   </div>
                 </article>
 
+                <!-- Proyecto Alba -->
                 <article class="lui-accordion-item">
                   <button type="button" class="lui-accordion-header">
                     <div class="acc-title-group">
-                      <h4>Coordinación Inicial y Desarrollo Móvil — Proyecto Alba</h4>
-                      <span class="acc-subtitle">Flutter · Dart · Firebase · Equipo de 12 personas</span>
+                      <h4>Desarrolladora Mobile / Integración Técnica</h4>
+                      <span class="acc-subtitle">Proyecto Alba · Flutter &amp; Firebase</span>
                     </div>
                     <span class="acc-toggle-icon">+</span>
                   </button>
                   <div class="lui-accordion-body">
-                    <span class="acc-year-pill">Enero 2026 – Febrero 2026</span>
-                    <p>Organización inicial de un equipo de 12 desarrolladores divididos en 3 grupos bajo Scrum y desarrollo de módulos móviles con Flutter y Firebase.</p>
+                    <span class="acc-year-pill">Mobile &amp; Offline-First</span>
+                    <p>Aplicación móvil orientada a la asistencia y contacto de emergencia para adultos mayores, desarrollada con arquitectura limpia en Flutter/Dart. Implementación de interfaces, almacenamiento local con SQLite para funcionamiento offline-first y persistencia/autenticación con Firebase y Supabase bajo Scrum y Git.</p>
                   </div>
                 </article>
 
+                <!-- Atención al Cliente y Ventas -->
                 <article class="lui-accordion-item">
                   <button type="button" class="lui-accordion-header">
                     <div class="acc-title-group">
-                      <h4>Atención al Cliente y Ventas</h4>
+                      <h4>Atención al Cliente y Ventas (3 años de experiencia)</h4>
                       <span class="acc-subtitle">Smart Fit · El Duende · Zapaterías Cobán</span>
                     </div>
                     <span class="acc-toggle-icon">+</span>
                   </button>
                   <div class="lui-accordion-body">
-                    <span class="acc-year-pill">2023 – 2025</span>
-                    <p>Recepción en Smart Fit (Jul–Nov 2025), Asesora de Ventas en El Duende (Nov–Dic 2024) y Zapaterías Cobán (Nov–Dic 2023).</p>
+                    <span class="acc-year-pill">3 Años de Trayectoria Comercial</span>
+                    <p>Experiencia profesional previa en atención comercial y ventas en Guatemala. Desarrollo de escucha activa, resolución de problemas bajo presión, comunicación empática y coordinación responsable de entregas, fortaleciendo el entendimiento de requerimientos reales de clientes y usuarios en el desarrollo de software.</p>
                   </div>
                 </article>
               </div>
@@ -509,12 +667,13 @@ Respuesta emitida en tiempo real:
           <div class="lui-bg-title" aria-hidden="true">CURRICULUM</div>
         </section>
 
+        <!-- 6. SECCIÓN CONTACTO -->
         <section class="lui-section" data-tab-panel="contacto" id="contacto">
           <div class="lui-section-header">
             <span class="lui-eyebrow">CONTACTO DIRECTO</span>
             <h2 class="lui-title">Hablemos sobre tu equipo o proyecto</h2>
             <p class="lui-lead">
-              Disponible para oportunidades como Desarrolladora de Software Junior (Backend, Full-Stack o Frontend) en modalidad remota, híbrida o presencial.
+              Disponible para oportunidades como Desarrolladora Backend o Full-Stack (Node.js, SQL, Express, Flutter) en modalidad remota, presencial o híbrida.
             </p>
           </div>
 
@@ -522,23 +681,36 @@ Respuesta emitida en tiempo real:
             <article class="neo-card interactive-hover-card">
               <h3>Canales de Comunicación Directa</h3>
               <p style="color: var(--muted); margin-top: 6px; font-size: 0.9rem;">
-                Escríbeme por correo o WhatsApp, o llámame directamente a mi número telefónico.
+                Contáctame directamente a través de correo electrónico, WhatsApp o llamada telefónica.
               </p>
 
               <div class="contact-numbers-list">
+                <!-- Email -->
                 <div class="contact-Channel-item">
                   <div class="channel-meta">
-                    <strong>Correo Electrónico</strong>
-                    <span>barriosevelyn488@gmail.com</span>
+                    <strong>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
+                      Correo Electrónico
+                    </strong>
+                    <a href="mailto:barrios.evelyn.488@gmail.com">barrios.evelyn.488@gmail.com</a>
                   </div>
-                  <button type="button" class="copy-pill-btn" data-copy="barriosevelyn488@gmail.com">
+                  <button type="button" class="copy-pill-btn" data-copy="barrios.evelyn.488@gmail.com">
                     Copiar
                   </button>
                 </div>
 
+                <!-- WhatsApp -->
                 <div class="contact-Channel-item">
                   <div class="channel-meta">
-                    <strong>WhatsApp</strong>
+                    <strong>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                      </svg>
+                      WhatsApp
+                    </strong>
                     <a href="https://wa.me/50233235828" target="_blank" rel="noopener noreferrer">+502 3323-5828</a>
                   </div>
                   <button type="button" class="copy-pill-btn" data-copy="+502 3323-5828">
@@ -546,18 +718,40 @@ Respuesta emitida en tiempo real:
                   </button>
                 </div>
 
+                <!-- Teléfono -->
                 <div class="contact-Channel-item">
                   <div class="channel-meta">
-                    <strong>Llamadas Telefónicas</strong>
+                    <strong>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                      </svg>
+                      Llamadas Telefónicas
+                    </strong>
                     <a href="tel:+50250065469">+502 5006-5469</a>
                   </div>
                   <button type="button" class="copy-pill-btn" data-copy="+502 5006-5469">
                     Copiar
                   </button>
                 </div>
+
+                <!-- Ubicación -->
+                <div class="contact-Channel-item">
+                  <div class="channel-meta">
+                    <strong>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                      Ubicación
+                    </strong>
+                    <span>Guatemala (Zona Horaria GMT-6)</span>
+                  </div>
+                  <span class="country-pill-badge">Guatemala</span>
+                </div>
               </div>
             </article>
 
+            <!-- Formulario de contacto directo -->
             <form class="neo-card interactive-hover-card" id="contactQuickForm">
               <h3 style="margin-bottom: 14px;">Enviar Mensaje Rápido</h3>
               <div class="lui-form-group">
@@ -567,15 +761,15 @@ Respuesta emitida en tiempo real:
               <div class="lui-form-group">
                 <label for="senderRole">Motivo de contacto</label>
                 <select id="senderRole" class="lui-input">
-                  <option value="Oportunidad Laboral — Desarrolladora de Software">Oportunidad Laboral — Desarrolladora de Software</option>
-                  <option value="Posición Backend / Full-Stack (Node.js / SQL)">Posición Backend / Full-Stack (Node.js / SQL)</option>
+                  <option value="Oportunidad Laboral — Desarrolladora Backend / Full-Stack">Oportunidad Laboral — Desarrolladora Backend / Full-Stack</option>
+                  <option value="Posición Backend (Node.js / SQL / APIs)">Posición Backend (Node.js / SQL / APIs)</option>
                   <option value="Entrevista Técnica">Entrevista Técnica</option>
                   <option value="Proyecto / Colaboración">Proyecto / Colaboración</option>
                 </select>
               </div>
               <div class="lui-form-group">
                 <label for="senderMessage">Mensaje</label>
-                <textarea id="senderMessage" rows="3" class="lui-input" placeholder="Hola Evelyn, revisamos tu portafolio y nos gustaría conversar contigo..." required></textarea>
+                <textarea id="senderMessage" rows="3" class="lui-input" placeholder="Hola Evelyn, revisamos tu portafolio y nos gustaría conversar sobre una oportunidad..." required></textarea>
               </div>
               <div class="lui-cta-group" style="margin-top: 10px;">
                 <button type="submit" class="lui-btn lui-btn-primary">
@@ -592,29 +786,62 @@ Respuesta emitida en tiempo real:
         </section>
       </main>
 
+      <!-- Pie de página -->
       <footer class="site-footer">
         <div class="footer-neo-bar">
           <div>
             <strong style="font-family: var(--font-display);">Evelyn Noemí Barrios Méndez</strong>
-            <span style="color: var(--muted); font-size: 0.85rem; margin-left: 8px;">· Técnica en Desarrollo de Software · Guatemala</span>
+            <span style="color: var(--muted); font-size: 0.85rem; margin-left: 8px;">· Desarrolladora Backend &amp; Full-Stack · Guatemala</span>
           </div>
-          <div style="display: flex; gap: 14px; font-size: 0.84rem; font-weight: 700;">
-            <a href="https://github.com/barriosevelyn488-web" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/in/evelyn-noem%C3%AD-barrios-m%C3%A9ndez-aa315130a" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://wa.me/50233235828" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <div class="footer-social-links">
+            <a href="https://github.com/barriosevelyn488-web" target="_blank" rel="noopener noreferrer" title="GitHub">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/evelyn-noem%C3%AD-barrios-m%C3%A9ndez-aa315130a" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://wa.me/50233235828" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+              </svg>
+              WhatsApp
+            </a>
+            <a href="mailto:barrios.evelyn.488@gmail.com" title="Correo">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              Email
+            </a>
+            <span class="footer-location-tag" title="Ubicación: Guatemala">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              Guatemala
+            </span>
           </div>
         </div>
       </footer>
     </div>
   </div>
 
-  <aside class="myour-social-rail" aria-label="Enlaces directos">
-    <a href="https://github.com/barriosevelyn488-web" target="_blank" rel="noopener noreferrer" class="rail-icon-btn" title="GitHub">
+  <!-- Barra de enlaces rápidos / redes fija a la derecha -->
+  <aside class="myour-social-rail" aria-label="Enlaces directos de contacto y redes">
+    <a href="https://github.com/barriosevelyn488-web" target="_blank" rel="noopener noreferrer" class="rail-icon-btn" title="GitHub: @barriosevelyn488-web">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
       </svg>
     </a>
-    <a href="https://www.linkedin.com/in/evelyn-noem%C3%AD-barrios-m%C3%A9ndez-aa315130a" target="_blank" rel="noopener noreferrer" class="rail-icon-btn" title="LinkedIn">
+    <a href="https://www.linkedin.com/in/evelyn-noem%C3%AD-barrios-m%C3%A9ndez-aa315130a" target="_blank" rel="noopener noreferrer" class="rail-icon-btn" title="LinkedIn: Evelyn Noemí Barrios Méndez">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
         <rect x="2" y="9" width="4" height="12"></rect>
@@ -626,13 +853,21 @@ Respuesta emitida en tiempo real:
         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
       </svg>
     </a>
-    <a href="tel:+50250065469" class="rail-icon-btn" title="Llamar: +502 5006-5469">
+    <a href="mailto:barrios.evelyn.488@gmail.com" class="rail-icon-btn" title="Email: barrios.evelyn.488@gmail.com">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
       </svg>
     </a>
+    <span class="rail-icon-btn rail-location-btn" title="Guatemala">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+        <circle cx="12" cy="10" r="3"></circle>
+      </svg>
+    </span>
   </aside>
 
+  <!-- Modal 1: Detalles de Arquitectura de Proyecto -->
   <div class="modal-backdrop" id="architectureModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
     <div class="modal-container">
       <button class="modal-close-btn" id="closeArchModalBtn" aria-label="Cerrar ventana" type="button">
@@ -645,6 +880,7 @@ Respuesta emitida en tiempo real:
     </div>
   </div>
 
+  <!-- Modal 2: Visor de Currículum Vitae -->
   <div class="modal-backdrop" id="cvModal" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle" hidden>
     <div class="modal-container">
       <button class="modal-close-btn" id="closeCvModalBtn" aria-label="Cerrar visor de CV" type="button">
@@ -656,7 +892,7 @@ Respuesta emitida en tiempo real:
       <div class="modal-header-bar" style="margin-bottom: 16px;">
         <div>
           <span class="modal-badge">CURRÍCULUM VITAE</span>
-          <h3 id="cvModalTitle" class="modal-title">Evelyn Barrios — Técnica en Desarrollo de Software</h3>
+          <h3 id="cvModalTitle" class="modal-title">Evelyn Barrios — Desarrolladora Backend &amp; Full-Stack</h3>
         </div>
         <div style="margin-top: 10px;">
           <a href="img/cv-evelyn-barrios.jpg" download="CV_Evelyn_Barrios_Desarrollo_Software.jpg" class="lui-btn lui-btn-primary lui-btn-sm">
@@ -665,15 +901,33 @@ Respuesta emitida en tiempo real:
         </div>
       </div>
       <div class="cv-preview-wrapper">
-        <img src="img/cv-evelyn-barrios.jpg" alt="Currículum Vitae de Evelyn Barrios — Técnica en Desarrollo de Software" class="cv-preview-image" />
+        <img src="img/cv-evelyn-barrios.jpg" alt="Currículum Vitae de Evelyn Barrios" class="cv-preview-image" />
       </div>
     </div>
   </div>
 
+  <!-- Modal 3: Visor Modal / Lightbox para Imágenes de Proyectos -->
+  <div class="modal-backdrop lightbox-modal lightbox-backdrop-target" id="imageLightboxModal" role="dialog" aria-modal="true" aria-label="Visor ampliado de imagen de proyecto" hidden>
+    <div class="lightbox-dialog">
+      <button class="lightbox-close-btn" id="closeLightboxBtn" aria-label="Cerrar visor de imagen" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="lightbox-figure-wrap">
+        <img src="" alt="" class="lightbox-img" id="lightboxTargetImg" />
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notificación Toast para Copiado al Portapapeles -->
   <div class="toast-notification" id="copyToast" role="status" aria-live="polite" hidden>
     <span id="copyToastText">Copiado al portapapeles</span>
   </div>
 
+  <!-- Scripts principales: Módulos ES6 y Bundle compatible -->
   <script type="module" src="js/main.js"></script>
   <script defer src="js/app.bundle.js"></script>
 </body>

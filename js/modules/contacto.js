@@ -36,7 +36,7 @@ function obtenerDatosFormulario() {
 
 export function iniciarContacto() {
   const NUMERO_WHATSAPP = '50233235828';
-  const CORREO_EVELYN = 'barriosevelyn488@gmail.com';
+  const CORREO_EVELYN = 'barrios.evelyn.488@gmail.com';
 
   const botonesCopiar = document.querySelectorAll('[data-copy]');
   botonesCopiar.forEach((boton) => {

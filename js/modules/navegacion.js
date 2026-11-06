@@ -1,27 +1,61 @@
 export function iniciarMenuMovil() {
   const botonMenu = document.getElementById('mobileMenuBtn');
-  const menuNavegacion = document.getElementById('navLinks');
+  const drawerMovil = document.getElementById('mobileNavDrawer');
+  const overlayDrawer = document.getElementById('mobileDrawerOverlay');
+  const botonCerrarDrawer = document.getElementById('closeDrawerBtn');
 
-  if (!botonMenu || !menuNavegacion) return;
+  if (!botonMenu) return;
+
+  const abrirDrawer = () => {
+    botonMenu.classList.add('is-active');
+    botonMenu.setAttribute('aria-expanded', 'true');
+    if (drawerMovil) drawerMovil.removeAttribute('hidden');
+    if (overlayDrawer) overlayDrawer.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const cerrarDrawer = () => {
+    botonMenu.classList.remove('is-active');
+    botonMenu.setAttribute('aria-expanded', 'false');
+    if (drawerMovil) drawerMovil.setAttribute('hidden', '');
+    if (overlayDrawer) overlayDrawer.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+  };
 
   botonMenu.addEventListener('click', () => {
-    const estaAbierto = menuNavegacion.classList.toggle('is-open');
-    botonMenu.setAttribute('aria-expanded', String(estaAbierto));
+    const estaActivo = botonMenu.classList.contains('is-active');
+    if (estaActivo) {
+      cerrarDrawer();
+    } else {
+      abrirDrawer();
+    }
   });
+
+  if (botonCerrarDrawer) {
+    botonCerrarDrawer.addEventListener('click', cerrarDrawer);
+  }
+
+  if (overlayDrawer) {
+    overlayDrawer.addEventListener('click', cerrarDrawer);
+  }
+
+  document.addEventListener('keydown', (evento) => {
+    if (evento.key === 'Escape' && botonMenu.classList.contains('is-active')) {
+      cerrarDrawer();
+    }
+  });
+
+  window.__cerrarMenuMovilDrawer__ = cerrarDrawer;
 }
 
 export function iniciarPestanas() {
   const botonesNavegacion = document.querySelectorAll('[data-tab-target]');
   const barraTransicion = document.getElementById('sectionTransitionBar');
-  const menuNavegacion = document.getElementById('navLinks');
-  const botonMenu = document.getElementById('mobileMenuBtn');
 
   const marcarBotonActivo = (idDestino) => {
     botonesNavegacion.forEach((boton) => {
-      if (boton.classList.contains('nav-pill-btn')) {
-        const coincide = boton.getAttribute('data-tab-target') === idDestino;
-        boton.classList.toggle('active', coincide);
-      }
+      const coincide = boton.getAttribute('data-tab-target') === idDestino;
+      boton.classList.toggle('active', coincide);
     });
   };
 
@@ -44,9 +78,8 @@ export function iniciarPestanas() {
         seccion.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
-      if (menuNavegacion && botonMenu) {
-        menuNavegacion.classList.remove('is-open');
-        botonMenu.setAttribute('aria-expanded', 'false');
+      if (typeof window.__cerrarMenuMovilDrawer__ === 'function') {
+        window.__cerrarMenuMovilDrawer__();
       }
     });
   });
@@ -89,10 +122,9 @@ export function iniciarTypewriter() {
   if (!elementoTexto) return;
 
   const frases = [
-    'Técnica en Desarrollo de Software',
-    'Desarrolladora Backend & Full-Stack',
-    'Node.js · PostgreSQL · MySQL · SOLID',
-    'Liderazgo Ágil de Equipos (Scrum)'
+    'Desarrolladora Backend',
+    'APIs & Bases de Datos',
+    'Desarrolladora Web'
   ];
 
   let indiceFrase = 0;
@@ -110,7 +142,7 @@ export function iniciarTypewriter() {
         setTimeout(escribirPaso, 2100);
         return;
       }
-      setTimeout(escribirPaso, 55);
+      setTimeout(escribirPaso, 60);
     } else {
       indiceCaracter -= 1;
       elementoTexto.textContent = fraseActual.slice(0, indiceCaracter);
@@ -120,7 +152,7 @@ export function iniciarTypewriter() {
         setTimeout(escribirPaso, 320);
         return;
       }
-      setTimeout(escribirPaso, 28);
+      setTimeout(escribirPaso, 30);
     }
   };
 
@@ -172,7 +204,7 @@ export function iniciarParallaxHero() {
   }
 
   document.addEventListener('mousemove', (evento) => {
-    const tarjeta = evento.target.closest('.neo-card, .hero-card-showcase, .project-card, .oms-showcase-card');
+    const tarjeta = evento.target.closest('.neo-card, .hero-card-showcase, .project-card, .oms-showcase-card, .project-showcase-card');
     if (!tarjeta) return;
     const rect = tarjeta.getBoundingClientRect();
     tarjeta.style.setProperty('--mouse-x', `${evento.clientX - rect.left}px`);
