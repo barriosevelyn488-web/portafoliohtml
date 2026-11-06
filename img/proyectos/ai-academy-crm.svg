@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" fill="none">
+  <rect width="640" height="340" fill="#0d1b30"/>
+  <rect x="36" y="30" width="568" height="280" rx="14" fill="#12243f" stroke="#94a3b8" stroke-opacity="0.38" stroke-width="1.5"/>
+  <rect x="36" y="30" width="568" height="38" rx="14" fill="#193154"/>
+  <text x="58" y="54" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="bold">AI ACADEMY CRM · EMBUDO KANBAN, PAGOS Y SUPABASE</text>
+
+  <rect x="56" y="84" width="164" height="204" rx="10" fill="#0b172a" stroke="#38bdf8" stroke-opacity="0.4"/>
+  <text x="72" y="108" fill="#7dd3fc" font-family="sans-serif" font-size="11" font-weight="bold">1. Nuevos Prospectos</text>
+  <rect x="70" y="122" width="136" height="64" rx="6" fill="#162b4c"/>
+  <text x="80" y="144" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="bold">Taller Marketing IA</text>
+  <text x="80" y="162" fill="#94a3b8" font-family="monospace" font-size="9">Sync: Google Sheets</text>
+  <rect x="70" y="198" width="136" height="64" rx="6" fill="#162b4c"/>
+  <text x="80" y="220" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="bold">De 0 a Agentes IA</text>
+  <text x="80" y="238" fill="#38bdf8" font-family="monospace" font-size="9">WhatsApp Directo</text>
+
+  <rect x="238" y="84" width="164" height="204" rx="10" fill="#0b172a" stroke="#94a3b8" stroke-opacity="0.35"/>
+  <text x="254" y="108" fill="#cbd5e1" font-family="sans-serif" font-size="11" font-weight="bold">2. En Seguimiento</text>
+  <rect x="252" y="122" width="136" height="74" rx="6" fill="#162b4c"/>
+  <text x="262" y="144" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="bold">Control de Pagos</text>
+  <text x="262" y="162" fill="#7dd3fc" font-family="monospace" font-size="10">Estado: Parcial / OK</text>
+  <text x="262" y="180" fill="#94a3b8" font-family="monospace" font-size="9">Supabase Realtime</text>
+  <rect x="252" y="208" width="136" height="54" rx="6" fill="#162b4c"/>
+  <text x="262" y="232" fill="#e2e8f0" font-family="sans-serif" font-size="10">Exportación a CSV</text>
+
+  <rect x="420" y="84" width="164" height="204" rx="10" fill="#0b172a" stroke="#38bdf8" stroke-opacity="0.4"/>
+  <text x="436" y="108" fill="#7dd3fc" font-family="sans-serif" font-size="11" font-weight="bold">3. Inscritos &amp; KPIs</text>
+  <rect x="434" y="122" width="136" height="90" rx="6" fill="#162b4c"/>
+  <text x="446" y="146" fill="#cbd5e1" font-family="sans-serif" font-size="10">Conversión por Origen</text>
+  <rect x="448" y="184" width="18" height="18" rx="3" fill="#64748b"/>
+  <rect x="476" y="170" width="18" height="32" rx="3" fill="#38bdf8"/>
+  <rect x="504" y="156" width="18" height="46" rx="3" fill="#0284c7"/>
+  <rect x="532" y="148" width="18" height="54" rx="3" fill="#7dd3fc"/>
+  <rect x="434" y="224" width="136" height="48" rx="6" fill="#162b4c"/>
+  <text x="446" y="246" fill="#f8fafc" font-family="monospace" font-size="10">Next.js · TypeScript</text>
+  <text x="446" y="262" fill="#7dd3fc" font-family="monospace" font-size="9">PostgreSQL RLS</text>
+</svg>

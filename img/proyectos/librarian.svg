@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" fill="none">
+  <defs>
+    <linearGradient id="bgLib" x1="0" y1="0" x2="640" y2="340" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="340" fill="url(#bgLib)"/>
+  <rect x="36" y="30" width="568" height="280" rx="14" fill="#111e36" stroke="#94a3b8" stroke-opacity="0.4" stroke-width="1.5"/>
+  <rect x="36" y="30" width="568" height="38" rx="14" fill="#172a4a"/>
+  <text x="58" y="54" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="bold">LIBRARIAN · ACME STORE (POO · SOLID · CLEAN ARCHITECTURE)</text>
+  <rect x="480" y="40" width="104" height="20" rx="10" fill="#0ea5e9" fill-opacity="0.25" stroke="#38bdf8"/>
+  <text x="496" y="54" fill="#7dd3fc" font-family="monospace" font-size="10">3NF SQLite</text>
+
+  <rect x="56" y="84" width="160" height="204" rx="10" fill="#0b1528" stroke="#38bdf8" stroke-opacity="0.4"/>
+  <rect x="70" y="98" width="132" height="84" rx="6" fill="#1e3a5f"/>
+  <text x="86" y="144" fill="#7dd3fc" font-family="sans-serif" font-size="12" font-weight="bold">Clean Code</text>
+  <text x="70" y="202" fill="#e2e8f0" font-family="sans-serif" font-size="12" font-weight="bold">Catálogo Editorial</text>
+  <text x="70" y="220" fill="#94a3b8" font-family="sans-serif" font-size="10">Sinopsis · Stock · ISBN</text>
+  <rect x="70" y="236" width="62" height="24" rx="5" fill="#0284c7"/>
+  <text x="82" y="252" fill="#ffffff" font-family="sans-serif" font-size="10">Prestar</text>
+  <rect x="140" y="236" width="62" height="24" rx="5" fill="#334155"/>
+  <text x="150" y="252" fill="#e2e8f0" font-family="sans-serif" font-size="10">Comprar</text>
+
+  <rect x="232" y="84" width="160" height="204" rx="10" fill="#0b1528" stroke="#94a3b8" stroke-opacity="0.35"/>
+  <rect x="246" y="98" width="132" height="84" rx="6" fill="#172a4a"/>
+  <text x="260" y="144" fill="#cbd5e1" font-family="sans-serif" font-size="12" font-weight="bold">SOLID Design</text>
+  <text x="246" y="202" fill="#e2e8f0" font-family="sans-serif" font-size="12" font-weight="bold">Préstamos y Ventas</text>
+  <text x="246" y="220" fill="#94a3b8" font-family="sans-serif" font-size="10">PayPal Strategy · RBAC</text>
+  <rect x="246" y="236" width="132" height="24" rx="5" fill="#1e3a5f"/>
+  <text x="264" y="252" fill="#7dd3fc" font-family="monospace" font-size="10">JWT HttpOnly</text>
+
+  <rect x="408" y="84" width="176" height="204" rx="10" fill="#091221" stroke="#38bdf8" stroke-opacity="0.35"/>
+  <text x="422" y="108" fill="#7dd3fc" font-family="monospace" font-size="11" font-weight="bold">Capas del Sistema</text>
+  <rect x="422" y="120" width="148" height="32" rx="6" fill="#132847"/>
+  <text x="434" y="140" fill="#e2e8f0" font-family="monospace" font-size="10">1. Domain (Entities)</text>
+  <rect x="422" y="160" width="148" height="32" rx="6" fill="#132847"/>
+  <text x="434" y="180" fill="#e2e8f0" font-family="monospace" font-size="10">2. Application (POO)</text>
+  <rect x="422" y="200" width="148" height="32" rx="6" fill="#132847"/>
+  <text x="434" y="220" fill="#e2e8f0" font-family="monospace" font-size="10">3. Infrastructure</text>
+  <rect x="422" y="240" width="148" height="32" rx="6" fill="#132847"/>
+  <text x="434" y="260" fill="#7dd3fc" font-family="monospace" font-size="10">4. Presentation API</text>
+</svg>

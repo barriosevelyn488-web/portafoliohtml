@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" fill="none">
+  <defs>
+    <linearGradient id="bgKf" x1="0" y1="0" x2="640" y2="340" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0b1324"/>
+      <stop offset="100%" stop-color="#172c4d"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="340" fill="url(#bgKf)"/>
+  <rect x="36" y="30" width="568" height="280" rx="14" fill="#0f1d35" stroke="#94a3b8" stroke-opacity="0.38" stroke-width="1.5"/>
+  <rect x="36" y="30" width="568" height="38" rx="14" fill="#182d4f"/>
+  <text x="58" y="54" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="bold">KARENFLIX · CATÁLOGO, RESEÑAS Y API REST (MYSQL CLOUD)</text>
+  <rect x="488" y="40" width="96" height="20" rx="10" fill="#0284c7"/>
+  <text x="502" y="54" fill="#ffffff" font-family="monospace" font-size="10">Swagger UI</text>
+
+  <rect x="56" y="84" width="320" height="204" rx="10" fill="#0a1426" stroke="#38bdf8" stroke-opacity="0.35"/>
+  <text x="74" y="110" fill="#7dd3fc" font-family="sans-serif" font-size="12" font-weight="bold">Catálogo y Ranking de Películas</text>
+  <rect x="74" y="124" width="134" height="144" rx="8" fill="#152744"/>
+  <text x="88" y="152" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="bold">Interstellar</text>
+  <text x="88" y="172" fill="#38bdf8" font-family="monospace" font-size="11">Calificación: 4.9/5</text>
+  <text x="88" y="192" fill="#cbd5e1" font-family="sans-serif" font-size="10">42 reseñas activas</text>
+  <rect x="88" y="218" width="104" height="26" rx="6" fill="#0284c7"/>
+  <text x="102" y="235" fill="#ffffff" font-family="sans-serif" font-size="10">Ver Reseñas</text>
+
+  <rect x="224" y="124" width="134" height="144" rx="8" fill="#152744"/>
+  <text x="238" y="152" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="bold">Inception</text>
+  <text x="238" y="172" fill="#38bdf8" font-family="monospace" font-size="11">Calificación: 4.8/5</text>
+  <text x="238" y="192" fill="#cbd5e1" font-family="sans-serif" font-size="10">Reacciones y Likes</text>
+  <rect x="238" y="218" width="104" height="26" rx="6" fill="#334155"/>
+  <text x="252" y="235" fill="#e2e8f0" font-family="sans-serif" font-size="10">Moderación</text>
+
+  <rect x="392" y="84" width="192" height="204" rx="10" fill="#0a1426" stroke="#94a3b8" stroke-opacity="0.35"/>
+  <text x="408" y="110" fill="#e2e8f0" font-family="monospace" font-size="11" font-weight="bold">Endpoints API v1</text>
+  <text x="408" y="136" fill="#38bdf8" font-family="monospace" font-size="10">POST /api/v1/auth/login</text>
+  <text x="408" y="158" fill="#7dd3fc" font-family="monospace" font-size="10">GET  /api/v1/peliculas</text>
+  <text x="408" y="180" fill="#cbd5e1" font-family="monospace" font-size="10">POST /api/v1/resenas</text>
+  <text x="408" y="202" fill="#cbd5e1" font-family="monospace" font-size="10">GET  /api/v1/ranking</text>
+  <rect x="408" y="224" width="160" height="46" rx="8" fill="#152744"/>
+  <text x="420" y="244" fill="#f8fafc" font-family="sans-serif" font-size="10" font-weight="bold">Scrum Master &amp; Backend</text>
+  <text x="420" y="260" fill="#94a3b8" font-family="monospace" font-size="9">MySQL 8 · DTOs · JWT</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" fill="none">
+  <rect width="640" height="340" fill="#0b1526"/>
+  <rect x="36" y="30" width="568" height="280" rx="14" fill="#11223b" stroke="#94a3b8" stroke-opacity="0.38" stroke-width="1.5"/>
+  <rect x="36" y="30" width="568" height="38" rx="14" fill="#182f50"/>
+  <text x="58" y="54" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="bold">APIS BACKEND NODE.JS &amp; BASES DE DATOS SQL (POSTGRESQL / MYSQL)</text>
+
+  <rect x="58" y="86" width="252" height="92" rx="10" fill="#091322" stroke="#38bdf8" stroke-opacity="0.4"/>
+  <text x="74" y="112" fill="#7dd3fc" font-family="sans-serif" font-size="12" font-weight="bold">Acme School Management</text>
+  <text x="74" y="132" fill="#cbd5e1" font-family="monospace" font-size="10">Node.js · Consultas SQL</text>
+  <text x="74" y="152" fill="#94a3b8" font-family="sans-serif" font-size="10">Reportes descargables en HTML</text>
+
+  <rect x="330" y="86" width="252" height="92" rx="10" fill="#091322" stroke="#cbd5e1" stroke-opacity="0.4"/>
+  <text x="346" y="112" fill="#e2e8f0" font-family="sans-serif" font-size="12" font-weight="bold">Tech Zone Store (PostgreSQL)</text>
+  <text x="346" y="132" fill="#7dd3fc" font-family="monospace" font-size="10">DDL · DML · DQL · DCL</text>
+  <text x="346" y="152" fill="#94a3b8" font-family="sans-serif" font-size="10">Procedimientos almacenados PLpgSQL</text>
+
+  <rect x="58" y="194" width="252" height="92" rx="10" fill="#091322" stroke="#cbd5e1" stroke-opacity="0.4"/>
+  <text x="74" y="220" fill="#e2e8f0" font-family="sans-serif" font-size="12" font-weight="bold">API Biblioteca Rate-Limit</text>
+  <text x="74" y="240" fill="#38bdf8" font-family="monospace" font-size="10">express-rate-limit · ESM</text>
+  <text x="74" y="260" fill="#94a3b8" font-family="sans-serif" font-size="10">Middlewares de validación y logs</text>
+
+  <rect x="330" y="194" width="252" height="92" rx="10" fill="#091322" stroke="#38bdf8" stroke-opacity="0.4"/>
+  <text x="346" y="220" fill="#7dd3fc" font-family="sans-serif" font-size="12" font-weight="bold">Gimnasio Campus Tech CLI</text>
+  <text x="346" y="240" fill="#cbd5e1" font-family="monospace" font-size="10">Node.js · MySQL · Capas</text>
+  <text x="346" y="260" fill="#94a3b8" font-family="sans-serif" font-size="10">Administración desde terminal</text>
+</svg>

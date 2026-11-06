@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" fill="none">
+  <rect width="640" height="340" fill="#0b1629"/>
+  <rect x="36" y="30" width="568" height="280" rx="14" fill="#11223d" stroke="#94a3b8" stroke-opacity="0.38" stroke-width="1.5"/>
+  <rect x="36" y="30" width="568" height="38" rx="14" fill="#183054"/>
+  <text x="58" y="54" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="bold">CAMPUS SHOP · TIENDA VIRTUAL E INTERFAZ E-COMMERCE</text>
+
+  <rect x="56" y="86" width="120" height="198" rx="10" fill="#091324" stroke="#94a3b8" stroke-opacity="0.3"/>
+  <text x="72" y="112" fill="#7dd3fc" font-family="sans-serif" font-size="11" font-weight="bold">Categorías</text>
+  <text x="72" y="138" fill="#f8fafc" font-family="sans-serif" font-size="10">• Todos</text>
+  <text x="72" y="160" fill="#cbd5e1" font-family="sans-serif" font-size="10">• Abrigos</text>
+  <text x="72" y="182" fill="#cbd5e1" font-family="sans-serif" font-size="10">• Camisetas</text>
+  <text x="72" y="204" fill="#cbd5e1" font-family="sans-serif" font-size="10">• Pantalones</text>
+  <rect x="68" y="236" width="96" height="30" rx="6" fill="#0284c7"/>
+  <text x="80" y="255" fill="#ffffff" font-family="sans-serif" font-size="10">Carrito (3)</text>
+
+  <rect x="192" y="86" width="124" height="198" rx="10" fill="#091324" stroke="#38bdf8" stroke-opacity="0.35"/>
+  <rect x="204" y="98" width="100" height="100" rx="6" fill="#162b4c"/>
+  <text x="204" y="218" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="bold">Chaqueta Azul</text>
+  <text x="204" y="236" fill="#7dd3fc" font-family="monospace" font-size="10">Q 280.00</text>
+  <rect x="204" y="248" width="100" height="24" rx="5" fill="#1e3a5f"/>
+  <text x="228" y="264" fill="#e2e8f0" font-family="sans-serif" font-size="10">Agregar</text>
+
+  <rect x="330" y="86" width="124" height="198" rx="10" fill="#091324" stroke="#38bdf8" stroke-opacity="0.35"/>
+  <rect x="342" y="98" width="100" height="100" rx="6" fill="#162b4c"/>
+  <text x="342" y="218" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="bold">Camisa Casual</text>
+  <text x="342" y="236" fill="#7dd3fc" font-family="monospace" font-size="10">Q 150.00</text>
+  <rect x="342" y="248" width="100" height="24" rx="5" fill="#1e3a5f"/>
+  <text x="366" y="264" fill="#e2e8f0" font-family="sans-serif" font-size="10">Agregar</text>
+
+  <rect x="468" y="86" width="116" height="198" rx="10" fill="#091324" stroke="#38bdf8" stroke-opacity="0.35"/>
+  <rect x="480" y="98" width="92" height="100" rx="6" fill="#162b4c"/>
+  <text x="480" y="218" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="bold">Abrigo Plata</text>
+  <text x="480" y="236" fill="#7dd3fc" font-family="monospace" font-size="10">Q 320.00</text>
+  <rect x="480" y="248" width="92" height="24" rx="5" fill="#1e3a5f"/>
+  <text x="502" y="264" fill="#e2e8f0" font-family="sans-serif" font-size="10">Agregar</text>
+</svg>
