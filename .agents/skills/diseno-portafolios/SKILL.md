@@ -23,6 +23,7 @@ Usa esta skill siempre que el usuario solicite concebir, diseñar, auditar, refa
 > **Queda estrictamente prohibido**:
 > • Proponer código incompleto, con `TODOs` en la interactividad o secciones vacías.
 > • Incrustar bloques `<style>` con código CSS dentro del `index.html`. El HTML debe permanecer semántico, limpio y profesional sin estilos embebidos ni hacks `!important`.
+> • Mantener el archivo `index.html` sobrecargado con 800-1000+ líneas; `index.html` debe actuar como el shell principal de inicio y presentación de la página, modularizando las secciones subsiguientes en componentes desacoplados (`sections/sobre-mi.html`, `sections/proyectos.html`, `sections/habilidades.html`, etc.) inyectados asíncronamente con ES6 Modules.
 > • Crear o mantener archivos monolíticos desorganizados con más de 1,000 líneas de código (monolitos CSS o JS gigantescos).
 > • Mantener código CSS desestructurado; siempre debe modularizarse en arquitectura de componentes (`css/variables.css`, `css/base.css`, `css/layout.css`, `css/components/...`, `css/responsive.css` y `css/main.css`).
 > • Manejar JavaScript espagueti o duplicado en bundles gigantescos; el JS debe estar ordenado en módulos ES6 puros (`js/main.js`, `js/modules/`, `js/data/`).
