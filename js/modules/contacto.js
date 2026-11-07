@@ -84,10 +84,10 @@ export function iniciarContacto() {
 
       const asunto = `${motivo} — ${nombre}`;
       const cuerpo = `Hola Evelyn,\n\nSoy ${nombre}.\n\n${mensaje}`;
-      const urlMailto = `mailto:${CORREO_EVELYN}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+      const urlGmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(CORREO_EVELYN)}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
 
-      window.location.href = urlMailto;
-      mostrarNotificacion('Abriendo cliente de correo...');
+      window.open(urlGmail, '_blank', 'noopener,noreferrer');
+      mostrarNotificacion('Abriendo Gmail...');
     });
   }
 }

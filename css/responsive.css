@@ -136,6 +136,45 @@
     grid-template-columns: 1fr;
   }
 
+  .oms-showcase-card {
+    padding: 24px 18px;
+    gap: 20px;
+    border-radius: 20px;
+  }
+
+  .oms-console-tabs {
+    flex-direction: column;
+  }
+
+  .oms-tab-btn {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .oms-links-inline .lui-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .modal-container {
+    padding: 24px 18px;
+    max-height: 92vh;
+    border-radius: 20px;
+  }
+
+  .modal-project-banner {
+    height: 170px;
+  }
+
+  .modal-actions-grid {
+    flex-direction: column;
+  }
+
+  .modal-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
   .services-myour-grid,
   .myour-circles-grid {
     grid-template-columns: repeat(2, 1fr);

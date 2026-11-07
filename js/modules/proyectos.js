@@ -64,22 +64,6 @@ function crearTarjetaProyectoHTML(proyecto) {
     })
     .join('');
 
-  const enlacesHTML = proyecto.links
-    .map((enlace) => {
-      const claseTipo = enlace.primary ? 'primary' : 'secondary';
-      return `
-        <a href="${enlace.url}" target="_blank" rel="noopener noreferrer"
-           class="project-link-btn ${claseTipo}">
-          <span>${enlace.label}</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
-        </a>
-      `;
-    })
-    .join('');
-
   return `
     <article class="project-card ${proyecto.featured ? 'featured-project' : ''}" data-project-id="${proyecto.id}">
       <div class="project-cover-wrapper"
@@ -90,22 +74,14 @@ function crearTarjetaProyectoHTML(proyecto) {
            tabindex="0"
            aria-label="Ampliar captura de ${proyecto.title}">
         <img src="${proyecto.image}" alt="Captura o arquitectura de ${proyecto.title}" class="project-cover-img" loading="lazy">
-        <div class="project-cover-overlay">
-          <span class="project-role-tag">${proyecto.role}</span>
-          <span class="project-type-badge">${proyecto.status}</span>
-        </div>
-        <div class="project-image-zoom-hint">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            <line x1="11" y1="8" x2="11" y2="14"></line>
-            <line x1="8" y1="11" x2="14" y2="11"></line>
-          </svg>
-          <span>Ver captura</span>
-        </div>
       </div>
 
       <div class="project-card-inner">
+        <div class="project-card-header">
+          <span class="project-role-tag">${proyecto.role}</span>
+          <span class="project-type-badge">${proyecto.status}</span>
+        </div>
+
         <h3 class="project-title">${proyecto.title}</h3>
         <p class="project-summary">${proyecto.summary}</p>
 
@@ -117,16 +93,13 @@ function crearTarjetaProyectoHTML(proyecto) {
           ${tecnologiasHTML}
         </div>
 
-        <div class="project-actions-bar">
-          <div class="project-links-group">
-            ${enlacesHTML}
-          </div>
-          <button type="button" class="project-explore-btn" data-explore-id="${proyecto.id}">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
+        <div class="project-card-footer">
+          <button type="button" class="project-view-detail-btn" data-explore-id="${proyecto.id}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
             </svg>
-            <span>Detalles</span>
+            <span>Ver detalles del proyecto</span>
           </button>
         </div>
       </div>
