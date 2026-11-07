@@ -1,0 +1,71 @@
+<!-- ==========================================================================
+     MÓDULO HTML: MODALES Y NOTIFICACIONES (sections/modales.html)
+     ========================================================================== -->
+
+<!-- Modal 1: Detalles de Arquitectura de Proyecto -->
+<div class="modal-backdrop" id="architectureModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="modal-container">
+    <button class="modal-close-btn" id="closeArchModalBtn" aria-label="Cerrar ventana" type="button">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="modal-content" id="archModalBody"></div>
+  </div>
+</div>
+
+<!-- Modal 2: Visor de Currículum Vitae -->
+<div class="modal-backdrop" id="cvModal" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle" hidden>
+  <div class="modal-container">
+    <button class="modal-close-btn" id="closeCvModalBtn" aria-label="Cerrar visor de CV" type="button">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="modal-header-bar" style="margin-bottom: 16px;">
+      <div>
+        <span class="modal-badge">CURRÍCULUM VITAE</span>
+        <h3 id="cvModalTitle" class="modal-title">Evelyn Barrios — Desarrolladora Backend &amp; Full-Stack</h3>
+      </div>
+      <div style="margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <a href="img/CV_Evelyn_Barrios_Desarrollo_Software.pdf" download="CV_Evelyn_Barrios_Desarrollo_Software.pdf" class="lui-btn lui-btn-primary lui-btn-sm" id="downloadCvPdfBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Descargar CV (PDF)</span>
+        </a>
+        <a href="img/cv-evelyn-barrios.jpg" download="CV_Evelyn_Barrios_Desarrollo_Software.jpg" class="lui-btn lui-btn-secondary lui-btn-sm">
+          <span>Formato Imagen (JPG)</span>
+        </a>
+      </div>
+    </div>
+    <div class="cv-preview-wrapper">
+      <img src="img/cv-evelyn-barrios.jpg" alt="Currículum Vitae de Evelyn Barrios" class="cv-preview-image" />
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3: Visor Modal / Lightbox para Imágenes de Proyectos -->
+<div class="modal-backdrop lightbox-modal lightbox-backdrop-target" id="imageLightboxModal" role="dialog" aria-modal="true" aria-label="Visor ampliado de imagen de proyecto" hidden>
+  <div class="lightbox-dialog">
+    <button class="lightbox-close-btn" id="closeLightboxBtn" aria-label="Cerrar visor de imagen" type="button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="lightbox-figure-wrap">
+      <img src="" alt="" class="lightbox-img" id="lightboxTargetImg" />
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Notificación Toast para Copiado al Portapapeles -->
+<div class="toast-notification" id="copyToast" role="status" aria-live="polite" hidden>
+  <span id="copyToastText">Copiado al portapapeles</span>
+</div>

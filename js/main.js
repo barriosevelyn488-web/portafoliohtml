@@ -1,3 +1,4 @@
+import { cargarSeccionesModulares } from './modules/secciones.js';
 import { PROYECTOS } from './data/projectsData.js';
 import { iniciarTema } from './modules/tema.js';
 import { iniciarProyectos } from './modules/proyectos.js';
@@ -10,10 +11,14 @@ import {
   actualizarMetricasGitHub
 } from './modules/navegacion.js';
 
-function iniciarAplicacion() {
+async function iniciarAplicacion() {
   if (window.__PORTAFOLIO_INICIADO__) return;
   window.__PORTAFOLIO_INICIADO__ = true;
 
+  // 1. Cargar las secciones modulares HTML en paralelo
+  await cargarSeccionesModulares();
+
+  // 2. Inicializar los módulos interactivos sobre el DOM completo
   iniciarTema();
   iniciarMenuMovil();
   iniciarPestanas();

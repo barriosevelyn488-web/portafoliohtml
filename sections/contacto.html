@@ -1,0 +1,165 @@
+<!-- ==========================================================================
+     MÓDULO HTML: SECCIÓN CONTACTO Y PIE DE PÁGINA (sections/contacto.html)
+     ========================================================================== -->
+<section class="lui-section" data-tab-panel="contacto" id="contacto">
+  <div class="lui-section-header">
+    <span class="lui-eyebrow">CONTACTO DIRECTO</span>
+    <h2 class="lui-title">Hablemos sobre tu equipo o proyecto</h2>
+    <p class="lui-lead">
+      Disponible para oportunidades como Desarrolladora Backend o Full-Stack (Node.js, SQL, Express, Flutter) en modalidad remota, presencial o híbrida.
+    </p>
+  </div>
+
+  <div class="contact-luique-grid">
+    <article class="neo-card interactive-hover-card">
+      <h3>Canales de Comunicación Directa</h3>
+      <p style="color: var(--muted); margin-top: 6px; font-size: 0.9rem;">
+        Contáctame directamente a través de correo electrónico, WhatsApp o llamada telefónica.
+      </p>
+
+      <div class="contact-numbers-list">
+        <!-- Email -->
+        <div class="contact-Channel-item">
+          <div class="channel-meta">
+            <strong>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              Correo Electrónico
+            </strong>
+            <a href="mailto:barrios.evelyn.488@gmail.com">barrios.evelyn.488@gmail.com</a>
+          </div>
+          <button type="button" class="copy-pill-btn" data-copy="barrios.evelyn.488@gmail.com">
+            Copiar
+          </button>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="contact-Channel-item">
+          <div class="channel-meta">
+            <strong>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+              </svg>
+              WhatsApp
+            </strong>
+            <a href="https://wa.me/50233235828" target="_blank" rel="noopener noreferrer">+502 3323-5828</a>
+          </div>
+          <button type="button" class="copy-pill-btn" data-copy="+502 3323-5828">
+            Copiar
+          </button>
+        </div>
+
+        <!-- Teléfono -->
+        <div class="contact-Channel-item">
+          <div class="channel-meta">
+            <strong>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              Llamadas Telefónicas
+            </strong>
+            <a href="tel:+50250065469">+502 5006-5469</a>
+          </div>
+          <button type="button" class="copy-pill-btn" data-copy="+502 5006-5469">
+            Copiar
+          </button>
+        </div>
+
+        <!-- Ubicación -->
+        <div class="contact-Channel-item">
+          <div class="channel-meta">
+            <strong>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              Ubicación
+            </strong>
+            <span>Guatemala (Zona Horaria GMT-6)</span>
+          </div>
+          <span class="country-pill-badge">Guatemala</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Formulario de contacto directo -->
+    <form class="neo-card interactive-hover-card" id="contactQuickForm">
+      <h3 style="margin-bottom: 14px;">Enviar Mensaje Rápido</h3>
+      <div class="lui-form-group">
+        <label for="senderName">Nombre o Empresa</label>
+        <input type="text" id="senderName" class="lui-input" placeholder="Ej. María Gómez — Reclutamiento TI" required />
+      </div>
+      <div class="lui-form-group">
+        <label for="senderRole">Motivo de contacto</label>
+        <select id="senderRole" class="lui-input">
+          <option value="Oportunidad Laboral — Desarrolladora Backend / Full-Stack">Oportunidad Laboral — Desarrolladora Backend / Full-Stack</option>
+          <option value="Posición Backend (Node.js / SQL / APIs)">Posición Backend (Node.js / SQL / APIs)</option>
+          <option value="Entrevista Técnica">Entrevista Técnica</option>
+          <option value="Proyecto / Colaboración">Proyecto / Colaboración</option>
+        </select>
+      </div>
+      <div class="lui-form-group">
+        <label for="senderMessage">Mensaje</label>
+        <textarea id="senderMessage" rows="3" class="lui-input" placeholder="Hola Evelyn, revisamos tu portafolio y nos gustaría conversar sobre una oportunidad..." required></textarea>
+      </div>
+      <div class="lui-cta-group" style="margin-top: 10px;">
+        <button type="submit" class="lui-btn lui-btn-primary">
+          Enviar por WhatsApp
+        </button>
+        <button type="button" class="lui-btn lui-btn-secondary" id="sendEmailDirectBtn">
+          Enviar por Correo
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="lui-bg-title" aria-hidden="true">CONTACTO</div>
+</section>
+
+<!-- Pie de página -->
+<footer class="site-footer">
+  <div class="footer-neo-bar">
+    <div>
+      <strong style="font-family: var(--font-display);">Evelyn Noemí Barrios Méndez</strong>
+      <span style="color: var(--muted); font-size: 0.85rem; margin-left: 8px;">· Desarrolladora Backend &amp; Full-Stack · Guatemala</span>
+    </div>
+    <div class="footer-social-links">
+      <a href="https://github.com/barriosevelyn488-web" target="_blank" rel="noopener noreferrer" title="GitHub">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+        </svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/evelyn-noem%C3%AD-barrios-m%C3%A9ndez-aa315130a" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+          <rect x="2" y="9" width="4" height="12"></rect>
+          <circle cx="4" cy="4" r="2"></circle>
+        </svg>
+        LinkedIn
+      </a>
+      <a href="https://wa.me/50233235828" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+        WhatsApp
+      </a>
+      <a href="mailto:barrios.evelyn.488@gmail.com" title="Correo">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        Email
+      </a>
+      <span class="footer-location-tag" title="Ubicación: Guatemala">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        Guatemala
+      </span>
+    </div>
+  </div>
+</footer>

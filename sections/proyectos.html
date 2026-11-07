@@ -1,0 +1,72 @@
+<!-- ==========================================================================
+     MÓDULO HTML: SECCIÓN PROYECTOS (sections/proyectos.html)
+     ========================================================================== -->
+<section class="lui-section" data-tab-panel="proyectos" id="proyectos">
+  <div class="lui-section-header">
+    <span class="lui-eyebrow">PORTAFOLIO DE PROYECTOS</span>
+    <h2 class="lui-title">Proyectos Destacados y Arquitectura de Software</h2>
+    <p class="lui-lead">
+      Sistemas desplegados, APIs REST, bases de datos relacionales y aplicaciones móviles con código modular y escalable.
+    </p>
+  </div>
+
+  <!-- Consola interactiva de arquitectura OMS Backend -->
+  <div class="oms-showcase-card interactive-hover-card">
+    <div class="oms-showcase-info">
+      <span class="lui-eyebrow">PROYECTO BACKEND DESTACADO</span>
+      <h3>OMS Backend &amp; Plataforma PostgreSQL</h3>
+      <p>
+        Núcleo backend para un sistema de gestión de órdenes y pedidos en tiempo real. Diseñé y normalicé la base de datos relacional en PostgreSQL, implementé el manejo centralizado de errores, validaciones y servicios con Node.js, Express, Redis y WebSockets. Apoyé en la coordinación de sprints, flujo de trabajo en Git y pruebas de endpoints con Bruno/Postman y Docker.
+      </p>
+      <div class="oms-console-tabs">
+        <button type="button" class="oms-tab-btn active" data-oms-view="realtime">1 · API &amp; Tiempo Real (Redis / WS)</button>
+        <button type="button" class="oms-tab-btn" data-oms-view="postgres">2 · PostgreSQL &amp; Docker</button>
+        <button type="button" class="oms-tab-btn" data-oms-view="backups">3 · Seguridad &amp; Backups</button>
+      </div>
+      <div class="oms-links-inline">
+        <a href="https://github.com/barriosevelyn488-web/postgresql-stcns-softplus-evelyn" target="_blank" rel="noopener noreferrer" class="lui-btn lui-btn-primary lui-btn-sm">
+          Repositorio PostgreSQL &amp; Docker
+        </a>
+        <a href="https://github.com/barriosevelyn488-web/division-oms" target="_blank" rel="noopener noreferrer" class="lui-btn lui-btn-secondary lui-btn-sm">
+          Repositorio OMS
+        </a>
+      </div>
+    </div>
+
+    <div class="oms-console-window">
+      <div class="oms-console-header">
+        <span class="console-dot"></span>
+        <span class="console-dot"></span>
+        <span class="console-dot"></span>
+        <span class="console-title">oms-backend · servidor-postgresql</span>
+      </div>
+      <pre class="oms-console-body" id="omsConsoleOutput">Flujo Backend OMS: Creación y notificación de orden en tiempo real
+POST /api/orders  -->  Middleware de Validación y Manejo Centralizado de Errores
+  ├─ 1. Validación de estructura y stock en PostgreSQL (Base normalizada 3NF)
+  ├─ 2. Registro de transacción atómica en tablas de órdenes
+  └─ 3. Publicación de evento en Redis y emisión bidireccional por WebSockets
+
+Respuesta emitida en tiempo real:
+{
+  "order_id": "OMS-2026-0842",
+  "status": "CONFIRMED",
+  "channel": "orders_realtime_ws",
+  "database": "PostgreSQL 3NF (Normalizada)",
+  "error_handler": "CentralizedMiddleware"
+}</pre>
+    </div>
+  </div>
+
+  <!-- Botones de filtro de categorías requeridos -->
+  <div class="project-filters" role="tablist" aria-label="Filtrar proyectos por categoría">
+    <button class="filter-btn active" data-filter="all" type="button">Todos</button>
+    <button class="filter-btn" data-filter="backend" type="button">APIs &amp; Backend</button>
+    <button class="filter-btn" data-filter="frontend" type="button">Frontend &amp; Web</button>
+    <button class="filter-btn" data-filter="mobile" type="button">Mobile</button>
+  </div>
+
+  <!-- Cuadrícula dinámica de tarjetas de proyectos -->
+  <div class="projects-showcase-grid" id="projectsGrid"></div>
+
+  <div class="lui-bg-title" aria-hidden="true">PROYECTOS</div>
+</section>
