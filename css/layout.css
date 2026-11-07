@@ -1,0 +1,183 @@
+/* ==========================================================================
+   ARQUITECTURA DE LAYOUT (SPLIT-SCREEN & CONTENEDORES)
+   ========================================================================== */
+
+.myour-layout {
+  display: block;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Panel izquierdo fijo (Escenario visual con fotografía de autor) */
+.myour-left-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 42vw;
+  background: var(--left-panel-grad);
+  overflow: hidden;
+  z-index: 10;
+  box-shadow: 12px 0 42px rgba(2, 132, 199, 0.18);
+  border-right: 1px solid rgba(125, 211, 252, 0.28);
+  perspective: 1000px;
+}
+
+/* Efectos decorativos del panel izquierdo */
+.left-bg-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.bg-glow-orb {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(186, 230, 253, 0.38) 38%,
+    rgba(14, 165, 233, 0) 70%
+  );
+  filter: blur(28px);
+}
+
+.bg-orbit-circle {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  animation: orbitRotate 45s linear infinite;
+}
+
+.bg-orbit-circle-outer {
+  position: absolute;
+  width: 660px;
+  height: 660px;
+  border-radius: 50%;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@keyframes orbitRotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.bg-dots-matrix {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.42) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+}
+
+.bg-dots-top {
+  top: 40px;
+  left: 40px;
+}
+
+.bg-dots-bottom {
+  bottom: 50px;
+  right: 50px;
+}
+
+.bg-diagonal-stripes {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 28px,
+    rgba(255, 255, 255, 0.04) 28px,
+    rgba(255, 255, 255, 0.04) 29px
+  );
+}
+
+/* Área de contenido derecha scrolleable */
+.myour-right-area {
+  margin-left: 42vw;
+  min-height: 100vh;
+  position: relative;
+  z-index: 20;
+}
+
+.main-stage {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 120px 48px 60px 48px;
+}
+
+/* Secciones individuales y transiciones */
+.lui-section {
+  position: relative;
+  padding: 40px 0 60px 0;
+  display: block;
+}
+
+.lui-section:not(.is-revealed) {
+  display: none;
+}
+
+.lui-bg-title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: var(--font-display);
+  font-size: 5.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--watermark-stroke);
+  line-height: 0.85;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* Barra lateral flotante de redes sociales (Desktop) */
+.myour-social-rail {
+  position: fixed;
+  right: 28px;
+  bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 100;
+}
+
+.rail-icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1.5px solid var(--card-border);
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.22s ease;
+}
+
+.rail-icon-btn:hover {
+  background: var(--nav-bg);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 10px 24px rgba(14, 165, 233, 0.38);
+}

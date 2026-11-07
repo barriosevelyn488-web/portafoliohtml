@@ -1,0 +1,166 @@
+/* ==========================================================================
+   COMPONENTE: CANALES DE CONTACTO, TOAST Y PIE DE PÁGINA (CONTACT & FOOTER)
+   ========================================================================== */
+
+/* Grilla de canales de contacto */
+.contact-luique-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.contact-card {
+  background: var(--card);
+  border: 1.5px solid var(--card-border);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.28s ease;
+}
+
+.contact-card:hover {
+  border-color: var(--highlight);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+
+.contact-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.country-pill-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--surface);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+.contact-card-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.contact-card-value {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.contact-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.copy-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-pill-btn:hover {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* Notificación Toast para copiado dinámico al portapapeles */
+.toast-notification {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #0d2342;
+  color: #ffffff;
+  border: 1.5px solid var(--highlight);
+  border-radius: 999px;
+  padding: 10px 22px;
+  font-family: var(--font-display);
+  font-size: 0.84rem;
+  font-weight: 700;
+  box-shadow: 0 12px 32px rgba(2, 8, 23, 0.45);
+  z-index: 5000;
+  animation: toastSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-notification[hidden] {
+  display: none;
+}
+
+@keyframes toastSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pie de página (Footer) */
+.site-footer {
+  padding: 40px 0 20px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+.footer-neo-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-brand-note {
+  font-size: 0.86rem;
+  color: var(--subtle);
+}
+
+.footer-social-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-location-tag {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--muted);
+}

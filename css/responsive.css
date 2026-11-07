@@ -1,0 +1,252 @@
+/* ==========================================================================
+   ARQUITECTURA RESPONSIVE MASTER (MEDIA QUERIES CENTRALIZADAS)
+   Garantiza 100% adaptabilidad en móviles, tablets y escritorios sin hacks
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. ESCRITORIO (min-width: 961px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 961px) {
+  .nav-desktop-menu {
+    display: flex;
+  }
+
+  .header-cv-desktop {
+    display: inline-flex;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+  }
+
+  .mobile-nav-drawer,
+  .mobile-drawer-overlay {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. TABLET Y MÓVILES (max-width: 960px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  /* Cabecera y Barra de Navegación */
+  .site-header {
+    left: 12px;
+    right: 12px;
+    top: 10px;
+    padding: 0;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+
+  .header-pill-bar {
+    padding: 8px 14px;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+  }
+
+  .nav-desktop-menu {
+    display: none;
+  }
+
+  .header-cv-desktop {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex;
+  }
+
+  /* Selector de tema compacto en móvil */
+  #themeLabel {
+    display: none;
+  }
+
+  .mode-pill-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Ocultar riel social flotante (ya integrado en drawer y footer) */
+  .myour-social-rail {
+    display: none;
+  }
+
+  /* Reorganización del layout split a vertical */
+  .myour-left-panel {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    border-right: none;
+    border-bottom: 1px solid rgba(125, 211, 252, 0.28);
+  }
+
+  .myour-right-area {
+    margin-left: 0;
+  }
+
+  .main-stage {
+    padding: 40px 24px 60px 24px;
+  }
+
+  .section-transition-bar {
+    left: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. MÓVILES ESTÁNDAR (max-width: 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .site-header {
+    left: 10px;
+    right: 10px;
+    top: 10px;
+  }
+
+  .header-pill-bar {
+    padding: 7px 12px;
+    gap: 8px;
+  }
+
+  .brand-circle-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 0.86rem;
+  }
+
+  .brand-text-block {
+    font-size: 0.84rem;
+    white-space: nowrap;
+  }
+
+  /* Adaptación de Grillas a 1 columna */
+  .oms-showcase-card,
+  .projects-showcase-grid,
+  .luique-resume-grid,
+  .contact-luique-grid,
+  .modal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-myour-grid,
+  .myour-circles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .luique-dotted-skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lui-title {
+    font-size: 1.8rem;
+  }
+
+  .lui-hero-title {
+    font-size: 2.6rem;
+  }
+
+  .hero-card-showcase {
+    padding: 28px 20px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. MÓVILES ANGOSTOS (max-width: 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .site-header {
+    left: 8px;
+    right: 8px;
+    top: 8px;
+  }
+
+  .header-pill-bar {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .brand-circle-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 0.82rem;
+  }
+
+  .brand-text-block {
+    font-size: 0.8rem;
+  }
+
+  .mode-pill-btn,
+  .mobile-menu-toggle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .myour-left-panel {
+    height: 400px;
+  }
+
+  .lui-hero-title {
+    font-size: 2.2rem;
+  }
+
+  .main-stage {
+    padding: 28px 16px 48px 16px;
+  }
+
+  .neo-card {
+    padding: 20px 16px;
+  }
+
+  .modal-container {
+    padding: 24px 18px;
+  }
+
+  .services-myour-grid,
+  .myour-circles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. MÓVILES ULTRA ANGOSTOS (max-width: 360px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 360px) {
+  .site-header {
+    left: 6px;
+    right: 6px;
+    top: 6px;
+  }
+
+  .header-pill-bar {
+    padding: 5px 8px;
+    gap: 4px;
+  }
+
+  .brand-circle-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.78rem;
+  }
+
+  .brand-text-block strong:last-child {
+    display: none;
+  }
+
+  .mode-pill-btn,
+  .mobile-menu-toggle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .lui-hero-title {
+    font-size: 1.95rem;
+  }
+}

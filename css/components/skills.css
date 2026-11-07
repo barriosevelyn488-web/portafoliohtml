@@ -1,0 +1,155 @@
+/* ==========================================================================
+   COMPONENTE: HABILIDADES Y TECNOLOGÍAS (SKILLS & TECH STACK)
+   ========================================================================== */
+
+/* Anillos circulares de métricas principales */
+.myour-circles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.circle-skill-card {
+  background: var(--card);
+  border: 1.5px solid var(--card-border);
+  border-radius: 24px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.28s ease;
+}
+
+.circle-skill-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--highlight);
+  box-shadow: var(--shadow-hover);
+}
+
+.svg-ring-wrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 14px;
+}
+
+.svg-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.svg-ring-bg {
+  fill: none;
+  stroke: var(--surface);
+  stroke-width: 8;
+}
+
+.svg-ring-fill {
+  fill: none;
+  stroke: var(--nav-bg);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.svg-ring-value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.circle-skill-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.circle-skill-desc {
+  font-size: 0.76rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* Grilla detallada de habilidades con indicadores de dominio */
+.luique-dotted-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.dotted-skill-item {
+  background: var(--card);
+  border: 1.5px solid var(--card-border);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.24s ease;
+}
+
+.dotted-skill-item:hover {
+  border-color: var(--highlight);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.dotted-skill-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.dotted-skill-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.98rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dotted-skill-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--surface);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.luique-dots-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.lui-dot {
+  flex: 1;
+  height: 6px;
+  border-radius: 4px;
+  background: var(--surface);
+  transition: background-color 0.3s ease;
+}
+
+.lui-dot.active {
+  background: linear-gradient(90deg, var(--nav-bg), var(--accent));
+}
+
+.dotted-skill-context {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+}

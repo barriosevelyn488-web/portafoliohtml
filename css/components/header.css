@@ -1,0 +1,192 @@
+/* ==========================================================================
+   COMPONENTE: CABECERA Y BARRA DE NAVEGACIÓN FLOTANTE (HEADER)
+   ========================================================================== */
+
+.site-header {
+  position: fixed;
+  top: 20px;
+  left: 32px;
+  right: 32px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.header-pill-bar {
+  position: relative;
+  box-sizing: border-box;
+  background: rgba(13, 35, 66, 0.88);
+  border: 1.5px solid rgba(125, 211, 252, 0.32);
+  border-radius: 999px;
+  box-shadow: 0 14px 36px rgba(2, 8, 23, 0.32);
+  padding: 10px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: var(--theme-transition);
+}
+
+[data-theme="light"] .header-pill-bar {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(2, 132, 199, 0.28);
+  box-shadow: 0 12px 32px rgba(2, 132, 199, 0.16);
+}
+
+/* Identidad / Marca (Logo & Monograma) */
+.header-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.brand-circle-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #38bdf8, #0284c7);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.92rem;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35);
+  flex-shrink: 0;
+}
+
+.brand-text-block {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.12;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
+.brand-text-block strong:first-child {
+  font-weight: 800;
+}
+
+.brand-text-block strong:last-child {
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+/* Pastillas de navegación de escritorio */
+.nav-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-pill-btn {
+  font-family: var(--font-display);
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 999px;
+  color: var(--muted);
+  background: transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.nav-pill-btn:hover {
+  color: var(--accent);
+  background: var(--surface);
+}
+
+.nav-pill-btn.active {
+  background: linear-gradient(135deg, var(--nav-bg), var(--accent));
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.32);
+}
+
+/* Controles de cabecera: Botón CV y Selector de Tema */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--nav-border);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: all 0.22s ease;
+  cursor: pointer;
+}
+
+.header-cv-btn:hover {
+  background: var(--nav-bg);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-1px);
+}
+
+/* Botón alternador de tema Claro / Oscuro */
+.mode-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1.5px solid var(--card-border);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.mode-pill-btn:hover {
+  background: var(--card);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.theme-icon-slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Lógica de renderizado limpio de icono Sol / Luna */
+html[data-theme="light"] .theme-mode-icon.icon-sun,
+[data-theme="light"] .theme-mode-icon.icon-sun {
+  display: none;
+}
+
+html[data-theme="light"] .theme-mode-icon.icon-moon,
+[data-theme="light"] .theme-mode-icon.icon-moon {
+  display: inline-block;
+}
+
+html[data-theme="dark"] .theme-mode-icon.icon-moon,
+[data-theme="dark"] .theme-mode-icon.icon-moon {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-mode-icon.icon-sun,
+[data-theme="dark"] .theme-mode-icon.icon-sun {
+  display: inline-block;
+}

@@ -1,0 +1,191 @@
+/* ==========================================================================
+   COMPONENTE: SECCIÓN HERO Y ESCENARIO VISUAL (HERO & PORTRAIT STAGE)
+   ========================================================================== */
+
+/* Escenario fotográfico (Panel izquierdo) */
+.left-cutout-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.cutout-halo-ring {
+  position: absolute;
+  bottom: -40px;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.45) 0%, rgba(14, 165, 233, 0) 70%);
+  filter: blur(20px);
+}
+
+.evelyn-cutout-img {
+  position: relative;
+  max-height: 88vh;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 35px rgba(2, 8, 23, 0.4));
+  transform-origin: bottom center;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.evelyn-cutout-img:hover {
+  transform: scale(1.02);
+}
+
+/* Tarjeta interactiva Hero (Panel derecho) */
+.hero-card-showcase {
+  background: var(--card);
+  border: 1.5px solid var(--card-border);
+  border-radius: 28px;
+  padding: 44px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.hero-card-showcase:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--highlight);
+}
+
+.lui-subtitle-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  background: var(--surface);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+.status-dot-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.lui-hero-title {
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.celeste-word {
+  color: var(--nav-bg);
+  background: linear-gradient(135deg, #38bdf8, #1d4ed8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Efecto máquina de escribir para rol profesional */
+.myour-typewriter-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  font-family: var(--font-mono);
+}
+
+.typewriter-prefix {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--subtle);
+  letter-spacing: 0.08em;
+  background: var(--surface);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.typewriter-text {
+  font-size: 1.22rem;
+  font-weight: 800;
+  color: var(--accent);
+  border-right: 2.5px solid var(--accent);
+  padding-right: 4px;
+  animation: blinkCursor 0.75s step-end infinite;
+}
+
+@keyframes blinkCursor {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--accent); }
+}
+
+.lui-hero-description {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 28px;
+  max-width: 720px;
+}
+
+.lui-hero-description strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* Pastillas de stack destacado en Hero */
+.hero-keyword-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.kw-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text);
+  transition: all 0.2s ease;
+}
+
+.kw-pill:hover {
+  background: var(--card);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.tech-icon-svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.lui-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
