@@ -5,23 +5,23 @@
    ========================================================================== */
 
 /* 1. Tokens de diseño, temas claro/oscuro y tipografía */
-@import url('./variables.css');
+@import url('./variables.css?v=3.5');
 
 /* 2. Reset, estilos base y elementos globales */
-@import url('./base.css');
+@import url('./base.css?v=3.5');
 
 /* 3. Arquitectura de estructura (Layout split-screen) */
-@import url('./layout.css');
+@import url('./layout.css?v=3.5');
 
 /* 4. Componentes modulares */
-@import url('./components/header.css');
-@import url('./components/mobile-drawer.css');
-@import url('./components/hero.css');
-@import url('./components/about.css');
-@import url('./components/skills.css');
-@import url('./components/projects.css');
-@import url('./components/modales.css');
-@import url('./components/contact.css');
+@import url('./components/header.css?v=3.5');
+@import url('./components/mobile-drawer.css?v=3.5');
+@import url('./components/hero.css?v=3.5');
+@import url('./components/about.css?v=3.5');
+@import url('./components/skills.css?v=3.5');
+@import url('./components/projects.css?v=3.5');
+@import url('./components/modales.css?v=3.5');
+@import url('./components/contact.css?v=3.5');
 
 /* 5. Reglas responsivas master (Media queries unificadas) */
-@import url('./responsive.css');
+@import url('./responsive.css?v=3.5');

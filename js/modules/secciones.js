@@ -8,12 +8,12 @@
 
 export async function cargarSeccionesModulares() {
   const componentes = [
-    { id: 'sec-sobre-mi', url: 'sections/sobre-mi.html' },
-    { id: 'sec-proyectos', url: 'sections/proyectos.html' },
-    { id: 'sec-habilidades', url: 'sections/habilidades.html' },
-    { id: 'sec-trayectoria', url: 'sections/trayectoria.html' },
-    { id: 'sec-contacto', url: 'sections/contacto.html' },
-    { id: 'sec-modales', url: 'sections/modales.html' }
+    { id: 'sec-sobre-mi', url: 'sections/sobre-mi.html?v=3.5' },
+    { id: 'sec-proyectos', url: 'sections/proyectos.html?v=3.5' },
+    { id: 'sec-habilidades', url: 'sections/habilidades.html?v=3.5' },
+    { id: 'sec-trayectoria', url: 'sections/trayectoria.html?v=3.5' },
+    { id: 'sec-contacto', url: 'sections/contacto.html?v=3.5' },
+    { id: 'sec-modales', url: 'sections/modales.html?v=3.5' }
   ];
 
   await Promise.all(
@@ -33,4 +33,9 @@ export async function cargarSeccionesModulares() {
       }
     })
   );
+
+  // Garantizar visibilidad de todas las secciones en el flujo scrolleable
+  document.querySelectorAll('.lui-section').forEach((seccion) => {
+    seccion.classList.add('is-revealed');
+  });
 }
