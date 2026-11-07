@@ -77,11 +77,6 @@ function crearTarjetaProyectoHTML(proyecto) {
       </div>
 
       <div class="project-card-inner">
-        <div class="project-card-header">
-          <span class="project-role-tag">${proyecto.role}</span>
-          <span class="project-type-badge">${proyecto.status}</span>
-        </div>
-
         <h3 class="project-title">${proyecto.title}</h3>
         <p class="project-summary">${proyecto.summary}</p>
 
