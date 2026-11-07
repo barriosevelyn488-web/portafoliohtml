@@ -1,49 +1,76 @@
 /* ==========================================================================
-   COMPONENTE: CANALES DE CONTACTO, TOAST Y PIE DE PÁGINA (CONTACT & FOOTER)
+   COMPONENTE: CANALES DE CONTACTO, FORMULARIO Y FOOTER (CONTACT & FOOTER)
    ========================================================================== */
 
-/* Grilla de canales de contacto */
+/* Grilla principal de dos columnas en sección Contacto */
 .contact-luique-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 28px;
   margin-bottom: 48px;
 }
 
-.contact-card {
-  background: var(--card);
-  border: 1.5px solid var(--card-border);
-  border-radius: 24px;
-  padding: 28px;
-  box-shadow: var(--shadow-soft);
+/* 1. Tarjeta de Canales Directos (Teléfono, Email, WhatsApp, Ubicación) */
+.contact-numbers-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  transition: all 0.28s ease;
+  gap: 12px;
+  margin-top: 18px;
 }
 
-.contact-card:hover {
-  border-color: var(--highlight);
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-3px);
-}
-
-.contact-card-top {
+.contact-Channel-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.contact-card-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 16px;
   background: var(--surface);
   border: 1px solid var(--border);
-  color: var(--accent);
-  display: inline-flex;
+  transition: all 0.22s ease;
+}
+
+.contact-Channel-item:hover {
+  border-color: var(--highlight);
+  background: var(--card);
+  box-shadow: 0 6px 18px rgba(14, 165, 233, 0.16);
+  transform: translateX(3px);
+}
+
+.channel-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.channel-meta strong {
+  display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--nav-bg);
+}
+
+.channel-meta strong svg {
+  color: var(--accent);
+  display: inline-block;
+  vertical-align: -2px;
+}
+
+.channel-meta span,
+.channel-meta a {
+  font-family: var(--font-display);
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+
+.channel-meta a:hover {
+  color: var(--accent);
 }
 
 .country-pill-badge {
@@ -51,31 +78,11 @@
   font-size: 0.72rem;
   font-weight: 700;
   color: var(--accent);
-  background: var(--surface);
-  padding: 4px 10px;
-  border-radius: 999px;
+  background: var(--card);
   border: 1px solid var(--border);
-}
-
-.contact-card-title {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--text);
-}
-
-.contact-card-value {
-  font-family: var(--font-mono);
-  font-size: 0.92rem;
-  color: var(--muted);
-  word-break: break-all;
-}
-
-.contact-card-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 
 .copy-pill-btn {
@@ -87,20 +94,69 @@
   font-weight: 700;
   padding: 6px 14px;
   border-radius: 999px;
-  background: var(--surface);
+  background: var(--card);
   border: 1px solid var(--border);
-  color: var(--text);
+  color: var(--accent);
   cursor: pointer;
   transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .copy-pill-btn:hover {
-  background: var(--accent);
+  background: var(--nav-bg);
   color: #ffffff;
   border-color: transparent;
+  transform: translateY(-1px);
 }
 
-/* Notificación Toast para copiado dinámico al portapapeles */
+/* 2. Formulario de Mensaje Rápido */
+.lui-form-group {
+  margin-bottom: 16px;
+}
+
+.lui-form-group label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+.lui-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  box-sizing: border-box;
+  transition: all 0.22s ease;
+}
+
+.lui-input:focus {
+  outline: none;
+  border-color: var(--nav-bg);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.25);
+  background: var(--card);
+}
+
+select.lui-input {
+  cursor: pointer;
+  appearance: auto;
+}
+
+textarea.lui-input {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.5;
+}
+
+/* 3. Notificación Toast para copiado dinámico al portapapeles */
 .toast-notification {
   position: fixed;
   bottom: 24px;
@@ -133,7 +189,7 @@
   }
 }
 
-/* Pie de página (Footer) */
+/* 4. Pie de página (Footer) */
 .site-footer {
   padding: 40px 0 20px 0;
   border-top: 1px solid var(--border);
@@ -156,11 +212,14 @@
 .footer-social-links {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .footer-location-tag {
   font-family: var(--font-mono);
   font-size: 0.76rem;
   color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }

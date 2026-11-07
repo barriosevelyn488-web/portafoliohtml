@@ -158,3 +158,36 @@ svg {
   box-shadow: var(--shadow-hover);
   border-color: var(--highlight);
 }
+
+/* Tarjeta Interactiva con Sombra y Halo Celeste Dinámico al Pasar el Mouse */
+.interactive-hover-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.interactive-hover-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(56, 189, 248, 0.18),
+    transparent 50%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.interactive-hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 42px rgba(14, 165, 233, 0.28), 0 0 24px rgba(56, 189, 248, 0.22);
+  border-color: var(--highlight);
+}
+
+.interactive-hover-card:hover::after {
+  opacity: 1;
+}
+
