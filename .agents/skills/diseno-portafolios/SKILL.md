@@ -22,6 +22,10 @@ Usa esta skill siempre que el usuario solicite concebir, diseñar, auditar, refa
 >
 > **Queda estrictamente prohibido**:
 > • Proponer código incompleto, con `TODOs` en la interactividad o secciones vacías.
+> • Incrustar bloques `<style>` con código CSS dentro del `index.html`. El HTML debe permanecer semántico, limpio y profesional sin estilos embebidos ni hacks `!important`.
+> • Crear o mantener archivos monolíticos desorganizados con más de 1,000 líneas de código (monolitos CSS o JS gigantescos).
+> • Mantener código CSS desestructurado; siempre debe modularizarse en arquitectura de componentes (`css/variables.css`, `css/base.css`, `css/layout.css`, `css/components/...`, `css/responsive.css` y `css/main.css`).
+> • Manejar JavaScript espagueti o duplicado en bundles gigantescos; el JS debe estar ordenado en módulos ES6 puros (`js/main.js`, `js/modules/`, `js/data/`).
 > • Introducir frameworks pesados innecesarios (Bootstrap, Tailwind compilado externamente, jQuery) cuando se solicita vanilla.
 > • Ignorar la vista móvil creando barras superiores fijas con exceso de botones que causen scroll horizontal o desbordamiento en pantallas pequeñas (320px–412px).
 > • Sobreexagerar roles del usuario (ej. transformar una colaboración técnica o sprint en un "liderazgo directivo" sin respaldo real).
