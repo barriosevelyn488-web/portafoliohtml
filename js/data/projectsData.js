@@ -85,14 +85,9 @@ export const PROYECTOS = [
     ],
     links: [
       {
-        label: 'Infraestructura PostgreSQL & Docker',
-        url: 'https://github.com/barriosevelyn488-web/postgresql-stcns-softplus-evelyn',
+        label: 'Repositorio OMS Backend (GitHub)',
+        url: 'https://github.com/barriosevelyn488-web/evelyn-oms-backend',
         primary: true
-      },
-      {
-        label: 'Repositorio OMS',
-        url: 'https://github.com/barriosevelyn488-web/division-oms',
-        primary: false
       }
     ],
     architecture: {
