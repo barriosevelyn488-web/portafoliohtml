@@ -121,16 +121,14 @@
   padding: 120px 48px 60px 48px;
 }
 
-/* Secciones individuales y transiciones */
+/* Secciones individuales continuas (Flujo completo scrolleable) */
 .lui-section {
   position: relative;
-  padding: 40px 0 60px 0;
+  padding: 50px 0 60px 0;
   display: block;
+  scroll-margin-top: 96px; /* Evita que la barra fija tape los encabezados */
 }
 
-.lui-section:not(.is-revealed) {
-  display: none;
-}
 
 .lui-bg-title {
   position: absolute;
