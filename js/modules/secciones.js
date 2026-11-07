@@ -7,13 +7,14 @@
  */
 
 export async function cargarSeccionesModulares() {
+  const versionBust = Date.now();
   const componentes = [
-    { id: 'sec-sobre-mi', url: 'sections/sobre-mi.html?v=3.5' },
-    { id: 'sec-proyectos', url: 'sections/proyectos.html?v=3.5' },
-    { id: 'sec-habilidades', url: 'sections/habilidades.html?v=3.5' },
-    { id: 'sec-trayectoria', url: 'sections/trayectoria.html?v=3.5' },
-    { id: 'sec-contacto', url: 'sections/contacto.html?v=3.5' },
-    { id: 'sec-modales', url: 'sections/modales.html?v=3.5' }
+    { id: 'sec-sobre-mi', url: `sections/sobre-mi.html?t=${versionBust}` },
+    { id: 'sec-proyectos', url: `sections/proyectos.html?t=${versionBust}` },
+    { id: 'sec-habilidades', url: `sections/habilidades.html?t=${versionBust}` },
+    { id: 'sec-trayectoria', url: `sections/trayectoria.html?t=${versionBust}` },
+    { id: 'sec-contacto', url: `sections/contacto.html?t=${versionBust}` },
+    { id: 'sec-modales', url: `sections/modales.html?t=${versionBust}` }
   ];
 
   await Promise.all(
@@ -22,7 +23,7 @@ export async function cargarSeccionesModulares() {
       if (!placeholder) return;
 
       try {
-        const respuesta = await fetch(url);
+        const respuesta = await fetch(url, { cache: 'no-cache' });
         if (!respuesta.ok) {
           throw new Error(`Error HTTP: ${respuesta.status}`);
         }
