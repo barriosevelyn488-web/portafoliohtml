@@ -122,9 +122,10 @@ export function iniciarTypewriter() {
   if (!elementoTexto) return;
 
   const frases = [
-    'Desarrolladora Backend',
-    'APIs & Bases de Datos',
-    'Desarrolladora Web'
+    'Técnico en desarrollo de software',
+    'Desarrollo backend',
+    'Desarrollo frontend',
+    'APIs y bases de datos'
   ];
 
   let indiceFrase = 0;

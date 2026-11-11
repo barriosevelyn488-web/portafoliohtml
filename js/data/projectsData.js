@@ -1,36 +1,37 @@
 export const PROYECTOS = [
   {
     id: 'proyecto-alba',
-    title: 'Proyecto Alba · Asistencia y Contacto de Emergencia',
+    title: 'Proyecto Alba · Plataforma Farma-Geriátrica',
     role: 'Desarrolladora Mobile / Integración Técnica',
-    status: 'Flutter & Dart · Guatemala',
+    status: 'Flutter & Dart · Firebase',
     category: ['mobile'],
     featured: true,
     image: 'img/proyectos/alba-salud.svg',
     codePreview: {
-      method: 'Flutter · Dart · SQLite · Firebase · Supabase',
-      detail: 'Modo Offline-First · Autenticación · Scrum & Git'
+      method: 'Flutter · Dart · Firebase · Provider · SQLite',
+      detail: 'Detección de Caídas · QR Roles · Accesibilidad WCAG AAA'
     },
     summary:
-      'Aplicación móvil orientada a la asistencia y contacto de emergencia para adultos mayores, desarrollada con arquitectura limpia en Flutter/Dart. Participé en la implementación de interfaces, manejo de almacenamiento local con SQLite para funcionamiento offline-first y persistencia/autenticación con Firebase y Supabase. Trabajo coordinado en equipo de desarrollo bajo Scrum y Git.',
+      'Participé en el diseño y desarrollo móvil de Alba, una plataforma de salud y adherencia farma-geriátrica orientada a adultos mayores, cuidadores y personal médico. Bajo una arquitectura limpia y modular en Flutter/Dart junto a Firebase, colaboré en un equipo multidisciplinario de 12 desarrolladores mediante un flujo de trabajo ágil e independiente en Git. Contribuí en la implementación de patrones de manejo de estado con Provider, servicios en segundo plano para detección de caídas con giroscopio/acelerómetro, un sistema dinámico de recordatorios y lectura de códigos QR para vinculación de roles. Además, apliqué estándares estrictos de accesibilidad WCAG AAA y diseño escalable, logrando una solución integral de alto impacto social.',
     highlights: [
-      'Aplicación móvil orientada a la asistencia y contacto de emergencia para adultos mayores.',
-      'Arquitectura limpia en Flutter/Dart e interfaces accesibles de alto contraste con botones de gran tamaño.',
-      'Almacenamiento local con SQLite para funcionamiento offline-first y sincronización de datos.',
-      'Persistencia, gestión de perfiles y autenticación con Firebase y Supabase.',
-      'Trabajo coordinado en equipo de desarrollo bajo Scrum y control de versiones con Git.'
+      'Participación en el diseño y desarrollo móvil de plataforma de salud y adherencia farma-geriátrica.',
+      'Arquitectura limpia y modular en Flutter/Dart junto a Firebase en equipo multidisciplinario de 12 desarrolladores.',
+      'Manejo de estado reactivo con Provider y servicios en segundo plano para detección de caídas con giroscopio/acelerómetro.',
+      'Sistema dinámico de recordatorios y lectura de códigos QR para vinculación de roles (adulto mayor, cuidador y médico).',
+      'Cumplimiento estricto de accesibilidad WCAG AAA y diseño escalable de alto impacto social.'
     ],
     techStack: [
       'Flutter',
       'Dart',
-      'SQLite',
       'Firebase',
-      'Supabase',
+      'Provider',
+      'SQLite',
+      'WCAG AAA',
       'Git'
     ],
     links: [
       {
-        label: 'Repositorio Proyecto Alba',
+        label: 'Repositorio Proyecto Alba (GitHub)',
         url: 'https://github.com/barriosevelyn488-web/proyecto_alba_guatemala',
         primary: true
       }
@@ -45,34 +46,34 @@ export const PROYECTOS = [
 ├── providers/   # Manejo de estado reactivo con ChangeNotifier
 └── screens/     # Vistas para Adulto Mayor, Cuidador y Contactos de Emergencia`,
       sampleEndpoint: `{
-  "modulo": "Asistencia y Contacto de Emergencia",
+  "modulo": "Salud y Adherencia Farma-Geriátrica",
   "arquitectura": "Flutter Clean Architecture",
-  "offline_first": "SQLite Local Cache",
-  "auth_sync": "Firebase & Supabase",
-  "metodologia": "Scrum & Git"
+  "background_services": "Caídas (Giroscopio/Acelerómetro)",
+  "roles_sync": "QR Code Linking",
+  "accesibilidad": "WCAG AAA"
 }`
     }
   },
   {
     id: 'oms-backend',
-    title: 'OMS Backend · Sistema de Gestión de Órdenes',
-    role: 'Desarrolladora Backend & Coordinación Técnica',
-    status: 'En Desarrollo · Softplus',
+    title: 'OMS (Organización Mundial de la Salud) Backend – Sistema de Gestión de Órdenes',
+    role: 'Liderazgo Técnico & Desarrollo Backend',
+    status: 'SoftPlus GT · 2026 – Actualidad (En Desarrollo)',
     category: ['backend'],
     featured: true,
     image: 'img/proyectos/oms-backend.svg',
     codePreview: {
-      method: 'Node.js · Express · PostgreSQL · Redis · WebSockets',
-      detail: 'Base de datos normalizada · Validaciones · Docker'
+      method: 'Node.js · Express · PostgreSQL (3NF) · Redis · WebSockets · Docker',
+      detail: 'Manejo Centralizado de Errores · Validaciones · Testing a la Medida'
     },
     summary:
-      'Núcleo backend para un sistema de gestión de órdenes y pedidos en tiempo real. Diseñé y normalicé la base de datos relacional en PostgreSQL, implementé el manejo centralizado de errores, validaciones y servicios con Node.js, Express, Redis y WebSockets. Apoyé en la coordinación de sprints, flujo de trabajo en Git y pruebas de endpoints con Bruno/Postman y Docker.',
+      'Liderazgo técnico y desarrollo de backend/API en el cual se realizó una implementación a la medida normalizando una base de datos relacional en PostgreSQL (3NF). Implementación de validaciones robustas y manejo centralizado de errores utilizando Node.js, Express, Redis y WebSockets para notificaciones en tiempo real; configuración del entorno de trabajo y despliegue con Docker, y documentación exhaustiva de pruebas en cada servicio con testing a la medida de cada API con Bruno y Postman.',
     highlights: [
-      'Núcleo backend para un sistema de gestión de órdenes y pedidos en tiempo real.',
-      'Diseño y normalización de la base de datos relacional en PostgreSQL aplicando Tercera Forma Normal (3NF).',
-      'Manejo centralizado de errores, validaciones estrictas y arquitectura modular en Node.js y Express.',
-      'Publicación de eventos y comunicación bidireccional en tiempo real con Redis y WebSockets.',
-      'Apoyo en la coordinación técnica de sprints, flujo de trabajo en Git y pruebas exhaustivas de endpoints con Bruno, Postman y Docker.'
+      'Liderazgo técnico y desarrollo de backend/API a la medida para sistema de gestión de órdenes.',
+      'Normalización de base de datos relacional en PostgreSQL bajo Tercera Forma Normal (3NF).',
+      'Manejo centralizado de errores, validaciones estrictas y servicios en tiempo real con Node.js, Express, Redis y WebSockets.',
+      'Configuración del entorno de trabajo, aislamiento de servicios y despliegue con Docker.',
+      'Documentación y testing a la medida para cada API con Bruno y Postman, además de liderazgo en la coordinación técnica de sprints.'
     ],
     techStack: [
       'Node.js',
@@ -81,7 +82,8 @@ export const PROYECTOS = [
       'Redis',
       'WebSockets',
       'Docker',
-      'Postman'
+      'Postman',
+      'Bruno'
     ],
     links: [
       {
