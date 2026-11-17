@@ -14,9 +14,9 @@
   <div class="oms-showcase-card interactive-hover-card">
     <div class="oms-showcase-info">
       <span class="lui-eyebrow">PROYECTO BACKEND DESTACADO</span>
-      <h3>OMS (Organización Mundial de la Salud) Backend – Sistema de Gestión de Órdenes</h3>
+      <h3>OMS Backend · Sistema de Gestión de Órdenes en Tiempo Real</h3>
       <p>
-        Liderazgo técnico y desarrollo de backend/API a la medida normalizando una base de datos relacional en PostgreSQL (3NF). Implementación de validaciones robustas y manejo centralizado de errores utilizando Node.js, Express, Redis y WebSockets para notificaciones en tiempo real; configuración del entorno de trabajo y despliegue con Docker, y documentación de pruebas en cada servicio con testing a la medida de cada API (Bruno/Postman).
+        Liderazgo técnico y desarrollo de backend/API a la medida normalizando 26 tablas relacionales en PostgreSQL (3NF). Implementación de validaciones robustas y manejo centralizado de errores utilizando Node.js, Express, Strapi, Redis y WebSockets para notificaciones en tiempo real; configuración del entorno con Docker y testing automatizado de endpoints con Bruno y Postman.
       </p>
       <div class="oms-console-tabs" role="tablist" aria-label="Vistas de arquitectura OMS">
         <button type="button" class="oms-tab-btn active" data-oms-view="realtime">
@@ -65,7 +65,7 @@
       <div class="oms-console-scroll">
         <pre class="oms-console-body" id="omsConsoleOutput">Flujo Backend OMS: Creación y notificación de orden en tiempo real
 POST /api/orders  -->  Middleware de Validación y Manejo Centralizado de Errores
-  ├─ 1. Validación de estructura y stock en PostgreSQL (Base normalizada 3NF)
+  ├─ 1. Validación de estructura y stock en PostgreSQL (26 tablas 3NF)
   ├─ 2. Registro de transacción atómica en tablas de órdenes
   └─ 3. Publicación de evento en Redis y emisión bidireccional por WebSockets
 
@@ -74,7 +74,7 @@ Respuesta emitida en tiempo real:
   "order_id": "OMS-2026-0842",
   "status": "CONFIRMED",
   "channel": "orders_realtime_ws",
-  "database": "PostgreSQL 3NF (Normalizada)",
+  "database": "PostgreSQL 3NF (26 tablas)",
   "error_handler": "CentralizedMiddleware"
 }</pre>
       </div>

@@ -1,89 +1,36 @@
 export const PROYECTOS = [
   {
-    id: 'proyecto-alba',
-    title: 'Proyecto Alba · Plataforma Farma-Geriátrica',
-    role: 'Desarrolladora Mobile / Integración Técnica',
-    status: 'Flutter & Dart · Firebase',
-    category: ['mobile'],
-    featured: true,
-    image: 'img/proyectos/alba-salud.svg',
-    codePreview: {
-      method: 'Flutter · Dart · Firebase · Provider · SQLite',
-      detail: 'Detección de Caídas · QR Roles · Accesibilidad WCAG AAA'
-    },
-    summary:
-      'Participé en el diseño y desarrollo móvil de Alba, una plataforma de salud y adherencia farma-geriátrica orientada a adultos mayores, cuidadores y personal médico. Bajo una arquitectura limpia y modular en Flutter/Dart junto a Firebase, colaboré en un equipo multidisciplinario de 12 desarrolladores mediante un flujo de trabajo ágil e independiente en Git. Contribuí en la implementación de patrones de manejo de estado con Provider, servicios en segundo plano para detección de caídas con giroscopio/acelerómetro, un sistema dinámico de recordatorios y lectura de códigos QR para vinculación de roles. Además, apliqué estándares estrictos de accesibilidad WCAG AAA y diseño escalable, logrando una solución integral de alto impacto social.',
-    highlights: [
-      'Participación en el diseño y desarrollo móvil de plataforma de salud y adherencia farma-geriátrica.',
-      'Arquitectura limpia y modular en Flutter/Dart junto a Firebase en equipo multidisciplinario de 12 desarrolladores.',
-      'Manejo de estado reactivo con Provider y servicios en segundo plano para detección de caídas con giroscopio/acelerómetro.',
-      'Sistema dinámico de recordatorios y lectura de códigos QR para vinculación de roles (adulto mayor, cuidador y médico).',
-      'Cumplimiento estricto de accesibilidad WCAG AAA y diseño escalable de alto impacto social.'
-    ],
-    techStack: [
-      'Flutter',
-      'Dart',
-      'Firebase',
-      'Provider',
-      'SQLite',
-      'WCAG AAA',
-      'Git'
-    ],
-    links: [
-      {
-        label: 'Repositorio Proyecto Alba (GitHub)',
-        url: 'https://github.com/barriosevelyn488-web/proyecto_alba_guatemala',
-        primary: true
-      }
-    ],
-    architecture: {
-      pattern: 'Arquitectura limpia en Flutter/Dart estructurada por capas (models, services, providers, screens y widgets).',
-      security:
-        'Autenticación segura con Firebase Auth / Supabase, políticas de almacenamiento y sincronización offline-first con SQLite.',
-      diagram: `lib/
-├── models/      # Modelos de usuario, medicamentos, expedientes y alertas SOS
-├── services/    # Conexión Firebase, Supabase, SQLite local y notificaciones
-├── providers/   # Manejo de estado reactivo con ChangeNotifier
-└── screens/     # Vistas para Adulto Mayor, Cuidador y Contactos de Emergencia`,
-      sampleEndpoint: `{
-  "modulo": "Salud y Adherencia Farma-Geriátrica",
-  "arquitectura": "Flutter Clean Architecture",
-  "background_services": "Caídas (Giroscopio/Acelerómetro)",
-  "roles_sync": "QR Code Linking",
-  "accesibilidad": "WCAG AAA"
-}`
-    }
-  },
-  {
     id: 'oms-backend',
-    title: 'OMS (Organización Mundial de la Salud) Backend – Sistema de Gestión de Órdenes',
-    role: 'Liderazgo Técnico & Desarrollo Backend',
-    status: 'SoftPlus GT · 2026 – Actualidad (En Desarrollo)',
+    title: 'OMS Backend · Sistema de Gestión de Órdenes en Tiempo Real',
+    role: 'Líder de Equipo & Desarrolladora Backend',
+    status: 'SoftPlus GT · Node.js, Express, Strapi, PostgreSQL (3NF), Redis, Docker',
     category: ['backend'],
     featured: true,
     image: 'img/proyectos/oms-backend.svg',
     codePreview: {
-      method: 'Node.js · Express · PostgreSQL (3NF) · Redis · WebSockets · Docker',
-      detail: 'Manejo Centralizado de Errores · Validaciones · Testing a la Medida'
+      method: 'Node.js · Express · Strapi · PostgreSQL (3NF) · Redis · WebSockets · Docker',
+      detail: '26 Tablas Relacionales · Testing Bruno & Postman · Manejo Centralizado de Errores'
     },
     summary:
-      'Liderazgo técnico y desarrollo de backend/API en el cual se realizó una implementación a la medida normalizando una base de datos relacional en PostgreSQL (3NF). Implementación de validaciones robustas y manejo centralizado de errores utilizando Node.js, Express, Redis y WebSockets para notificaciones en tiempo real; configuración del entorno de trabajo y despliegue con Docker, y documentación exhaustiva de pruebas en cada servicio con testing a la medida de cada API con Bruno y Postman.',
+      'Modernización del sistema de gestión de órdenes para Softplus. Diseñé y normalicé la base de datos relacional en PostgreSQL estructurando 26 tablas en Tercera Forma Normal (3NF) para eliminar duplicidades y asegurar consistencia atómica. Desarrollé la API REST con Node.js, Express y Strapi, integrando Redis y WebSockets para notificaciones y actualización de estados en tiempo real, middleware centralizado de manejo de errores, contenedores Docker y testing automatizado de endpoints con Bruno y Postman, además de coordinar al equipo técnico bajo Scrum.',
     highlights: [
-      'Liderazgo técnico y desarrollo de backend/API a la medida para sistema de gestión de órdenes.',
-      'Normalización de base de datos relacional en PostgreSQL bajo Tercera Forma Normal (3NF).',
-      'Manejo centralizado de errores, validaciones estrictas y servicios en tiempo real con Node.js, Express, Redis y WebSockets.',
-      'Configuración del entorno de trabajo, aislamiento de servicios y despliegue con Docker.',
-      'Documentación y testing a la medida para cada API con Bruno y Postman, además de liderazgo en la coordinación técnica de sprints.'
+      'Diseño y normalización de base de datos relacional en PostgreSQL estructurando 26 tablas en Tercera Forma Normal (3NF).',
+      'Arquitectura modular en Node.js, Express y Strapi con Redis Pub/Sub y WebSockets para estados de órdenes en tiempo real.',
+      'Middleware centralizado de validación y manejo de errores con HTTP status codes consistentes.',
+      'Configuración de entornos reproducibles con Docker y testing automatizado de cada endpoint con Bruno y Postman.',
+      'Liderazgo técnico del equipo backend, coordinación de sprints y control de versiones colaborativo en Git/GitHub.'
     ],
     techStack: [
       'Node.js',
       'Express',
+      'Strapi',
       'PostgreSQL',
       'Redis',
       'WebSockets',
       'Docker',
+      'Bruno',
       'Postman',
-      'Bruno'
+      'Git'
     ],
     links: [
       {
@@ -97,18 +44,177 @@ export const PROYECTOS = [
       security:
         'Validaciones de esquema de entrada, middleware centralizado de errores, credenciales protegidas en variables de entorno y contenedores Docker aislados.',
       diagram: `OMS Backend Architecture
-├── API REST & Realtime (Node.js, Express, Redis Pub/Sub, WebSockets)
+├── API REST & Realtime (Node.js, Express, Strapi, Redis Pub/Sub, WebSockets)
 ├── Middleware de Validación y Manejo Centralizado de Errores
-├── Base de Datos Relacional PostgreSQL (Modelado 3NF y transacciones)
+├── Base de Datos Relacional PostgreSQL (26 tablas normalizadas en 3NF)
 ├── Contenedores Docker (PostgreSQL, Redis, Exporters)
-└── Colección de Pruebas Automatizadas en Postman y Bruno`,
+└── Suite de Pruebas Automatizadas en Bruno y Postman`,
       sampleEndpoint: `POST /api/orders -> Validación -> Transacción PostgreSQL -> Notificación WebSocket
 {
   "order_id": "OMS-2026-0842",
   "status": "CONFIRMED",
-  "realtime_channel": "orders_realtime",
-  "database": "PostgreSQL (Normalizada)",
+  "realtime_channel": "orders_realtime_ws",
+  "database": "PostgreSQL 3NF (26 tablas)",
   "validation": "OK"
+}`
+    }
+  },
+  {
+    id: 'proyecto-alba',
+    title: 'Alba · Plataforma Móvil de Salud Farma-Geriátrica',
+    role: 'Desarrolladora Móvil & Organización de Equipo',
+    status: 'Flutter & Dart · Firebase · Clean Architecture',
+    category: ['mobile'],
+    featured: true,
+    image: 'img/proyectos/alba-salud.svg',
+    codePreview: {
+      method: 'Flutter · Dart · Firebase · Provider · SQLite',
+      detail: 'Clean Architecture · Detección de Caídas · QR Roles · WCAG AAA'
+    },
+    summary:
+      'Aplicación móvil integral de salud y adherencia farma-geriátrica pensada para adultos mayores, cuidadores y personal médico, desarrollada en un equipo multidisciplinario de 12 desarrolladores. Implementé la arquitectura limpia en Flutter/Dart conectada a Firebase, servicios en segundo plano para detección de caídas con sensores de giroscopio y acelerómetro, vinculación ágil de roles mediante códigos QR y estricto cumplimiento de accesibilidad WCAG AAA. En la etapa inicial, me encargué de la organización y asignación de tareas del equipo para asegurar el éxito de la primera presentación técnica.',
+    highlights: [
+      'Desarrollo móvil con Clean Architecture en Flutter/Dart y persistencia reactiva en Firebase.',
+      'Organización y estructuración de tareas y entregas iniciales en equipo multidisciplinario de 12 desarrolladores.',
+      'Servicios en segundo plano para detección de caídas mediante sensores de giroscopio y acelerómetro.',
+      'Sistema dinámico de recordatorios y lectura de códigos QR para vinculación de roles (adulto mayor, cuidador y médico).',
+      'Cumplimiento estricto de estándares de accesibilidad WCAG AAA y diseño adaptable de alto impacto social.'
+    ],
+    techStack: [
+      'Flutter',
+      'Dart',
+      'Firebase',
+      'Provider',
+      'SQLite',
+      'WCAG AAA',
+      'Scrum',
+      'Git'
+    ],
+    links: [
+      {
+        label: 'Repositorio Proyecto Alba (GitHub)',
+        url: 'https://github.com/barriosevelyn488-web/proyecto_alba_guatemala',
+        primary: true
+      }
+    ],
+    architecture: {
+      pattern: 'Arquitectura limpia en Flutter/Dart estructurada por capas (models, services, providers, screens y widgets).',
+      security:
+        'Autenticación segura con Firebase Auth, reglas de seguridad en la nube y persistencia offline-first con SQLite.',
+      diagram: `lib/
+├── models/      # Modelos de usuario, medicamentos, expedientes y alertas SOS
+├── services/    # Conexión Firebase, SQLite local, notificaciones y sensores
+├── providers/   # Manejo de estado reactivo con ChangeNotifier / Provider
+└── screens/     # Vistas para Adulto Mayor, Cuidador y Contactos de Emergencia`,
+      sampleEndpoint: `{
+  "modulo": "Salud y Adherencia Farma-Geriátrica",
+  "arquitectura": "Flutter Clean Architecture",
+  "background_services": "Caídas (Giroscopio/Acelerómetro)",
+  "roles_sync": "QR Code Linking",
+  "accesibilidad": "WCAG AAA"
+}`
+    }
+  },
+  {
+    id: 'karenflix',
+    title: 'KarenFlix · Catálogo y Reseñas de Películas (Full-Stack)',
+    role: 'Desarrolladora Full-Stack & Coordinación Ágil',
+    status: 'Desplegado en Vercel · Node.js · Express · MySQL 8 · Swagger UI',
+    category: ['backend', 'frontend'],
+    featured: true,
+    image: 'img/proyectos/karenflix.svg',
+    codePreview: {
+      method: 'GET /api/v1/peliculas?page=1&limit=20',
+      detail: 'Frontend Vercel · Node.js · Express · MySQL 8 Cloud · Swagger UI'
+    },
+    summary:
+      'Plataforma Full-Stack desplegada en producción para exploración de películas, reseñas de usuarios y ranking dinámico. Desarrollé el frontend web interactivo y la API RESTful modular en Node.js y Express conectada a una base de datos relacional MySQL 8 en la nube, con autenticación segura JWT en cookies HttpOnly, documentación interactiva en Swagger UI y gestión ágil del equipo en GitHub Projects bajo Scrum.',
+    highlights: [
+      'Frontend web interactivo desplegado en Vercel con vistas dinámicas de catálogo, filtros por género y reseñas.',
+      'API RESTful modular en Node.js y Express estructurada en capas (rutas v1, middlewares, controladores, servicios y DTOs).',
+      'Base de datos relacional MySQL 8 en la nube con integridad referencial, transacciones y consultas optimizadas.',
+      'Autenticación y seguridad robusta con JWT en cookies HttpOnly, contraseñas hasheadas con Bcrypt, CORS y Helmet.',
+      'Documentación interactiva publicada en Swagger UI (/api-docs) y suite de pruebas probada con Bruno y Postman.'
+    ],
+    techStack: [
+      'Node.js',
+      'Express',
+      'MySQL',
+      'JavaScript',
+      'Swagger UI',
+      'JWT',
+      'Vercel',
+      'Scrum',
+      'Git'
+    ],
+    links: [
+      { label: 'App en Vivo (Frontend Vercel)', url: 'https://karenflix-frontend.vercel.app', primary: true },
+      { label: 'Documentación Swagger (Backend Vercel)', url: 'https://karenflix-backend.vercel.app/api-docs', primary: false },
+      { label: 'Repositorio GitHub', url: 'https://github.com/barriosevelyn488-web/Karenflix_backend', primary: false }
+    ],
+    architecture: {
+      pattern: 'Arquitectura por capas en Node.js y Express conectada a base de datos MySQL en la nube con frontend desacoplado en Vercel.',
+      security: 'CORS con credenciales, cookies HttpOnly seguras, contraseñas hasheadas con Bcrypt, Helmet y rate limiting.',
+      diagram: `KarenFlix Full-Stack
+├── Frontend Vercel   # Interfaz web interactiva (catálogo, filtros, reseñas)
+├── Backend Vercel    # API REST Express (rutas v1, auth, controladores, DTOs)
+├── Swagger UI        # Documentación interactiva en vivo (/api-docs)
+└── Database Cloud    # MySQL 8 en la nube (tablas relacionales y transacciones)`,
+      sampleEndpoint: `GET /api/v1/ranking?limit=10
+{
+  "status": "ok",
+  "data": { "page": 1, "items": [{ "id": 4, "titulo": "Interstellar", "calificacion": 4.9 }] }
+}`
+    }
+  },
+  {
+    id: 'librarian',
+    title: 'Librarian (ACME Store) · Biblioteca y Tienda Virtual (Full-Stack)',
+    role: 'Desarrolladora Full-Stack · Clean Architecture & SOLID',
+    status: 'Desplegado en Vercel · SQLite 3NF · Node.js · Tailwind CSS',
+    category: ['backend', 'frontend'],
+    featured: true,
+    image: 'img/proyectos/librarian.svg',
+    codePreview: {
+      method: 'POST /api/sales/checkout',
+      detail: 'Clean Architecture (4 Capas) · SQLite 3NF · Node.js · Tailwind CSS · SOLID'
+    },
+    summary:
+      'Solución Full-Stack de comercio y gestión bibliotecaria desplegada en Vercel, diseñada bajo Clean Architecture desacoplada en 4 capas y Principios SOLID. Desarrollé el frontend moderno y responsivo con Tailwind CSS y JavaScript orientado a objetos conectado a Open Library API, junto a un backend robusto con SQLite en 3NF, autenticación JWT HttpOnly, control de roles y pasarela de préstamos y ventas.',
+    highlights: [
+      'Clean Architecture en 4 capas desacopladas (Domain, Application, Infrastructure, Presentation) aplicando principios SOLID.',
+      'Frontend responsivo desplegado en Vercel maquetado con Tailwind CSS y enriquecido con Open Library API para portadas y sinopsis.',
+      'Base de datos relacional SQLite normalizada en 3NF con transacciones atómicas y pruebas de integración.',
+      'Control de acceso basado en roles (Admin, Bibliotecario, Usuario) y cookies HttpOnly cifradas.',
+      'Patrones de diseño de software implementados: Repository, Factory, Singleton y Strategy.'
+    ],
+    techStack: [
+      'Node.js',
+      'Express',
+      'JavaScript',
+      'SQLite',
+      'Tailwind CSS',
+      'JWT',
+      'SOLID',
+      'Vercel'
+    ],
+    links: [
+      { label: 'App en Vivo (Frontend Vercel)', url: 'https://acme-store-frontend.vercel.app/', primary: true },
+      { label: 'API Backend (Vercel)', url: 'https://acme-store-backend.vercel.app', primary: false },
+      { label: 'Repositorio GitHub', url: 'https://github.com/barriosevelyn488-web/librarian-backend', primary: false }
+    ],
+    architecture: {
+      pattern: 'Clean Architecture y Principios SOLID (Patrones Singleton, Strategy, Repository y Factory).',
+      security: 'Consultas parametrizadas, cookies HttpOnly, Helmet y control de acceso basado en roles.',
+      diagram: `src/
+├── domain/          # Entidades (Book, Loan, Sale, User) y contratos
+├── application/     # Casos de uso y reglas de negocio
+├── infrastructure/  # Repositorios SQLite, JWT, Bcrypt
+└── presentation/    # Controladores, rutas Express y middlewares`,
+      sampleEndpoint: `GET https://acme-store-backend.vercel.app/api/books
+{
+  "status": "success",
+  "data": [{ "id": 1, "titulo": "Clean Architecture", "stock": 8, "precio": 38.50 }]
 }`
     }
   },
@@ -116,27 +222,28 @@ export const PROYECTOS = [
     id: 'campus-parking',
     title: 'Campus Parking · Automatización y Control Operativo',
     role: 'Desarrolladora Frontend',
-    status: 'Publicado en GitHub Pages',
+    status: 'Publicado en GitHub Pages · JavaScript Vanilla (ES6+)',
     category: ['frontend'],
     featured: true,
     image: 'img/proyectos/campus-parking.svg',
     codePreview: {
       method: 'JavaScript (ES6+) · HTML5 · CSS3 · localStorage',
-      detail: 'Manipulación del DOM · Control de Tarifas · Responsive'
+      detail: 'Manipulación del DOM · Control de Tarifas · Sin Librerías Externas'
     },
     summary:
-      'Aplicación web para la automatización y control operativo de un estacionamiento. Diseñada con JavaScript Vanilla modular, manipulación eficiente del DOM, maquetación responsiva con HTML5/CSS3 y persistencia de datos mediante localStorage.',
+      'Aplicación web diseñada desde cero para automatizar el control operativo de un parqueadero mediante una interfaz liviana, rápida y sin dependencias pesadas. Implementada con JavaScript Vanilla modular (ES6+), manipulación directa del DOM, maquetación responsiva con HTML5/CSS3 y persistencia de datos en el cliente con localStorage para registro de entradas, salidas y cobro automático por tiempo.',
     highlights: [
-      'Automatización y control operativo diario de ingresos, egresos y asignación de espacios.',
-      'Lógica modular en JavaScript Vanilla (ES6+) con manipulación eficiente del DOM.',
-      'Maquetación responsiva construida con HTML5 semántico y CSS3 moderno.',
-      'Persistencia de registros de vehículos y cálculo automático de tarifas por tiempo con localStorage.'
+      'Automatización operativa para control diario de plazas, ingresos, egresos y cálculo de tarifas.',
+      'Lógica modular en JavaScript ES6+ con manipulación eficiente del DOM y sin librerías externas.',
+      'Persistencia local de vehículos y cálculo tarifario automático en tiempo real mediante localStorage.',
+      'Diseño 100% responsivo para móviles y escritorio publicado en GitHub Pages.'
     ],
     techStack: [
       'JavaScript (ES6+)',
       'HTML5',
       'CSS3',
-      'localStorage'
+      'localStorage',
+      'GitHub Pages'
     ],
     links: [
       {
@@ -167,160 +274,10 @@ export const PROYECTOS = [
     }
   },
   {
-    id: 'campus-shop',
-    title: 'Campus Shop · Catálogo y Gestión de Compras',
-    role: 'Desarrolladora Web',
-    status: 'Publicado en GitHub Pages',
-    category: ['frontend'],
-    featured: true,
-    image: 'img/proyectos/campus-shop.svg',
-    codePreview: {
-      method: 'HTML5 · CSS3 · JavaScript ES6+',
-      detail: 'Catálogo Interactivo · Validación de Estados · Responsive'
-    },
-    summary:
-      'Catálogo y gestión de compras interactivo con validación de estados y arquitectura frontend responsiva.',
-    highlights: [
-      'Catálogo interactivo con filtrado dinámico de productos por categoría y vista previa.',
-      'Gestión del carrito de compras con validación reactiva de estados, cantidades y totales.',
-      'Arquitectura frontend responsiva maquetada con CSS Grid, Flexbox y tipografía adaptable.',
-      'Publicación y despliegue continuo a través de GitHub Pages.'
-    ],
-    techStack: [
-      'JavaScript (ES6+)',
-      'HTML5',
-      'CSS3',
-      'Responsive Design'
-    ],
-    links: [
-      {
-        label: 'Ver Tienda en Vivo',
-        url: 'https://barriosevelyn488-web.github.io/tienda_campus_shop/',
-        primary: true
-      },
-      {
-        label: 'Repositorio GitHub',
-        url: 'https://github.com/barriosevelyn488-web/tienda_campus_shop',
-        primary: false
-      }
-    ],
-    architecture: {
-      pattern: 'Maquetación frontend semántica, responsiva y orientada a la experiencia de usuario (UX/UI).',
-      security: 'Sitio estático seguro servido mediante protocolo HTTPS en GitHub Pages.',
-      diagram: `tienda_campus_shop/
-├── index.html   # Estructura semántica del catálogo y modal de compra
-├── css/         # Variables CSS, diseño adaptable con Grid y Flexbox
-└── js/          # Validación de estados, catálogo y lógica del carrito`,
-      sampleEndpoint: `.catalogo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}`
-    }
-  },
-  {
-    id: 'librarian',
-    title: 'Librarian (ACME Store) · Biblioteca y Tienda Virtual',
-    role: 'Desarrolladora Full-Stack · POO & SOLID',
-    status: 'Desplegado en Vercel',
-    category: ['backend', 'frontend'],
-    featured: false,
-    image: 'img/proyectos/librarian.svg',
-    codePreview: {
-      method: 'POST /api/sales/checkout',
-      detail: 'Clean Architecture · SQLite 3NF · Node.js · Vanilla JS'
-    },
-    summary:
-      'Aplicación Full-Stack (Backend API REST + Frontend Web) para gestionar catálogo de libros con sinopsis, préstamos, devoluciones, ventas y administración de usuarios aplicando Programación Orientada a Objetos (POO), Principios SOLID y Clean Architecture.',
-    highlights: [
-      'Backend estructurado en 4 capas (Domain, Application, Infrastructure, Presentation) aplicando principios SOLID.',
-      'Base de datos relacional SQLite en Tercera Forma Normal (3NF) con pruebas de integración.',
-      'Autenticación con JWT en Cookies HttpOnly, cifrado con Bcrypt, control de roles y Rate Limiting.',
-      'Frontend en JavaScript Vanilla orientado a objetos y Tailwind CSS, conectado a Open Library API.'
-    ],
-    techStack: [
-      'Node.js',
-      'Express',
-      'JavaScript',
-      'SQLite',
-      'Tailwind CSS',
-      'JWT',
-      'SOLID'
-    ],
-    links: [
-      { label: 'App Frontend (Vercel)', url: 'https://acme-store-frontend.vercel.app/', primary: true },
-      { label: 'API Backend (Vercel)', url: 'https://acme-store-backend.vercel.app', primary: false },
-      { label: 'Repo Backend', url: 'https://github.com/barriosevelyn488-web/librarian-backend', primary: false }
-    ],
-    architecture: {
-      pattern: 'Clean Architecture y Principios SOLID (Patrones Singleton, Strategy, Repository y Factory).',
-      security: 'Consultas parametrizadas, cookies HttpOnly, Helmet y control de acceso basado en roles.',
-      diagram: `src/
-├── domain/          # Entidades (Book, Loan, Sale, User) y contratos
-├── application/     # Casos de uso y lógica de aplicación
-├── infrastructure/  # Repositorios SQLite, JWT, Bcrypt
-└── presentation/    # Controladores, rutas Express y middlewares`,
-      sampleEndpoint: `GET https://acme-store-backend.vercel.app/api/books
-{
-  "status": "success",
-  "data": [{ "id": 1, "titulo": "Clean Architecture", "stock": 8, "precio": 38.50 }]
-}`
-    }
-  },
-  {
-    id: 'karenflix',
-    title: 'KarenFlix · Catálogo y Reseñas de Películas',
-    role: 'Desarrolladora Backend & Coordinación Ágil',
-    status: 'Desplegado en Vercel',
-    category: ['backend', 'frontend'],
-    featured: false,
-    image: 'img/proyectos/karenflix.svg',
-    codePreview: {
-      method: 'GET /api/v1/peliculas?page=1&limit=20',
-      detail: 'Node.js · Express · MySQL 8 Cloud · Swagger UI'
-    },
-    summary:
-      'Plataforma Full-Stack de catálogo de películas, reseñas, reacciones y ranking. Apoyé en la coordinación ágil del equipo y desarrollé la API REST con Node.js, Express y MySQL en la nube.',
-    highlights: [
-      'Desarrollo de API RESTful organizada por capas (rutas, middlewares, controladores, servicios y DTOs).',
-      'Autenticación con JWT, cookies HttpOnly, control de roles y manejo de transacciones en MySQL.',
-      'Documentación interactiva publicada en Swagger UI (/api-docs) y colección de pruebas en Bruno y Postman.',
-      'Coordinación de historias de usuario y tablero Scrum en GitHub Projects con flujo Git.'
-    ],
-    techStack: [
-      'Node.js',
-      'Express',
-      'MySQL',
-      'Swagger UI',
-      'JWT',
-      'Git',
-      'Scrum'
-    ],
-    links: [
-      { label: 'App en Vivo', url: 'https://karenflix-frontend.vercel.app', primary: true },
-      { label: 'Documentación Swagger', url: 'https://karenflix-backend.vercel.app/api-docs', primary: false },
-      { label: 'Repo Backend', url: 'https://github.com/barriosevelyn488-web/Karenflix_backend', primary: false }
-    ],
-    architecture: {
-      pattern: 'Arquitectura por capas en Node.js y Express conectada a base de datos MySQL en la nube.',
-      security: 'CORS con credenciales, contraseñas hasheadas con Bcrypt, Helmet y rate limiting.',
-      diagram: `KarenFlix_backend/
-├── src/routes/       # Rutas v1 (/auth, /peliculas, /categorias, /resenas)
-├── src/middlewares/  # Autenticación, validación de roles y errores
-├── src/controllers/  # Controladores HTTP y DTOs
-└── database/         # Esquema MySQL y migraciones`,
-      sampleEndpoint: `GET /api/v1/ranking?limit=10
-{
-  "status": "ok",
-  "data": { "page": 1, "items": [{ "id": 4, "titulo": "Interstellar", "calificacion": 4.9 }] }
-}`
-    }
-  },
-  {
     id: 'ai-academy-crm',
-    title: 'Campuslands CRM · Seguimiento de Admisiones y Kanban',
-    role: 'Desarrolladora Full-Stack',
-    status: 'Next.js · TypeScript · Supabase',
+    title: 'Campuslands CRM & AI Academy · Seguimiento de Admisiones',
+    role: 'Auxiliar Académica, Asesora de Admisiones & Desarrolladora Full-Stack',
+    status: 'Next.js · TypeScript · Supabase · PostgreSQL',
     category: ['backend', 'frontend'],
     featured: false,
     image: 'img/proyectos/ai-academy-crm.svg',
@@ -329,11 +286,11 @@ export const PROYECTOS = [
       detail: 'Tablero Kanban · Control de Pagos · Google Sheets Sync'
     },
     summary:
-      'Aplicación CRM web para gestionar prospectos de admisiones, embudo Kanban de seis etapas, seguimiento por WhatsApp, control de pagos y reportes de conversión, conectada a Supabase/PostgreSQL y Google Sheets.',
+      'Herramienta CRM integral para la gestión del embudo de admisiones de prospectos a talleres y cursos. Desarrollada con Next.js y TypeScript sobre Supabase (PostgreSQL), incluye tablero Kanban interactivo de seis etapas, control de pagos, sincronización bidireccional con Google Sheets y escucha activa de requerimientos para optimizar la conversión.',
     highlights: [
-      'Tablero Kanban interactivo para organizar prospectos, notas y estados de pago.',
-      'Sincronización bidireccional con hojas de Google Sheets mediante Google Apps Script.',
-      'Esquema en PostgreSQL sobre Supabase con políticas Row Level Security (RLS) y tiempo real.'
+      'Acompañamiento docente y técnico presencial en talleres de IA (fundamentos, prompts y agentes).',
+      'Tablero Kanban interactivo para clasificación de prospectos, notas de seguimiento y estados de pago.',
+      'Base relacional en Supabase con PostgreSQL, Row Level Security (RLS) y sincronización con Google Sheets.'
     ],
     techStack: [
       'TypeScript',
@@ -412,6 +369,58 @@ export const PROYECTOS = [
   "accion": "registro_estudiante",
   "codigo_generado": "E014",
   "notificacion_telegram": "enviada"
+}`
+    }
+  },
+  {
+    id: 'campus-shop',
+    title: 'Campus Shop · Catálogo y Gestión de Compras',
+    role: 'Desarrolladora Web Frontend',
+    status: 'Publicado en GitHub Pages',
+    category: ['frontend'],
+    featured: false,
+    image: 'img/proyectos/campus-shop.svg',
+    codePreview: {
+      method: 'HTML5 · CSS3 · JavaScript ES6+',
+      detail: 'Catálogo Interactivo · Validación de Estados · Responsive'
+    },
+    summary:
+      'Catálogo y gestión de compras interactivo con validación de estados y arquitectura frontend responsiva construida con CSS Grid y Flexbox.',
+    highlights: [
+      'Catálogo interactivo con filtrado dinámico de productos por categoría y vista previa.',
+      'Gestión del carrito de compras con validación reactiva de estados, cantidades y totales.',
+      'Arquitectura frontend responsiva maquetada con CSS Grid, Flexbox y tipografía adaptable.',
+      'Publicación y despliegue continuo a través de GitHub Pages.'
+    ],
+    techStack: [
+      'JavaScript (ES6+)',
+      'HTML5',
+      'CSS3',
+      'Responsive Design'
+    ],
+    links: [
+      {
+        label: 'Ver Tienda en Vivo',
+        url: 'https://barriosevelyn488-web.github.io/tienda_campus_shop/',
+        primary: true
+      },
+      {
+        label: 'Repositorio GitHub',
+        url: 'https://github.com/barriosevelyn488-web/tienda_campus_shop',
+        primary: false
+      }
+    ],
+    architecture: {
+      pattern: 'Maquetación frontend semántica, responsiva y orientada a la experiencia de usuario (UX/UI).',
+      security: 'Sitio estático seguro servido mediante protocolo HTTPS en GitHub Pages.',
+      diagram: `tienda_campus_shop/
+├── index.html   # Estructura semántica del catálogo y modal de compra
+├── css/         # Variables CSS, diseño adaptable con Grid y Flexbox
+└── js/          # Validación de estados, catálogo y lógica del carrito`,
+      sampleEndpoint: `.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
 }`
     }
   },
