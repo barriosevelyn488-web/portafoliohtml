@@ -1,160 +1,355 @@
 /* ==========================================================================
-   MÓDULO: EXPERIENCIA CINÉTICA & INTERACTIVIDAD EDITORIAL (v6.0)
-   1. Entrada cinética ("SOFTWARE" se abre en medio -> foto + iconos detrás)
-   2. Alternador de foto profesional en Sobre mí (Traje GitHub / Pelo lacio)
-   3. Barra láser scroll + Red sutil de nodos + Tilt 3D + Terminal streaming OMS
+   MÓDULO: MOTION DESIGN ENGINE (GSAP 3 + SCROLLTRIGGER + LENIS SMOOTH SCROLL)
+   v8.0 — Full-Viewport Editorial Choreography & 3D Floating Icons
    ========================================================================== */
 
 export function iniciarExperienciaInmersiva() {
-  iniciarReplayHero();
-  iniciarParallaxChipsHero();
-  iniciarTransicionesScrollEsquinas();
+  iniciarLenisSmoothScroll();
+  iniciarCoreografiaHeroGSAP();
+  iniciarScrollTriggerSeccionesGSAP();
+  iniciarParallax3DCubesHero();
   iniciarToggleFotoSobreMi();
   iniciarLaserScrollProgress();
   iniciarCanvasNodos();
-  iniciarTilt3DFisico();
   iniciarTerminalStreamingOMS();
 }
 
 /**
- * 0.3 Transiciones Fluidas Entre Secciones (al salir se repliegan hacia una esquina)
- * Usa offsetTop inmune a transformaciones CSS para garantizar 60 FPS sin saltos
+ * 0. Lenis Smooth Scroll sincronizado con GSAP & ScrollTrigger
  */
-function iniciarTransicionesScrollEsquinas() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+function iniciarLenisSmoothScroll() {
+  if (typeof window.Lenis !== 'function' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
 
-  const secciones = Array.from(document.querySelectorAll('.lui-section'));
-  if (!secciones.length) return;
+  const lenis = new window.Lenis({
+    duration: 1.15,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    wheelMultiplier: 0.95
+  });
 
-  const getDocTop = (el) => {
-    let y = 0;
-    let curr = el;
-    while (curr) {
-      y += curr.offsetTop || 0;
-      curr = curr.offsetParent;
-    }
-    return y;
-  };
+  window.__lenis__ = lenis;
 
-  let tickPendiente = false;
-
-  const actualizarSecciones = () => {
-    tickPendiente = false;
-    const vh = window.innerHeight || 800;
-    const scrollY = window.scrollY || window.pageYOffset;
-
-    secciones.forEach((sec, idx) => {
-      const top = getDocTop(sec) - scrollY;
-      const height = sec.offsetHeight || 500;
-      const bottom = top + height;
-
-      // Zona activa de lectura: nitidez y posición 100% estable
-      if (top <= vh * 0.72 && bottom >= vh * 0.30) {
-        sec.classList.add('is-revealed');
-        sec.style.transform = 'translate3d(0, 0, 0) scale(1)';
-        sec.style.opacity = '1';
-        return;
-      }
-
-      // Entrada fluida desde abajo (o descenso en Trayectoria)
-      if (top > vh * 0.72) {
-        const span = Math.max(120, vh * 0.28);
-        const progresoEntrada = Math.max(0, Math.min(1, (vh - top) / span));
-        const eased = 1 - Math.pow(1 - progresoEntrada, 3);
-        const esTrayectoria = sec.id === 'trayectoria';
-        const offsetY = esTrayectoria ? -(1 - eased) * 26 : (1 - eased) * 38;
-        const escala = 0.92 + 0.08 * eased;
-        const opacidad = 0.15 + 0.85 * eased;
-
-        if (progresoEntrada > 0.05) sec.classList.add('is-revealed');
-        sec.style.transform = `translate3d(0, ${offsetY.toFixed(1)}px, 0) scale(${escala.toFixed(3)})`;
-        sec.style.opacity = opacidad.toFixed(3);
-        return;
-      }
-
-      // Salida por arriba: la sección entera se encoge suavemente y se repliega hacia una esquina
-      if (bottom < vh * 0.30) {
-        const spanExit = Math.max(150, vh * 0.35);
-        const salidaRaw = Math.max(0, Math.min(1, (vh * 0.30 - bottom) / spanExit));
-        const easedExit = salidaRaw * salidaRaw;
-        const dirEsquina = idx % 2 === 0 ? -1 : 1; // Izquierda / Derecha alternado
-        const shiftX = dirEsquina * easedExit * 110;
-        const shiftY = -easedExit * 24;
-        const escalaSalida = 1 - easedExit * 0.18;
-        const opacidadSalida = Math.max(0.08, 1 - easedExit * 0.92);
-
-        sec.style.transform = `translate3d(${shiftX.toFixed(1)}px, ${shiftY.toFixed(1)}px, 0) scale(${escalaSalida.toFixed(3)})`;
-        sec.style.opacity = opacidadSalida.toFixed(3);
-      }
+  if (window.gsap && window.ScrollTrigger) {
+    window.gsap.registerPlugin(window.ScrollTrigger);
+    lenis.on('scroll', window.ScrollTrigger.update);
+    window.gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
     });
-  };
-
-  const solicitarActualizacion = () => {
-    if (!tickPendiente) {
-      tickPendiente = true;
-      requestAnimationFrame(actualizarSecciones);
-    }
-  };
-
-  window.addEventListener('scroll', solicitarActualizacion, { passive: true });
-  window.addEventListener('resize', solicitarActualizacion, { passive: true });
-  actualizarSecciones();
+    window.gsap.ticker.lagSmoothing(0);
+  } else {
+    const rafLoop = (time) => {
+      lenis.raf(time);
+      requestAnimationFrame(rafLoop);
+    };
+    requestAnimationFrame(rafLoop);
+  }
 }
 
 /**
- * 0. Replay de la animación de entrada ("SOFTWARE se abre por en medio")
+ * 1. Coreografía Exacta de la Sección 1 con GSAP Timeline (0.00s -> 1.75s)
+ * Beat 1: Entra "Portafolio" horizontal con motion-blur
+ * Beat 2: Se abre por en medio; recuadro pequeño crece a rectángulo y expande su fondo a TODA la pantalla (100vw x 100vh)
+ * Beat 3: El fondo expandido desaparece; el recuadro de la foto se encoge y se oculta DETRÁS de Evelyn; "Portafolio" queda detrás de ella
+ * Beat 4: 6 Iconos 3D coloridos flotan alrededor con profundidad Z y levitación continua
  */
-function iniciarReplayHero() {
-  const btnRebobinar = document.getElementById('btnRebobinarIntro');
+function iniciarCoreografiaHeroGSAP() {
   const stage = document.getElementById('heroSplitArena');
-  if (!btnRebobinar || !stage) return;
+  if (!stage) return;
 
-  btnRebobinar.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setTimeout(() => {
-      stage.classList.add('is-replaying');
-      void stage.offsetHeight;
-      stage.classList.remove('is-replaying');
-    }, 320);
+  const expandBg = stage.querySelector('.hero-stage-expand-bg');
+  const frameShrink = stage.querySelector('.hero-portrait-frame-shrink');
+  const wordLeft = stage.querySelector('.word-left');
+  const wordRight = stage.querySelector('.word-right');
+  const portrait = stage.querySelector('.hero-portrait-freestanding');
+  const cubes = stage.querySelectorAll('.hero-3d-cube');
+  const metaTop = stage.querySelector('.hero-stage-top-meta');
+  const cornerTags = stage.querySelector('.hero-stage-corner-tags');
+  const baseline = stage.querySelector('.hero-stage-baseline');
+  const btnRebobinar = document.getElementById('btnRebobinarIntro');
+
+  if (!window.gsap) return;
+  const gsap = window.gsap;
+
+  const ejecutarTimeline = () => {
+    gsap.killTweensOf([expandBg, frameShrink, wordLeft, wordRight, portrait, cubes, metaTop, cornerTags, baseline]);
+
+    // Estado inicial limpio
+    gsap.set(wordLeft, { x: -120, opacity: 0, filter: 'blur(14px)', scaleX: 1.15 });
+    gsap.set(wordRight, { x: 120, opacity: 0, filter: 'blur(14px)', scaleX: 1.15 });
+    gsap.set(expandBg, { xPercent: -50, yPercent: -50, scale: 0, opacity: 0, borderRadius: '28px' });
+    gsap.set(frameShrink, { xPercent: -50, yPercent: -50, scale: 0, opacity: 0, borderRadius: '26px' });
+    gsap.set(portrait, { scale: 0.22, y: -35, opacity: 0, filter: 'blur(8px) drop-shadow(0 22px 44px rgba(4, 17, 43, 0.28))' });
+    gsap.set(cubes, { scale: 0.25, opacity: 0, rotationX: 28, rotationY: -35, y: 24 });
+    gsap.set([metaTop, cornerTags, baseline], { opacity: 0, y: 12 });
+
+    const tl = gsap.timeline();
+
+    // Beat 1 (0.00s - 0.42s): Entra la palabra "Portafolio" rápida y nítida
+    tl.to([wordLeft, wordRight], {
+      x: 0,
+      scaleX: 1,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.44,
+      ease: 'expo.out'
+    }, 0)
+
+      // Beat 2A (0.36s): Se abre "Portafolio" a la mitad & nace el recuadro con el retrato
+      .to(wordLeft, { x: -85, duration: 0.42, ease: 'power3.inOut' }, 0.36)
+      .to(wordRight, { x: 85, duration: 0.42, ease: 'power3.inOut' }, 0.36)
+
+      .to(frameShrink, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.45,
+        ease: 'expo.out'
+      }, 0.38)
+
+      .to(portrait, {
+        scale: 0.86,
+        y: -14,
+        opacity: 1,
+        filter: 'blur(0px) drop-shadow(0 22px 44px rgba(4, 17, 43, 0.28))',
+        duration: 0.48,
+        ease: 'expo.out'
+      }, 0.42)
+
+      // Beat 2B (0.50s - 1.05s): El fondo se expande a TODA la pantalla (scale 28 covers 100vw x 100vh) y desaparece
+      .to(expandBg, {
+        scale: 28,
+        opacity: 0.85,
+        borderRadius: '0px',
+        duration: 0.62,
+        ease: 'expo.inOut'
+      }, 0.46)
+      .to(expandBg, {
+        opacity: 0,
+        duration: 0.35,
+        ease: 'power2.out'
+      }, 0.95)
+
+      // Beat 3 (0.85s - 1.28s): Recuadro de la foto se encoge y oculta detrás; foto toma protagonismo; "Portafolio" cierra detrás de ella
+      .to(frameShrink, {
+        scale: 0,
+        opacity: 0,
+        duration: 0.38,
+        ease: 'power3.in'
+      }, 0.85)
+      .to(portrait, {
+        scale: 1,
+        y: 0,
+        duration: 0.45,
+        ease: 'expo.out'
+      }, 0.88)
+      .to([wordLeft, wordRight], {
+        x: 0,
+        duration: 0.46,
+        ease: 'expo.out'
+      }, 0.88)
+
+      // Beat 4 (1.08s - 1.65s): Aparecen los 6 Iconos 3D flotando + etiquetas limpias
+      .to(cubes, {
+        scale: 1,
+        opacity: 1,
+        rotationX: 14,
+        rotationY: -16,
+        y: 0,
+        duration: 0.55,
+        stagger: 0.06,
+        ease: 'back.out(1.65)',
+        onComplete: () => {
+          // Levitación continua suave en 3D para cada cubo
+          cubes.forEach((cube, idx) => {
+            gsap.to(cube, {
+              y: idx % 2 === 0 ? -12 : 10,
+              rotationZ: idx % 2 === 0 ? 3 : -3,
+              duration: 2.2 + (idx % 3) * 0.45,
+              repeat: -1,
+              yoyo: true,
+              ease: 'sine.inOut'
+            });
+          });
+        }
+      }, 1.08)
+      .to([metaTop, cornerTags, baseline], {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.08,
+        ease: 'power2.out'
+      }, 1.15);
+
+    return tl;
+  };
+
+  ejecutarTimeline();
+
+  if (btnRebobinar) {
+    btnRebobinar.addEventListener('click', () => {
+      if (window.__lenis__) {
+        window.__lenis__.scrollTo(0, { duration: 0.8, onComplete: () => ejecutarTimeline() });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => ejecutarTimeline(), 350);
+      }
+    });
+  }
+}
+
+/**
+ * 2. ScrollTrigger Transiciones Fluidas Entre Secciones Full-Screen
+ * Al salir arriba, cada sección se encoge y repliega hacia una esquina alterna;
+ * la siguiente emerge suavemente desde el ángulo opuesto.
+ */
+function iniciarScrollTriggerSeccionesGSAP() {
+  if (!window.gsap || !window.ScrollTrigger || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.lui-section').forEach((s) => s.classList.add('is-revealed'));
+    return;
+  }
+
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const secciones = Array.from(document.querySelectorAll('.lui-section'));
+
+  secciones.forEach((sec, idx) => {
+    const inner = sec.querySelectorAll(':scope > *:not(.lui-bg-title)');
+    if (!inner.length) return;
+
+    const dirX = idx % 2 === 0 ? -95 : 95;
+    const esUltima = idx === secciones.length - 1;
+    const esTrayectoria = sec.id === 'trayectoria';
+
+    // Marcar .is-revealed en cuanto entra la sección
+    ScrollTrigger.create({
+      trigger: sec,
+      start: 'top 85%',
+      onEnter: () => sec.classList.add('is-revealed'),
+      onEnterBack: () => sec.classList.add('is-revealed')
+    });
+
+    if (idx === 0) {
+      // Sección 1 (Hero 100vh): permanece nítida al inicio y al hacer scroll se repliega hacia la esquina superior izquierda
+      gsap.fromTo(
+        inner,
+        { x: 0, y: 0, scale: 1, rotation: 0, opacity: 1 },
+        {
+          x: -95,
+          y: -45,
+          scale: 0.84,
+          rotation: -1.6,
+          opacity: 0.08,
+          ease: 'none',
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: sec,
+            start: 'bottom 78%',
+            end: 'bottom top',
+            scrub: 0.75
+          }
+        }
+      );
+      return;
+    }
+
+    // Secciones intermedias y final: una sola línea de tiempo continua (Cero colisión de propiedades)
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sec,
+        start: 'top bottom',
+        end: esUltima ? 'top 25%' : 'bottom top',
+        scrub: 0.8
+      }
+    });
+
+    // Fase de entrada (0% -> 30%)
+    tl.fromTo(
+      inner,
+      {
+        x: 0,
+        y: esTrayectoria ? -48 : 65,
+        scale: 0.92,
+        rotation: 0,
+        opacity: 0.1
+      },
+      {
+        x: 0,
+        y: 0,
+        scale: 1,
+        rotation: 0,
+        opacity: 1,
+        duration: esUltima ? 1 : 0.3,
+        ease: 'none'
+      }
+    );
+
+    if (!esUltima) {
+      // Meseta de lectura limpia (30% -> 68%)
+      tl.to(inner, { duration: 0.38 });
+
+      // Fase de salida hacia esquina alterna (68% -> 100%)
+      tl.to(inner, {
+        x: dirX,
+        y: -40,
+        scale: 0.85,
+        rotation: idx % 2 === 0 ? -1.4 : 1.4,
+        opacity: 0.08,
+        duration: 0.32,
+        ease: 'none'
+      });
+    }
   });
 }
 
 /**
- * 0.2 Parallax sutil en las 4 tarjetas coloridas alrededor de la foto Hero
+ * 3. Parallax Magnético 3D sobre los 6 Iconos Flotantes al mover el cursor
  */
-function iniciarParallaxChipsHero() {
-  const arena = document.getElementById('heroSplitArena');
-  if (!arena || window.matchMedia('(pointer: coarse)').matches) return;
+function iniciarParallax3DCubesHero() {
+  const stage = document.getElementById('heroSplitArena');
+  if (!stage || window.matchMedia('(pointer: coarse)').matches || !window.gsap) return;
 
-  const tarjetas = arena.querySelectorAll('.hero-tech-float-card[data-depth]');
-  if (!tarjetas.length) return;
+  const gsap = window.gsap;
+  const cubes = stage.querySelectorAll('.hero-3d-cube[data-depth]');
+  if (!cubes.length) return;
 
-  arena.addEventListener(
+  const setters = Array.from(cubes).map((cube) => ({
+    cube,
+    depth: parseFloat(cube.getAttribute('data-depth') || '0.04'),
+    setX: gsap.quickTo(cube, 'x', { duration: 0.5, ease: 'power3' }),
+    setRY: gsap.quickTo(cube, 'rotationY', { duration: 0.5, ease: 'power3' }),
+    setRX: gsap.quickTo(cube, 'rotationX', { duration: 0.5, ease: 'power3' })
+  }));
+
+  stage.addEventListener(
     'mousemove',
     (e) => {
-      const rect = arena.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      const rect = stage.getBoundingClientRect();
+      const xNorm = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const yNorm = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
 
-      tarjetas.forEach((card) => {
-        const depth = parseFloat(card.getAttribute('data-depth') || '0.04');
-        const tx = (x * depth * 420).toFixed(2);
-        const ty = (y * depth * 320).toFixed(2);
-        card.style.translate = `${tx}px ${ty}px`;
+      setters.forEach(({ depth, setX, setRY, setRX }) => {
+        setX(xNorm * depth * 450);
+        setRY(-16 + xNorm * 14);
+        setRX(14 - yNorm * 12);
       });
     },
     { passive: true }
   );
 
-  arena.addEventListener('mouseleave', () => {
-    tarjetas.forEach((card) => {
-      card.style.translate = '';
+  stage.addEventListener('mouseleave', () => {
+    setters.forEach(({ setX, setRY, setRX }) => {
+      setX(0);
+      setRY(-16);
+      setRX(14);
     });
   });
 }
 
 /**
- * 0.5 Alternador de retrato profesional en Sobre Mí (Traje GitHub / Pelo lacio)
+ * 4. Alternador de retrato profesional en Sobre Mí (Traje GitHub / Pelo lacio)
  */
 function iniciarToggleFotoSobreMi() {
   const btn = document.getElementById('btnToggleAboutPhoto');
@@ -176,7 +371,7 @@ function iniciarToggleFotoSobreMi() {
 }
 
 /**
- * 1. Barra Láser Superior de Descubrimiento (Scroll Progress)
+ * 5. Barra Láser Superior de Descubrimiento (Scroll Progress)
  */
 function iniciarLaserScrollProgress() {
   const barraLaser = document.getElementById('scrollLaserProgress');
@@ -194,7 +389,7 @@ function iniciarLaserScrollProgress() {
 }
 
 /**
- * 2. Canvas Interactivo Sutil de Red de Nodos Tech (60 FPS)
+ * 6. Canvas Interactivo Sutil de Red de Nodos Tech (60 FPS)
  */
 function iniciarCanvasNodos() {
   const canvas = document.getElementById('ambientNetworkCanvas');
@@ -208,21 +403,21 @@ function iniciarCanvasNodos() {
 
   const esTemaOscuro = () => document.documentElement.getAttribute('data-theme') === 'dark';
 
-  const totalNodos = ancho < 768 ? 16 : 30;
+  const totalNodos = ancho < 768 ? 14 : 26;
   const nodos = [];
 
   for (let i = 0; i < totalNodos; i += 1) {
     nodos.push({
       x: Math.random() * ancho,
       y: Math.random() * alto,
-      vx: (Math.random() - 0.5) * 0.45,
-      vy: (Math.random() - 0.5) * 0.45,
-      radio: Math.random() * 1.8 + 1.1,
-      baseAlpha: Math.random() * 0.3 + 0.2
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      radio: Math.random() * 1.8 + 1,
+      baseAlpha: Math.random() * 0.25 + 0.15
     });
   }
 
-  const raton = { x: -2000, y: -2000, radioInteraccion: 130 };
+  const raton = { x: -2000, y: -2000, radioInteraccion: 120 };
 
   window.addEventListener(
     'mousemove',
@@ -267,14 +462,14 @@ function iniciarCanvasNodos() {
 
       if (distRaton < raton.radioInteraccion) {
         const factor = (raton.radioInteraccion - distRaton) / raton.radioInteraccion;
-        nodo.x -= (dxRaton / distRaton) * factor * 1.4;
-        nodo.y -= (dyRaton / distRaton) * factor * 1.4;
+        nodo.x -= (dxRaton / distRaton) * factor * 1.2;
+        nodo.y -= (dyRaton / distRaton) * factor * 1.2;
 
         ctx.beginPath();
         ctx.moveTo(nodo.x, nodo.y);
         ctx.lineTo(raton.x, raton.y);
-        ctx.strokeStyle = `rgba(${colorR}, ${colorG}, ${colorB}, ${factor * 0.35})`;
-        ctx.lineWidth = 0.9;
+        ctx.strokeStyle = `rgba(${colorR}, ${colorG}, ${colorB}, ${factor * 0.3})`;
+        ctx.lineWidth = 0.85;
         ctx.stroke();
       }
 
@@ -284,13 +479,13 @@ function iniciarCanvasNodos() {
         const dy = otro.y - nodo.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 110) {
-          const alphaLinea = (1 - dist / 110) * 0.22;
+        if (dist < 105) {
+          const alphaLinea = (1 - dist / 105) * 0.18;
           ctx.beginPath();
           ctx.moveTo(nodo.x, nodo.y);
           ctx.lineTo(otro.x, otro.y);
           ctx.strokeStyle = `rgba(${colorR}, ${colorG}, ${colorB}, ${alphaLinea})`;
-          ctx.lineWidth = 0.7;
+          ctx.lineWidth = 0.65;
           ctx.stroke();
         }
       }
@@ -316,38 +511,7 @@ function iniciarCanvasNodos() {
 }
 
 /**
- * 3. Efecto 3D Tilt Físico sutil en Tarjetas (Desktop)
- */
-function iniciarTilt3DFisico() {
-  if (window.matchMedia('(pointer: coarse)').matches) return;
-
-  const selectorTarjetas =
-    '.interactive-hover-card, .carousel-project-card, .oms-showcase-card, .stack-index-card';
-
-  document.addEventListener('mousemove', (evento) => {
-    const tarjeta = evento.target.closest(selectorTarjetas);
-    if (!tarjeta) return;
-
-    const rect = tarjeta.getBoundingClientRect();
-    const x = (evento.clientX - rect.left) / rect.width - 0.5;
-    const y = (evento.clientY - rect.top) / rect.height - 0.5;
-
-    const rotarY = (x * 6).toFixed(2);
-    const rotarX = (y * -6).toFixed(2);
-
-    tarjeta.style.transform = `perspective(1000px) rotateX(${rotarX}deg) rotateY(${rotarY}deg) translateY(-4px)`;
-  });
-
-  document.addEventListener('mouseout', (evento) => {
-    const tarjeta = evento.target.closest(selectorTarjetas);
-    if (tarjeta && !tarjeta.contains(evento.relatedTarget)) {
-      tarjeta.style.transform = '';
-    }
-  });
-}
-
-/**
- * 4. Terminal Streaming en Vivo para la Consola OMS
+ * 7. Terminal Streaming en Vivo para la Consola OMS
  */
 function iniciarTerminalStreamingOMS() {
   const botonesConsola = document.querySelectorAll('[data-oms-view]');

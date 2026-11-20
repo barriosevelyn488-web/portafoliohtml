@@ -204,7 +204,11 @@ function iniciarEnlacesStackAProyectos() {
   const irYFiltrar = (categoria) => {
     const btnFiltro = document.querySelector(`.filter-btn[data-filter="${categoria}"]`);
     if (btnFiltro) btnFiltro.click();
-    seccionProyectos.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (window.__lenis__ && typeof window.__lenis__.scrollTo === 'function') {
+      window.__lenis__.scrollTo(seccionProyectos, { duration: 1.15 });
+    } else {
+      seccionProyectos.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   tarjetasStack.forEach((tarjeta) => {

@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Arquitectura Modular CSS -->
-  <link rel="stylesheet" href="css/main.css?v=7.1" />
+  <link rel="stylesheet" href="css/main.css?v=8.0" />
 </head>
 <body>
   <!-- Barra Láser Superior de Descubrimiento de Scroll -->
@@ -166,28 +166,28 @@
              Beat 4: Aparecen 4 tarjetas/iconos coloridos de lenguajes y tecnologías
              ================================================================== -->
         <section class="lui-section hero-kinetic-section is-revealed" data-tab-panel="inicio" id="inicio">
-          <!-- Escenario Principal Limpio Tipo Estudio -->
+          <!-- Escenario Full-Screen 100vw x 100vh -->
           <div class="hero-editorial-stage" id="heroSplitArena">
 
-            <!-- CAPA 0: Fondo que nace pequeño en el centro y se expande a toda la sección -->
+            <!-- CAPA 0: Recuadro de fondo que nace pequeño en el centro, se expande a TODA la pantalla (100vw x 100vh) y desaparece -->
             <div class="hero-stage-expand-bg" aria-hidden="true"></div>
 
             <!-- Metadato superior minimalista -->
             <div class="hero-stage-top-meta">
-              <span class="hero-stage-eyebrow-left">GUATEMALA · <strong id="ghRepoCount">66+</strong> REPOS</span>
+              <span class="hero-stage-eyebrow-left">GUATEMALA · <strong id="ghRepoCount">66+</strong> REPOSITORIOS</span>
               <span class="hero-stage-discipline">TÉCNICA EN DESARROLLO DE SOFTWARE</span>
               <span class="hero-stage-eyebrow-right" id="typewriterRole">BACKEND · BD · IA</span>
             </div>
 
-            <!-- CAPA 2 (Z-2): Palabra Gigante "Portafolio" que entra, se parte brevemente y queda DETRÁS de la foto -->
+            <!-- CAPA 2 (Z-2): Palabra Gigante "Portafolio" que entra, se abre a la mitad y queda DETRÁS de la foto -->
             <h1 class="hero-giant-portafolio" aria-label="Portafolio Evelyn Barrios">
               <span class="word-half word-left">Porta</span><span class="word-half word-right">folio</span>
             </h1>
 
-            <!-- CAPA 3 (Z-4): Recuadro celeste que expande la foto y luego se encoge y oculta detrás de ella -->
+            <!-- CAPA 3 (Z-4): Recuadro celeste de la foto que se agranda a rectángulo y luego se reduce y se oculta DETRÁS de ella -->
             <div class="hero-portrait-frame-shrink" aria-hidden="true"></div>
 
-            <!-- CAPA 4 (Z-5): Retrato a color SIN recuadro alrededor, apoyado en la base delante de "Portafolio" -->
+            <!-- CAPA 4 (Z-5): Retrato de Evelyn SIN recuadro, apoyado en la base delante de "Portafolio" -->
             <div class="hero-portrait-freestanding-wrap">
               <img
                 src="img/evelyn-hero-azul-estudio.png"
@@ -197,96 +197,66 @@
               />
             </div>
 
-            <!-- CAPA 5 (4 TARJETAS COLORIDAS FLOTANDO ALREDEDOR Y ENTRELAZADAS CON "Portafolio") -->
-            <!-- 1. Arriba-Izquierda (Z-1 detrás de "Po") : Node.js & JavaScript -->
-            <div class="hero-tech-float-card htc-tl" data-depth="0.032" data-tab-target="proyectos" title="Backend Node.js y JavaScript">
-              <div class="htc-inner htc-bg-node">
-                <div class="htc-colorful-logos">
-                  <div class="htc-icon-pill" title="Node.js">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" width="32" height="32" />
-                    <span>Node.js</span>
-                  </div>
-                  <div class="htc-icon-pill" title="JavaScript ES6+">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" width="30" height="30" />
-                    <span>JS ES6+</span>
-                  </div>
-                </div>
-                <span class="htc-label">BACKEND &amp; APIS REST</span>
-              </div>
+            <!-- CAPA 5: 6 ICONOS 3D EXTRUIDOS Y COLORIDOS FLOTANDO ALREDEDOR DE ELLA (GSAP 3D Levitación + Parallax) -->
+            <!-- 1. Arriba-Izquierda (Z-1 detrás de "Po") : Node.js 3D Cube -->
+            <div class="hero-3d-cube cube-3d-tl cube-node-3d" data-depth="0.036" data-goto-projects="backend" title="Node.js — Ver proyectos Backend">
+              <div class="cube-3d-sheen"></div>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" />
+              <span class="cube-3d-caption">NODE.JS</span>
             </div>
 
-            <!-- 2. Arriba-Derecha (Z-6 solapando la "o" final) : PostgreSQL & MySQL -->
-            <div class="hero-tech-float-card htc-tr" data-depth="0.055" data-tab-target="proyectos" title="PostgreSQL 3NF y MySQL">
-              <div class="htc-inner htc-bg-sql">
-                <div class="htc-colorful-logos htc-logos-col">
-                  <div class="htc-icon-pill" title="PostgreSQL 3NF">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="34" height="34" />
-                    <span>PostgreSQL</span>
-                  </div>
-                  <div class="htc-icon-pill" title="MySQL">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" width="32" height="32" />
-                    <span>MySQL 3NF</span>
-                  </div>
-                </div>
-                <span class="htc-label">26 TABLAS RELACIONALES</span>
-              </div>
+            <!-- 2. Arriba-Derecha (Z-6 solapando la "o") : PostgreSQL 3D Cube -->
+            <div class="hero-3d-cube cube-3d-tr cube-pg-3d" data-depth="0.055" data-goto-projects="backend" title="PostgreSQL 3NF — Ver proyectos SQL">
+              <div class="cube-3d-sheen"></div>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
+              <span class="cube-3d-caption">POSTGRES</span>
             </div>
 
-            <!-- 3. Centro-Izquierda (Z-6 debajo de "Por") : TypeScript & Python -->
-            <div class="hero-tech-float-card htc-ml" data-depth="0.048" data-tab-target="stack" title="TypeScript y Python IA">
-              <div class="htc-inner htc-bg-dark">
-                <div class="htc-colorful-logos">
-                  <div class="htc-icon-pill" title="TypeScript">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" width="30" height="30" />
-                    <span>TypeScript</span>
-                  </div>
-                  <div class="htc-icon-pill" title="Python & IA">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" width="32" height="32" />
-                    <span>Python IA</span>
-                  </div>
-                </div>
-                <span class="htc-label">LENGUAJES &amp; SCRIPTS</span>
-              </div>
+            <!-- 3. Centro-Izquierda (Z-6 debajo de "Por") : JavaScript 3D Cube -->
+            <div class="hero-3d-cube cube-3d-ml cube-js-3d" data-depth="0.045" data-goto-projects="frontend" title="JavaScript ES6+ — Ver proyectos">
+              <div class="cube-3d-sheen"></div>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" />
+              <span class="cube-3d-caption">JS ES6+</span>
             </div>
 
-            <!-- 4. Centro-Derecha (Z-4 debajo de "lio") : Docker, Flutter & Git -->
-            <div class="hero-tech-float-card htc-mr" data-depth="0.042" data-tab-target="stack" title="Docker, Flutter y Git">
-              <div class="htc-inner htc-bg-devops">
-                <div class="htc-colorful-logos">
-                  <div class="htc-icon-pill" title="Docker">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" width="30" height="30" />
-                    <span>Docker</span>
-                  </div>
-                  <div class="htc-icon-pill" title="Flutter">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="Flutter" width="28" height="28" />
-                    <span>Flutter</span>
-                  </div>
-                  <div class="htc-icon-pill" title="Git">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" width="28" height="28" />
-                    <span>Git</span>
-                  </div>
-                </div>
-                <span class="htc-label">CLOUD · MOBILE · CONTROL</span>
-              </div>
+            <!-- 4. Centro-Derecha (Z-4 debajo de "lio") : Python 3D Cube -->
+            <div class="hero-3d-cube cube-3d-mr cube-py-3d" data-depth="0.042" data-goto-projects="all" title="Python & IA — Ver proyectos">
+              <div class="cube-3d-sheen"></div>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" />
+              <span class="cube-3d-caption">PYTHON</span>
             </div>
 
-            <!-- Etiquetas editoriales de las esquinas inferiores (como Ángel López) -->
+            <!-- 5. Abajo-Izquierda (Z-6) : Docker 3D Cube -->
+            <div class="hero-3d-cube cube-3d-bl cube-dk-3d" data-depth="0.052" data-goto-projects="backend" title="Docker Cloud — Ver proyectos">
+              <div class="cube-3d-sheen"></div>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" />
+              <span class="cube-3d-caption">DOCKER</span>
+            </div>
+
+            <!-- 6. Abajo-Derecha (Z-6) : Flutter 3D Cube -->
+            <div class="hero-3d-cube cube-3d-br cube-fl-3d" data-depth="0.058" data-goto-projects="mobile" title="Flutter & Dart — Ver proyectos Mobile">
+              <div class="cube-3d-sheen"></div>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="Flutter" />
+              <span class="cube-3d-caption">FLUTTER</span>
+            </div>
+
+            <!-- Etiquetas editoriales minimalistas de las esquinas inferiores -->
             <div class="hero-stage-corner-tags">
               <div class="corner-tag-left">
                 <strong>ARQUITECTURA BACKEND</strong>
-                <span>APIS REST · CLEAN CODE · SOLID</span>
+                <span>APIS REST · POSTGRESQL 3NF · SOLID</span>
               </div>
               <div class="corner-tag-right">
                 <strong>INTELIGENCIA ARTIFICIAL</strong>
-                <span>POSTGRESQL · DOCKER · FLUTTER</span>
+                <span>PYTHON · DOCKER · FLUTTER MOBILE</span>
               </div>
             </div>
 
-            <!-- Firma y año en la base exacta del escenario -->
+            <!-- Firma, botón central limpio y año en la base exacta -->
             <div class="hero-stage-baseline">
               <strong>EVELYN BARRIOS</strong>
-              <button type="button" class="hero-baseline-cta" data-tab-target="proyectos">
-                Explorar Proyectos ↓
+              <button type="button" class="hero-baseline-cta" data-tab-target="sobre-mi">
+                Desliza para descubrir ↓
               </button>
               <strong>2026 //</strong>
             </div>
@@ -354,7 +324,12 @@
   <!-- Conector de Modales y Notificaciones -->
   <div id="sec-modales"></div>
 
+  <!-- Librerías Profesionales de Animación y Motion Design (GSAP + ScrollTrigger + Lenis) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+
   <!-- Arquitectura Modular JavaScript (ES6 Modules) -->
-  <script type="module" src="js/main.js?v=7.1"></script>
+  <script type="module" src="js/main.js?v=8.0"></script>
 </body>
 </html>

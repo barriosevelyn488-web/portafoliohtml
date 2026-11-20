@@ -1,99 +1,72 @@
 /* ==========================================================================
-   SISTEMA CINÉTICO EDITORIAL EN AZUL & CELESTE BRILLANTE (v7.0)
-   1. Entrada Coreográfica 4 Tiempos: "Portafolio" + Recuadro Expande/Oculta + Foto Sin Fondo + 4 Tarjetas Coloridas
+   SISTEMA CINÉTICO EDITORIAL FULL-SCREEN (GSAP + LENIS + 3D ICONS v8.0)
+   1. Entrada Coreográfica 100vw x 100vh: Cuadrito expándese a pantalla completa,
+      recuadro foto se encoge y oculta detrás, "Portafolio" detrás, 6 Iconos 3D flotando
    2. Dossier "Sobre mí" azul noche + brillo celeste + cuadrito foto profesional
-   3. Stack 01-04 enlazado a Proyectos
+   3. Carrusel Stack 01-10 colores originales enlazado a Proyectos
    4. Carrusel horizontal de Proyectos (Imagen + Nombre + Ver Resumen)
-   5. Transición descendente en Trayectoria
+   5. Transiciones ScrollTrigger entre secciones full-screen
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. ENTRADA CINÉTICA EDITORIAL: "PORTAFOLIO" DETRÁS + RECUADRO EXPANDE Y OCULTA
+   1. SECCIÓN 1 FULL-VIEWPORT (100vw × 100vh EDGE-TO-EDGE)
    -------------------------------------------------------------------------- */
 .hero-kinetic-section {
-  padding-top: 12px;
-  padding-bottom: 56px;
+  padding: 0 !important;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .hero-editorial-stage {
   position: relative;
   width: 100%;
-  height: clamp(500px, 76vh, 650px);
-  border-radius: 28px;
+  min-height: 100vh;
+  height: 100vh;
+  border-radius: 0;
   background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
-  border: 1.5px solid var(--card-border);
-  box-shadow: 0 24px 62px rgba(2, 132, 199, 0.14);
   overflow: hidden;
   user-select: none;
 }
 
 [data-theme="dark"] .hero-editorial-stage {
-  background: radial-gradient(circle at 50% 35%, #0a2550 0%, #04112b 78%);
-  border-color: rgba(56, 189, 248, 0.36);
-  box-shadow: 0 28px 68px rgba(2, 8, 23, 0.7), 0 0 40px rgba(56, 189, 248, 0.14);
+  background: radial-gradient(circle at 50% 42%, #092554 0%, #030e24 78%);
 }
 
-/* Reproducción al hacer clic en botón replay */
-.hero-editorial-stage.is-replaying * {
-  animation: none !important;
-}
-
-/* CAPA 0: Fondo que nace en un cuadrito y se expande a toda la sección */
+/* CAPA 0: Recuadro celeste luminoso que nace pequeño, expande a 100vw x 100vh y se desvanece */
 .hero-stage-expand-bg {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(186, 230, 253, 0.85) 0%, rgba(224, 242, 254, 0.55) 50%, rgba(240, 249, 255, 0.15) 100%);
-  transform: translate(-50%, -50%) scale(0.08);
-  z-index: 1;
+  width: 110px;
+  height: 110px;
+  border-radius: 26px;
+  background: radial-gradient(circle at center, #e0f2fe 0%, #7dd3fc 52%, #0284c7 100%);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  z-index: 900;
   pointer-events: none;
-  animation: heroBgExpandFull 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.18s forwards;
 }
 
 [data-theme="dark"] .hero-stage-expand-bg {
-  background: radial-gradient(circle at center, rgba(56, 189, 248, 0.38) 0%, rgba(14, 165, 233, 0.18) 52%, transparent 100%);
+  background: radial-gradient(circle at center, #38bdf8 0%, #0284c7 55%, #04112b 100%);
 }
 
-@keyframes heroBgExpandFull {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.08);
-    border-radius: 38px;
-  }
-  28% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(0.24);
-    border-radius: 26px;
-  }
-  65% {
-    opacity: 0.9;
-    transform: translate(-50%, -50%) scale(0.85);
-    border-radius: 20px;
-  }
-  100% {
-    opacity: 0.55;
-    transform: translate(-50%, -50%) scale(1.12);
-    border-radius: 0px;
-  }
-}
-
-/* Metadato superior minimalista */
+/* Metadato superior minimalista debajo de la cabecera fija */
 .hero-stage-top-meta {
-  position: relative;
+  position: absolute;
+  top: 96px;
+  left: 0;
+  right: 0;
   z-index: 8;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 22px 34px 0;
+  padding: 0 clamp(22px, 5vw, 64px);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   color: var(--text);
-  opacity: 0;
-  animation: heroFadeSlideDown 0.7s ease 1.15s forwards;
 }
 
 .hero-stage-discipline {
@@ -108,15 +81,10 @@
   color: var(--accent);
 }
 
-@keyframes heroFadeSlideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 /* CAPA 2 (Z-2): Palabra Gigante "Portafolio" detrás del retrato */
 .hero-giant-portafolio {
   position: absolute;
-  top: 30%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -125,7 +93,7 @@
   align-items: center;
   justify-content: center;
   font-family: 'Plus Jakarta Sans', var(--font-display);
-  font-size: clamp(3.3rem, 11.4vw, 10.6rem);
+  font-size: clamp(4.2rem, 15.6vw, 15.2rem);
   font-weight: 900;
   letter-spacing: -0.055em;
   line-height: 0.88;
@@ -136,118 +104,38 @@
 
 [data-theme="dark"] .hero-giant-portafolio {
   color: #ffffff;
-  text-shadow: 0 0 42px rgba(56, 189, 248, 0.28);
+  text-shadow: 0 0 50px rgba(56, 189, 248, 0.25);
 }
 
 .hero-giant-portafolio .word-half {
   display: inline-block;
-  opacity: 0;
+  will-change: transform, opacity, filter;
 }
 
-.hero-giant-portafolio .word-left {
-  animation: heroWordLeftChoreo 1.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.hero-giant-portafolio .word-right {
-  animation: heroWordRightChoreo 1.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes heroWordLeftChoreo {
-  0% {
-    opacity: 0;
-    transform: translateX(-80px) scaleX(1.18);
-    filter: blur(14px);
-  }
-  24% {
-    opacity: 1;
-    transform: translateX(0) scaleX(1);
-    filter: blur(0px);
-  }
-  52% {
-    opacity: 1;
-    transform: translateX(-34px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes heroWordRightChoreo {
-  0% {
-    opacity: 0;
-    transform: translateX(80px) scaleX(1.18);
-    filter: blur(14px);
-  }
-  24% {
-    opacity: 1;
-    transform: translateX(0) scaleX(1);
-    filter: blur(0px);
-  }
-  52% {
-    opacity: 1;
-    transform: translateX(34px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* CAPA 3 (Z-4): Recuadro celeste que crece a rectángulo con la foto y luego se encoge y oculta DETRÁS de ella */
+/* CAPA 3 (Z-4): Recuadro detrás de la foto que crece y luego se encoge y oculta detrás de ella */
 .hero-portrait-frame-shrink {
   position: absolute;
-  top: 54%;
+  top: 56%;
   left: 50%;
-  width: 290px;
-  height: 360px;
-  border-radius: 24px;
-  background: linear-gradient(145deg, #38bdf8 0%, #0284c7 55%, #0ea5e9 100%);
-  box-shadow:
-    0 24px 55px rgba(2, 132, 199, 0.42),
-    0 0 42px rgba(56, 189, 248, 0.45);
-  border: 2px solid rgba(255, 255, 255, 0.78);
+  width: 340px;
+  height: 430px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #bae6fd 0%, #38bdf8 48%, #0284c7 100%);
+  box-shadow: 0 28px 70px rgba(2, 132, 199, 0.45), 0 0 48px rgba(56, 189, 248, 0.42);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
   z-index: 4;
   pointer-events: none;
-  opacity: 0;
-  animation: heroFrameExpandThenHide 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
 }
 
-@keyframes heroFrameExpandThenHide {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.16);
-    border-radius: 28px;
-  }
-  22% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(0.36);
-    border-radius: 22px;
-  }
-  52% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.04);
-    border-radius: 24px;
-  }
-  82% {
-    opacity: 0.72;
-    transform: translate(-50%, -50%) scale(0.28);
-    border-radius: 36px;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.08);
-    border-radius: 50%;
-  }
-}
-
-/* CAPA 4 (Z-5): Retrato de Evelyn SIN recuadro, apoyado en la base delante de "Portafolio" */
+/* CAPA 4 (Z-5): Retrato de Evelyn SIN recuadro, tamaño imponente desde la base delante de "Portafolio" */
 .hero-portrait-freestanding-wrap {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  height: clamp(325px, 64vh, 520px);
+  height: clamp(360px, 75vh, 640px);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -258,137 +146,119 @@
 .hero-portrait-freestanding {
   height: 100%;
   width: auto;
-  max-width: 88vw;
+  max-width: 90vw;
   object-fit: contain;
   object-position: bottom center;
-  filter: drop-shadow(0 18px 34px rgba(4, 17, 43, 0.24));
-  opacity: 0;
-  transform: translateY(-44px) scale(0.24);
-  animation: heroPortraitEmergeFromBox 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.34s forwards;
+  filter: drop-shadow(0 22px 44px rgba(4, 17, 43, 0.28));
+  will-change: transform, opacity, filter;
 }
 
-@keyframes heroPortraitEmergeFromBox {
-  0% {
-    opacity: 0;
-    transform: translateY(-48px) scale(0.24);
-    filter: blur(6px) drop-shadow(0 18px 34px rgba(4, 17, 43, 0.2));
-  }
-  28% {
-    opacity: 1;
-    transform: translateY(-30px) scale(0.45);
-    filter: blur(2px) drop-shadow(0 18px 34px rgba(4, 17, 43, 0.22));
-  }
-  65% {
-    opacity: 1;
-    transform: translateY(-6px) scale(0.92);
-    filter: blur(0px) drop-shadow(0 18px 34px rgba(4, 17, 43, 0.24));
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: drop-shadow(0 18px 34px rgba(4, 17, 43, 0.24));
-  }
-}
-
-/* CAPA 5: 4 TARJETAS COLORIDAS DE TECNOLOGÍAS ALREDEDOR DE ELLA */
-.hero-tech-float-card {
+/* CAPA 5: 6 ICONOS 3D ESCULPIDOS EN PERSPECTIVA FLOTANDO ALREDEDOR DE ELLA */
+.hero-3d-cube {
   position: absolute;
+  width: clamp(92px, 8.6vw, 124px);
+  height: clamp(92px, 8.6vw, 124px);
+  border-radius: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   cursor: pointer;
-  opacity: 0;
-  animation: heroTechCardPop 0.8s cubic-bezier(0.2, 0.9, 0.3, 1.15) forwards;
+  transform-style: preserve-3d;
+  perspective: 700px;
+  overflow: visible;
+  will-change: transform, opacity;
+  transition: filter 0.3s ease;
 }
 
-/* Posiciones exactas entrelazadas delante y detrás de "Portafolio" */
-.htc-tl { top: 10%; left: 3.5%;  width: clamp(175px, 18vw, 245px); height: clamp(110px, 15vh, 138px); z-index: 1; animation-delay: 1.25s; }
-.htc-tr { top: 9%;  right: 4%;   width: clamp(148px, 14vw, 190px); height: clamp(150px, 22vh, 210px); z-index: 6; animation-delay: 1.38s; }
-.htc-ml { top: 47%; left: 7.5%;  width: clamp(185px, 17.5vw, 240px); height: clamp(118px, 17vh, 152px); z-index: 6; animation-delay: 1.5s; }
-.htc-mr { top: 52%; right: 6.5%; width: clamp(205px, 19vw, 265px); height: clamp(116px, 16.5vh, 148px); z-index: 4; animation-delay: 1.62s; }
-
-@keyframes heroTechCardPop {
-  0% {
-    opacity: 0;
-    transform: translateY(28px) scale(0.8);
-    filter: blur(8px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0px);
-  }
+.hero-3d-cube img {
+  position: relative;
+  z-index: 3;
+  width: 56%;
+  height: 56%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.42));
+  transform: translateZ(18px);
 }
 
-.htc-inner {
-  width: 100%;
-  height: 100%;
-  border-radius: 14px;
-  padding: 13px 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 20px 40px rgba(4, 17, 43, 0.28);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-}
-
-.hero-tech-float-card:hover .htc-inner {
-  transform: translateY(-6px) scale(1.04);
-  box-shadow: 0 26px 48px rgba(2, 132, 199, 0.38);
-}
-
-.htc-bg-node { background: linear-gradient(145deg, #0284c7 0%, #0369a1 55%, #0c4a6e 100%); color: #ffffff; }
-.htc-bg-sql  { background: linear-gradient(155deg, #1d4ed8 0%, #1e40af 58%, #04112b 100%); color: #ffffff; }
-.htc-bg-dark { background: radial-gradient(circle at 30% 30%, #1e293b 0%, #0f172a 70%, #04112b 100%); color: #ffffff; border-color: rgba(56, 189, 248, 0.3); }
-.htc-bg-devops { background: linear-gradient(145deg, #0f172a 0%, #0c4a6e 60%, #0369a1 100%); color: #ffffff; border-color: rgba(56, 189, 248, 0.32); }
-
-.htc-colorful-logos {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 8px;
-  margin: auto 0;
-}
-
-.htc-logos-col {
-  flex-direction: column;
-  gap: 8px;
-}
-
-.htc-icon-pill {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+.cube-3d-caption {
+  position: relative;
+  z-index: 3;
   font-family: var(--font-mono);
   font-size: 0.62rem;
-  font-weight: 800;
-  color: #f8fafc;
-}
-
-.htc-icon-pill svg {
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
-}
-
-.htc-label {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.08em;
-  color: rgba(224, 242, 254, 0.85);
+  color: #ffffff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
 }
 
-/* Etiquetas editoriales esquinas inferiores (minimalistas como Ángel López) */
+/* Brillo especular vidrioso 3D */
+.cube-3d-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.05) 45%, rgba(0, 0, 0, 0.18) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.38);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Posiciones editoriales en profundidad Z alrededor de Evelyn y "Portafolio" */
+.cube-3d-tl { top: 20%; left: 7%;  z-index: 1; } /* detrás de la "P" */
+.cube-3d-tr { top: 18%; right: 7%; z-index: 6; } /* solapando "o" */
+.cube-3d-ml { top: 47%; left: 11%; z-index: 6; }
+.cube-3d-mr { top: 45%; right: 11%; z-index: 4; }
+.cube-3d-bl { bottom: 16%; left: 18%; z-index: 6; }
+.cube-3d-br { bottom: 16%; right: 18%; z-index: 6; }
+
+/* Extrusión 3D y colores auténticos vibrantes por tecnología */
+.cube-node-3d {
+  background: linear-gradient(145deg, #22c55e 0%, #15803d 65%, #064e3b 100%);
+  box-shadow: -10px 12px 0 #052e16, -18px 26px 36px rgba(21, 128, 61, 0.42);
+}
+
+.cube-pg-3d {
+  background: linear-gradient(145deg, #3b82f6 0%, #1d4ed8 65%, #1e3a8a 100%);
+  box-shadow: -10px 12px 0 #172554, -18px 26px 36px rgba(29, 78, 216, 0.48);
+}
+
+.cube-js-3d {
+  background: linear-gradient(145deg, #fde047 0%, #eab308 65%, #a16207 100%);
+  box-shadow: -10px 12px 0 #713f12, -18px 26px 36px rgba(234, 179, 8, 0.4);
+}
+.cube-js-3d .cube-3d-caption { color: #0f172a; text-shadow: none; }
+
+.cube-py-3d {
+  background: linear-gradient(145deg, #1e3a8a 0%, #172554 65%, #0f172a 100%);
+  box-shadow: -10px 12px 0 #020617, -18px 26px 36px rgba(15, 23, 42, 0.55);
+}
+
+.cube-dk-3d {
+  background: linear-gradient(145deg, #38bdf8 0%, #0284c7 65%, #075985 100%);
+  box-shadow: -10px 12px 0 #0c4a6e, -18px 26px 36px rgba(2, 132, 199, 0.45);
+}
+
+.cube-fl-3d {
+  background: linear-gradient(145deg, #06b6d4 0%, #0369a1 65%, #042f2e 100%);
+  box-shadow: -10px 12px 0 #082f49, -18px 26px 36px rgba(6, 182, 212, 0.42);
+}
+
+.hero-3d-cube:hover {
+  filter: brightness(1.12);
+}
+
+/* Etiquetas editoriales esquinas inferiores (minimalistas) */
 .hero-stage-corner-tags {
   position: absolute;
-  left: 34px;
-  right: 34px;
-  bottom: 52px;
+  left: clamp(22px, 5vw, 64px);
+  right: clamp(22px, 5vw, 64px);
+  bottom: 58px;
   z-index: 7;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   pointer-events: none;
-  opacity: 0;
-  animation: heroFadeSlideDown 0.7s ease 1.45s forwards;
 }
 
 .corner-tag-left,
@@ -396,70 +266,59 @@
   display: flex;
   flex-direction: column;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  line-height: 1.35;
+  font-size: 0.7rem;
+  line-height: 1.38;
   color: var(--text);
 }
 
-.corner-tag-right {
-  text-align: right;
-}
-
+.corner-tag-right { text-align: right; }
 .corner-tag-left strong,
-.corner-tag-right strong {
-  font-weight: 900;
-}
-
+.corner-tag-right strong { font-weight: 900; }
 .corner-tag-left span,
-.corner-tag-right span {
-  font-weight: 700;
-  color: var(--muted);
-}
+.corner-tag-right span { font-weight: 700; color: var(--muted); }
 
-/* Firma y año sobre la línea inferior */
+/* Firma y año sobre la base exacta del viewport */
 .hero-stage-baseline {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 44px;
-  padding: 0 34px;
+  height: 50px;
+  padding: 0 clamp(22px, 5vw, 64px);
   z-index: 8;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(180deg, transparent 0%, rgba(224, 242, 254, 0.55) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(224, 242, 254, 0.65) 100%);
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 900;
   letter-spacing: 0.06em;
   color: var(--text);
-  opacity: 0;
-  animation: heroFadeSlideDown 0.7s ease 1.45s forwards;
 }
 
 [data-theme="dark"] .hero-stage-baseline {
-  background: linear-gradient(180deg, transparent 0%, rgba(4, 17, 43, 0.78) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(4, 17, 43, 0.85) 100%);
   color: #ffffff;
 }
 
 .hero-baseline-cta {
-  padding: 6px 16px;
+  padding: 7px 18px;
   border-radius: 999px;
   background: linear-gradient(135deg, #0ea5e9, #1d4ed8);
   color: #ffffff;
   border: none;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(14, 165, 233, 0.35);
+  box-shadow: 0 8px 22px rgba(14, 165, 233, 0.42);
   transition: transform 0.24s ease, box-shadow 0.24s ease;
 }
 
 .hero-baseline-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(14, 165, 233, 0.48);
+  box-shadow: 0 12px 28px rgba(14, 165, 233, 0.56);
 }
 
 /* --------------------------------------------------------------------------
@@ -1203,12 +1062,14 @@
 
 @media (max-width: 680px) {
   .hero-editorial-stage {
-    height: 460px;
-    border-radius: 22px;
+    height: 100svh;
+    min-height: 100svh;
+    border-radius: 0;
   }
 
   .hero-stage-top-meta {
-    padding: 16px 16px 0;
+    top: 84px;
+    padding: 0 16px;
     font-size: 0.62rem;
   }
 
@@ -1217,42 +1078,36 @@
   }
 
   .hero-giant-portafolio {
-    top: 25%;
-    font-size: clamp(2.8rem, 15.5vw, 4.4rem);
+    top: 32%;
+    font-size: clamp(3.1rem, 17vw, 4.8rem);
   }
 
   .hero-portrait-frame-shrink {
-    width: 190px;
-    height: 235px;
+    width: 210px;
+    height: 270px;
   }
 
   .hero-portrait-freestanding-wrap {
-    height: 280px;
+    height: 54vh;
+    max-height: 410px;
   }
 
-  .htc-tl { top: 8%; left: 3%; width: 122px; height: 84px; }
-  .htc-tr { top: 8%; right: 3%; width: 112px; height: 110px; }
-  .htc-ml { top: 44%; left: 3%; width: 126px; height: 88px; }
-  .htc-mr { top: 44%; right: 3%; width: 132px; height: 88px; }
-
-  .htc-inner {
-    padding: 8px 10px;
-    border-radius: 10px;
+  .hero-3d-cube {
+    width: 66px;
+    height: 66px;
+    border-radius: 17px;
   }
 
-  .htc-icon-pill svg,
-  .htc-icon-pill img {
-    width: 20px;
-    height: 20px;
-  }
-
-  .htc-icon-pill span {
-    font-size: 0.5rem;
-  }
-
-  .htc-label {
+  .cube-3d-caption {
     font-size: 0.46rem;
   }
+
+  .cube-3d-tl { top: 20%; left: 5%; }
+  .cube-3d-tr { top: 20%; right: 5%; }
+  .cube-3d-ml { top: 44%; left: 4%; }
+  .cube-3d-mr { top: 44%; right: 4%; }
+  .cube-3d-bl { bottom: 16%; left: 6%; }
+  .cube-3d-br { bottom: 16%; right: 6%; }
 
   .hero-stage-corner-tags {
     display: none;

@@ -1,16 +1,16 @@
-import { cargarSeccionesModulares } from './modules/secciones.js?v=6.0';
-import { PROYECTOS } from './data/projectsData.js?v=6.0';
-import { iniciarTema } from './modules/tema.js?v=6.0';
-import { iniciarProyectos } from './modules/proyectos.js?v=7.1';
-import { iniciarModales, abrirModalProyecto } from './modules/modales.js?v=6.0';
-import { iniciarContacto } from './modules/contacto.js?v=6.0';
+import { cargarSeccionesModulares } from './modules/secciones.js?v=8.0';
+import { PROYECTOS } from './data/projectsData.js?v=8.0';
+import { iniciarTema } from './modules/tema.js?v=8.0';
+import { iniciarProyectos } from './modules/proyectos.js?v=8.0';
+import { iniciarModales, abrirModalProyecto } from './modules/modales.js?v=8.0';
+import { iniciarContacto } from './modules/contacto.js?v=8.0';
 import {
   iniciarMenuMovil,
   iniciarPestanas,
   iniciarAnimacionesScroll,
   actualizarMetricasGitHub
-} from './modules/navegacion.js?v=6.0';
-import { iniciarExperienciaInmersiva } from './modules/inmersivo.js?v=7.0';
+} from './modules/navegacion.js?v=8.0';
+import { iniciarExperienciaInmersiva } from './modules/inmersivo.js?v=8.0';
 
 async function iniciarAplicacion() {
   if (window.__PORTAFOLIO_INICIADO__) return;
