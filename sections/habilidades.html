@@ -1,116 +1,168 @@
 <!-- ==========================================================================
      MÓDULO HTML: STACK TECNOLÓGICO (sections/habilidades.html)
-     Estructura de 4 Recuadros Numerados 01-04 (estilo CONTENIDO)
-     Al hacer clic en cada recuadro se enlaza directamente a Proyectos filtrados
+     Carrusel Editorial Numerado 01-10 (estilo CONTENIDO Behance)
+     con iconos oficiales en su COLOR ORIGINAL y enlace directo a Proyectos
      ========================================================================== -->
 <section class="lui-section section-flow-connect" data-tab-panel="stack" id="stack">
   <div class="lui-section-header">
     <span class="lui-eyebrow">STACK TECNOLÓGICO</span>
     <h2 class="lui-title">Lenguajes y Tecnologías que Manejo</h2>
     <p class="lui-lead">
-      Haz clic en cualquier especialidad para ir directo a los proyectos construidos con ese stack.
+      Explora el carrusel de herramientas y haz clic en cualquier tarjeta para ir directo a los proyectos hechos con esa tecnología.
     </p>
   </div>
 
   <div class="stack-editorial-showcase">
     <div class="stack-editorial-top">
-      <strong>CONTENIDO // STACK TECH</strong>
-      <span>CLICK EN UN MÓDULO PARA FILTRAR PROYECTOS ↘</span>
+      <div class="stack-top-labels">
+        <strong>CONTENIDO // STACK</strong>
+        <span>2024 - 2026 //</span>
+      </div>
+
+      <div class="carousel-nav-controls">
+        <button type="button" class="carousel-arrow-btn" id="stackPrevBtn" aria-label="Tecnologías anteriores" title="Anterior">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button type="button" class="carousel-arrow-btn" id="stackNextBtn" aria-label="Siguientes tecnologías" title="Siguiente">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
     </div>
 
-    <div class="stack-index-grid">
-      <!-- 01: Backend & APIs REST -->
-      <article class="stack-index-card stack-c1 interactive-hover-card" data-goto-projects="backend" role="button" tabindex="0" aria-label="01 Backend y APIs REST — Ver proyectos">
-        <div class="stack-idx-band">
-          <span class="stack-idx-num">01</span>
-          <span class="stack-idx-badge">SÓLIDO</span>
-        </div>
+    <!-- Carrusel Horizontal de Tecnologías con Color Original -->
+    <div class="stack-carousel-track" id="stackCarouselTrack" role="region" aria-label="Carrusel de tecnologías y lenguajes">
+      <!-- 01: Node.js -->
+      <article class="stack-index-card stack-band-node" data-goto-projects="backend" role="button" tabindex="0" aria-label="01 Node.js — Ver proyectos Backend">
+        <div class="stack-idx-band"><span class="stack-idx-num">01</span><span class="stack-idx-badge">SÓLIDO</span></div>
         <div class="stack-idx-body">
-          <div class="stack-idx-title-row">
-            <h3>BACKEND &amp;<br/>APIS REST</h3>
-            <span class="stack-idx-asterisk">*</span>
-          </div>
-          <p class="stack-idx-tools">Node.js · Express · Strapi · WebSockets</p>
-          <div class="stack-idx-3d-cube cube-node" aria-hidden="true">
-            <div class="cube-face">
-              <span>JS</span>
-              <small>NODE.JS</small>
-            </div>
+          <div class="stack-idx-title-row"><h3>NODE.JS<br/>&amp; EXPRESS</h3><span class="stack-idx-asterisk" style="color:#68a063;">*</span></div>
+          <p class="stack-idx-tools">APIs REST Modulares</p>
+          <div class="stack-original-3d-logo" aria-hidden="true">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" loading="lazy" />
           </div>
         </div>
       </article>
 
-      <!-- 02: Bases de Datos Relacionales -->
-      <article class="stack-index-card stack-c2 interactive-hover-card" data-goto-projects="backend" role="button" tabindex="0" aria-label="02 Bases de Datos 3NF — Ver proyectos">
-        <div class="stack-idx-band">
-          <span class="stack-idx-num">02</span>
-          <span class="stack-idx-badge">SÓLIDO</span>
-        </div>
+      <!-- 02: PostgreSQL -->
+      <article class="stack-index-card stack-band-pg" data-goto-projects="backend" role="button" tabindex="0" aria-label="02 PostgreSQL — Ver proyectos Backend">
+        <div class="stack-idx-band"><span class="stack-idx-num">02</span><span class="stack-idx-badge">SÓLIDO</span></div>
         <div class="stack-idx-body">
-          <div class="stack-idx-title-row">
-            <h3>BASES DE<br/>DATOS 3NF</h3>
-            <span class="stack-idx-asterisk">*</span>
-          </div>
-          <p class="stack-idx-tools">PostgreSQL · MySQL · Redis · SQLite</p>
-          <div class="stack-idx-3d-cube cube-sql" aria-hidden="true">
-            <div class="cube-face">
-              <span>SQL</span>
-              <small>POSTGRES</small>
-            </div>
+          <div class="stack-idx-title-row"><h3>POSTGRESQL<br/>3NF (26 TABLAS)</h3><span class="stack-idx-asterisk" style="color:#38bdf8;">*</span></div>
+          <p class="stack-idx-tools">Modelado Relacional</p>
+          <div class="stack-original-3d-logo" aria-hidden="true">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" loading="lazy" />
           </div>
         </div>
       </article>
 
-      <!-- 03: Frontend & Lenguajes -->
-      <article class="stack-index-card stack-c3 interactive-hover-card" data-goto-projects="frontend" role="button" tabindex="0" aria-label="03 Frontend y Lenguajes — Ver proyectos">
-        <div class="stack-idx-band">
-          <span class="stack-idx-num">03</span>
-          <span class="stack-idx-badge">PRÁCTICO</span>
-        </div>
+      <!-- 03: JavaScript -->
+      <article class="stack-index-card stack-band-js" data-goto-projects="frontend" role="button" tabindex="0" aria-label="03 JavaScript — Ver proyectos Frontend">
+        <div class="stack-idx-band"><span class="stack-idx-num">03</span><span class="stack-idx-badge">PRÁCTICO</span></div>
         <div class="stack-idx-body">
-          <div class="stack-idx-title-row">
-            <h3>FRONTEND &amp;<br/>LENGUAJES</h3>
-            <span class="stack-idx-asterisk">*</span>
-          </div>
-          <p class="stack-idx-tools">JavaScript ES6+ · TypeScript · Python · HTML/CSS</p>
-          <div class="stack-idx-3d-cube cube-ts" aria-hidden="true">
-            <div class="cube-face">
-              <span>TS</span>
-              <small>PYTHON</small>
-            </div>
+          <div class="stack-idx-title-row"><h3>JAVASCRIPT<br/>ES6+</h3><span class="stack-idx-asterisk" style="color:#f7df1e;">*</span></div>
+          <p class="stack-idx-tools">POO · Módulos · DOM</p>
+          <div class="stack-original-3d-logo" aria-hidden="true">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" loading="lazy" />
           </div>
         </div>
       </article>
 
-      <!-- 04: Mobile, Docker & Testing -->
-      <article class="stack-index-card stack-c4 interactive-hover-card" data-goto-projects="mobile" role="button" tabindex="0" aria-label="04 Mobile y Cloud — Ver proyectos">
-        <div class="stack-idx-band">
-          <span class="stack-idx-num">04</span>
-          <span class="stack-idx-badge">PRÁCTICO</span>
-        </div>
+      <!-- 04: TypeScript -->
+      <article class="stack-index-card stack-band-ts" data-goto-projects="frontend" role="button" tabindex="0" aria-label="04 TypeScript — Ver proyectos Frontend">
+        <div class="stack-idx-band"><span class="stack-idx-num">04</span><span class="stack-idx-badge">PRÁCTICO</span></div>
         <div class="stack-idx-body">
-          <div class="stack-idx-title-row">
-            <h3>MOBILE &amp;<br/>DEVOPS</h3>
-            <span class="stack-idx-asterisk">*</span>
+          <div class="stack-idx-title-row"><h3>TYPESCRIPT<br/>&amp; SOLID</h3><span class="stack-idx-asterisk" style="color:#3178c6;">*</span></div>
+          <p class="stack-idx-tools">Tipado Estático Seguro</p>
+          <div class="stack-original-3d-logo" aria-hidden="true">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" loading="lazy" />
           </div>
-          <p class="stack-idx-tools">Flutter · Dart · Docker · Linux · Firebase</p>
-          <div class="stack-idx-3d-cube cube-fl" aria-hidden="true">
-            <div class="cube-face">
-              <span>FL</span>
-              <small>DOCKER</small>
-            </div>
+        </div>
+      </article>
+
+      <!-- 05: Python -->
+      <article class="stack-index-card stack-band-py" data-goto-projects="all" role="button" tabindex="0" aria-label="05 Python — Ver proyectos">
+        <div class="stack-idx-band"><span class="stack-idx-num">05</span><span class="stack-idx-badge">IA &amp; DATA</span></div>
+        <div class="stack-idx-body">
+          <div class="stack-idx-title-row"><h3>PYTHON<br/>&amp; TALLERES IA</h3><span class="stack-idx-asterisk" style="color:#ffd43b;">*</span></div>
+          <p class="stack-idx-tools">Automatización e IA</p>
+          <div class="stack-original-3d-logo" aria-hidden="true">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" loading="lazy" />
+          </div>
+        </div>
+      </article>
+
+      <!-- 06: Flutter -->
+      <article class="stack-index-card stack-band-fl" data-goto-projects="mobile" role="button" tabindex="0" aria-label="06 Flutter — Ver proyectos Mobile">
+        <div class="stack-idx-band"><span class="stack-idx-num">06</span><span class="stack-idx-badge">MOBILE</span></div>
+        <div class="stack-idx-body">
+          <div class="stack-idx-title-row"><h3>FLUTTER<br/>&amp; DART</h3><span class="stack-idx-asterisk" style="color:#54c5f8;">*</span></div>
+          <p class="stack-idx-tools">Clean Architecture App</p>
+          <div class="stack-original-3d-logo" aria-hidden="true">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="Flutter" loading="lazy" />
+          </div>
+        </div>
+      </article>
+
+      <!-- 07: Docker -->
+      <article class="stack-index-card stack-band-dk" data-goto-projects="backend" role="button" tabindex="0" aria-label="07 Docker — Ver proyectos Backend">
+        <div class="stack-idx-band"><span class="stack-idx-num">07</span><span class="stack-idx-badge">DEVOPS</span></div>
+        <div class="stack-idx-body">
+          <div class="stack-idx-title-row"><h3>DOCKER<br/>CONTAINERS</h3><span class="stack-idx-asterisk" style="color:#2496ed;">*</span></div>
+          <p class="stack-idx-tools">Entornos Reproducibles</p>
+          <div class="stack-original-3d-logo" aria-hidden="true">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" loading="lazy" />
+          </div>
+        </div>
+      </article>
+
+      <!-- 08: MySQL -->
+      <article class="stack-index-card stack-band-mysql" data-goto-projects="backend" role="button" tabindex="0" aria-label="08 MySQL — Ver proyectos Backend">
+        <div class="stack-idx-band"><span class="stack-idx-num">08</span><span class="stack-idx-badge">SÓLIDO</span></div>
+        <div class="stack-idx-body">
+          <div class="stack-idx-title-row"><h3>MYSQL<br/>RELACIONAL</h3><span class="stack-idx-asterisk" style="color:#f29111;">*</span></div>
+          <p class="stack-idx-tools">Consultas &amp; Transacciones</p>
+          <div class="stack-original-3d-logo" aria-hidden="true">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy" />
+          </div>
+        </div>
+      </article>
+
+      <!-- 09: Redis -->
+      <article class="stack-index-card stack-band-redis" data-goto-projects="backend" role="button" tabindex="0" aria-label="09 Redis — Ver proyectos Backend">
+        <div class="stack-idx-band"><span class="stack-idx-num">09</span><span class="stack-idx-badge">REALTIME</span></div>
+        <div class="stack-idx-body">
+          <div class="stack-idx-title-row"><h3>REDIS &amp;<br/>WEBSOCKETS</h3><span class="stack-idx-asterisk" style="color:#ef4444;">*</span></div>
+          <p class="stack-idx-tools">Pub/Sub Tiempo Real</p>
+          <div class="stack-original-3d-logo" aria-hidden="true">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" alt="Redis" loading="lazy" />
+          </div>
+        </div>
+      </article>
+
+      <!-- 10: Git & Linux -->
+      <article class="stack-index-card stack-band-git" data-goto-projects="all" role="button" tabindex="0" aria-label="10 Git & Linux — Ver proyectos">
+        <div class="stack-idx-band"><span class="stack-idx-num">10</span><span class="stack-idx-badge">CONTROL</span></div>
+        <div class="stack-idx-body">
+          <div class="stack-idx-title-row"><h3>GIT, LINUX<br/>&amp; BRUNO</h3><span class="stack-idx-asterisk" style="color:#f05032;">*</span></div>
+          <p class="stack-idx-tools">Testing APIs &amp; Scrum</p>
+          <div class="stack-original-3d-logo" aria-hidden="true">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" loading="lazy" />
           </div>
         </div>
       </article>
     </div>
 
     <div class="stack-footer-tags">
-      <strong>//COMPETENCIAS</strong>
+      <strong>//HERRAMIENTAS</strong>
       <span>BRUNO &amp; POSTMAN (API TESTING)</span>
+      <span>STRAPI &amp; FIREBASE</span>
+      <span>LINUX SERVER</span>
       <span>PRINCIPIOS SOLID</span>
-      <span>CLEAN ARCHITECTURE</span>
-      <span>GIT &amp; SCRUM</span>
-      <span>LIDERAZGO ÁGIL</span>
+      <span>SCRUM ÁGIL</span>
     </div>
   </div>
 

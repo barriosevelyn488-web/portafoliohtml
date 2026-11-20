@@ -1,7 +1,7 @@
 import { cargarSeccionesModulares } from './modules/secciones.js?v=6.0';
 import { PROYECTOS } from './data/projectsData.js?v=6.0';
 import { iniciarTema } from './modules/tema.js?v=6.0';
-import { iniciarProyectos } from './modules/proyectos.js?v=6.0';
+import { iniciarProyectos } from './modules/proyectos.js?v=7.1';
 import { iniciarModales, abrirModalProyecto } from './modules/modales.js?v=6.0';
 import { iniciarContacto } from './modules/contacto.js?v=6.0';
 import {

@@ -176,6 +176,24 @@ function iniciarControlesCarrusel(contenedorGrid) {
       contenedorGrid.scrollBy({ left: pasoScroll(), behavior: 'smooth' });
     });
   }
+
+  // Controles del Carrusel de Stack Tecnológico (01-10)
+  const stackTrack = document.getElementById('stackCarouselTrack');
+  const stackPrev = document.getElementById('stackPrevBtn');
+  const stackNext = document.getElementById('stackNextBtn');
+  if (stackTrack) {
+    const pasoStack = () => Math.min(300, stackTrack.clientWidth * 0.8);
+    if (stackPrev) {
+      stackPrev.addEventListener('click', () => {
+        stackTrack.scrollBy({ left: -pasoStack(), behavior: 'smooth' });
+      });
+    }
+    if (stackNext) {
+      stackNext.addEventListener('click', () => {
+        stackTrack.scrollBy({ left: pasoStack(), behavior: 'smooth' });
+      });
+    }
+  }
 }
 
 function iniciarEnlacesStackAProyectos() {
