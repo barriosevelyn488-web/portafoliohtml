@@ -8,6 +8,7 @@
 export function iniciarExperienciaInmersiva() {
   iniciarReplayHero();
   iniciarParallaxChipsHero();
+  iniciarTransicionesScrollEsquinas();
   iniciarToggleFotoSobreMi();
   iniciarLaserScrollProgress();
   iniciarCanvasNodos();
@@ -16,32 +17,117 @@ export function iniciarExperienciaInmersiva() {
 }
 
 /**
+ * 0.3 Transiciones Fluidas Entre Secciones (al salir se repliegan hacia una esquina)
+ * Usa offsetTop inmune a transformaciones CSS para garantizar 60 FPS sin saltos
+ */
+function iniciarTransicionesScrollEsquinas() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const secciones = Array.from(document.querySelectorAll('.lui-section'));
+  if (!secciones.length) return;
+
+  const getDocTop = (el) => {
+    let y = 0;
+    let curr = el;
+    while (curr) {
+      y += curr.offsetTop || 0;
+      curr = curr.offsetParent;
+    }
+    return y;
+  };
+
+  let tickPendiente = false;
+
+  const actualizarSecciones = () => {
+    tickPendiente = false;
+    const vh = window.innerHeight || 800;
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    secciones.forEach((sec, idx) => {
+      const top = getDocTop(sec) - scrollY;
+      const height = sec.offsetHeight || 500;
+      const bottom = top + height;
+
+      // Zona activa de lectura: nitidez y posición 100% estable
+      if (top <= vh * 0.72 && bottom >= vh * 0.30) {
+        sec.classList.add('is-revealed');
+        sec.style.transform = 'translate3d(0, 0, 0) scale(1)';
+        sec.style.opacity = '1';
+        return;
+      }
+
+      // Entrada fluida desde abajo (o descenso en Trayectoria)
+      if (top > vh * 0.72) {
+        const span = Math.max(120, vh * 0.28);
+        const progresoEntrada = Math.max(0, Math.min(1, (vh - top) / span));
+        const eased = 1 - Math.pow(1 - progresoEntrada, 3);
+        const esTrayectoria = sec.id === 'trayectoria';
+        const offsetY = esTrayectoria ? -(1 - eased) * 26 : (1 - eased) * 38;
+        const escala = 0.92 + 0.08 * eased;
+        const opacidad = 0.15 + 0.85 * eased;
+
+        if (progresoEntrada > 0.05) sec.classList.add('is-revealed');
+        sec.style.transform = `translate3d(0, ${offsetY.toFixed(1)}px, 0) scale(${escala.toFixed(3)})`;
+        sec.style.opacity = opacidad.toFixed(3);
+        return;
+      }
+
+      // Salida por arriba: la sección entera se encoge suavemente y se repliega hacia una esquina
+      if (bottom < vh * 0.30) {
+        const spanExit = Math.max(150, vh * 0.35);
+        const salidaRaw = Math.max(0, Math.min(1, (vh * 0.30 - bottom) / spanExit));
+        const easedExit = salidaRaw * salidaRaw;
+        const dirEsquina = idx % 2 === 0 ? -1 : 1; // Izquierda / Derecha alternado
+        const shiftX = dirEsquina * easedExit * 110;
+        const shiftY = -easedExit * 24;
+        const escalaSalida = 1 - easedExit * 0.18;
+        const opacidadSalida = Math.max(0.08, 1 - easedExit * 0.92);
+
+        sec.style.transform = `translate3d(${shiftX.toFixed(1)}px, ${shiftY.toFixed(1)}px, 0) scale(${escalaSalida.toFixed(3)})`;
+        sec.style.opacity = opacidadSalida.toFixed(3);
+      }
+    });
+  };
+
+  const solicitarActualizacion = () => {
+    if (!tickPendiente) {
+      tickPendiente = true;
+      requestAnimationFrame(actualizarSecciones);
+    }
+  };
+
+  window.addEventListener('scroll', solicitarActualizacion, { passive: true });
+  window.addEventListener('resize', solicitarActualizacion, { passive: true });
+  actualizarSecciones();
+}
+
+/**
  * 0. Replay de la animación de entrada ("SOFTWARE se abre por en medio")
  */
 function iniciarReplayHero() {
   const btnRebobinar = document.getElementById('btnRebobinarIntro');
-  const wordRow = document.querySelector('.hero-split-word-row');
-  if (!btnRebobinar || !wordRow) return;
+  const stage = document.getElementById('heroSplitArena');
+  if (!btnRebobinar || !stage) return;
 
   btnRebobinar.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => {
-      wordRow.classList.add('is-replaying');
-      void wordRow.offsetHeight;
-      wordRow.classList.remove('is-replaying');
+      stage.classList.add('is-replaying');
+      void stage.offsetHeight;
+      stage.classList.remove('is-replaying');
     }, 320);
   });
 }
 
 /**
- * 0.2 Parallax sutil en los 6 iconos de lenguajes detrás de la foto Hero
+ * 0.2 Parallax sutil en las 4 tarjetas coloridas alrededor de la foto Hero
  */
 function iniciarParallaxChipsHero() {
   const arena = document.getElementById('heroSplitArena');
   if (!arena || window.matchMedia('(pointer: coarse)').matches) return;
 
-  const chips = arena.querySelectorAll('.hero-lang-chip[data-depth]');
-  if (!chips.length) return;
+  const tarjetas = arena.querySelectorAll('.hero-tech-float-card[data-depth]');
+  if (!tarjetas.length) return;
 
   arena.addEventListener(
     'mousemove',
@@ -50,19 +136,19 @@ function iniciarParallaxChipsHero() {
       const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
       const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
 
-      chips.forEach((chip) => {
-        const depth = parseFloat(chip.getAttribute('data-depth') || '0.04');
+      tarjetas.forEach((card) => {
+        const depth = parseFloat(card.getAttribute('data-depth') || '0.04');
         const tx = (x * depth * 420).toFixed(2);
         const ty = (y * depth * 320).toFixed(2);
-        chip.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+        card.style.translate = `${tx}px ${ty}px`;
       });
     },
     { passive: true }
   );
 
   arena.addEventListener('mouseleave', () => {
-    chips.forEach((chip) => {
-      chip.style.transform = '';
+    tarjetas.forEach((card) => {
+      card.style.translate = '';
     });
   });
 }

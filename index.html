@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Arquitectura Modular CSS -->
-  <link rel="stylesheet" href="css/main.css?v=6.0" />
+  <link rel="stylesheet" href="css/main.css?v=7.0" />
 </head>
 <body>
   <!-- Barra Láser Superior de Descubrimiento de Scroll -->
@@ -157,87 +157,147 @@
       <main class="main-stage" id="workspaceContainer">
 
         <!-- ==================================================================
-             1. ENTRADA CINÉTICA: "TÉCNICA EN DESARROLLO DE [ SOFT | FOTO | WARE ]"
-             La palabra SOFTWARE se abre por en medio mostrando un cuadrito con
-             su foto a color (camisa azul sobre fondo celeste/blanco) que se amplía
-             con iconos de lenguajes de programación detrás.
+             1. ENTRADA CINÉTICA EDITORIAL (COREOGRAFÍA BEHANCE 4 TIEMPOS)
+             Beat 1: Entra la palabra "Portafolio"
+             Beat 2: Se abre a la mitad expandiendo la foto desde un cuadrito -> rectángulo
+                     y expandiendo el fondo a toda la sección
+             Beat 3: El recuadro de fondo de la foto se reduce y oculta detrás de ella,
+                     revelando "Portafolio" detrás de su retrato sin bordes
+             Beat 4: Aparecen 4 tarjetas/iconos coloridos de lenguajes y tecnologías
              ================================================================== -->
         <section class="lui-section hero-kinetic-section is-revealed" data-tab-panel="inicio" id="inicio">
-          <!-- Encabezado superior minimalista de estado -->
-          <div class="hero-top-meta">
-            <div class="lui-subtitle-top" style="margin-bottom: 0;">
-              <span class="status-dot-pulse"></span>
-              <span>GUATEMALA · DISPONIBLE · <strong id="ghRepoCount">61+</strong> REPOSITORIOS EN GITHUB</span>
-            </div>
-            <span class="hero-year-tag">// PORTAFOLIO 2026</span>
-          </div>
+          <!-- Escenario Principal Limpio Tipo Estudio -->
+          <div class="hero-editorial-stage" id="heroSplitArena">
 
-          <!-- Escenario central de apertura "TÉCNICA EN DESARROLLO DE SOFTWARE" -->
-          <div class="hero-split-arena" id="heroSplitArena">
-            <p class="hero-kicker-entrance">TÉCNICA EN DESARROLLO DE</p>
+            <!-- CAPA 0: Fondo que nace pequeño en el centro y se expande a toda la sección -->
+            <div class="hero-stage-expand-bg" aria-hidden="true"></div>
 
-            <!-- Fila donde SOFTWARE se parte por en medio -->
-            <div class="hero-split-word-row">
-              <span class="split-half split-left" aria-hidden="true">SOFT</span>
-
-              <!-- Cuadrito que nace pequeño en el centro al abrirse SOFTWARE y se amplía con la foto a color + iconos detrás -->
-              <div class="hero-center-portal" id="heroCenterPortal">
-                <!-- Iconos flotantes de lenguajes detrás/alrededor de la foto -->
-                <div class="hero-bg-lang-floaters" aria-hidden="true">
-                  <div class="hero-lang-chip h-chip-node" data-depth="0.035" title="Node.js & Express">
-                    <strong>NODE</strong><span>API</span>
-                  </div>
-                  <div class="hero-lang-chip h-chip-sql" data-depth="0.045" title="PostgreSQL & MySQL 3NF">
-                    <strong>SQL</strong><span>3NF</span>
-                  </div>
-                  <div class="hero-lang-chip h-chip-ts" data-depth="0.04" title="TypeScript & JavaScript">
-                    <strong>TS</strong><span>ES6+</span>
-                  </div>
-                  <div class="hero-lang-chip h-chip-py" data-depth="0.05" title="Python & IA">
-                    <strong>PY</strong><span>IA</span>
-                  </div>
-                  <div class="hero-lang-chip h-chip-fl" data-depth="0.038" title="Flutter & Dart">
-                    <strong>FL</strong><span>DART</span>
-                  </div>
-                  <div class="hero-lang-chip h-chip-dk" data-depth="0.048" title="Docker & Linux">
-                    <strong>DK</strong><span>LINUX</span>
-                  </div>
-                </div>
-
-                <!-- Marco cuadrado / editorial con fondo blanco-celeste radiante y foto a color integrada -->
-                <div class="hero-photo-card" id="heroPhotoCard">
-                  <div class="hero-photo-studio-glow" aria-hidden="true"></div>
-                  <img
-                    src="img/evelyn-hero-azul-estudio.png"
-                    alt="Evelyn Barrios — Técnica en Desarrollo de Software"
-                    class="hero-color-portrait"
-                    id="mainPortraitImg"
-                  />
-                </div>
-              </div>
-
-              <span class="split-half split-right" aria-hidden="true">WARE</span>
+            <!-- Metadato superior minimalista -->
+            <div class="hero-stage-top-meta">
+              <span class="hero-stage-eyebrow-left">GUATEMALA · <strong id="ghRepoCount">66+</strong> REPOS</span>
+              <span class="hero-stage-discipline">TÉCNICA EN DESARROLLO DE SOFTWARE</span>
+              <span class="hero-stage-eyebrow-right" id="typewriterRole">BACKEND · BD · IA</span>
             </div>
 
-            <!-- Nombre, rol dinámico typewriter y acciones limpias -->
-            <div class="hero-identity-footer">
-              <h1 class="hero-display-name">Evelyn <span class="celeste-word">Barrios</span></h1>
-              <div class="myour-typewriter-row" style="justify-content: center; margin-bottom: 14px;">
-                <span class="typewriter-prefix">Enfoque</span>
-                <span class="typewriter-text" id="typewriterRole">Backend · Bases de Datos · IA</span>
-              </div>
-              <p class="hero-short-pitch">
-                Construyo servicios modulares, normalizo bases de datos relacionales y desarrollo soluciones limpias orientadas al negocio real.
-              </p>
+            <!-- CAPA 2 (Z-2): Palabra Gigante "Portafolio" que entra, se parte brevemente y queda DETRÁS de la foto -->
+            <h1 class="hero-giant-portafolio" aria-label="Portafolio Evelyn Barrios">
+              <span class="word-half word-left">Porta</span><span class="word-half word-right">folio</span>
+            </h1>
 
-              <div class="lui-cta-group" style="justify-content: center;">
-                <button type="button" class="lui-btn lui-btn-primary" data-tab-target="proyectos">
-                  Explorar Proyectos
-                </button>
-                <button type="button" class="lui-btn lui-btn-secondary" data-tab-target="sobre-mi">
-                  Sobre mí ↓
-                </button>
+            <!-- CAPA 3 (Z-4): Recuadro celeste que expande la foto y luego se encoge y oculta detrás de ella -->
+            <div class="hero-portrait-frame-shrink" aria-hidden="true"></div>
+
+            <!-- CAPA 4 (Z-5): Retrato a color SIN recuadro alrededor, apoyado en la base delante de "Portafolio" -->
+            <div class="hero-portrait-freestanding-wrap">
+              <img
+                src="img/evelyn-hero-azul-estudio.png"
+                alt="Evelyn Barrios — Técnica en Desarrollo de Software"
+                class="hero-portrait-freestanding"
+                id="mainPortraitImg"
+              />
+            </div>
+
+            <!-- CAPA 5 (4 TARJETAS COLORIDAS FLOTANDO ALREDEDOR Y ENTRELAZADAS CON "Portafolio") -->
+            <!-- 1. Arriba-Izquierda (Z-1 detrás de "Po") : Node.js & JavaScript -->
+            <div class="hero-tech-float-card htc-tl" data-depth="0.032" data-tab-target="proyectos" title="Backend Node.js, Express y JavaScript">
+              <div class="htc-inner htc-bg-node">
+                <div class="htc-colorful-logos">
+                  <!-- Node.js Verde -->
+                  <div class="htc-icon-pill pill-node" title="Node.js">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="#68a063"><path d="M12 1.85c-.27 0-.55.07-.78.2l-7.44 4.3c-.48.28-.78.8-.78 1.36v8.58c0 .56.3 1.08.78 1.36l1.95 1.12c.95.47 1.27.47 1.7.47 1.4 0 2.2-.85 2.2-2.33v-8.4c0-.12-.1-.22-.22-.22h-.96c-.12 0-.22.1-.22.22v8.4c0 .65-.68 1.31-1.78.76l-2.02-1.17c-.08-.05-.13-.13-.13-.22V7.71c0-.09.05-.17.13-.22l7.44-4.3c.08-.05.18-.05.26 0l7.44 4.3c.08.05.13.13.13.22v8.58c0 .09-.05.17-.13.22l-7.44 4.3c-.08.05-.18.05-.26 0l-1.91-1.13c-.06-.03-.13-.04-.19-.01-.53.3-.63.34-1.12.51-.12.04-.3.11.07.33l2.49 1.47c.24.14.51.21.79.21s.55-.07.79-.21l7.44-4.3c.48-.28.78-.8.78-1.36V7.71c0-.56-.3-1.08-.78-1.36l-7.44-4.3c-.23-.13-.51-.2-.78-.2z"/></svg>
+                    <span>Node.js</span>
+                  </div>
+                  <!-- JavaScript Amarillo -->
+                  <div class="htc-icon-pill pill-js" title="JavaScript ES6+">
+                    <svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="4" fill="#f7df1e"/><path d="M16.5 18.8c.7 0 1.2-.3 1.5-.8l1.2.8c-.5.9-1.4 1.5-2.7 1.5-2 0-3.1-1.3-3.1-3.2 0-2.1 1.3-3.3 3.2-3.3 1.6 0 2.5.9 2.8 1.8l-1.3.6c-.2-.5-.6-.9-1.5-.9-1 0-1.7.7-1.7 1.9 0 1.2.6 1.6 1.6 1.6zm-5.4.6c0 .7-.4 1-1.1 1-.6 0-1-.3-1.3-.8l-1.1.7c.5.9 1.3 1.4 2.4 1.4 1.5 0 2.4-.8 2.4-2.2v-6H11v5.9z" fill="#0f172a"/></svg>
+                    <span>JS ES6+</span>
+                  </div>
+                </div>
+                <span class="htc-label">BACKEND &amp; APIS REST</span>
               </div>
+            </div>
+
+            <!-- 2. Arriba-Derecha (Z-6 solapando la "o" final) : PostgreSQL & MySQL -->
+            <div class="hero-tech-float-card htc-tr" data-depth="0.055" data-tab-target="proyectos" title="PostgreSQL 3NF y MySQL">
+              <div class="htc-inner htc-bg-sql">
+                <div class="htc-colorful-logos htc-logos-col">
+                  <!-- PostgreSQL Azul -->
+                  <div class="htc-icon-pill pill-pg" title="PostgreSQL 3NF">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#38bdf8" stroke-width="2"><ellipse cx="12" cy="6" rx="8" ry="3" fill="rgba(56,189,248,0.22)"/><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>
+                    <span>PostgreSQL</span>
+                  </div>
+                  <!-- MySQL Naranja/Cian -->
+                  <div class="htc-icon-pill pill-mysql" title="MySQL">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M4 17c1.5-5 5-9 9-9 3.5 0 6 2.5 7 6"/><circle cx="15" cy="11" r="1.3" fill="#f59e0b"/></svg>
+                    <span>MySQL 3NF</span>
+                  </div>
+                </div>
+                <span class="htc-label">26 TABLAS RELACIONALES</span>
+              </div>
+            </div>
+
+            <!-- 3. Centro-Izquierda (Z-6 debajo de "Por") : TypeScript & Python -->
+            <div class="hero-tech-float-card htc-ml" data-depth="0.048" data-tab-target="stack" title="TypeScript y Python IA">
+              <div class="htc-inner htc-bg-dark">
+                <div class="htc-colorful-logos">
+                  <!-- TypeScript Azul -->
+                  <div class="htc-icon-pill pill-ts" title="TypeScript">
+                    <svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="4" fill="#3178c6"/><path d="M10.8 11.4H8.6V19H6.8v-7.6H4.6V9.8h6.2v1.6zm2.5 5.9c.6.4 1.3.5 2 .5.7 0 1.1-.2 1.1-.7 0-.4-.3-.6-1.2-1-1.3-.4-2.1-1-2.1-2.2 0-1.3 1-2.2 2.7-2.2.8 0 1.5.2 2 .5l-.5 1.3c-.5-.3-1-.4-1.5-.4-.6 0-1 .2-1 .7 0 .4.3.6 1.2 1 1.4.4 2.2 1 2.2 2.2 0 1.4-1.1 2.2-2.9 2.2-.9 0-1.8-.3-2.5-.7l.5-1.2z" fill="#ffffff"/></svg>
+                    <span>TypeScript</span>
+                  </div>
+                  <!-- Python Azul y Amarillo -->
+                  <div class="htc-icon-pill pill-py" title="Python & IA">
+                    <svg viewBox="0 0 24 24" width="24" height="24"><path d="M11.9 2C8.5 2 6.5 3.5 6.5 6.4v2.2h5.4v.7H4.3C2 9.3 1 11.2 1 14.1c0 3 1.5 4.9 4.4 4.9H7v-2.3c0-1.8 1.6-3.3 3.5-3.3h5.3c1.6 0 2.9-1.3 2.9-2.9V6.4c0-2.7-2.1-4.4-6.8-4.4zm-2.4 1.8c.6 0 1.1.5 1.1 1.1s-.5 1.1-1.1 1.1-1.1-.5-1.1-1.1.5-1.1 1.1-1.1z" fill="#3776ab"/><path d="M12.1 22c3.4 0 5.4-1.5 5.4-4.4v-2.2h-5.4v-.7h7.6c2.3 0 3.3-1.9 3.3-4.8 0-3-1.5-4.9-4.4-4.9H17v2.3c0 1.8-1.6 3.3-3.5 3.3H8.2c-1.6 0-2.9 1.3-2.9 2.9v4.1c0 2.7 2.1 4.4 6.8 4.4zm2.4-1.8c-.6 0-1.1-.5-1.1-1.1s.5-1.1 1.1-1.1 1.1.5 1.1 1.1-.5 1.1-1.1 1.1z" fill="#ffd43b"/></svg>
+                    <span>Python IA</span>
+                  </div>
+                </div>
+                <span class="htc-label">LENGUAJES &amp; SCRIPTS</span>
+              </div>
+            </div>
+
+            <!-- 4. Centro-Derecha (Z-4 debajo de "lio") : Docker, Flutter & Git -->
+            <div class="hero-tech-float-card htc-mr" data-depth="0.042" data-tab-target="stack" title="Docker, Flutter y Git">
+              <div class="htc-inner htc-bg-devops">
+                <div class="htc-colorful-logos">
+                  <!-- Docker Cian -->
+                  <div class="htc-icon-pill pill-dk" title="Docker">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#2496ed"><path d="M13 7h2v2h-2V7zm-3 0h2v2h-2V7zm-3 0h2v2H7V7zm-3 3h2v2H4v-2zm3 0h2v2H7v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2zm3-3h2v2h-2V7zm5.4 3.5c-.5-.4-1.7-.5-2.6-.1-.2-.9-.9-1.7-1.7-2.2l-.4-.3-.3.4c-.4.6-.5 1.5-.2 2.2.1.3.3.6.5.8-.5.2-1.1.3-1.7.3H2c-.1 1.7.3 3.4 1.2 4.7 1 1.5 2.6 2.3 4.8 2.3 4.5 0 7.9-2.1 9.5-5.9.7 0 2.1 0 2.9-1.3.1-.1.3-.6.1-.9z"/></svg>
+                    <span>Docker</span>
+                  </div>
+                  <!-- Flutter Celeste -->
+                  <div class="htc-icon-pill pill-fl" title="Flutter">
+                    <svg viewBox="0 0 24 24" width="22" height="22"><path d="M14.3 2.5L3.5 13.3l3.3 3.3L20.9 2.5h-6.6z" fill="#54c5f8"/><path d="M14.3 12.9l-4.9 4.9 4.9 4.9h6.6l-8.2-8.2 1.6-1.6z" fill="#01579b"/><path d="M9.4 17.8l3.3-3.3 3.3 3.3-3.3 3.3-3.3-3.3z" fill="#29b6f6"/></svg>
+                    <span>Flutter</span>
+                  </div>
+                  <!-- Git Naranja -->
+                  <div class="htc-icon-pill pill-git" title="Git">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="#f05032"><path d="M21.7 10.7l-8.4-8.4c-.4-.4-1.1-.4-1.5 0l-1.9 1.9 2.4 2.4c.5-.2 1.1-.1 1.5.3.4.4.5 1 .3 1.5l2.3 2.3c.5-.2 1.1-.1 1.5.3.6.6.6 1.6 0 2.2s-1.6.6-2.2 0c-.4-.4-.5-1-.3-1.5l-2.2-2.2v5.1c.2.1.3.3.4.4.6.6.6 1.6 0 2.2s-1.6.6-2.2 0c-.6-.6-.6-1.6 0-2.2.4-.4 1-.5 1.5-.3V8.8c-.5-.2-1-.7-1.2-1.2L9.5 10l-7.2 7.2c-.4.4-.4 1.1 0 1.5l8.4 8.4c.4.4 1.1.4 1.5 0l9.5-9.5c.4-.4.4-1.1 0-1.5z"/></svg>
+                    <span>Git</span>
+                  </div>
+                </div>
+                <span class="htc-label">CLOUD · MOBILE · CONTROL</span>
+              </div>
+            </div>
+
+            <!-- Etiquetas editoriales de las esquinas inferiores (como Ángel López) -->
+            <div class="hero-stage-corner-tags">
+              <div class="corner-tag-left">
+                <strong>ARQUITECTURA BACKEND</strong>
+                <span>APIS REST · CLEAN CODE · SOLID</span>
+              </div>
+              <div class="corner-tag-right">
+                <strong>INTELIGENCIA ARTIFICIAL</strong>
+                <span>POSTGRESQL · DOCKER · FLUTTER</span>
+              </div>
+            </div>
+
+            <!-- Firma y año en la base exacta del escenario -->
+            <div class="hero-stage-baseline">
+              <strong>EVELYN BARRIOS</strong>
+              <button type="button" class="hero-baseline-cta" data-tab-target="proyectos">
+                Explorar Proyectos ↓
+              </button>
+              <strong>2026 //</strong>
             </div>
           </div>
         </section>
@@ -304,6 +364,6 @@
   <div id="sec-modales"></div>
 
   <!-- Arquitectura Modular JavaScript (ES6 Modules) -->
-  <script type="module" src="js/main.js?v=6.0"></script>
+  <script type="module" src="js/main.js?v=7.0"></script>
 </body>
 </html>
