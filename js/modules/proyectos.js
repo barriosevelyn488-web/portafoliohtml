@@ -52,51 +52,34 @@ export function obtenerIconoTecnologiaSVG(nombre) {
 }
 
 function crearTarjetaProyectoHTML(proyecto) {
-  const listaPuntosHTML = proyecto.highlights
-    .slice(0, 3)
-    .map((punto) => `<li>${punto}</li>`)
-    .join('');
-
-  const tecnologiasHTML = proyecto.techStack
-    .map((tecnologia) => {
-      const iconoSVG = obtenerIconoTecnologiaSVG(tecnologia);
-      return `<span>${iconoSVG}${tecnologia}</span>`;
-    })
-    .join('');
+  const categoriasTag = Array.isArray(proyecto.category)
+    ? proyecto.category.join(' · ').toUpperCase()
+    : 'SOFTWARE';
+  const stackCorto = proyecto.techStack.slice(0, 3).join(' · ');
 
   return `
-    <article class="project-card ${proyecto.featured ? 'featured-project' : ''}" data-project-id="${proyecto.id}">
+    <article class="project-card carousel-project-card" data-project-id="${proyecto.id}">
       <div class="project-cover-wrapper"
            data-lightbox-src="${proyecto.image}"
            data-lightbox-title="${proyecto.title}"
-           title="Clic para ampliar captura en visor de pantalla completa"
+           title="Clic para ampliar imagen del proyecto"
            role="button"
            tabindex="0"
            aria-label="Ampliar captura de ${proyecto.title}">
+        <span class="carousel-card-badge">${categoriasTag}</span>
         <img src="${proyecto.image}" alt="Captura o arquitectura de ${proyecto.title}" class="project-cover-img" loading="lazy">
       </div>
 
-      <div class="project-card-inner">
-        <h3 class="project-title">${proyecto.title}</h3>
-        <p class="project-summary">${proyecto.summary}</p>
-
-        <ul class="project-highlights">
-          ${listaPuntosHTML}
-        </ul>
-
-        <div class="project-tech-pills">
-          ${tecnologiasHTML}
-        </div>
-
-        <div class="project-card-footer">
-          <button type="button" class="project-view-detail-btn" data-explore-id="${proyecto.id}">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-            <span>Ver detalles del proyecto</span>
-          </button>
-        </div>
+      <div class="carousel-card-footer">
+        <h3 class="carousel-card-title">${proyecto.title}</h3>
+        <span class="carousel-card-stack">${stackCorto}</span>
+        <button type="button" class="carousel-summary-btn" data-explore-id="${proyecto.id}">
+          <span>Ver resumen</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
       </div>
     </article>
   `;
@@ -172,6 +155,71 @@ export function iniciarProyectos(todosLosProyectos, alSeleccionarProyecto) {
   });
 
   iniciarConsolaOMS();
+  iniciarControlesCarrusel(contenedorGrid);
+  iniciarEnlacesStackAProyectos();
+}
+
+function iniciarControlesCarrusel(contenedorGrid) {
+  const btnPrev = document.getElementById('carouselPrevBtn');
+  const btnNext = document.getElementById('carouselNextBtn');
+  if (!contenedorGrid) return;
+
+  const pasoScroll = () => Math.min(380, contenedorGrid.clientWidth * 0.85);
+
+  if (btnPrev) {
+    btnPrev.addEventListener('click', () => {
+      contenedorGrid.scrollBy({ left: -pasoScroll(), behavior: 'smooth' });
+    });
+  }
+  if (btnNext) {
+    btnNext.addEventListener('click', () => {
+      contenedorGrid.scrollBy({ left: pasoScroll(), behavior: 'smooth' });
+    });
+  }
+}
+
+function iniciarEnlacesStackAProyectos() {
+  const tarjetasStack = document.querySelectorAll('[data-goto-projects]');
+  const seccionProyectos = document.getElementById('proyectos');
+  if (!tarjetasStack.length || !seccionProyectos) return;
+
+  const irYFiltrar = (categoria) => {
+    const btnFiltro = document.querySelector(`.filter-btn[data-filter="${categoria}"]`);
+    if (btnFiltro) btnFiltro.click();
+    seccionProyectos.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  tarjetasStack.forEach((tarjeta) => {
+    tarjeta.addEventListener('click', () => {
+      const cat = tarjeta.getAttribute('data-goto-projects') || 'all';
+      irYFiltrar(cat);
+    });
+    tarjeta.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const cat = tarjeta.getAttribute('data-goto-projects') || 'all';
+        irYFiltrar(cat);
+      }
+    });
+  });
+
+  // Toggle desplegable para Consola OMS en vivo
+  const btnOmsToggle = document.getElementById('btnToggleOmsConsole');
+  const panelOms = document.getElementById('omsCollapsiblePanel');
+  if (btnOmsToggle && panelOms) {
+    btnOmsToggle.addEventListener('click', () => {
+      const estaOculto = panelOms.hasAttribute('hidden');
+      if (estaOculto) {
+        panelOms.removeAttribute('hidden');
+        btnOmsToggle.setAttribute('aria-expanded', 'true');
+        btnOmsToggle.classList.add('is-open');
+      } else {
+        panelOms.setAttribute('hidden', '');
+        btnOmsToggle.setAttribute('aria-expanded', 'false');
+        btnOmsToggle.classList.remove('is-open');
+      }
+    });
+  }
 }
 
 function iniciarConsolaOMS() {

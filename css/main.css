@@ -10,20 +10,20 @@
 /* 2. Reset, estilos base y elementos globales */
 @import url('./base.css?v=3.8');
 
-/* 3. Arquitectura de estructura (Layout split-screen) */
-@import url('./layout.css?v=3.8');
+/* 3. Arquitectura de estructura (Flujo editorial continuo) */
+@import url('./layout.css?v=6.0');
 
 /* 4. Componentes modulares */
-@import url('./components/header.css?v=3.8');
-@import url('./components/mobile-drawer.css?v=3.8');
-@import url('./components/hero.css?v=3.8');
-@import url('./components/about.css?v=3.8');
-@import url('./components/skills.css?v=3.8');
-@import url('./components/projects.css?v=3.8');
-@import url('./components/modales.css?v=3.8');
-@import url('./components/contact.css?v=3.8');
-@import url('./components/animations.css?v=5.0');
-@import url('./components/intro-origami.css?v=5.0');
+@import url('./components/header.css?v=6.0');
+@import url('./components/mobile-drawer.css?v=6.0');
+@import url('./components/hero.css?v=6.0');
+@import url('./components/about.css?v=6.0');
+@import url('./components/skills.css?v=6.0');
+@import url('./components/projects.css?v=6.0');
+@import url('./components/modales.css?v=6.0');
+@import url('./components/contact.css?v=6.0');
+@import url('./components/animations.css?v=6.0');
+@import url('./components/intro-origami.css?v=6.0');
 
 /* 5. Reglas responsivas master (Media queries unificadas) */
-@import url('./responsive.css?v=3.8');
+@import url('./responsive.css?v=6.0');

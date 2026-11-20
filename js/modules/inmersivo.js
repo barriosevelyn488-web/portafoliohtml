@@ -1,11 +1,14 @@
 /* ==========================================================================
-   MÓDULO: EXPERIENCIA CINÉTICA & MOTION GRAPHICS (inmersivo.js)
-   Inspirado en Portafolio Editorial Behance 2026 — Orientado a Programación
+   MÓDULO: EXPERIENCIA CINÉTICA & INTERACTIVIDAD EDITORIAL (v6.0)
+   1. Entrada cinética ("SOFTWARE" se abre en medio -> foto + iconos detrás)
+   2. Alternador de foto profesional en Sobre mí (Traje GitHub / Pelo lacio)
+   3. Barra láser scroll + Red sutil de nodos + Tilt 3D + Terminal streaming OMS
    ========================================================================== */
 
 export function iniciarExperienciaInmersiva() {
-  iniciarPortadaCineticaBehance();
-  iniciarSelectorRetratoPanelIzquierdo();
+  iniciarReplayHero();
+  iniciarParallaxChipsHero();
+  iniciarToggleFotoSobreMi();
   iniciarLaserScrollProgress();
   iniciarCanvasNodos();
   iniciarTilt3DFisico();
@@ -13,178 +16,76 @@ export function iniciarExperienciaInmersiva() {
 }
 
 /**
- * 0. Portada Cinética Editorial (Motion-Blur Wordmark + Retrato Estudio B&W + 4 Tarjetas 3D de Lenguajes)
+ * 0. Replay de la animación de entrada ("SOFTWARE se abre por en medio")
  */
-function iniciarPortadaCineticaBehance() {
-  const overlay = document.getElementById('introTechOverlay');
-  const stage = document.getElementById('alCoverStage');
-  const btnDesplegar = document.getElementById('btnDesplegarPortafolio');
-  const btnSaltar = document.getElementById('btnSaltarIntro');
+function iniciarReplayHero() {
   const btnRebobinar = document.getElementById('btnRebobinarIntro');
-  const btnTogglePhoto = document.getElementById('btnToggleCoverPhoto');
-  const coverPortrait = document.getElementById('alCoverPortraitImg');
+  const wordRow = document.querySelector('.hero-split-word-row');
+  if (!btnRebobinar || !wordRow) return;
 
-  if (!overlay) return;
-
-  document.body.classList.add('intro-active');
-  let cerrando = false;
-
-  const cerrarPortada = (seccionDestino = null) => {
-    if (cerrando || overlay.classList.contains('intro-hidden')) return;
-    cerrando = true;
-
-    overlay.classList.add('is-unfolding');
-    document.body.classList.remove('intro-active');
-
-    if (seccionDestino) {
-      const botonTab = document.querySelector(`.nav-pill-btn[data-tab-target="${seccionDestino}"]`);
-      if (botonTab) botonTab.click();
-    }
-
-    setTimeout(() => {
-      overlay.classList.add('intro-hidden');
-      overlay.style.display = 'none';
-      cerrando = false;
-    }, 850);
-  };
-
-  const reabrirPortada = () => {
-    overlay.style.display = 'flex';
-    // Reiniciar animaciones de caracteres y tarjetas
-    const chars = overlay.querySelectorAll('.al-char, .al-float-card, .al-portrait-img');
-    chars.forEach((el) => {
-      el.style.animation = 'none';
-      void el.offsetHeight;
-      el.style.animation = '';
-    });
-
-    void overlay.offsetHeight;
-    overlay.classList.remove('intro-hidden', 'is-unfolding');
-    document.body.classList.add('intro-active');
+  btnRebobinar.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    cerrando = false;
-  };
-
-  if (btnDesplegar) {
-    btnDesplegar.addEventListener('click', () => cerrarPortada());
-  }
-  if (btnSaltar) {
-    btnSaltar.addEventListener('click', () => cerrarPortada());
-  }
-  if (btnRebobinar) {
-    btnRebobinar.addEventListener('click', reabrirPortada);
-  }
-
-  // Clic en cualquiera de las 4 tarjetas 3D de lenguajes abre el portafolio en esa sección
-  const tarjetasLenguajes = overlay.querySelectorAll('.al-float-card[data-goto-section]');
-  tarjetasLenguajes.forEach((card) => {
-    card.addEventListener('click', () => {
-      const target = card.getAttribute('data-goto-section');
-      cerrarPortada(target);
-    });
+    setTimeout(() => {
+      wordRow.classList.add('is-replaying');
+      void wordRow.offsetHeight;
+      wordRow.classList.remove('is-replaying');
+    }, 320);
   });
-
-  // Alternador de Retrato Editorial en la Portada
-  const modosRetrato = [
-    { src: 'img/evelyn-editorial-yo-bw.png', label: 'Retrato: Estudio B&W' },
-    { src: 'img/evelyn-editorial-hat-bw.png', label: 'Retrato: Sombrero B&W' },
-    { src: 'img/yo.png', label: 'Retrato: Estudio Color' }
-  ];
-  let indiceRetrato = 0;
-
-  if (btnTogglePhoto && coverPortrait) {
-    btnTogglePhoto.addEventListener('click', (e) => {
-      e.stopPropagation();
-      indiceRetrato = (indiceRetrato + 1) % modosRetrato.length;
-      coverPortrait.src = modosRetrato[indiceRetrato].src;
-      btnTogglePhoto.querySelector('span').textContent = modosRetrato[indiceRetrato].label;
-    });
-  }
-
-  // Entrar haciendo scroll con la rueda del mouse (igual que una portada web interactiva)
-  overlay.addEventListener(
-    'wheel',
-    (e) => {
-      if (e.deltaY > 18 && !cerrando) {
-        cerrarPortada();
-      }
-    },
-    { passive: true }
-  );
-
-  // Soporte swipe hacia arriba en pantallas táctiles
-  let touchStartY = null;
-  overlay.addEventListener(
-    'touchstart',
-    (e) => {
-      if (e.touches.length === 1) touchStartY = e.touches[0].clientY;
-    },
-    { passive: true }
-  );
-  overlay.addEventListener(
-    'touchend',
-    (e) => {
-      if (touchStartY !== null && e.changedTouches.length === 1) {
-        const dy = touchStartY - e.changedTouches[0].clientY;
-        if (dy > 45) cerrarPortada();
-      }
-      touchStartY = null;
-    },
-    { passive: true }
-  );
-
-  // Teclado: Escape / Enter / Space para entrar
-  window.addEventListener('keydown', (e) => {
-    if (!overlay.classList.contains('intro-hidden')) {
-      if (e.key === 'Escape' || e.key === 'Enter') {
-        cerrarPortada();
-      }
-    }
-  });
-
-  // Parallax Multicapa 3D en tiempo real sobre las 4 tarjetas, la tipografía gigante y el retrato
-  if (stage && !window.matchMedia('(pointer: coarse)').matches) {
-    const capas = stage.querySelectorAll('[data-depth]');
-    overlay.addEventListener(
-      'mousemove',
-      (e) => {
-        if (cerrando) return;
-        const xNorm = (e.clientX / window.innerWidth - 0.5) * 2;
-        const yNorm = (e.clientY / window.innerHeight - 0.5) * 2;
-
-        capas.forEach((capa) => {
-          const depth = parseFloat(capa.getAttribute('data-depth') || '0.02');
-          const moveX = (xNorm * depth * 520).toFixed(2);
-          const moveY = (yNorm * depth * 380).toFixed(2);
-          capa.style.translate = `${moveX}px ${moveY}px`;
-        });
-      },
-      { passive: true }
-    );
-  }
 }
 
 /**
- * 0.5 Selector de Estilo de Retrato en el Panel Izquierdo Fijo
+ * 0.2 Parallax sutil en los 6 iconos de lenguajes detrás de la foto Hero
  */
-function iniciarSelectorRetratoPanelIzquierdo() {
-  const btnSwitch = document.getElementById('btnSwitchLeftPortrait');
-  const mainImg = document.getElementById('mainPortraitImg');
-  if (!btnSwitch || !mainImg) return;
+function iniciarParallaxChipsHero() {
+  const arena = document.getElementById('heroSplitArena');
+  if (!arena || window.matchMedia('(pointer: coarse)').matches) return;
 
-  const variantes = [
-    { src: 'img/evelyn-editorial-yo-bw.png', bw: true, text: '✦ Estudio B&W' },
-    { src: 'img/evelyn-azul-sin-fondo.png', bw: false, text: '✦ Original Color' },
-    { src: 'img/evelyn-editorial-hat-bw.png', bw: true, text: '✦ Sombrero B&W' },
-    { src: 'img/yo.png', bw: false, text: '✦ Estudio Color' }
+  const chips = arena.querySelectorAll('.hero-lang-chip[data-depth]');
+  if (!chips.length) return;
+
+  arena.addEventListener(
+    'mousemove',
+    (e) => {
+      const rect = arena.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+
+      chips.forEach((chip) => {
+        const depth = parseFloat(chip.getAttribute('data-depth') || '0.04');
+        const tx = (x * depth * 420).toFixed(2);
+        const ty = (y * depth * 320).toFixed(2);
+        chip.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+      });
+    },
+    { passive: true }
+  );
+
+  arena.addEventListener('mouseleave', () => {
+    chips.forEach((chip) => {
+      chip.style.transform = '';
+    });
+  });
+}
+
+/**
+ * 0.5 Alternador de retrato profesional en Sobre Mí (Traje GitHub / Pelo lacio)
+ */
+function iniciarToggleFotoSobreMi() {
+  const btn = document.getElementById('btnToggleAboutPhoto');
+  const img = document.getElementById('aboutPortraitImg');
+  if (!btn || !img) return;
+
+  const fotos = [
+    { src: 'img/evelyn-traje-github.jpg', label: '✦ Alternar foto' },
+    { src: 'img/evelyn-pelo-planchado.jpg', label: '✦ Volver a traje' }
   ];
   let idx = 0;
 
-  btnSwitch.addEventListener('click', () => {
-    idx = (idx + 1) % variantes.length;
-    mainImg.src = variantes[idx].src;
-    mainImg.classList.toggle('is-editorial-bw', variantes[idx].bw);
-    btnSwitch.querySelector('span').textContent = variantes[idx].text;
+  btn.addEventListener('click', () => {
+    idx = (idx + 1) % fotos.length;
+    img.src = fotos[idx].src;
+    const span = btn.querySelector('span');
+    if (span) span.textContent = fotos[idx].label;
   });
 }
 
@@ -207,7 +108,7 @@ function iniciarLaserScrollProgress() {
 }
 
 /**
- * 2. Canvas Interactivo de Red de Datos y Nodos Flotantes (60 FPS)
+ * 2. Canvas Interactivo Sutil de Red de Nodos Tech (60 FPS)
  */
 function iniciarCanvasNodos() {
   const canvas = document.getElementById('ambientNetworkCanvas');
@@ -221,21 +122,21 @@ function iniciarCanvasNodos() {
 
   const esTemaOscuro = () => document.documentElement.getAttribute('data-theme') === 'dark';
 
-  const totalNodos = ancho < 768 ? 22 : 45;
+  const totalNodos = ancho < 768 ? 16 : 30;
   const nodos = [];
 
   for (let i = 0; i < totalNodos; i += 1) {
     nodos.push({
       x: Math.random() * ancho,
       y: Math.random() * alto,
-      vx: (Math.random() - 0.5) * 0.65,
-      vy: (Math.random() - 0.5) * 0.65,
-      radio: Math.random() * 2 + 1.2,
-      baseAlpha: Math.random() * 0.4 + 0.3
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45,
+      radio: Math.random() * 1.8 + 1.1,
+      baseAlpha: Math.random() * 0.3 + 0.2
     });
   }
 
-  const raton = { x: -2000, y: -2000, radioInteraccion: 140 };
+  const raton = { x: -2000, y: -2000, radioInteraccion: 130 };
 
   window.addEventListener(
     'mousemove',
@@ -261,9 +162,9 @@ function iniciarCanvasNodos() {
     ctx.clearRect(0, 0, ancho, alto);
 
     const oscuro = esTemaOscuro();
-    const colorR = oscuro ? 56 : 37;
-    const colorG = oscuro ? 189 : 99;
-    const colorB = oscuro ? 248 : 235;
+    const colorR = oscuro ? 56 : 2;
+    const colorG = oscuro ? 189 : 132;
+    const colorB = oscuro ? 248 : 199;
 
     for (let i = 0; i < nodos.length; i += 1) {
       const nodo = nodos[i];
@@ -280,14 +181,14 @@ function iniciarCanvasNodos() {
 
       if (distRaton < raton.radioInteraccion) {
         const factor = (raton.radioInteraccion - distRaton) / raton.radioInteraccion;
-        nodo.x -= (dxRaton / distRaton) * factor * 1.8;
-        nodo.y -= (dyRaton / distRaton) * factor * 1.8;
+        nodo.x -= (dxRaton / distRaton) * factor * 1.4;
+        nodo.y -= (dyRaton / distRaton) * factor * 1.4;
 
         ctx.beginPath();
         ctx.moveTo(nodo.x, nodo.y);
         ctx.lineTo(raton.x, raton.y);
-        ctx.strokeStyle = `rgba(${colorR}, ${colorG}, ${colorB}, ${factor * 0.45})`;
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = `rgba(${colorR}, ${colorG}, ${colorB}, ${factor * 0.35})`;
+        ctx.lineWidth = 0.9;
         ctx.stroke();
       }
 
@@ -297,13 +198,13 @@ function iniciarCanvasNodos() {
         const dy = otro.y - nodo.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 115) {
-          const alphaLinea = (1 - dist / 115) * 0.28;
+        if (dist < 110) {
+          const alphaLinea = (1 - dist / 110) * 0.22;
           ctx.beginPath();
           ctx.moveTo(nodo.x, nodo.y);
           ctx.lineTo(otro.x, otro.y);
           ctx.strokeStyle = `rgba(${colorR}, ${colorG}, ${colorB}, ${alphaLinea})`;
-          ctx.lineWidth = 0.8;
+          ctx.lineWidth = 0.7;
           ctx.stroke();
         }
       }
@@ -329,13 +230,13 @@ function iniciarCanvasNodos() {
 }
 
 /**
- * 3. Efecto 3D Tilt Físico en Tarjetas (Perspectiva y Profundidad)
+ * 3. Efecto 3D Tilt Físico sutil en Tarjetas (Desktop)
  */
 function iniciarTilt3DFisico() {
   if (window.matchMedia('(pointer: coarse)').matches) return;
 
   const selectorTarjetas =
-    '.interactive-hover-card, .project-card, .hero-card-showcase, .oms-showcase-card, .circle-skill-card, .al-index-card';
+    '.interactive-hover-card, .carousel-project-card, .oms-showcase-card, .stack-index-card';
 
   document.addEventListener('mousemove', (evento) => {
     const tarjeta = evento.target.closest(selectorTarjetas);
@@ -345,8 +246,8 @@ function iniciarTilt3DFisico() {
     const x = (evento.clientX - rect.left) / rect.width - 0.5;
     const y = (evento.clientY - rect.top) / rect.height - 0.5;
 
-    const rotarY = (x * 8).toFixed(2);
-    const rotarX = (y * -8).toFixed(2);
+    const rotarY = (x * 6).toFixed(2);
+    const rotarX = (y * -6).toFixed(2);
 
     tarjeta.style.transform = `perspective(1000px) rotateX(${rotarX}deg) rotateY(${rotarY}deg) translateY(-4px)`;
   });

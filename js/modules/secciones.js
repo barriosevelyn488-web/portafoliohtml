@@ -10,8 +10,8 @@ export async function cargarSeccionesModulares() {
   const versionBust = Date.now();
   const componentes = [
     { id: 'sec-sobre-mi', url: `sections/sobre-mi.html?t=${versionBust}` },
-    { id: 'sec-proyectos', url: `sections/proyectos.html?t=${versionBust}` },
     { id: 'sec-habilidades', url: `sections/habilidades.html?t=${versionBust}` },
+    { id: 'sec-proyectos', url: `sections/proyectos.html?t=${versionBust}` },
     { id: 'sec-trayectoria', url: `sections/trayectoria.html?t=${versionBust}` },
     { id: 'sec-contacto', url: `sections/contacto.html?t=${versionBust}` },
     { id: 'sec-modales', url: `sections/modales.html?t=${versionBust}` }
@@ -34,9 +34,4 @@ export async function cargarSeccionesModulares() {
       }
     })
   );
-
-  // Garantizar visibilidad de todas las secciones en el flujo scrolleable
-  document.querySelectorAll('.lui-section').forEach((seccion) => {
-    seccion.classList.add('is-revealed');
-  });
 }

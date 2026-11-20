@@ -67,8 +67,7 @@
 .lui-section.is-revealed .service-card,
 .lui-section.is-revealed .circle-skill-card,
 .lui-section.is-revealed .dotted-skill-item,
-.lui-section.is-revealed .project-card,
-.lui-section.is-revealed .lui-accordion-item {
+.lui-section.is-revealed .carousel-project-card {
   opacity: 0;
   animation: fadeUpStagger 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

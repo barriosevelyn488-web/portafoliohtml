@@ -1,53 +1,80 @@
 <!-- ==========================================================================
      MÓDULO HTML: SECCIÓN PROYECTOS (sections/proyectos.html)
+     Carrusel Horizontal Editorial con Imagen + Nombre + Botón Ver Resumen
      ========================================================================== -->
-<section class="lui-section is-revealed" data-tab-panel="proyectos" id="proyectos">
-  <div class="lui-section-header">
-    <span class="lui-eyebrow">PORTAFOLIO DE PROYECTOS</span>
-    <h2 class="lui-title">Proyectos Destacados y Arquitectura de Software</h2>
-    <p class="lui-lead">
-      Sistemas desplegados, APIs REST, bases de datos relacionales y aplicaciones móviles con código modular y escalable.
-    </p>
+<section class="lui-section section-flow-connect" data-tab-panel="proyectos" id="proyectos">
+  <!-- Cabecera de capítulo estilo editorial azul noche con brillo celeste -->
+  <div class="projects-chapter-header">
+    <div class="chapter-num-backdrop" aria-hidden="true">01</div>
+    <div class="chapter-header-content">
+      <span class="chapter-eyebrow">// ENFOQUE DE TRABAJOS · PORTAFOLIO</span>
+      <h2 class="chapter-title">PROYECTOS DESTACADOS</h2>
+      <p class="chapter-subtitle">
+        Explora el carrusel. Cada tarjeta muestra el proyecto; haz clic en <strong>Ver resumen</strong> para abrir su arquitectura, stack y enlaces.
+      </p>
+    </div>
+    <span class="chapter-corner-arrow" aria-hidden="true">↗</span>
   </div>
 
-  <!-- Consola interactiva de arquitectura OMS Backend -->
-  <div class="oms-showcase-card interactive-hover-card">
+  <!-- Barra de filtros rápidos por categoría + acceso consola OMS -->
+  <div class="projects-toolbar">
+    <div class="project-filters" role="tablist" aria-label="Filtrar proyectos por categoría">
+      <button class="filter-btn active" data-filter="all" type="button">Todos</button>
+      <button class="filter-btn" data-filter="backend" type="button">APIs &amp; Backend</button>
+      <button class="filter-btn" data-filter="frontend" type="button">Frontend &amp; Web</button>
+      <button class="filter-btn" data-filter="mobile" type="button">Mobile</button>
+    </div>
+
+    <div class="carousel-nav-controls">
+      <button type="button" class="carousel-arrow-btn" id="carouselPrevBtn" aria-label="Proyectos anteriores" title="Anterior">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button type="button" class="carousel-arrow-btn" id="carouselNextBtn" aria-label="Siguientes proyectos" title="Siguiente">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- CARRUSEL HORIZONTAL DE PROYECTOS (Imagen + Nombre + Botón Ver Resumen) -->
+  <div class="projects-carousel-shell">
+    <div class="projects-carousel-track" id="projectsGrid" role="region" aria-label="Carrusel de proyectos"></div>
+  </div>
+
+  <!-- Acceso limpio y compacto a la Consola OMS en vivo (desplegable para no sobrecargar) -->
+  <div class="oms-console-toggle-wrap">
+    <button type="button" class="oms-toggle-trigger" id="btnToggleOmsConsole" aria-expanded="false">
+      <span class="status-dot-pulse"></span>
+      <span>Consola Interactiva · OMS Backend (Node.js + PostgreSQL 3NF + Redis)</span>
+      <span class="oms-toggle-chevron" aria-hidden="true">▾</span>
+    </button>
+  </div>
+
+  <div class="oms-showcase-card interactive-hover-card oms-collapsible-panel" id="omsCollapsiblePanel" hidden>
     <div class="oms-showcase-info">
-      <span class="lui-eyebrow">PROYECTO BACKEND DESTACADO</span>
+      <span class="lui-eyebrow">ARQUITECTURA BACKEND DESTACADA</span>
       <h3>OMS Backend · Sistema de Gestión de Órdenes en Tiempo Real</h3>
       <p>
-        Liderazgo técnico y desarrollo de backend/API a la medida normalizando 26 tablas relacionales en PostgreSQL (3NF). Implementación de validaciones robustas y manejo centralizado de errores utilizando Node.js, Express, Strapi, Redis y WebSockets para notificaciones en tiempo real; configuración del entorno con Docker y testing automatizado de endpoints con Bruno y Postman.
+        Modernización de gestión de órdenes con base normalizada de 26 tablas en PostgreSQL (3NF), API modular con Node.js, Express y Strapi, Redis Pub/Sub + WebSockets para estados en tiempo real, Docker y testing en Bruno/Postman.
       </p>
       <div class="oms-console-tabs" role="tablist" aria-label="Vistas de arquitectura OMS">
         <button type="button" class="oms-tab-btn active" data-oms-view="realtime">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-          </svg>
           <span>1 · API &amp; Redis WS</span>
         </button>
         <button type="button" class="oms-tab-btn" data-oms-view="postgres">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-          </svg>
           <span>2 · PostgreSQL &amp; Docker</span>
         </button>
         <button type="button" class="oms-tab-btn" data-oms-view="backups">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-          </svg>
           <span>3 · Seguridad &amp; Backups</span>
         </button>
       </div>
 
       <div class="oms-links-inline">
         <a href="https://github.com/barriosevelyn488-web/evelyn-oms-backend" target="_blank" rel="noopener noreferrer" class="lui-btn lui-btn-primary lui-btn-sm">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          <span>Repositorio OMS (Backend)</span>
+          <span>Repositorio OMS (GitHub)</span>
         </a>
       </div>
     </div>
@@ -80,17 +107,6 @@ Respuesta emitida en tiempo real:
       </div>
     </div>
   </div>
-
-  <!-- Botones de filtro de categorías requeridos -->
-  <div class="project-filters" role="tablist" aria-label="Filtrar proyectos por categoría">
-    <button class="filter-btn active" data-filter="all" type="button">Todos</button>
-    <button class="filter-btn" data-filter="backend" type="button">APIs &amp; Backend</button>
-    <button class="filter-btn" data-filter="frontend" type="button">Frontend &amp; Web</button>
-    <button class="filter-btn" data-filter="mobile" type="button">Mobile</button>
-  </div>
-
-  <!-- Cuadrícula dinámica de tarjetas de proyectos -->
-  <div class="projects-showcase-grid" id="projectsGrid"></div>
 
   <div class="lui-bg-title" aria-hidden="true">PROYECTOS</div>
 </section>
