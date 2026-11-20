@@ -10,6 +10,7 @@ export function iniciarExperienciaInmersiva() {
   iniciarCoreografiaHeroGSAP();
   iniciarParallaxFotosHero();
   iniciarSobreMiConsolaGSAP();
+  iniciarTrayectoriaCardsGSAP();
   iniciarScrollTriggerSeccionesGSAP();
   iniciarAnimacionStackCascada();
   iniciarLaserScrollProgress();
@@ -325,7 +326,7 @@ function iniciarScrollTriggerSeccionesGSAP() {
       return;
     }
 
-    if (sec.id === 'sobre-mi') {
+    if (sec.id === 'sobre-mi' || sec.id === 'trayectoria') {
       return;
     }
 
@@ -702,4 +703,89 @@ function iniciarSobreMiConsolaGSAP() {
       0.58
     );
   }
+}
+
+/**
+ * 9. Trayectoria & Formación: Columna Izquierda entra desde la izquierda, Columna Derecha desde la derecha
+ */
+function iniciarTrayectoriaCardsGSAP() {
+  const secTrayectoria = document.getElementById('trayectoria');
+  if (!secTrayectoria || !window.gsap || !window.ScrollTrigger) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const header = secTrayectoria.querySelector('.lui-section-header');
+  if (header) {
+    gsap.fromTo(
+      header,
+      { y: 28, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.65,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: secTrayectoria,
+          start: 'top 82%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    );
+  }
+
+  const columnas = secTrayectoria.querySelectorAll('.luique-resume-grid > div');
+  const desplazamiento = window.innerWidth < 768 ? 64 : 150;
+
+  columnas.forEach((columna, colIdx) => {
+    const esColumnaIzquierda = colIdx === 0;
+    const xInicio = esColumnaIzquierda ? -desplazamiento : desplazamiento;
+    const rotInicio = esColumnaIzquierda ? -1.4 : 1.4;
+
+    const tituloCol = columna.querySelector('.resume-col-title');
+    if (tituloCol) {
+      gsap.fromTo(
+        tituloCol,
+        { x: esColumnaIzquierda ? -48 : 48, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.6,
+          delay: esColumnaIzquierda ? 0 : 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: tituloCol,
+            start: 'top 90%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    }
+
+    const tarjetas = columna.querySelectorAll('.lui-accordion-item');
+    tarjetas.forEach((tarjeta, idxTarjeta) => {
+      const retardoEscalon = (esColumnaIzquierda ? 0 : 0.1) + Math.min(idxTarjeta, 2) * 0.07;
+
+      gsap.fromTo(
+        tarjeta,
+        { x: xInicio, y: 14, rotation: rotInicio, opacity: 0 },
+        {
+          x: 0,
+          y: 0,
+          rotation: 0,
+          opacity: 1,
+          duration: 0.82,
+          delay: retardoEscalon,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: tarjeta,
+            start: 'top 92%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+  });
 }
