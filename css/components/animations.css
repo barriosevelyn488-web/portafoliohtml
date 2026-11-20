@@ -1,0 +1,209 @@
+/* ==========================================================================
+   COMPONENTE: ANIMACIONES INMERSIVAS Y EFECTOS TECH (animations.css)
+   Experiencia de Descubrimiento Progresivo para Perfil de Programador
+   ========================================================================== */
+
+/* 1. Barra Láser de Progreso de Descubrimiento (Scroll Indicator) */
+.scroll-laser-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3.5px;
+  width: 0%;
+  background: linear-gradient(90deg, #2563eb, #38bdf8, #60a5fa);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.85), 0 0 20px rgba(37, 99, 235, 0.5);
+  z-index: 99999;
+  pointer-events: none;
+  transition: width 0.08s linear;
+}
+
+/* 2. Canvas de Red de Datos / Nodos Flotantes (Background Tech) */
+.ambient-network-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+  transition: opacity 0.5s ease;
+}
+
+[data-theme="dark"] .ambient-network-canvas {
+  opacity: 0.75;
+}
+
+/* 3. Descubrimiento Cinemático y Escalonado al Scroll (Staggered Reveal) */
+.lui-section {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.lui-section.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Encabezados de sección con entrada suave */
+.lui-section.is-revealed .lui-section-header {
+  animation: fadeUpHeader 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeUpHeader {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Elementos hijos en cascada progresiva */
+.lui-section.is-revealed .about-story-card,
+.lui-section.is-revealed .service-card,
+.lui-section.is-revealed .circle-skill-card,
+.lui-section.is-revealed .dotted-skill-item,
+.lui-section.is-revealed .project-card,
+.lui-section.is-revealed .lui-accordion-item {
+  opacity: 0;
+  animation: fadeUpStagger 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeUpStagger {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Retardos escalonados para dar ritmo de descubrimiento */
+.lui-section.is-revealed .service-card:nth-child(1),
+.lui-section.is-revealed .circle-skill-card:nth-child(1),
+.lui-section.is-revealed .dotted-skill-item:nth-child(1),
+.lui-section.is-revealed .project-card:nth-child(1),
+.lui-section.is-revealed .lui-accordion-item:nth-child(1) {
+  animation-delay: 0.06s;
+}
+
+.lui-section.is-revealed .service-card:nth-child(2),
+.lui-section.is-revealed .circle-skill-card:nth-child(2),
+.lui-section.is-revealed .dotted-skill-item:nth-child(2),
+.lui-section.is-revealed .project-card:nth-child(2),
+.lui-section.is-revealed .lui-accordion-item:nth-child(2) {
+  animation-delay: 0.14s;
+}
+
+.lui-section.is-revealed .service-card:nth-child(3),
+.lui-section.is-revealed .circle-skill-card:nth-child(3),
+.lui-section.is-revealed .dotted-skill-item:nth-child(3),
+.lui-section.is-revealed .project-card:nth-child(3),
+.lui-section.is-revealed .lui-accordion-item:nth-child(3) {
+  animation-delay: 0.22s;
+}
+
+.lui-section.is-revealed .circle-skill-card:nth-child(4),
+.lui-section.is-revealed .dotted-skill-item:nth-child(4),
+.lui-section.is-revealed .project-card:nth-child(4),
+.lui-section.is-revealed .lui-accordion-item:nth-child(4) {
+  animation-delay: 0.30s;
+}
+
+.lui-section.is-revealed .dotted-skill-item:nth-child(5),
+.lui-section.is-revealed .project-card:nth-child(5) {
+  animation-delay: 0.38s;
+}
+
+.lui-section.is-revealed .dotted-skill-item:nth-child(6),
+.lui-section.is-revealed .project-card:nth-child(6) {
+  animation-delay: 0.46s;
+}
+
+/* 4. Efecto Físico 3D Tilt y Halo de Luz Dinámico */
+.interactive-hover-card,
+.project-card,
+.hero-card-showcase,
+.oms-showcase-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Resplandor radial de linterna sobre bordes */
+.interactive-hover-card::before,
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    480px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(56, 189, 248, 0.25),
+    transparent 55%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.interactive-hover-card:hover::before,
+.project-card:hover::before {
+  opacity: 1;
+}
+
+/* 5. Terminal OMS Interactiva (Blinking Cursor) */
+.terminal-cursor-blink {
+  display: inline-block;
+  color: #38bdf8;
+  font-weight: 900;
+  animation: blinkTerminal 0.85s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blinkTerminal {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 6. Microinteracción de Pastillas Tecnológicas (Levitación y Destello) */
+.kw-pill,
+.project-tech-pills span,
+.dotted-skill-tag {
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kw-pill:hover,
+.project-tech-pills span:hover {
+  transform: translateY(-2.5px) scale(1.04);
+  border-color: #38bdf8 !important;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
+  color: #38bdf8 !important;
+}
+
+/* 7. Accesibilidad: Reducción de movimiento para usuarios sensibles */
+@media (prefers-reduced-motion: reduce) {
+  .lui-section,
+  .lui-section.is-revealed .lui-section-header,
+  .lui-section.is-revealed .about-story-card,
+  .lui-section.is-revealed .service-card,
+  .lui-section.is-revealed .circle-skill-card,
+  .lui-section.is-revealed .dotted-skill-item,
+  .lui-section.is-revealed .project-card,
+  .lui-section.is-revealed .lui-accordion-item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .ambient-network-canvas {
+    display: none !important;
+  }
+}

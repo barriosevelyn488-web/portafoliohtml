@@ -1,15 +1,16 @@
-import { cargarSeccionesModulares } from './modules/secciones.js?v=4.1';
-import { PROYECTOS } from './data/projectsData.js?v=4.1';
-import { iniciarTema } from './modules/tema.js?v=4.1';
-import { iniciarProyectos } from './modules/proyectos.js?v=4.1';
-import { iniciarModales, abrirModalProyecto } from './modules/modales.js?v=4.1';
-import { iniciarContacto } from './modules/contacto.js?v=4.1';
+import { cargarSeccionesModulares } from './modules/secciones.js?v=4.2';
+import { PROYECTOS } from './data/projectsData.js?v=4.2';
+import { iniciarTema } from './modules/tema.js?v=4.2';
+import { iniciarProyectos } from './modules/proyectos.js?v=4.2';
+import { iniciarModales, abrirModalProyecto } from './modules/modales.js?v=4.2';
+import { iniciarContacto } from './modules/contacto.js?v=4.2';
 import {
   iniciarMenuMovil,
   iniciarPestanas,
   iniciarAnimacionesScroll,
   actualizarMetricasGitHub
-} from './modules/navegacion.js?v=4.1';
+} from './modules/navegacion.js?v=4.2';
+import { iniciarExperienciaInmersiva } from './modules/inmersivo.js?v=4.2';
 
 async function iniciarAplicacion() {
   if (window.__PORTAFOLIO_INICIADO__) return;
@@ -26,6 +27,7 @@ async function iniciarAplicacion() {
   iniciarModales();
   iniciarContacto();
   iniciarAnimacionesScroll();
+  iniciarExperienciaInmersiva();
   actualizarMetricasGitHub('barriosevelyn488-web');
 }
 
