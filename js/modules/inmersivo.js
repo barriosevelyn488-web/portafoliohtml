@@ -9,6 +9,7 @@ export function iniciarExperienciaInmersiva() {
   iniciarDestelloCursor();
   iniciarCoreografiaHeroGSAP();
   iniciarParallaxFotosHero();
+  iniciarSobreMiConsolaGSAP();
   iniciarScrollTriggerSeccionesGSAP();
   iniciarAnimacionStackCascada();
   iniciarLaserScrollProgress();
@@ -324,6 +325,10 @@ function iniciarScrollTriggerSeccionesGSAP() {
       return;
     }
 
+    if (sec.id === 'sobre-mi') {
+      return;
+    }
+
     const esTrayectoria = sec.id === 'trayectoria';
 
     // Entrada fluida de cada sección — siempre legible en cualquier punto
@@ -565,4 +570,136 @@ function iniciarTerminalStreamingOMS() {
       }, 20);
     });
   });
+}
+
+/**
+ * 8. Sobre Mí: Foto formal deslizando desde el borde izquierdo + Consola Interactiva GSAP
+ */
+function iniciarSobreMiConsolaGSAP() {
+  const secSobreMi = document.getElementById('sobre-mi');
+  const photoCard = document.getElementById('aboutPhotoBox');
+  const terminalBox = document.getElementById('aboutDevTerminal');
+  const output = document.getElementById('aboutTerminalOutput');
+  const tabs = document.querySelectorAll('.dev-term-tab[data-bio-tab]');
+  if (!secSobreMi || !output) return;
+
+  const VISTAS_CONSOLA_BIO = {
+    resumen: [
+      '<div class="term-line"><span class="t-prompt">$</span> <span class="t-cmd">cat</span> <span class="t-file">perfil_profesional.json</span></div>',
+      '<div class="term-line t-brace">{</div>',
+      '<div class="term-line t-indent"><span class="t-key">"nombre"</span>: <span class="t-str">"Evelyn Barrios"</span>,</div>',
+      '<div class="term-line t-indent"><span class="t-key">"rol"</span>: <span class="t-str">"Técnica en Desarrollo de Software · Campuslands GT"</span>,</div>',
+      '<div class="term-line t-indent"><span class="t-key">"base_analitica"</span>: <span class="t-str">"Perito Contador · Admón. Empresas (USAC) · 3 años gestión comercial"</span>,</div>',
+      '<div class="term-line t-indent"><span class="t-key">"especialidad"</span>: [<span class="t-hl">"Backend &amp; APIs REST"</span>, <span class="t-hl">"PostgreSQL 3NF"</span>, <span class="t-hl">"Inteligencia Artificial"</span>],</div>',
+      '<div class="term-line t-indent"><span class="t-key">"regla_clave"</span>: <span class="t-str">"Antes de escribir una línea de código, escuchar y entender el problema real."</span>,</div>',
+      '<div class="term-line t-indent"><span class="t-key">"actualidad"</span>: <span class="t-str">"Desarrollo modular limpio · Auxiliar en talleres de IA · Piano y canto"</span></div>',
+      '<div class="term-line t-brace">} <span class="term-cursor">▌</span></div>'
+    ].join(''),
+    historia: [
+      '<div class="term-line"><span class="t-prompt">$</span> <span class="t-cmd">git log</span> <span class="t-file">--oneline trayectoria.log</span></div>',
+      '<div class="term-line"><span class="t-badge-ok">[2026]</span> <span class="t-key">Campuslands GT</span> <span class="t-str">→ Técnica en Desarrollo de Software · Arquitectura modular y APIs</span></div>',
+      '<div class="term-line"><span class="t-badge-ok">[2026]</span> <span class="t-key">Softplus OMS</span> <span class="t-str">→ Base normalizada (26 tablas 3NF) · Node.js, Redis, Docker y Bruno/Postman</span></div>',
+      '<div class="term-line"><span class="t-badge-ok">[2026]</span> <span class="t-key">AI Academy</span> <span class="t-str">→ Auxiliar Académica y Admisiones · Acompañamiento técnico en IA</span></div>',
+      '<div class="term-line"><span class="t-badge-ok">[2026]</span> <span class="t-key">App Móvil Alba</span> <span class="t-str">→ Flutter / Dart · Firebase · WCAG AAA · Equipo ágil (12 devs)</span></div>',
+      '<div class="term-line"><span class="t-badge-ok">[BASE]</span> <span class="t-key">USAC &amp; Finanzas</span> <span class="t-str">→ Admón. Empresas (2.º sem. 2024) · Perito Contador ★ Alumna Destacada</span></div>',
+      '<div class="term-line"><span class="t-comment">// 3 años en atención directa al cliente y coordinación comercial (Zona Piel / Herbal Plus) <span class="term-cursor">▌</span></span></div>'
+    ].join(''),
+    pilares: [
+      '<div class="term-line"><span class="t-prompt">$</span> <span class="t-cmd">bash</span> <span class="t-file">pilares_ingenieria.sh</span></div>',
+      '<div class="term-line t-indent"><span class="t-key">01_arquitectura()</span> { <span class="t-str">"Modelado relacional 3NF, APIs REST ordenadas y control transaccional"</span>; }</div>',
+      '<div class="term-line t-indent"><span class="t-key">02_automatizacion()</span> { <span class="t-str">"Flujos con Inteligencia Artificial, Docker y scripts escalables"</span>; }</div>',
+      '<div class="term-line t-indent"><span class="t-key">03_calidad_qa()</span> { <span class="t-str">"Validación de endpoints con Bruno/Postman y flujo limpio en Git"</span>; }</div>',
+      '<div class="term-line t-indent"><span class="t-key">04_criterio_negocio()</span> { <span class="t-str">"Traducir metas comerciales y contables en software real usable"</span>; }</div>',
+      '<div class="term-line"><span class="t-badge-ok">✔ STATUS:</span> <span class="t-hl">Lista para proyectos Backend / Full Stack</span> <span class="term-cursor">▌</span></div>'
+    ].join('')
+  };
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+
+  const animarEscrituraConsola = () => {
+    const lineas = output.querySelectorAll('.term-line');
+    if (!lineas.length || !gsap || reduceMotion) return;
+
+    gsap.fromTo(
+      lineas,
+      { opacity: 0, x: -16 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.34,
+        stagger: 0.1,
+        ease: 'power2.out',
+        overwrite: 'auto'
+      }
+    );
+  };
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const clave = tab.dataset.bioTab;
+      if (!clave || !VISTAS_CONSOLA_BIO[clave]) return;
+
+      tabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+      output.innerHTML = VISTAS_CONSOLA_BIO[clave];
+      animarEscrituraConsola();
+    });
+  });
+
+  if (!gsap || !ScrollTrigger || reduceMotion) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const header = secSobreMi.querySelector('.lui-section-header');
+  const pilares = secSobreMi.querySelectorAll('.dev-pillar-item');
+  const lineasIniciales = output.querySelectorAll('.term-line');
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: secSobreMi,
+      start: 'top 76%',
+      toggleActions: 'play none none reverse'
+    }
+  });
+
+  if (header) {
+    tl.fromTo(header, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out' }, 0);
+  }
+
+  if (photoCard) {
+    tl.fromTo(
+      photoCard,
+      { x: -220, y: 12, rotation: -3, opacity: 0 },
+      { x: 0, y: 0, rotation: 0, opacity: 1, duration: 0.95, ease: 'expo.out' },
+      0.06
+    );
+  }
+
+  if (terminalBox) {
+    tl.fromTo(
+      terminalBox,
+      { x: 42, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.72, ease: 'power3.out' },
+      0.14
+    );
+  }
+
+  if (lineasIniciales.length) {
+    tl.fromTo(
+      lineasIniciales,
+      { opacity: 0, x: -16 },
+      { opacity: 1, x: 0, duration: 0.34, stagger: 0.11, ease: 'power2.out' },
+      0.32
+    );
+  }
+
+  if (pilares.length) {
+    tl.fromTo(
+      pilares,
+      { y: 18, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.45, stagger: 0.1, ease: 'power2.out' },
+      0.58
+    );
+  }
 }
