@@ -4,10 +4,84 @@
    ========================================================================== */
 
 export function iniciarExperienciaInmersiva() {
+  iniciarIntroOrigami();
   iniciarLaserScrollProgress();
   iniciarCanvasNodos();
   iniciarTilt3DFisico();
   iniciarTerminalStreamingOMS();
+}
+
+/**
+ * 0. Intro Inmersiva: Despliegue 3D de Expediente de Software (Origami Tech)
+ */
+function iniciarIntroOrigami() {
+  const overlay = document.getElementById('introTechOverlay');
+  const dossier = document.getElementById('origamiDossier');
+  const btnDesplegar = document.getElementById('btnDesplegarPortafolio');
+  const btnSaltar = document.getElementById('btnSaltarIntro');
+  const btnRebobinar = document.getElementById('btnRebobinarIntro');
+
+  if (!overlay || !dossier || !btnDesplegar) return;
+
+  // Activar bloqueo de scroll mientras la intro está activa
+  document.body.classList.add('intro-active');
+
+  let desplegando = false;
+
+  const cerrarIntro = (esAnimado = true) => {
+    if (desplegando) return;
+    desplegando = true;
+
+    if (esAnimado) {
+      dossier.classList.add('is-unfolding');
+
+      setTimeout(() => {
+        overlay.classList.add('intro-hidden');
+        document.body.classList.remove('intro-active');
+        document.body.classList.add('intro-reveal-complete');
+      }, 750);
+
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        desplegando = false;
+      }, 1300);
+    } else {
+      overlay.classList.add('intro-hidden');
+      document.body.classList.remove('intro-active');
+      document.body.classList.add('intro-reveal-complete');
+      overlay.style.display = 'none';
+      desplegando = false;
+    }
+  };
+
+  const reabrirIntro = () => {
+    overlay.style.display = 'flex';
+    // Forzar reflujo
+    void overlay.offsetHeight;
+    overlay.classList.remove('intro-hidden');
+    dossier.classList.remove('is-unfolding');
+    document.body.classList.add('intro-active');
+    document.body.classList.remove('intro-reveal-complete');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    desplegando = false;
+  };
+
+  btnDesplegar.addEventListener('click', () => cerrarIntro(true));
+
+  if (btnSaltar) {
+    btnSaltar.addEventListener('click', () => cerrarIntro(false));
+  }
+
+  if (btnRebobinar) {
+    btnRebobinar.addEventListener('click', reabrirIntro);
+  }
+
+  // Tecla Escape para saltar rápidamente
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !overlay.classList.contains('intro-hidden')) {
+      cerrarIntro(false);
+    }
+  });
 }
 
 /**
@@ -162,7 +236,6 @@ function iniciarCanvasNodos() {
  * 3. Efecto 3D Tilt Físico en Tarjetas (Perspectiva y Profundidad)
  */
 function iniciarTilt3DFisico() {
-  // Solo en dispositivos con puntero fino (mouse/trackpad, no táctil)
   if (window.matchMedia('(pointer: coarse)').matches) return;
 
   const selectorTarjetas =
@@ -176,7 +249,6 @@ function iniciarTilt3DFisico() {
     const x = (evento.clientX - rect.left) / rect.width - 0.5;
     const y = (evento.clientY - rect.top) / rect.height - 0.5;
 
-    // Calcular inclinación tridimensional suave
     const rotarY = (x * 8).toFixed(2);
     const rotarX = (y * -8).toFixed(2);
 
@@ -222,7 +294,6 @@ function iniciarTerminalStreamingOMS() {
 
   botonesConsola.forEach((boton) => {
     boton.addEventListener('click', () => {
-      // Pequeño retardo para dejar que proyectos.js cargue el texto base
       setTimeout(() => {
         const textoOriginal = salidaConsola.textContent.replace(' ▌', '');
         escribirTextoStreaming(textoOriginal);

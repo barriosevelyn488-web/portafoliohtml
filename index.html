@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Arquitectura Modular CSS -->
-  <link rel="stylesheet" href="css/main.css?v=4.2" />
+  <link rel="stylesheet" href="css/main.css?v=4.3" />
 
 
 
@@ -18,6 +18,77 @@
 <body>
   <!-- Barra Láser de Descubrimiento de Scroll -->
   <div class="scroll-laser-progress" id="scrollLaserProgress" aria-hidden="true"></div>
+
+  <!-- INTRO INMERSIVA: Despliegue 3D de Expediente de Software -->
+  <aside id="introTechOverlay" class="intro-tech-overlay" aria-label="Intro interactiva de bienvenida">
+    <!-- Barra superior de estado -->
+    <div class="intro-top-bar">
+      <div class="intro-status-pill">
+        <span class="intro-status-dot"></span>
+        <span>ENTORNO COMPILADO // V2.4</span>
+      </div>
+      <button type="button" id="btnSaltarIntro" class="intro-skip-btn" title="Saltar intro y entrar directo">
+        Saltar intro ✕
+      </button>
+    </div>
+
+    <!-- Escenario 3D y Plano Origami -->
+    <div class="intro-origami-stage">
+      <div class="origami-dossier" id="origamiDossier">
+        <!-- Rayo láser de escaneo -->
+        <div class="origami-laser-scanner" aria-hidden="true"></div>
+
+        <!-- Pliegue Superior (Flap Top) -->
+        <div class="origami-flap origami-flap-top" aria-hidden="true">
+          <span>// ARQUITECTURA DE SOFTWARE &amp; APIS REST</span>
+        </div>
+
+        <!-- Contenido Central del Expediente -->
+        <div class="origami-body-center">
+          <div class="origami-blueprint-header">
+            <span class="origami-blueprint-icon">⚙️</span>
+            <span>EXPEDIENTE TÉCNICO DE DESARROLLO</span>
+          </div>
+
+          <h1 class="origami-title">Evelyn Barrios</h1>
+          <p class="origami-subtitle">
+            Técnica en Desarrollo de Software · Backend, Bases de Datos Relacionales e Inteligencia Artificial
+          </p>
+
+          <div class="origami-tech-tags">
+            <span class="origami-tech-tag">Node.js &amp; Express</span>
+            <span class="origami-tech-tag">PostgreSQL 3NF</span>
+            <span class="origami-tech-tag">Flutter &amp; Dart</span>
+            <span class="origami-tech-tag">Docker</span>
+            <span class="origami-tech-tag">Clean Code</span>
+          </div>
+
+          <div class="origami-compile-bar">
+            <div class="origami-compile-fill"></div>
+          </div>
+
+          <!-- Botón de Enganche Principal: Desplegar Portafolio -->
+          <button type="button" id="btnDesplegarPortafolio" class="btn-origami-deploy">
+            <span class="btn-origami-glow" aria-hidden="true"></span>
+            <span class="btn-origami-icon" aria-hidden="true">⚡</span>
+            <span class="btn-origami-text">
+              <strong>CLICK AQUÍ PARA DESPLEGAR</strong>
+              <small>Desdoblar expediente de software</small>
+            </span>
+            <svg class="btn-origami-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Pliegue Inferior (Flap Bottom) -->
+        <div class="origami-flap origami-flap-bottom" aria-hidden="true">
+          <span>// POSTGRESQL · EXPRESS · DOCKER · SOLID</span>
+        </div>
+      </div>
+    </div>
+  </aside>
 
   <!-- Canvas de Fondo Tech: Nodos y Red de Datos -->
   <canvas id="ambientNetworkCanvas" class="ambient-network-canvas" aria-hidden="true"></canvas>
@@ -294,6 +365,12 @@
         <polyline points="22,6 12,13 2,6"></polyline>
       </svg>
     </a>
+    <button type="button" id="btnRebobinarIntro" class="rail-icon-btn" title="Repetir animación de despliegue 3D">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M1 4v6h6"></path>
+        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+      </svg>
+    </button>
     <span class="rail-icon-btn rail-location-btn" title="Guatemala">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -306,6 +383,6 @@
   <div id="sec-modales"></div>
 
   <!-- Arquitectura Modular JavaScript (ES6 Modules) -->
-  <script type="module" src="js/main.js?v=4.2"></script>
+  <script type="module" src="js/main.js?v=4.3"></script>
 </body>
 </html>

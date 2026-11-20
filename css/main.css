@@ -22,7 +22,8 @@
 @import url('./components/projects.css?v=3.8');
 @import url('./components/modales.css?v=3.8');
 @import url('./components/contact.css?v=3.8');
-@import url('./components/animations.css?v=4.2');
+@import url('./components/animations.css?v=4.3');
+@import url('./components/intro-origami.css?v=4.3');
 
 /* 5. Reglas responsivas master (Media queries unificadas) */
 @import url('./responsive.css?v=3.8');
