@@ -10,19 +10,22 @@
   </div>
 
   <div class="about-editorial-dossier">
-    <!-- Columna Izquierda: Cuadrito animado con foto profesional de traje + Bio concisa -->
+    <!-- Columna Izquierda: Cuadrito animado con transición automática entre sus dos fotos profesionales -->
     <div class="about-dossier-left">
       <div class="about-photo-box" id="aboutPhotoBox">
         <div class="about-photo-shine" aria-hidden="true"></div>
         <img
           src="img/evelyn-traje-github.jpg"
-          alt="Evelyn Barrios — Retrato Profesional"
-          class="about-square-photo"
+          alt="Evelyn Barrios — Retrato Profesional con Traje"
+          class="about-square-photo about-photo-base"
           id="aboutPortraitImg"
         />
-        <button type="button" class="about-photo-toggle" id="btnToggleAboutPhoto" title="Alternar entre foto con traje y foto con cabello lacio">
-          <span>✦ Alternar foto</span>
-        </button>
+        <img
+          src="img/evelyn-pelo-planchado.jpg"
+          alt="Evelyn Barrios — Retrato Editorial"
+          class="about-square-photo about-photo-overlay"
+          id="aboutPortraitOverlayImg"
+        />
       </div>
 
       <div class="about-bio-excerpt">

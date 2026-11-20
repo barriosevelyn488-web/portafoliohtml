@@ -10,7 +10,7 @@ export function iniciarExperienciaInmersiva() {
   iniciarCoreografiaHeroGSAP();
   iniciarParallaxFotosHero();
   iniciarScrollTriggerSeccionesGSAP();
-  iniciarToggleFotoSobreMi();
+  iniciarAnimacionStackCascada();
   iniciarLaserScrollProgress();
   iniciarCanvasNodos();
   iniciarTerminalStreamingOMS();
@@ -301,25 +301,48 @@ function iniciarScrollTriggerSeccionesGSAP() {
       onEnterBack: () => sec.classList.add('is-revealed')
     });
 
-    if (idx === 0) return; // Hero maneja su propia timeline de apertura
+    if (idx === 0) {
+      // Transición fluida Página 1 -> Página 2 (Hero se repliega suavemente mientras Sobre Mí sube)
+      gsap.fromTo(
+        inner,
+        { scale: 1, y: 0, x: 0, opacity: 1 },
+        {
+          scale: 0.9,
+          x: -60,
+          y: -40,
+          opacity: 0.25,
+          ease: 'none',
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: sec,
+            start: 'bottom 85%',
+            end: 'bottom top',
+            scrub: 0.7
+          }
+        }
+      );
+      return;
+    }
 
     const esTrayectoria = sec.id === 'trayectoria';
 
-    // Entrada fluida al entrar en vista — SIEMPRE visible al 100% una vez revelada (no bloquea ni desaparece al leer)
+    // Entrada fluida de cada sección — siempre legible en cualquier punto
     gsap.fromTo(
       inner,
       {
-        y: esTrayectoria ? -36 : 44,
+        y: esTrayectoria ? -36 : 48,
+        scale: 0.96,
         opacity: 0
       },
       {
         y: 0,
+        scale: 1,
         opacity: 1,
         duration: 0.85,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: sec,
-          start: 'top 82%',
+          start: 'top 84%',
           toggleActions: 'play none none reverse'
         }
       }
@@ -328,25 +351,48 @@ function iniciarScrollTriggerSeccionesGSAP() {
 }
 
 /**
- * 4. Alternador de retrato profesional en Sobre Mí (Traje GitHub / Pelo lacio)
+ * 4. Stack Tecnológico: Tarjetas emergiendo de abajo hacia arriba e iconos resurgiendo
+ * de arriba hacia abajo (idéntico a la secuencia de CONTENIDO 01-04 de Behance)
  */
-function iniciarToggleFotoSobreMi() {
-  const btn = document.getElementById('btnToggleAboutPhoto');
-  const img = document.getElementById('aboutPortraitImg');
-  if (!btn || !img) return;
+function iniciarAnimacionStackCascada() {
+  const stackSec = document.getElementById('stack');
+  if (!stackSec || !window.gsap || !window.ScrollTrigger) return;
 
-  const fotos = [
-    { src: 'img/evelyn-traje-github.jpg', label: '✦ Alternar foto' },
-    { src: 'img/evelyn-pelo-planchado.jpg', label: '✦ Volver a traje' }
-  ];
-  let idx = 0;
+  const gsap = window.gsap;
+  const tarjetas = stackSec.querySelectorAll('.stack-index-card');
+  const logos3D = stackSec.querySelectorAll('.stack-original-3d-logo');
+  if (!tarjetas.length) return;
 
-  btn.addEventListener('click', () => {
-    idx = (idx + 1) % fotos.length;
-    img.src = fotos[idx].src;
-    const span = btn.querySelector('span');
-    if (span) span.textContent = fotos[idx].label;
+  gsap.set(tarjetas, { clipPath: 'inset(100% 0% 0% 0%)', opacity: 0.2 });
+  gsap.set(logos3D, { xPercent: -50, y: -70, scale: 0.65, rotationX: 12, rotationY: -14, rotationZ: -6, opacity: 0 });
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#stack',
+      start: 'top 78%',
+      toggleActions: 'play none none reverse'
+    }
   });
+
+  tl.to(tarjetas, {
+    clipPath: 'inset(0% 0% 0% 0%)',
+    opacity: 1,
+    duration: 0.72,
+    stagger: 0.16,
+    ease: 'expo.out'
+  }, 0)
+    .to(logos3D, {
+      xPercent: -50,
+      y: 0,
+      scale: 1,
+      rotationX: 12,
+      rotationY: -14,
+      rotationZ: -6,
+      opacity: 1,
+      duration: 0.75,
+      stagger: 0.16,
+      ease: 'back.out(1.25)'
+    }, 0.12);
 }
 
 /**

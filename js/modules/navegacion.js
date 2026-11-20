@@ -122,10 +122,9 @@ export function iniciarTypewriter() {
   if (!elementoTexto) return;
 
   const frases = [
+    'Evelyn Barrios',
     'Técnico en desarrollo de software',
-    'Desarrollo backend',
-    'Desarrollo frontend',
-    'APIs y bases de datos'
+    'Enfoque en backend, API REST, bases de datos, Full Stack'
   ];
 
   let indiceFrase = 0;
