@@ -524,98 +524,40 @@
 
 .dev-terminal-body {
   flex: 1;
-  padding: 20px 24px 18px;
+  padding: 24px 28px;
   font-family: var(--font-sans);
   color: #e0f2fe;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  justify-content: center;
 }
 
 .about-live-type-wrap {
-  padding: 14px 18px;
-  border-radius: 14px;
-  background: rgba(7, 27, 62, 0.56);
-  border: 1px solid rgba(56, 189, 248, 0.28);
-  box-shadow: inset 0 1px 0 rgba(125, 211, 252, 0.14);
+  padding: 22px 24px;
+  border-radius: 16px;
+  background: rgba(7, 27, 62, 0.58);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: inset 0 1px 0 rgba(125, 211, 252, 0.16);
 }
 
 .about-live-tag {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 800;
   color: #38bdf8;
   letter-spacing: 0.08em;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
 }
 
 .about-live-paragraph {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 0.94rem;
-  line-height: 1.65;
+  font-size: 0.99rem;
+  line-height: 1.76;
   color: #f0f9ff;
-  min-height: 4.8em;
-}
-
-.about-keypoints-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.about-keypoints-label {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 800;
-  color: #7dd3fc;
-  letter-spacing: 0.09em;
-}
-
-.about-keypoints-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 8px;
-}
-
-.about-kp-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 9px 12px;
-  border-radius: 11px;
-  background: rgba(2, 11, 28, 0.44);
-  border: 1px solid rgba(56, 189, 248, 0.18);
-  font-family: var(--font-sans);
-  font-size: 0.84rem;
-  line-height: 1.5;
-  color: #dbeafe;
-  will-change: transform, opacity;
-}
-
-.kp-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
-  background: rgba(56, 189, 248, 0.2);
-  border: 1px solid rgba(56, 189, 248, 0.45);
-  color: #38bdf8;
-  font-size: 0.72rem;
-  font-weight: 800;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.about-kp-item strong {
-  color: #ffffff;
-  font-weight: 700;
-  margin-right: 4px;
+  white-space: pre-line;
+  min-height: 10.2em;
 }
 
 .term-cursor {
@@ -630,56 +572,6 @@
 @keyframes terminalCursorBlink {
   0%, 49% { opacity: 1; }
   50%, 100% { opacity: 0; }
-}
-
-.dev-terminal-pillars {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  padding: 16px 24px 20px;
-  border-top: 1px solid rgba(56, 189, 248, 0.18);
-  background: rgba(2, 11, 28, 0.44);
-}
-
-.dev-pillar-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px 13px;
-  border-radius: 13px;
-  background: rgba(7, 27, 62, 0.54);
-  border: 1px solid rgba(56, 189, 248, 0.22);
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.dev-pillar-item:hover {
-  transform: translateY(-2px);
-  border-color: rgba(56, 189, 248, 0.56);
-  box-shadow: 0 10px 22px rgba(2, 8, 23, 0.36);
-}
-
-.pillar-code {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: #38bdf8;
-  padding-top: 2px;
-  flex-shrink: 0;
-}
-
-.dev-pillar-item strong {
-  display: block;
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 3px;
-}
-
-.dev-pillar-item p {
-  margin: 0;
-  font-size: 0.73rem;
-  line-height: 1.45;
-  color: #93c5fd;
 }
 
 /* --------------------------------------------------------------------------
@@ -791,16 +683,21 @@
 }
 
 /* Bandas cromáticas fieles al color original de cada tecnología */
-.stack-band-node  .stack-idx-band { background: linear-gradient(95deg, #22c55e 0%, #15803d 100%); }
-.stack-band-pg    .stack-idx-band { background: linear-gradient(95deg, #336791 0%, #1e40af 100%); }
-.stack-band-js    .stack-idx-band { background: linear-gradient(95deg, #eab308 0%, #b45309 100%); }
-.stack-band-ts    .stack-idx-band { background: linear-gradient(95deg, #3178c6 0%, #1e3a8a 100%); }
-.stack-band-py    .stack-idx-band { background: linear-gradient(95deg, #3776ab 0%, #ca8a04 100%); }
-.stack-band-fl    .stack-idx-band { background: linear-gradient(95deg, #54c5f8 0%, #01579b 100%); }
-.stack-band-dk    .stack-idx-band { background: linear-gradient(95deg, #2496ed 0%, #0369a1 100%); }
-.stack-band-mysql .stack-idx-band { background: linear-gradient(95deg, #00758f 0%, #ea580c 100%); }
-.stack-band-redis .stack-idx-band { background: linear-gradient(95deg, #ef4444 0%, #991b1b 100%); }
-.stack-band-git   .stack-idx-band { background: linear-gradient(95deg, #f05032 0%, #7c2d12 100%); }
+.stack-band-node    .stack-idx-band { background: linear-gradient(95deg, #22c55e 0%, #15803d 100%); }
+.stack-band-express .stack-idx-band { background: linear-gradient(95deg, #334155 0%, #0f172a 100%); }
+.stack-band-pg      .stack-idx-band { background: linear-gradient(95deg, #336791 0%, #1e40af 100%); }
+.stack-band-postman .stack-idx-band { background: linear-gradient(95deg, #ff6c37 0%, #c2410c 100%); }
+.stack-band-n8n     .stack-idx-band { background: linear-gradient(95deg, #ea4b71 0%, #9d174d 100%); }
+.stack-band-js      .stack-idx-band { background: linear-gradient(95deg, #eab308 0%, #b45309 100%); }
+.stack-band-ts      .stack-idx-band { background: linear-gradient(95deg, #3178c6 0%, #1e3a8a 100%); }
+.stack-band-py      .stack-idx-band { background: linear-gradient(95deg, #3776ab 0%, #ca8a04 100%); }
+.stack-band-html5   .stack-idx-band { background: linear-gradient(95deg, #e34f26 0%, #9a3412 100%); }
+.stack-band-css3    .stack-idx-band { background: linear-gradient(95deg, #2563eb 0%, #1572b6 100%); }
+.stack-band-fl      .stack-idx-band { background: linear-gradient(95deg, #54c5f8 0%, #01579b 100%); }
+.stack-band-dk      .stack-idx-band { background: linear-gradient(95deg, #2496ed 0%, #0369a1 100%); }
+.stack-band-mysql   .stack-idx-band { background: linear-gradient(95deg, #00758f 0%, #ea580c 100%); }
+.stack-band-redis   .stack-idx-band { background: linear-gradient(95deg, #ef4444 0%, #991b1b 100%); }
+.stack-band-git     .stack-idx-band { background: linear-gradient(95deg, #f05032 0%, #7c2d12 100%); }
 
 .stack-idx-body {
   position: relative;
@@ -861,11 +758,18 @@
   pointer-events: none;
 }
 
-.stack-original-3d-logo img {
+.stack-original-3d-logo img,
+.stack-original-3d-logo svg {
   width: 112px;
   height: 112px;
   object-fit: contain;
   filter: drop-shadow(-8px 12px 18px rgba(0, 0, 0, 0.65));
+}
+
+.stack-logo-light-pill img {
+  background: rgba(255, 255, 255, 0.94);
+  padding: 14px;
+  border-radius: 26px;
 }
 
 .stack-index-card:hover .stack-original-3d-logo {
@@ -1084,7 +988,7 @@
 .carousel-project-card .project-cover-wrapper {
   position: relative;
   height: 205px;
-  background: #04112b;
+  background: #0f172a;
   overflow: hidden;
   cursor: zoom-in;
 }
@@ -1107,9 +1011,9 @@
   z-index: 2;
   padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(4, 17, 43, 0.8);
-  border: 1px solid rgba(56, 189, 248, 0.45);
-  color: #7dd3fc;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #f8fafc;
   font-family: var(--font-mono);
   font-size: 0.64rem;
   font-weight: 800;
@@ -1235,10 +1139,6 @@
     margin: 0 auto;
   }
 
-  .dev-terminal-pillars {
-    grid-template-columns: 1fr;
-  }
-
   .stack-index-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1321,17 +1221,14 @@
     padding: 16px;
   }
 
+  .about-live-type-wrap {
+    padding: 16px;
+  }
+
   .about-live-paragraph {
-    font-size: 0.86rem;
-    min-height: 5.4em;
-  }
-
-  .about-kp-item {
-    font-size: 0.78rem;
-  }
-
-  .dev-terminal-pillars {
-    padding: 14px 16px 16px;
+    font-size: 0.88rem;
+    line-height: 1.66;
+    min-height: 9.5em;
   }
 
   .stack-index-card {
@@ -1344,7 +1241,8 @@
     height: 112px;
   }
 
-  .stack-original-3d-logo img {
+  .stack-original-3d-logo img,
+  .stack-original-3d-logo svg {
     width: 88px;
     height: 88px;
   }

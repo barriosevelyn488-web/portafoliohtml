@@ -411,8 +411,8 @@ function iniciarAnimacionStackCascada() {
       y: 0,
       scale: 1,
       opacity: 1,
-      duration: 0.65,
-      stagger: 0.16,
+      duration: 0.62,
+      stagger: 0.11,
       ease: 'back.out(1.22)',
       onComplete: () => gsap.set(tarjetas, { clearProps: 'transform' })
     },
@@ -427,11 +427,11 @@ function iniciarAnimacionStackCascada() {
       rotationY: -14,
       rotationZ: -6,
       opacity: 1,
-      duration: 0.68,
-      stagger: 0.16,
+      duration: 0.64,
+      stagger: 0.11,
       ease: 'back.out(1.3)'
     },
-    0.12
+    0.1
   );
 }
 
@@ -608,7 +608,7 @@ function iniciarTerminalStreamingOMS() {
 }
 
 /**
- * 8. Sobre Mí: Foto formal deslizando desde el borde izquierdo + Escritura Automática Clara y Puntos Clave
+ * 8. Sobre Mí: Foto formal deslizando desde el borde izquierdo + Bloque único escribiéndose automáticamente (Sobre mí + Mi Enfoque)
  */
 function iniciarSobreMiConsolaGSAP() {
   const secSobreMi = document.getElementById('sobre-mi');
@@ -616,76 +616,21 @@ function iniciarSobreMiConsolaGSAP() {
   const terminalBox = document.getElementById('aboutDevTerminal');
   const liveTagEl = document.getElementById('aboutLiveTag');
   const typedTextEl = document.getElementById('aboutTypedText');
-  const keyPointsListEl = document.getElementById('aboutKeyPointsList');
   const tabs = document.querySelectorAll('.dev-term-tab[data-bio-tab]');
-  if (!secSobreMi || !typedTextEl || !keyPointsListEl) return;
+  if (!secSobreMi || !typedTextEl) return;
 
   const VISTAS_PERFIL = {
     resumen: {
-      tag: '// PERFIL PROFESIONAL',
-      text: '¡Hola! Soy Evelyn Barrios, Técnica en Desarrollo de Software graduada de Campuslands GT. Combino mi base contable y administrativa con ingeniería backend para construir soluciones digitales claras, seguras y útiles para el negocio.',
-      points: [
-        {
-          titulo: 'Especialidad Principal:',
-          detalle: 'Desarrollo Backend, APIs REST, bases de datos relacionales (PostgreSQL 3NF) e Inteligencia Artificial.'
-        },
-        {
-          titulo: 'Experiencia Aplicada:',
-          detalle: 'Liderazgo backend en Softplus OMS (26 tablas normalizadas), app móvil Alba (Flutter) y apoyo en AI Academy.'
-        },
-        {
-          titulo: 'Fortaleza Diferencial:',
-          detalle: 'Perito Contador, Administración de Empresas (USAC) y 3 años atendiendo clientes y ventas reales.'
-        },
-        {
-          titulo: 'Más allá del Código:',
-          detalle: 'Disciplina creativa tocando piano y canto, aprendiendo cada semana sobre IA aplicada.'
-        }
-      ]
+      tag: '// SOBRE MÍ Y MI ENFOQUE',
+      text:
+        '¡Hola! Soy Evelyn Barrios, Técnica en Desarrollo de Software graduada en Campuslands Guatemala, con formación previa en Perito Contador y Administración de Empresas en la USAC, además de 3 años de experiencia directa en atención al cliente y gestión comercial.\n\n' +
+        'Mi enfoque profesional consiste en entender primero las necesidades reales de las personas y del negocio antes de programar, para transformar esos requerimientos en soluciones digitales limpias, seguras y escalables mediante desarrollo Backend, APIs REST (Node.js y Express), bases de datos relacionales (PostgreSQL y MySQL), automatizaciones con n8n e Inteligencia Artificial.'
     },
     historia: {
-      tag: '// EXPERIENCIA REAL Y FORMACIÓN',
-      text: 'Mi camino une tres mundos: la exactitud numérica de Perito Contador y Administración de Empresas (USAC), tres años de trato directo con clientes y proyectos reales de software con Node.js, PostgreSQL, Flutter e IA.',
-      points: [
-        {
-          titulo: 'Campuslands GT (2026):',
-          detalle: 'Graduada como Técnica en Desarrollo de Software con enfoque en arquitectura limpia y trabajo ágil.'
-        },
-        {
-          titulo: 'Softplus OMS (2026):',
-          detalle: 'Liderazgo técnico backend, diseño de 26 tablas en PostgreSQL (3NF), Docker, Redis y pruebas en Postman/Bruno.'
-        },
-        {
-          titulo: 'AI Academy & App Alba (2026):',
-          detalle: 'Auxiliar académica en talleres de IA y desarrolladora móvil en equipo de 12 personas (Flutter, Firebase y WCAG AAA).'
-        },
-        {
-          titulo: 'Base Comercial y Financiera:',
-          detalle: '★ Alumna Destacada en Perito Contador y 3 años coordinando ventas y servicio al cliente en Zona Piel / Herbal Plus.'
-        }
-      ]
-    },
-    pilares: {
-      tag: '// METODOLOGÍA Y VALORES',
-      text: 'Tengo una regla clara antes de programar: escuchar primero y entender la necesidad real de la persona o empresa. Desde ahí construyo software limpio, ordenado, bien probado y fácil de hacer crecer en equipo.',
-      points: [
-        {
-          titulo: '1. Escucha Activa:',
-          detalle: 'Comprender las reglas del negocio y las metas operativas antes de diseñar pantallas o servidores.'
-        },
-        {
-          titulo: '2. Datos y Código Ordenados:',
-          detalle: 'Bases de datos bien estructuradas (3NF), funciones modulares y control transparente de errores.'
-        },
-        {
-          titulo: '3. Pruebas y Calidad Real:',
-          detalle: 'Verificación de cada ruta con Bruno y Postman, contenedores Docker y control profesional de versiones en Git.'
-        },
-        {
-          titulo: '4. Mejora Continua con IA:',
-          detalle: 'Integración responsable de herramientas de Inteligencia Artificial para agilizar flujos de trabajo.'
-        }
-      ]
+      tag: '// MI RECORRIDO Y EXPERIENCIA',
+      text:
+        'A lo largo de mi trayectoria he liderado al equipo backend en Softplus OMS (diseñando 26 tablas normalizadas en PostgreSQL 3NF con Node.js, Redis y Docker), colaborado en la app móvil de salud Alba en Flutter/Dart dentro de un equipo de 12 desarrolladores, y brindado acompañamiento técnico como auxiliar académica en talleres de Inteligencia Artificial en AI Academy.\n\n' +
+        'Mi base en finanzas, contabilidad y trato directo con clientes me permite hablar tanto el idioma técnico del código como las metas prácticas de cualquier empresa.'
     }
   };
 
@@ -695,31 +640,6 @@ function iniciarSobreMiConsolaGSAP() {
 
   let timerEscritura = null;
   let vistaActiva = 'resumen';
-
-  const renderizarPuntosClave = (puntos) => {
-    keyPointsListEl.innerHTML = '';
-    puntos.forEach((p) => {
-      const li = document.createElement('li');
-      li.className = 'about-kp-item';
-
-      const badge = document.createElement('span');
-      badge.className = 'kp-badge';
-      badge.setAttribute('aria-hidden', 'true');
-      badge.textContent = '✓';
-
-      const wrap = document.createElement('div');
-      const strong = document.createElement('strong');
-      strong.textContent = p.titulo;
-      const span = document.createElement('span');
-      span.textContent = ` ${p.detalle}`;
-
-      wrap.appendChild(strong);
-      wrap.appendChild(span);
-      li.appendChild(badge);
-      li.appendChild(wrap);
-      keyPointsListEl.appendChild(li);
-    });
-  };
 
   const reproducirPresentacionAutomatica = (clave) => {
     const datos = VISTAS_PERFIL[clave];
@@ -731,9 +651,6 @@ function iniciarSobreMiConsolaGSAP() {
     }
 
     if (liveTagEl) liveTagEl.textContent = datos.tag;
-    renderizarPuntosClave(datos.points);
-
-    const itemsPuntos = keyPointsListEl.querySelectorAll('.about-kp-item');
 
     if (reduceMotion) {
       typedTextEl.textContent = datos.text;
@@ -745,7 +662,7 @@ function iniciarSobreMiConsolaGSAP() {
     const texto = datos.text;
 
     timerEscritura = setInterval(() => {
-      idxChar += 2;
+      idxChar += 3;
       if (idxChar >= texto.length) {
         typedTextEl.textContent = texto;
         clearInterval(timerEscritura);
@@ -753,24 +670,7 @@ function iniciarSobreMiConsolaGSAP() {
       } else {
         typedTextEl.textContent = texto.slice(0, idxChar);
       }
-    }, 24);
-
-    if (gsap && itemsPuntos.length) {
-      gsap.fromTo(
-        itemsPuntos,
-        { opacity: 0, x: -16, y: 8 },
-        {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          duration: 0.42,
-          stagger: 0.2,
-          delay: 0.25,
-          ease: 'power2.out',
-          overwrite: 'auto'
-        }
-      );
-    }
+    }, 20);
   };
 
   tabs.forEach((tab) => {
@@ -790,7 +690,6 @@ function iniciarSobreMiConsolaGSAP() {
 
   const header = secSobreMi.querySelector('.lui-section-header');
   const gridSobreMi = secSobreMi.querySelector('.about-creative-terminal-grid') || secSobreMi;
-  const pilares = secSobreMi.querySelectorAll('.dev-pillar-item');
 
   if (header) {
     gsap.fromTo(
@@ -835,15 +734,6 @@ function iniciarSobreMiConsolaGSAP() {
       { x: 42, opacity: 0 },
       { x: 0, opacity: 1, duration: 0.72, ease: 'power3.out' },
       0.08
-    );
-  }
-
-  if (pilares.length) {
-    tl.fromTo(
-      pilares,
-      { y: 18, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.45, stagger: 0.1, ease: 'power2.out' },
-      0.48
     );
   }
 }

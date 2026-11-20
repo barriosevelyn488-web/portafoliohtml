@@ -6,7 +6,7 @@ export const PROYECTOS = [
     status: 'SoftPlus GT · Node.js, Express, Strapi, PostgreSQL (3NF), Redis, Docker',
     category: ['backend'],
     featured: true,
-    image: 'img/proyectos/oms-backend.svg',
+    image: 'img/proyectos/oms-backend.png',
     codePreview: {
       method: 'Node.js · Express · Strapi · PostgreSQL (3NF) · Redis · WebSockets · Docker',
       detail: '26 Tablas Relacionales · Testing Bruno & Postman · Manejo Centralizado de Errores'
@@ -66,7 +66,7 @@ export const PROYECTOS = [
     status: 'Flutter & Dart · Firebase · Clean Architecture',
     category: ['mobile'],
     featured: true,
-    image: 'img/proyectos/alba-salud.svg',
+    image: 'img/proyectos/alba-salud.png',
     codePreview: {
       method: 'Flutter · Dart · Firebase · Provider · SQLite',
       detail: 'Clean Architecture · Detección de Caídas · QR Roles · WCAG AAA'
@@ -122,7 +122,7 @@ export const PROYECTOS = [
     status: 'Desplegado en Vercel · Node.js · Express · MySQL 8 · Swagger UI',
     category: ['backend', 'frontend'],
     featured: true,
-    image: 'img/proyectos/karenflix.svg',
+    image: 'img/proyectos/karenflix.png',
     codePreview: {
       method: 'GET /api/v1/peliculas?page=1&limit=20',
       detail: 'Frontend Vercel · Node.js · Express · MySQL 8 Cloud · Swagger UI'
@@ -174,7 +174,7 @@ export const PROYECTOS = [
     status: 'Desplegado en Vercel · SQLite 3NF · Node.js · Tailwind CSS',
     category: ['backend', 'frontend'],
     featured: true,
-    image: 'img/proyectos/librarian.svg',
+    image: 'img/proyectos/librarian.png',
     codePreview: {
       method: 'POST /api/sales/checkout',
       detail: 'Clean Architecture (4 Capas) · SQLite 3NF · Node.js · Tailwind CSS · SOLID'
@@ -225,7 +225,7 @@ export const PROYECTOS = [
     status: 'Publicado en GitHub Pages · JavaScript Vanilla (ES6+)',
     category: ['frontend'],
     featured: true,
-    image: 'img/proyectos/campus-parking.svg',
+    image: 'img/proyectos/campus-parking.png',
     codePreview: {
       method: 'JavaScript (ES6+) · HTML5 · CSS3 · localStorage',
       detail: 'Manipulación del DOM · Control de Tarifas · Sin Librerías Externas'
@@ -280,7 +280,7 @@ export const PROYECTOS = [
     status: 'Next.js · TypeScript · Supabase · PostgreSQL',
     category: ['backend', 'frontend'],
     featured: false,
-    image: 'img/proyectos/ai-academy-crm.svg',
+    image: 'img/proyectos/ai-academy-crm.png',
     codePreview: {
       method: 'Next.js · TypeScript · Supabase PostgreSQL',
       detail: 'Tablero Kanban · Control de Pagos · Google Sheets Sync'
@@ -328,7 +328,7 @@ export const PROYECTOS = [
     status: 'Publicado · n8n & Telegram',
     category: ['backend', 'frontend'],
     featured: false,
-    image: 'img/proyectos/tutorbot.svg',
+    image: 'img/proyectos/tutorbot.png',
     codePreview: {
       method: 'Node.js · n8n · Telegram API · Webhooks',
       detail: 'Registro de estudiantes · Horarios · Docker Compose'
@@ -379,7 +379,7 @@ export const PROYECTOS = [
     status: 'Publicado en GitHub Pages',
     category: ['frontend'],
     featured: false,
-    image: 'img/proyectos/campus-shop.svg',
+    image: 'img/proyectos/campus-shop.png',
     codePreview: {
       method: 'HTML5 · CSS3 · JavaScript ES6+',
       detail: 'Catálogo Interactivo · Validación de Estados · Responsive'
@@ -431,7 +431,7 @@ export const PROYECTOS = [
     status: 'Repositorios en GitHub',
     category: ['backend'],
     featured: false,
-    image: 'img/proyectos/backend-sql.svg',
+    image: 'img/proyectos/backend-sql.png',
     codePreview: {
       method: 'Node.js · Express · PostgreSQL · MySQL',
       detail: 'Modelado Relacional · Procedimientos · Rate Limit'
@@ -484,7 +484,7 @@ export const PROYECTOS = [
     status: 'Repositorios en GitHub',
     category: ['backend'],
     featured: false,
-    image: 'img/proyecto1.png',
+    image: 'img/proyectos/python-suite.png',
     codePreview: {
       method: 'Python · JSON Persistente · Scrum',
       detail: 'Control de Asistencias · Inventario · Menús por Rol'
