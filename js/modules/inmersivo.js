@@ -326,7 +326,7 @@ function iniciarScrollTriggerSeccionesGSAP() {
       return;
     }
 
-    if (sec.id === 'sobre-mi' || sec.id === 'trayectoria') {
+    if (sec.id === 'sobre-mi' || sec.id === 'trayectoria' || sec.id === 'stack') {
       return;
     }
 
@@ -357,37 +357,69 @@ function iniciarScrollTriggerSeccionesGSAP() {
 }
 
 /**
- * 4. Stack Tecnológico: Tarjetas emergiendo de abajo hacia arriba e iconos resurgiendo
- * de arriba hacia abajo (idéntico a la secuencia de CONTENIDO 01-04 de Behance)
+ * 4. Stack Tecnológico: Tarjetas emergiendo una por una de abajo hacia arriba
+ * con sus iconos 3D en color original resurgiendo suavemente
  */
 function iniciarAnimacionStackCascada() {
   const stackSec = document.getElementById('stack');
   if (!stackSec || !window.gsap || !window.ScrollTrigger) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const header = stackSec.querySelector('.lui-section-header');
   const tarjetas = stackSec.querySelectorAll('.stack-index-card');
   const logos3D = stackSec.querySelectorAll('.stack-original-3d-logo');
   if (!tarjetas.length) return;
 
-  gsap.set(tarjetas, { clipPath: 'inset(100% 0% 0% 0%)', opacity: 0.2 });
-  gsap.set(logos3D, { xPercent: -50, y: -70, scale: 0.65, rotationX: 12, rotationY: -14, rotationZ: -6, opacity: 0 });
+  gsap.set(tarjetas, { y: 46, scale: 0.93, opacity: 0 });
+  gsap.set(logos3D, { xPercent: -50, y: -48, scale: 0.72, rotationX: 12, rotationY: -14, rotationZ: -6, opacity: 0 });
+
+  const carouselEl = stackSec.querySelector('.stack-carousel-track') || stackSec;
+
+  if (header) {
+    gsap.fromTo(
+      header,
+      { y: 24, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.55,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: stackSec,
+          start: 'top 84%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    );
+  }
 
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: '#stack',
-      start: 'top 78%',
+      trigger: carouselEl,
+      start: 'top 88%',
       toggleActions: 'play none none reverse'
     }
   });
 
-  tl.to(tarjetas, {
-    clipPath: 'inset(0% 0% 0% 0%)',
-    opacity: 1,
-    duration: 0.72,
-    stagger: 0.16,
-    ease: 'expo.out'
-  }, 0)
-    .to(logos3D, {
+  tl.to(
+    tarjetas,
+    {
+      y: 0,
+      scale: 1,
+      opacity: 1,
+      duration: 0.65,
+      stagger: 0.16,
+      ease: 'back.out(1.22)',
+      onComplete: () => gsap.set(tarjetas, { clearProps: 'transform' })
+    },
+    0
+  ).to(
+    logos3D,
+    {
       xPercent: -50,
       y: 0,
       scale: 1,
@@ -395,10 +427,12 @@ function iniciarAnimacionStackCascada() {
       rotationY: -14,
       rotationZ: -6,
       opacity: 1,
-      duration: 0.75,
+      duration: 0.68,
       stagger: 0.16,
-      ease: 'back.out(1.25)'
-    }, 0.12);
+      ease: 'back.out(1.3)'
+    },
+    0.12
+  );
 }
 
 /**
@@ -574,78 +608,180 @@ function iniciarTerminalStreamingOMS() {
 }
 
 /**
- * 8. Sobre Mí: Foto formal deslizando desde el borde izquierdo + Consola Interactiva GSAP
+ * 8. Sobre Mí: Foto formal deslizando desde el borde izquierdo + Escritura Automática Clara y Puntos Clave
  */
 function iniciarSobreMiConsolaGSAP() {
   const secSobreMi = document.getElementById('sobre-mi');
   const photoCard = document.getElementById('aboutPhotoBox');
   const terminalBox = document.getElementById('aboutDevTerminal');
-  const output = document.getElementById('aboutTerminalOutput');
+  const liveTagEl = document.getElementById('aboutLiveTag');
+  const typedTextEl = document.getElementById('aboutTypedText');
+  const keyPointsListEl = document.getElementById('aboutKeyPointsList');
   const tabs = document.querySelectorAll('.dev-term-tab[data-bio-tab]');
-  if (!secSobreMi || !output) return;
+  if (!secSobreMi || !typedTextEl || !keyPointsListEl) return;
 
-  const VISTAS_CONSOLA_BIO = {
-    resumen: [
-      '<div class="term-line"><span class="t-prompt">$</span> <span class="t-cmd">cat</span> <span class="t-file">perfil_profesional.json</span></div>',
-      '<div class="term-line t-brace">{</div>',
-      '<div class="term-line t-indent"><span class="t-key">"nombre"</span>: <span class="t-str">"Evelyn Barrios"</span>,</div>',
-      '<div class="term-line t-indent"><span class="t-key">"rol"</span>: <span class="t-str">"Técnica en Desarrollo de Software · Campuslands GT"</span>,</div>',
-      '<div class="term-line t-indent"><span class="t-key">"base_analitica"</span>: <span class="t-str">"Perito Contador · Admón. Empresas (USAC) · 3 años gestión comercial"</span>,</div>',
-      '<div class="term-line t-indent"><span class="t-key">"especialidad"</span>: [<span class="t-hl">"Backend &amp; APIs REST"</span>, <span class="t-hl">"PostgreSQL 3NF"</span>, <span class="t-hl">"Inteligencia Artificial"</span>],</div>',
-      '<div class="term-line t-indent"><span class="t-key">"regla_clave"</span>: <span class="t-str">"Antes de escribir una línea de código, escuchar y entender el problema real."</span>,</div>',
-      '<div class="term-line t-indent"><span class="t-key">"actualidad"</span>: <span class="t-str">"Desarrollo modular limpio · Auxiliar en talleres de IA · Piano y canto"</span></div>',
-      '<div class="term-line t-brace">} <span class="term-cursor">▌</span></div>'
-    ].join(''),
-    historia: [
-      '<div class="term-line"><span class="t-prompt">$</span> <span class="t-cmd">git log</span> <span class="t-file">--oneline trayectoria.log</span></div>',
-      '<div class="term-line"><span class="t-badge-ok">[2026]</span> <span class="t-key">Campuslands GT</span> <span class="t-str">→ Técnica en Desarrollo de Software · Arquitectura modular y APIs</span></div>',
-      '<div class="term-line"><span class="t-badge-ok">[2026]</span> <span class="t-key">Softplus OMS</span> <span class="t-str">→ Base normalizada (26 tablas 3NF) · Node.js, Redis, Docker y Bruno/Postman</span></div>',
-      '<div class="term-line"><span class="t-badge-ok">[2026]</span> <span class="t-key">AI Academy</span> <span class="t-str">→ Auxiliar Académica y Admisiones · Acompañamiento técnico en IA</span></div>',
-      '<div class="term-line"><span class="t-badge-ok">[2026]</span> <span class="t-key">App Móvil Alba</span> <span class="t-str">→ Flutter / Dart · Firebase · WCAG AAA · Equipo ágil (12 devs)</span></div>',
-      '<div class="term-line"><span class="t-badge-ok">[BASE]</span> <span class="t-key">USAC &amp; Finanzas</span> <span class="t-str">→ Admón. Empresas (2.º sem. 2024) · Perito Contador ★ Alumna Destacada</span></div>',
-      '<div class="term-line"><span class="t-comment">// 3 años en atención directa al cliente y coordinación comercial (Zona Piel / Herbal Plus) <span class="term-cursor">▌</span></span></div>'
-    ].join(''),
-    pilares: [
-      '<div class="term-line"><span class="t-prompt">$</span> <span class="t-cmd">bash</span> <span class="t-file">pilares_ingenieria.sh</span></div>',
-      '<div class="term-line t-indent"><span class="t-key">01_arquitectura()</span> { <span class="t-str">"Modelado relacional 3NF, APIs REST ordenadas y control transaccional"</span>; }</div>',
-      '<div class="term-line t-indent"><span class="t-key">02_automatizacion()</span> { <span class="t-str">"Flujos con Inteligencia Artificial, Docker y scripts escalables"</span>; }</div>',
-      '<div class="term-line t-indent"><span class="t-key">03_calidad_qa()</span> { <span class="t-str">"Validación de endpoints con Bruno/Postman y flujo limpio en Git"</span>; }</div>',
-      '<div class="term-line t-indent"><span class="t-key">04_criterio_negocio()</span> { <span class="t-str">"Traducir metas comerciales y contables en software real usable"</span>; }</div>',
-      '<div class="term-line"><span class="t-badge-ok">✔ STATUS:</span> <span class="t-hl">Lista para proyectos Backend / Full Stack</span> <span class="term-cursor">▌</span></div>'
-    ].join('')
+  const VISTAS_PERFIL = {
+    resumen: {
+      tag: '// PERFIL PROFESIONAL',
+      text: '¡Hola! Soy Evelyn Barrios, Técnica en Desarrollo de Software graduada de Campuslands GT. Combino mi base contable y administrativa con ingeniería backend para construir soluciones digitales claras, seguras y útiles para el negocio.',
+      points: [
+        {
+          titulo: 'Especialidad Principal:',
+          detalle: 'Desarrollo Backend, APIs REST, bases de datos relacionales (PostgreSQL 3NF) e Inteligencia Artificial.'
+        },
+        {
+          titulo: 'Experiencia Aplicada:',
+          detalle: 'Liderazgo backend en Softplus OMS (26 tablas normalizadas), app móvil Alba (Flutter) y apoyo en AI Academy.'
+        },
+        {
+          titulo: 'Fortaleza Diferencial:',
+          detalle: 'Perito Contador, Administración de Empresas (USAC) y 3 años atendiendo clientes y ventas reales.'
+        },
+        {
+          titulo: 'Más allá del Código:',
+          detalle: 'Disciplina creativa tocando piano y canto, aprendiendo cada semana sobre IA aplicada.'
+        }
+      ]
+    },
+    historia: {
+      tag: '// EXPERIENCIA REAL Y FORMACIÓN',
+      text: 'Mi camino une tres mundos: la exactitud numérica de Perito Contador y Administración de Empresas (USAC), tres años de trato directo con clientes y proyectos reales de software con Node.js, PostgreSQL, Flutter e IA.',
+      points: [
+        {
+          titulo: 'Campuslands GT (2026):',
+          detalle: 'Graduada como Técnica en Desarrollo de Software con enfoque en arquitectura limpia y trabajo ágil.'
+        },
+        {
+          titulo: 'Softplus OMS (2026):',
+          detalle: 'Liderazgo técnico backend, diseño de 26 tablas en PostgreSQL (3NF), Docker, Redis y pruebas en Postman/Bruno.'
+        },
+        {
+          titulo: 'AI Academy & App Alba (2026):',
+          detalle: 'Auxiliar académica en talleres de IA y desarrolladora móvil en equipo de 12 personas (Flutter, Firebase y WCAG AAA).'
+        },
+        {
+          titulo: 'Base Comercial y Financiera:',
+          detalle: '★ Alumna Destacada en Perito Contador y 3 años coordinando ventas y servicio al cliente en Zona Piel / Herbal Plus.'
+        }
+      ]
+    },
+    pilares: {
+      tag: '// METODOLOGÍA Y VALORES',
+      text: 'Tengo una regla clara antes de programar: escuchar primero y entender la necesidad real de la persona o empresa. Desde ahí construyo software limpio, ordenado, bien probado y fácil de hacer crecer en equipo.',
+      points: [
+        {
+          titulo: '1. Escucha Activa:',
+          detalle: 'Comprender las reglas del negocio y las metas operativas antes de diseñar pantallas o servidores.'
+        },
+        {
+          titulo: '2. Datos y Código Ordenados:',
+          detalle: 'Bases de datos bien estructuradas (3NF), funciones modulares y control transparente de errores.'
+        },
+        {
+          titulo: '3. Pruebas y Calidad Real:',
+          detalle: 'Verificación de cada ruta con Bruno y Postman, contenedores Docker y control profesional de versiones en Git.'
+        },
+        {
+          titulo: '4. Mejora Continua con IA:',
+          detalle: 'Integración responsable de herramientas de Inteligencia Artificial para agilizar flujos de trabajo.'
+        }
+      ]
+    }
   };
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const gsap = window.gsap;
   const ScrollTrigger = window.ScrollTrigger;
 
-  const animarEscrituraConsola = () => {
-    const lineas = output.querySelectorAll('.term-line');
-    if (!lineas.length || !gsap || reduceMotion) return;
+  let timerEscritura = null;
+  let vistaActiva = 'resumen';
 
-    gsap.fromTo(
-      lineas,
-      { opacity: 0, x: -16 },
-      {
-        opacity: 1,
-        x: 0,
-        duration: 0.34,
-        stagger: 0.1,
-        ease: 'power2.out',
-        overwrite: 'auto'
+  const renderizarPuntosClave = (puntos) => {
+    keyPointsListEl.innerHTML = '';
+    puntos.forEach((p) => {
+      const li = document.createElement('li');
+      li.className = 'about-kp-item';
+
+      const badge = document.createElement('span');
+      badge.className = 'kp-badge';
+      badge.setAttribute('aria-hidden', 'true');
+      badge.textContent = '✓';
+
+      const wrap = document.createElement('div');
+      const strong = document.createElement('strong');
+      strong.textContent = p.titulo;
+      const span = document.createElement('span');
+      span.textContent = ` ${p.detalle}`;
+
+      wrap.appendChild(strong);
+      wrap.appendChild(span);
+      li.appendChild(badge);
+      li.appendChild(wrap);
+      keyPointsListEl.appendChild(li);
+    });
+  };
+
+  const reproducirPresentacionAutomatica = (clave) => {
+    const datos = VISTAS_PERFIL[clave];
+    if (!datos) return;
+
+    if (timerEscritura) {
+      clearInterval(timerEscritura);
+      timerEscritura = null;
+    }
+
+    if (liveTagEl) liveTagEl.textContent = datos.tag;
+    renderizarPuntosClave(datos.points);
+
+    const itemsPuntos = keyPointsListEl.querySelectorAll('.about-kp-item');
+
+    if (reduceMotion) {
+      typedTextEl.textContent = datos.text;
+      return;
+    }
+
+    typedTextEl.textContent = '';
+    let idxChar = 0;
+    const texto = datos.text;
+
+    timerEscritura = setInterval(() => {
+      idxChar += 2;
+      if (idxChar >= texto.length) {
+        typedTextEl.textContent = texto;
+        clearInterval(timerEscritura);
+        timerEscritura = null;
+      } else {
+        typedTextEl.textContent = texto.slice(0, idxChar);
       }
-    );
+    }, 24);
+
+    if (gsap && itemsPuntos.length) {
+      gsap.fromTo(
+        itemsPuntos,
+        { opacity: 0, x: -16, y: 8 },
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          duration: 0.42,
+          stagger: 0.2,
+          delay: 0.25,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        }
+      );
+    }
   };
 
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
       const clave = tab.dataset.bioTab;
-      if (!clave || !VISTAS_CONSOLA_BIO[clave]) return;
+      if (!clave || !VISTAS_PERFIL[clave]) return;
 
+      vistaActiva = clave;
       tabs.forEach((t) => t.classList.remove('active'));
       tab.classList.add('active');
-      output.innerHTML = VISTAS_CONSOLA_BIO[clave];
-      animarEscrituraConsola();
+      reproducirPresentacionAutomatica(clave);
     });
   });
 
@@ -653,27 +789,43 @@ function iniciarSobreMiConsolaGSAP() {
   gsap.registerPlugin(ScrollTrigger);
 
   const header = secSobreMi.querySelector('.lui-section-header');
+  const gridSobreMi = secSobreMi.querySelector('.about-creative-terminal-grid') || secSobreMi;
   const pilares = secSobreMi.querySelectorAll('.dev-pillar-item');
-  const lineasIniciales = output.querySelectorAll('.term-line');
+
+  if (header) {
+    gsap.fromTo(
+      header,
+      { y: 24, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.55,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: secSobreMi,
+          start: 'top 84%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    );
+  }
 
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: secSobreMi,
-      start: 'top 76%',
-      toggleActions: 'play none none reverse'
+      trigger: gridSobreMi,
+      start: 'top 86%',
+      toggleActions: 'play none none reverse',
+      onEnter: () => reproducirPresentacionAutomatica(vistaActiva),
+      onEnterBack: () => reproducirPresentacionAutomatica(vistaActiva)
     }
   });
-
-  if (header) {
-    tl.fromTo(header, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out' }, 0);
-  }
 
   if (photoCard) {
     tl.fromTo(
       photoCard,
       { x: -220, y: 12, rotation: -3, opacity: 0 },
       { x: 0, y: 0, rotation: 0, opacity: 1, duration: 0.95, ease: 'expo.out' },
-      0.06
+      0
     );
   }
 
@@ -682,16 +834,7 @@ function iniciarSobreMiConsolaGSAP() {
       terminalBox,
       { x: 42, opacity: 0 },
       { x: 0, opacity: 1, duration: 0.72, ease: 'power3.out' },
-      0.14
-    );
-  }
-
-  if (lineasIniciales.length) {
-    tl.fromTo(
-      lineasIniciales,
-      { opacity: 0, x: -16 },
-      { opacity: 1, x: 0, duration: 0.34, stagger: 0.11, ease: 'power2.out' },
-      0.32
+      0.08
     );
   }
 
@@ -700,7 +843,7 @@ function iniciarSobreMiConsolaGSAP() {
       pilares,
       { y: 18, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.45, stagger: 0.1, ease: 'power2.out' },
-      0.58
+      0.48
     );
   }
 }

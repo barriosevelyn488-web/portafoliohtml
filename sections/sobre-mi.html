@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <!-- Columna Derecha: Consola de Desarrolladora con Escritura Progresiva Ordenada -->
+    <!-- Columna Derecha: Presentación Clara con Texto Automático + Puntos Clave -->
     <div class="about-dev-terminal" id="aboutDevTerminal">
       <div class="dev-terminal-topbar">
         <div class="console-dots" aria-hidden="true">
@@ -34,48 +34,67 @@
           <span class="console-dot dot-yellow"></span>
           <span class="console-dot dot-green"></span>
         </div>
-        <span class="dev-terminal-path">evelyn@dev:~/sobre-mi$</span>
-        <div class="dev-terminal-tabs" role="tablist" aria-label="Vistas de perfil en consola">
-          <button type="button" class="dev-term-tab active" data-bio-tab="resumen">perfil.json</button>
-          <button type="button" class="dev-term-tab" data-bio-tab="historia">recorrido.log</button>
-          <button type="button" class="dev-term-tab" data-bio-tab="pilares">pilares.sh</button>
+        <span class="dev-terminal-path">Presentación · Evelyn Barrios</span>
+        <div class="dev-terminal-tabs" role="tablist" aria-label="Vistas de presentación">
+          <button type="button" class="dev-term-tab active" data-bio-tab="resumen">Resumen</button>
+          <button type="button" class="dev-term-tab" data-bio-tab="historia">Mi Recorrido</button>
+          <button type="button" class="dev-term-tab" data-bio-tab="pilares">¿Cómo Trabajo?</button>
         </div>
       </div>
 
-      <!-- Cuerpo de Consola (líneas animadas secuencialmente al hacer scroll) -->
+      <!-- Cuerpo Claro con Escritura Automática + Puntos Clave -->
       <div class="dev-terminal-body" id="aboutTerminalOutput" aria-live="polite">
-        <div class="term-line"><span class="t-prompt">$</span> <span class="t-cmd">cat</span> <span class="t-file">perfil_profesional.json</span></div>
-        <div class="term-line t-brace">{</div>
-        <div class="term-line t-indent"><span class="t-key">"nombre"</span>: <span class="t-str">"Evelyn Barrios"</span>,</div>
-        <div class="term-line t-indent"><span class="t-key">"rol"</span>: <span class="t-str">"Técnica en Desarrollo de Software · Campuslands GT"</span>,</div>
-        <div class="term-line t-indent"><span class="t-key">"base_analitica"</span>: <span class="t-str">"Perito Contador · Admón. Empresas (USAC) · 3 años gestión comercial"</span>,</div>
-        <div class="term-line t-indent"><span class="t-key">"especialidad"</span>: [<span class="t-hl">"Backend & APIs REST"</span>, <span class="t-hl">"PostgreSQL 3NF"</span>, <span class="t-hl">"Inteligencia Artificial"</span>],</div>
-        <div class="term-line t-indent"><span class="t-key">"regla_clave"</span>: <span class="t-str">"Antes de escribir una línea de código, escuchar y entender el problema real."</span>,</div>
-        <div class="term-line t-indent"><span class="t-key">"actualidad"</span>: <span class="t-str">"Desarrollo modular limpio · Auxiliar en talleres de IA · Piano y canto"</span></div>
-        <div class="term-line t-brace">} <span class="term-cursor">▌</span></div>
+        <div class="about-live-type-wrap">
+          <span class="about-live-tag" id="aboutLiveTag">// PERFIL PROFESIONAL</span>
+          <p class="about-live-paragraph">
+            <span id="aboutTypedText">¡Hola! Soy Evelyn Barrios, Técnica en Desarrollo de Software graduada de Campuslands GT. Combino mi base contable y administrativa con ingeniería backend para construir soluciones digitales claras, seguras y útiles para el negocio.</span><span class="term-cursor" aria-hidden="true">▌</span>
+          </p>
+        </div>
+
+        <div class="about-keypoints-wrap">
+          <span class="about-keypoints-label">PUNTOS CLAVE</span>
+          <ul class="about-keypoints-list" id="aboutKeyPointsList">
+            <li class="about-kp-item">
+              <span class="kp-badge" aria-hidden="true">✓</span>
+              <div><strong>Especialidad Principal:</strong> <span>Desarrollo Backend, APIs REST, bases de datos relacionales (PostgreSQL 3NF) e Inteligencia Artificial.</span></div>
+            </li>
+            <li class="about-kp-item">
+              <span class="kp-badge" aria-hidden="true">✓</span>
+              <div><strong>Experiencia Aplicada:</strong> <span>Liderazgo backend en Softplus OMS (26 tablas normalizadas), app móvil Alba (Flutter) y apoyo en AI Academy.</span></div>
+            </li>
+            <li class="about-kp-item">
+              <span class="kp-badge" aria-hidden="true">✓</span>
+              <div><strong>Fortaleza Diferencial:</strong> <span>Perito Contador, Administración de Empresas (USAC) y 3 años atendiendo clientes y ventas reales.</span></div>
+            </li>
+            <li class="about-kp-item">
+              <span class="kp-badge" aria-hidden="true">✓</span>
+              <div><strong>Más allá del Código:</strong> <span>Disciplina creativa tocando piano y canto, aprendiendo cada semana sobre IA aplicada.</span></div>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <!-- 3 Bloques Ordenados al Pie de la Consola -->
+      <!-- 3 Bloques Ordenados al Pie -->
       <div class="dev-terminal-pillars">
         <div class="dev-pillar-item">
           <span class="pillar-code">[01]</span>
           <div>
-            <strong>Backend &amp; BD</strong>
-            <p>Node.js, Express, Strapi, PostgreSQL (3NF), MySQL, Redis y WebSockets.</p>
+            <strong>Backend &amp; Datos</strong>
+            <p>APIs REST en Node.js y Express, bases relacionales (PostgreSQL 3NF, MySQL), Redis y tiempo real.</p>
           </div>
         </div>
         <div class="dev-pillar-item">
           <span class="pillar-code">[02]</span>
           <div>
             <strong>Liderazgo Ágil</strong>
-            <p>Sprints, arquitectura limpia, Git Flow y testing automatizado (Bruno / Postman).</p>
+            <p>Coordinación de entregas en equipo, arquitectura limpia, Git Flow y validación de APIs.</p>
           </div>
         </div>
         <div class="dev-pillar-item">
           <span class="pillar-code">[03]</span>
           <div>
             <strong>Criterio de Negocio</strong>
-            <p>Comunicación efectiva entre requerimientos comerciales y sistemas escalables.</p>
+            <p>Comunicación clara entre metas comerciales reales y soluciones de software escalables.</p>
           </div>
         </div>
       </div>

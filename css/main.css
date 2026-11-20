@@ -23,7 +23,7 @@
 @import url('./components/modales.css?v=10.0');
 @import url('./components/contact.css?v=10.0');
 @import url('./components/animations.css?v=10.0');
-@import url('./components/intro-origami.css?v=12.0');
+@import url('./components/intro-origami.css?v=13.0');
 
 /* 5. Reglas responsivas master (Media queries unificadas) */
 @import url('./responsive.css?v=11.0');
