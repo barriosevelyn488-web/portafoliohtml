@@ -86,8 +86,17 @@ function crearTarjetaProyectoHTML(proyecto) {
 }
 
 export function renderizarProyectos(listaProyectos, contenedorGrid) {
-  if (!contenedorGrid) return;
-  contenedorGrid.innerHTML = listaProyectos.map(crearTarjetaProyectoHTML).join('');
+  if (!contenedorGrid || !listaProyectos.length) return;
+  // Repetir lo suficiente para llenar siempre pantallas anchas y crear bucle infinito sin saltos
+  const minCards = 6;
+  const repeticiones = listaProyectos.length < minCards ? Math.ceil(minCards / listaProyectos.length) : 1;
+  let secuenciaUnica = [];
+  for (let i = 0; i < repeticiones; i += 1) {
+    secuenciaUnica = secuenciaUnica.concat(listaProyectos);
+  }
+  // Duplicado exacto 2x para transición seamless -50% en GPU
+  const tarjetasHTML = secuenciaUnica.map(crearTarjetaProyectoHTML).join('');
+  contenedorGrid.innerHTML = tarjetasHTML + tarjetasHTML;
 }
 
 export function iniciarProyectos(todosLosProyectos, alSeleccionarProyecto) {
@@ -160,21 +169,21 @@ export function iniciarProyectos(todosLosProyectos, alSeleccionarProyecto) {
 }
 
 function iniciarControlesCarrusel(contenedorGrid) {
+  const viewport = contenedorGrid?.closest('.projects-marquee-viewport');
   const btnPrev = document.getElementById('carouselPrevBtn');
   const btnNext = document.getElementById('carouselNextBtn');
-  if (!contenedorGrid) return;
-
-  const pasoScroll = () => Math.min(380, contenedorGrid.clientWidth * 0.85);
-
-  if (btnPrev) {
-    btnPrev.addEventListener('click', () => {
-      contenedorGrid.scrollBy({ left: -pasoScroll(), behavior: 'smooth' });
-    });
-  }
-  if (btnNext) {
-    btnNext.addEventListener('click', () => {
-      contenedorGrid.scrollBy({ left: pasoScroll(), behavior: 'smooth' });
-    });
+  if (viewport) {
+    const paso = () => 340;
+    if (btnPrev) {
+      btnPrev.addEventListener('click', () => {
+        viewport.scrollBy({ left: -paso(), behavior: 'smooth' });
+      });
+    }
+    if (btnNext) {
+      btnNext.addEventListener('click', () => {
+        viewport.scrollBy({ left: paso(), behavior: 'smooth' });
+      });
+    }
   }
 
   // Controles del Carrusel de Stack Tecnológico (01-10)
@@ -204,11 +213,7 @@ function iniciarEnlacesStackAProyectos() {
   const irYFiltrar = (categoria) => {
     const btnFiltro = document.querySelector(`.filter-btn[data-filter="${categoria}"]`);
     if (btnFiltro) btnFiltro.click();
-    if (window.__lenis__ && typeof window.__lenis__.scrollTo === 'function') {
-      window.__lenis__.scrollTo(seccionProyectos, { duration: 1.15 });
-    } else {
-      seccionProyectos.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    seccionProyectos.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   tarjetasStack.forEach((tarjeta) => {

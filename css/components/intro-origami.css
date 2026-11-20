@@ -52,6 +52,16 @@
 }
 
 /* Metadato superior minimalista debajo de la cabecera fija */
+/* Canvas de Destello Fluido al mover el mouse por toda la página */
+.cursor-sparkle-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99990;
+}
+
 .hero-stage-top-meta {
   position: absolute;
   top: 96px;
@@ -69,12 +79,18 @@
   color: var(--text);
 }
 
-.hero-stage-discipline {
+.hero-signature-top {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  color: var(--accent);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(1.3rem, 2.3vw, 1.95rem);
+  letter-spacing: 0.01em;
+  color: var(--text);
   white-space: nowrap;
+  text-shadow: 0 2px 12px rgba(14, 165, 233, 0.22);
 }
 
 .hero-stage-eyebrow-right {
@@ -153,100 +169,66 @@
   will-change: transform, opacity, filter;
 }
 
-/* CAPA 5: 6 ICONOS 3D ESCULPIDOS EN PERSPECTIVA FLOTANDO ALREDEDOR DE ELLA */
-.hero-3d-cube {
+/* CAPA 5: 4 FOTOS CUADRADAS/RECTANGULARES APARECIENDO UNA A UNA Y FLOTANDO */
+.hero-photo-spot {
   position: absolute;
-  width: clamp(92px, 8.6vw, 124px);
-  height: clamp(92px, 8.6vw, 124px);
-  border-radius: 26px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+  border-radius: 10px;
+  overflow: hidden;
   cursor: pointer;
-  transform-style: preserve-3d;
-  perspective: 700px;
-  overflow: visible;
+  background: #04112b;
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 24px 48px rgba(4, 17, 43, 0.32), 0 0 24px rgba(56, 189, 248, 0.16);
   will-change: transform, opacity;
-  transition: filter 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.hero-3d-cube img {
-  position: relative;
-  z-index: 3;
-  width: 56%;
-  height: 56%;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.42));
-  transform: translateZ(18px);
+.hero-photo-spot:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 28px 56px rgba(2, 132, 199, 0.45), 0 0 32px rgba(56, 189, 248, 0.36);
 }
 
-.cube-3d-caption {
-  position: relative;
-  z-index: 3;
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  color: #ffffff;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+.hero-photo-spot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Brillo especular vidrioso 3D */
-.cube-3d-sheen {
+.hero-photo-spot:hover img {
+  transform: scale(1.06);
+}
+
+.hero-photo-spot::after {
+  content: '';
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.05) 45%, rgba(0, 0, 0, 0.18) 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.38);
+  background: linear-gradient(180deg, transparent 45%, rgba(3, 14, 36, 0.85) 100%);
   pointer-events: none;
+}
+
+.hps-tag {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
   z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  background: rgba(14, 165, 233, 0.25);
+  border: 1px solid rgba(125, 211, 252, 0.45);
+  padding: 3px 9px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
 }
 
-/* Posiciones editoriales en profundidad Z alrededor de Evelyn y "Portafolio" */
-.cube-3d-tl { top: 20%; left: 7%;  z-index: 1; } /* detrás de la "P" */
-.cube-3d-tr { top: 18%; right: 7%; z-index: 6; } /* solapando "o" */
-.cube-3d-ml { top: 47%; left: 11%; z-index: 6; }
-.cube-3d-mr { top: 45%; right: 11%; z-index: 4; }
-.cube-3d-bl { bottom: 16%; left: 18%; z-index: 6; }
-.cube-3d-br { bottom: 16%; right: 18%; z-index: 6; }
-
-/* Extrusión 3D y colores auténticos vibrantes por tecnología */
-.cube-node-3d {
-  background: linear-gradient(145deg, #22c55e 0%, #15803d 65%, #064e3b 100%);
-  box-shadow: -10px 12px 0 #052e16, -18px 26px 36px rgba(21, 128, 61, 0.42);
-}
-
-.cube-pg-3d {
-  background: linear-gradient(145deg, #3b82f6 0%, #1d4ed8 65%, #1e3a8a 100%);
-  box-shadow: -10px 12px 0 #172554, -18px 26px 36px rgba(29, 78, 216, 0.48);
-}
-
-.cube-js-3d {
-  background: linear-gradient(145deg, #fde047 0%, #eab308 65%, #a16207 100%);
-  box-shadow: -10px 12px 0 #713f12, -18px 26px 36px rgba(234, 179, 8, 0.4);
-}
-.cube-js-3d .cube-3d-caption { color: #0f172a; text-shadow: none; }
-
-.cube-py-3d {
-  background: linear-gradient(145deg, #1e3a8a 0%, #172554 65%, #0f172a 100%);
-  box-shadow: -10px 12px 0 #020617, -18px 26px 36px rgba(15, 23, 42, 0.55);
-}
-
-.cube-dk-3d {
-  background: linear-gradient(145deg, #38bdf8 0%, #0284c7 65%, #075985 100%);
-  box-shadow: -10px 12px 0 #0c4a6e, -18px 26px 36px rgba(2, 132, 199, 0.45);
-}
-
-.cube-fl-3d {
-  background: linear-gradient(145deg, #06b6d4 0%, #0369a1 65%, #042f2e 100%);
-  box-shadow: -10px 12px 0 #082f49, -18px 26px 36px rgba(6, 182, 212, 0.42);
-}
-
-.hero-3d-cube:hover {
-  filter: brightness(1.12);
-}
+/* Distribución exacta estilo editorial alrededor de "Portafolio" */
+.hps-tl { top: 18%; left: 5%;  width: clamp(180px, 19vw, 270px); height: clamp(128px, 19vh, 185px); z-index: 1; } /* detrás de Po */
+.hps-tr { top: 16%; right: 5%; width: clamp(160px, 16.5vw, 230px); height: clamp(165px, 25vh, 245px); z-index: 6; } /* delante de o */
+.hps-ml { top: 49%; left: 9%;  width: clamp(195px, 19.5vw, 270px); height: clamp(134px, 19.5vh, 185px); z-index: 6; } /* debajo de Por */
+.hps-mr { top: 53%; right: 8%; width: clamp(195px, 19.5vw, 270px); height: clamp(130px, 19vh, 180px); z-index: 4; } /* debajo de lio */
 
 /* Etiquetas editoriales esquinas inferiores (minimalistas) */
 .hero-stage-corner-tags {
@@ -847,35 +829,65 @@
   transform: scale(1.08);
 }
 
-/* Carrusel Horizontal Suave */
-.projects-carousel-shell {
+/* Carrusel Infinito Continuo GPU (sin trabarse, pausa suave al hover) */
+.projects-marquee-viewport {
   position: relative;
   width: 100%;
-}
-
-.projects-carousel-track {
-  display: flex;
-  gap: 22px;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  padding: 6px 4px 20px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--highlight) transparent;
+  overflow-y: hidden;
+  padding: 8px 0 22px;
+  scrollbar-width: none;
+  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
 }
 
-.projects-carousel-track::-webkit-scrollbar {
-  height: 7px;
+.projects-marquee-viewport::-webkit-scrollbar {
+  display: none;
 }
 
-.projects-carousel-track::-webkit-scrollbar-track {
-  background: rgba(56, 189, 248, 0.1);
-  border-radius: 999px;
+.projects-infinite-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  will-change: transform;
+  animation: projectsInfiniteScroll 34s linear infinite;
 }
 
-.projects-carousel-track::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #0ea5e9, #2563eb);
-  border-radius: 999px;
+.projects-marquee-viewport:hover .projects-infinite-track {
+  animation-play-state: paused;
+}
+
+@keyframes projectsInfiniteScroll {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+/* Cintillo Gigante de Movimiento Infinito Debajo del Carrusel (Estilo Video Behance) */
+.projects-giant-marquee {
+  margin-top: 12px;
+  width: 100%;
+  overflow: hidden;
+  padding: 12px 0;
+  background: #ffffff;
+  color: #04112b;
+  border-radius: 14px;
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
+}
+
+.projects-giant-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  width: max-content;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  animation: projectsInfiniteScroll 22s linear infinite;
+}
+
+.pgm-dot {
+  color: #0284c7;
 }
 
 .carousel-project-card {
@@ -1073,12 +1085,17 @@
     font-size: 0.62rem;
   }
 
-  .hero-stage-discipline {
+  .hero-signature-top {
+    font-size: 1.05rem;
+  }
+
+  .hero-stage-eyebrow-left,
+  .hero-stage-eyebrow-right {
     display: none;
   }
 
   .hero-giant-portafolio {
-    top: 32%;
+    top: 30%;
     font-size: clamp(3.1rem, 17vw, 4.8rem);
   }
 
@@ -1092,22 +1109,17 @@
     max-height: 410px;
   }
 
-  .hero-3d-cube {
-    width: 66px;
-    height: 66px;
-    border-radius: 17px;
-  }
+  .hps-tl { top: 17%; left: 4%; width: 120px; height: 86px; }
+  .hps-tr { top: 17%; right: 4%; width: 112px; height: 105px; }
+  .hps-ml { top: 45%; left: 4%; width: 122px; height: 90px; }
+  .hps-mr { top: 47%; right: 4%; width: 122px; height: 90px; }
 
-  .cube-3d-caption {
+  .hps-tag {
+    left: 6px;
+    bottom: 6px;
     font-size: 0.46rem;
+    padding: 2px 6px;
   }
-
-  .cube-3d-tl { top: 20%; left: 5%; }
-  .cube-3d-tr { top: 20%; right: 5%; }
-  .cube-3d-ml { top: 44%; left: 4%; }
-  .cube-3d-mr { top: 44%; right: 4%; }
-  .cube-3d-bl { bottom: 16%; left: 6%; }
-  .cube-3d-br { bottom: 16%; right: 6%; }
 
   .hero-stage-corner-tags {
     display: none;

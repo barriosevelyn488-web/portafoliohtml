@@ -7,14 +7,17 @@
   <meta name="description" content="Portafolio profesional de Evelyn Noemí Barrios Méndez — Técnica en Desarrollo de Software. Backend y desarrollo de APIs REST con Node.js, Express, PostgreSQL, MySQL, principios SOLID, Clean Architecture y Flutter." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,600;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Arquitectura Modular CSS -->
-  <link rel="stylesheet" href="css/main.css?v=8.0" />
+  <link rel="stylesheet" href="css/main.css?v=9.0" />
 </head>
 <body>
   <!-- Barra Láser Superior de Descubrimiento de Scroll -->
   <div class="scroll-laser-progress" id="scrollLaserProgress" aria-hidden="true"></div>
+
+  <!-- Canvas de Destello Fluido al Mover el Mouse por Toda la Página -->
+  <canvas id="cursorSparkleCanvas" class="cursor-sparkle-canvas" aria-hidden="true"></canvas>
 
   <!-- Canvas Sutil de Red de Nodos Tech -->
   <canvas id="ambientNetworkCanvas" class="ambient-network-canvas" aria-hidden="true"></canvas>
@@ -169,25 +172,25 @@
           <!-- Escenario Full-Screen 100vw x 100vh -->
           <div class="hero-editorial-stage" id="heroSplitArena">
 
-            <!-- CAPA 0: Recuadro de fondo que nace pequeño en el centro, se expande a TODA la pantalla (100vw x 100vh) y desaparece -->
+            <!-- CAPA 0: Recuadro celeste que expande a toda la pantalla y desaparece -->
             <div class="hero-stage-expand-bg" aria-hidden="true"></div>
 
-            <!-- Metadato superior minimalista -->
+            <!-- Metadato superior con "Evelyn Barrios" en tipografía elegante arriba al centro -->
             <div class="hero-stage-top-meta">
               <span class="hero-stage-eyebrow-left">GUATEMALA · <strong id="ghRepoCount">66+</strong> REPOSITORIOS</span>
-              <span class="hero-stage-discipline">TÉCNICA EN DESARROLLO DE SOFTWARE</span>
-              <span class="hero-stage-eyebrow-right" id="typewriterRole">BACKEND · BD · IA</span>
+              <span class="hero-signature-top">Evelyn Barrios</span>
+              <span class="hero-stage-eyebrow-right" id="typewriterRole">TÉCNICA EN SOFTWARE</span>
             </div>
 
-            <!-- CAPA 2 (Z-2): Palabra Gigante "Portafolio" que entra, se abre a la mitad y queda DETRÁS de la foto -->
+            <!-- CAPA 2 (Z-2): Palabra Gigante "Portafolio" detrás del retrato -->
             <h1 class="hero-giant-portafolio" aria-label="Portafolio Evelyn Barrios">
               <span class="word-half word-left">Porta</span><span class="word-half word-right">folio</span>
             </h1>
 
-            <!-- CAPA 3 (Z-4): Recuadro celeste de la foto que se agranda a rectángulo y luego se reduce y se oculta DETRÁS de ella -->
+            <!-- CAPA 3 (Z-4): Recuadro detrás de la foto que crece y luego se encoge y oculta DETRÁS de ella -->
             <div class="hero-portrait-frame-shrink" aria-hidden="true"></div>
 
-            <!-- CAPA 4 (Z-5): Retrato de Evelyn SIN recuadro, apoyado en la base delante de "Portafolio" -->
+            <!-- CAPA 4 (Z-5): Retrato a color SIN recuadro alrededor, delante de "Portafolio" -->
             <div class="hero-portrait-freestanding-wrap">
               <img
                 src="img/evelyn-hero-azul-estudio.png"
@@ -197,66 +200,48 @@
               />
             </div>
 
-            <!-- CAPA 5: 6 ICONOS 3D EXTRUIDOS Y COLORIDOS FLOTANDO ALREDEDOR DE ELLA (GSAP 3D Levitación + Parallax) -->
-            <!-- 1. Arriba-Izquierda (Z-1 detrás de "Po") : Node.js 3D Cube -->
-            <div class="hero-3d-cube cube-3d-tl cube-node-3d" data-depth="0.036" data-goto-projects="backend" title="Node.js — Ver proyectos Backend">
-              <div class="cube-3d-sheen"></div>
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" />
-              <span class="cube-3d-caption">NODE.JS</span>
+            <!-- CAPA 5: LAS 4 FOTOS CUADRADAS/RECTANGULARES APARECIENDO UNA A UNA Y QUEDANDO FLOTANDO ALREDEDOR DE ELLA -->
+            <!-- 1. Arriba-Izquierda (detrás de "Po", z-1) : Dominio de la AI -->
+            <div class="hero-photo-spot hps-tl" data-depth="0.025" data-goto-projects="all" title="Dominio de la AI">
+              <img src="img/hero-ia-futuro.jpg" alt="Dominio de la AI" />
+              <span class="hps-tag">DOMINIO DE LA AI</span>
             </div>
 
-            <!-- 2. Arriba-Derecha (Z-6 solapando la "o") : PostgreSQL 3D Cube -->
-            <div class="hero-3d-cube cube-3d-tr cube-pg-3d" data-depth="0.055" data-goto-projects="backend" title="PostgreSQL 3NF — Ver proyectos SQL">
-              <div class="cube-3d-sheen"></div>
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
-              <span class="cube-3d-caption">POSTGRES</span>
+            <!-- 2. Arriba-Derecha (solapando la "o", z-6) : Bases de Datos -->
+            <div class="hero-photo-spot hps-tr" data-depth="0.038" data-goto-projects="backend" title="Bases de Datos">
+              <img src="img/hero-bases-datos.jpg" alt="Bases de Datos" />
+              <span class="hps-tag">BASES DE DATOS</span>
             </div>
 
-            <!-- 3. Centro-Izquierda (Z-6 debajo de "Por") : JavaScript 3D Cube -->
-            <div class="hero-3d-cube cube-3d-ml cube-js-3d" data-depth="0.045" data-goto-projects="frontend" title="JavaScript ES6+ — Ver proyectos">
-              <div class="cube-3d-sheen"></div>
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" />
-              <span class="cube-3d-caption">JS ES6+</span>
+            <!-- 3. Centro-Izquierda (debajo de "Por", z-6) : Enfoque Backend -->
+            <div class="hero-photo-spot hps-ml" data-depth="0.032" data-goto-projects="backend" title="Enfoque Backend">
+              <img src="img/hero-enfoque-backend.jpg" alt="Enfoque Backend" />
+              <span class="hps-tag">ENFOQUE BACKEND</span>
             </div>
 
-            <!-- 4. Centro-Derecha (Z-4 debajo de "lio") : Python 3D Cube -->
-            <div class="hero-3d-cube cube-3d-mr cube-py-3d" data-depth="0.042" data-goto-projects="all" title="Python & IA — Ver proyectos">
-              <div class="cube-3d-sheen"></div>
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" />
-              <span class="cube-3d-caption">PYTHON</span>
+            <!-- 4. Centro-Derecha (debajo de "lio", z-4) : API REST -->
+            <div class="hero-photo-spot hps-mr" data-depth="0.035" data-goto-projects="backend" title="API REST">
+              <img src="img/hero-api-rest.jpg" alt="API REST" />
+              <span class="hps-tag">API REST</span>
             </div>
 
-            <!-- 5. Abajo-Izquierda (Z-6) : Docker 3D Cube -->
-            <div class="hero-3d-cube cube-3d-bl cube-dk-3d" data-depth="0.052" data-goto-projects="backend" title="Docker Cloud — Ver proyectos">
-              <div class="cube-3d-sheen"></div>
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" />
-              <span class="cube-3d-caption">DOCKER</span>
-            </div>
-
-            <!-- 6. Abajo-Derecha (Z-6) : Flutter 3D Cube -->
-            <div class="hero-3d-cube cube-3d-br cube-fl-3d" data-depth="0.058" data-goto-projects="mobile" title="Flutter & Dart — Ver proyectos Mobile">
-              <div class="cube-3d-sheen"></div>
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="Flutter" />
-              <span class="cube-3d-caption">FLUTTER</span>
-            </div>
-
-            <!-- Etiquetas editoriales minimalistas de las esquinas inferiores -->
+            <!-- Etiquetas editoriales minimalistas de las esquinas -->
             <div class="hero-stage-corner-tags">
               <div class="corner-tag-left">
-                <strong>ARQUITECTURA BACKEND</strong>
-                <span>APIS REST · POSTGRESQL 3NF · SOLID</span>
+                <strong>ENFOQUE BACKEND</strong>
+                <span>API REST · BASES DE DATOS</span>
               </div>
               <div class="corner-tag-right">
-                <strong>INTELIGENCIA ARTIFICIAL</strong>
-                <span>PYTHON · DOCKER · FLUTTER MOBILE</span>
+                <strong>DOMINIO DE LA AI</strong>
+                <span>SOLUCIONES ESCALABLES · IA</span>
               </div>
             </div>
 
-            <!-- Firma, botón central limpio y año en la base exacta -->
+            <!-- Base exacta del escenario -->
             <div class="hero-stage-baseline">
               <strong>EVELYN BARRIOS</strong>
               <button type="button" class="hero-baseline-cta" data-tab-target="sobre-mi">
-                Desliza para descubrir ↓
+                Explorar Portafolio ↓
               </button>
               <strong>2026 //</strong>
             </div>
@@ -324,12 +309,11 @@
   <!-- Conector de Modales y Notificaciones -->
   <div id="sec-modales"></div>
 
-  <!-- Librerías Profesionales de Animación y Motion Design (GSAP + ScrollTrigger + Lenis) -->
+  <!-- Librerías Profesionales de Animación y Motion Design (GSAP + ScrollTrigger) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
 
   <!-- Arquitectura Modular JavaScript (ES6 Modules) -->
-  <script type="module" src="js/main.js?v=8.0"></script>
+  <script type="module" src="js/main.js?v=9.0"></script>
 </body>
 </html>

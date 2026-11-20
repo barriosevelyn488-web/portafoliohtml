@@ -1,13 +1,15 @@
 /* ==========================================================================
-   MÓDULO: MOTION DESIGN ENGINE (GSAP 3 + SCROLLTRIGGER + LENIS SMOOTH SCROLL)
-   v8.0 — Full-Viewport Editorial Choreography & 3D Floating Icons
+   MÓDULO: MOTION DESIGN ENGINE (GSAP 3 + SCROLLTRIGGER + CURSOR SPARKLE v9.0)
+   - Ritmo pausado y cinematográfico en Sección 1 (4 fotos saliendo una por una)
+   - Scroll natural 100% fluido (sin trabas, visible en cualquier parte)
+   - Destello luminoso fluido siguiendo al mouse por toda la página
    ========================================================================== */
 
 export function iniciarExperienciaInmersiva() {
-  iniciarLenisSmoothScroll();
+  iniciarDestelloCursor();
   iniciarCoreografiaHeroGSAP();
+  iniciarParallaxFotosHero();
   iniciarScrollTriggerSeccionesGSAP();
-  iniciarParallax3DCubesHero();
   iniciarToggleFotoSobreMi();
   iniciarLaserScrollProgress();
   iniciarCanvasNodos();
@@ -15,44 +17,118 @@ export function iniciarExperienciaInmersiva() {
 }
 
 /**
- * 0. Lenis Smooth Scroll sincronizado con GSAP & ScrollTrigger
+ * 0. Destello Luminoso y Estela Fluida al Mover el Mouse (#cursorSparkleCanvas)
  */
-function iniciarLenisSmoothScroll() {
-  if (typeof window.Lenis !== 'function' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    return;
-  }
+function iniciarDestelloCursor() {
+  const canvas = document.getElementById('cursorSparkleCanvas');
+  if (!canvas || window.matchMedia('(pointer: coarse)').matches) return;
 
-  const lenis = new window.Lenis({
-    duration: 1.15,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
-    wheelMultiplier: 0.95
-  });
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
 
-  window.__lenis__ = lenis;
+  let w = (canvas.width = window.innerWidth);
+  let h = (canvas.height = window.innerHeight);
 
-  if (window.gsap && window.ScrollTrigger) {
-    window.gsap.registerPlugin(window.ScrollTrigger);
-    lenis.on('scroll', window.ScrollTrigger.update);
-    window.gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    window.gsap.ticker.lagSmoothing(0);
-  } else {
-    const rafLoop = (time) => {
-      lenis.raf(time);
-      requestAnimationFrame(rafLoop);
-    };
-    requestAnimationFrame(rafLoop);
-  }
+  window.addEventListener('resize', () => {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }, { passive: true });
+
+  const particulas = [];
+  let cursor = { x: -200, y: -200, lastX: -200, lastY: -200 };
+  const paleta = ['#38bdf8', '#7dd3fc', '#0ea5e9', '#bae6fd', '#ffffff'];
+
+  window.addEventListener('mousemove', (e) => {
+    cursor.x = e.clientX;
+    cursor.y = e.clientY;
+
+    const dx = cursor.x - cursor.lastX;
+    const dy = cursor.y - cursor.lastY;
+    const dist = Math.hypot(dx, dy);
+
+    if (dist > 4) {
+      const cantidad = dist > 26 ? 3 : 2;
+      for (let i = 0; i < cantidad; i += 1) {
+        particulas.push({
+          x: cursor.x + (Math.random() - 0.5) * 10,
+          y: cursor.y + (Math.random() - 0.5) * 10,
+          vx: (Math.random() - 0.5) * 1.1 + dx * 0.04,
+          vy: (Math.random() - 0.5) * 1.1 + dy * 0.04 + 0.15,
+          size: Math.random() * 3.4 + 1.8,
+          alpha: 0.9,
+          decay: Math.random() * 0.022 + 0.02,
+          color: paleta[Math.floor(Math.random() * paleta.length)],
+          isStar: Math.random() > 0.65
+        });
+      }
+      cursor.lastX = cursor.x;
+      cursor.lastY = cursor.y;
+    }
+  }, { passive: true });
+
+  const render = () => {
+    ctx.clearRect(0, 0, w, h);
+
+    // Halo sutil de seguimiento directo bajo el cursor
+    if (cursor.x > 0 && cursor.y > 0) {
+      const glow = ctx.createRadialGradient(cursor.x, cursor.y, 0, cursor.x, cursor.y, 38);
+      glow.addColorStop(0, 'rgba(56, 189, 248, 0.22)');
+      glow.addColorStop(1, 'rgba(56, 189, 248, 0)');
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(cursor.x, cursor.y, 38, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    for (let i = particulas.length - 1; i >= 0; i -= 1) {
+      const p = particulas[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.alpha -= p.decay;
+      p.size *= 0.965;
+
+      if (p.alpha <= 0.02 || p.size <= 0.4) {
+        particulas.splice(i, 1);
+        continue;
+      }
+
+      ctx.save();
+      ctx.globalAlpha = p.alpha;
+      ctx.fillStyle = p.color;
+      ctx.shadowColor = '#38bdf8';
+      ctx.shadowBlur = 10;
+
+      if (p.isStar) {
+        // Destello en cruz de 4 puntas
+        ctx.translate(p.x, p.y);
+        ctx.beginPath();
+        const r = p.size * 1.6;
+        ctx.moveTo(0, -r);
+        ctx.quadraticCurveTo(0, 0, r, 0);
+        ctx.quadraticCurveTo(0, 0, 0, r);
+        ctx.quadraticCurveTo(0, 0, -r, 0);
+        ctx.quadraticCurveTo(0, 0, 0, -r);
+        ctx.fill();
+      } else {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    requestAnimationFrame(render);
+  };
+
+  requestAnimationFrame(render);
 }
 
 /**
- * 1. Coreografía Exacta de la Sección 1 con GSAP Timeline (0.00s -> 1.75s)
- * Beat 1: Entra "Portafolio" horizontal con motion-blur
- * Beat 2: Se abre por en medio; recuadro pequeño crece a rectángulo y expande su fondo a TODA la pantalla (100vw x 100vh)
- * Beat 3: El fondo expandido desaparece; el recuadro de la foto se encoge y se oculta DETRÁS de Evelyn; "Portafolio" queda detrás de ella
- * Beat 4: 6 Iconos 3D coloridos flotan alrededor con profundidad Z y levitación continua
+ * 1. Coreografía Pausada y Elegante de Sección 1 (~3.4 segundos totales)
+ * 1) Entra "Portafolio" suave
+ * 2) Se abre a la mitad; cuadrito expande la foto y el fondo llena toda la pantalla
+ * 3) Fondo desaparece; recuadro de la foto se encoge y oculta DETRÁS; "Portafolio" detrás de Evelyn
+ * 4) Aparecen las 4 FOTOS UNA POR UNA con tiempo (IA, BD, Backend, API REST) y quedan flotando
  */
 function iniciarCoreografiaHeroGSAP() {
   const stage = document.getElementById('heroSplitArena');
@@ -63,7 +139,7 @@ function iniciarCoreografiaHeroGSAP() {
   const wordLeft = stage.querySelector('.word-left');
   const wordRight = stage.querySelector('.word-right');
   const portrait = stage.querySelector('.hero-portrait-freestanding');
-  const cubes = stage.querySelectorAll('.hero-3d-cube');
+  const photos = stage.querySelectorAll('.hero-photo-spot');
   const metaTop = stage.querySelector('.hero-stage-top-meta');
   const cornerTags = stage.querySelector('.hero-stage-corner-tags');
   const baseline = stage.querySelector('.hero-stage-baseline');
@@ -73,113 +149,90 @@ function iniciarCoreografiaHeroGSAP() {
   const gsap = window.gsap;
 
   const ejecutarTimeline = () => {
-    gsap.killTweensOf([expandBg, frameShrink, wordLeft, wordRight, portrait, cubes, metaTop, cornerTags, baseline]);
+    gsap.killTweensOf([expandBg, frameShrink, wordLeft, wordRight, portrait, photos, metaTop, cornerTags, baseline]);
 
-    // Estado inicial limpio
-    gsap.set(wordLeft, { x: -120, opacity: 0, filter: 'blur(14px)', scaleX: 1.15 });
-    gsap.set(wordRight, { x: 120, opacity: 0, filter: 'blur(14px)', scaleX: 1.15 });
+    gsap.set(wordLeft, { x: -130, opacity: 0, filter: 'blur(16px)', scaleX: 1.15 });
+    gsap.set(wordRight, { x: 130, opacity: 0, filter: 'blur(16px)', scaleX: 1.15 });
     gsap.set(expandBg, { xPercent: -50, yPercent: -50, scale: 0, opacity: 0, borderRadius: '28px' });
     gsap.set(frameShrink, { xPercent: -50, yPercent: -50, scale: 0, opacity: 0, borderRadius: '26px' });
-    gsap.set(portrait, { scale: 0.22, y: -35, opacity: 0, filter: 'blur(8px) drop-shadow(0 22px 44px rgba(4, 17, 43, 0.28))' });
-    gsap.set(cubes, { scale: 0.25, opacity: 0, rotationX: 28, rotationY: -35, y: 24 });
-    gsap.set([metaTop, cornerTags, baseline], { opacity: 0, y: 12 });
+    gsap.set(portrait, { scale: 0.22, y: -32, opacity: 0, filter: 'blur(8px) drop-shadow(0 22px 44px rgba(4, 17, 43, 0.28))' });
+    gsap.set(photos, { scale: 0.08, opacity: 0, y: 24 });
+    gsap.set([metaTop, cornerTags, baseline], { opacity: 0, y: 14 });
 
     const tl = gsap.timeline();
 
-    // Beat 1 (0.00s - 0.42s): Entra la palabra "Portafolio" rápida y nítida
+    // Beat 1 (0.00s - 0.72s): Entra "Portafolio" elegante
     tl.to([wordLeft, wordRight], {
       x: 0,
       scaleX: 1,
       opacity: 1,
       filter: 'blur(0px)',
-      duration: 0.44,
+      duration: 0.72,
       ease: 'expo.out'
     }, 0)
 
-      // Beat 2A (0.36s): Se abre "Portafolio" a la mitad & nace el recuadro con el retrato
-      .to(wordLeft, { x: -85, duration: 0.42, ease: 'power3.inOut' }, 0.36)
-      .to(wordRight, { x: 85, duration: 0.42, ease: 'power3.inOut' }, 0.36)
-
-      .to(frameShrink, {
-        scale: 1,
-        opacity: 1,
-        duration: 0.45,
-        ease: 'expo.out'
-      }, 0.38)
-
+      // Beat 2A (0.65s - 1.35s): "Portafolio" se abre en el medio y nace el cuadrito con Evelyn
+      .to(wordLeft, { x: -95, duration: 0.68, ease: 'power3.inOut' }, 0.62)
+      .to(wordRight, { x: 95, duration: 0.68, ease: 'power3.inOut' }, 0.62)
+      .to(frameShrink, { scale: 1, opacity: 1, duration: 0.65, ease: 'expo.out' }, 0.68)
       .to(portrait, {
-        scale: 0.86,
+        scale: 0.88,
         y: -14,
         opacity: 1,
         filter: 'blur(0px) drop-shadow(0 22px 44px rgba(4, 17, 43, 0.28))',
-        duration: 0.48,
+        duration: 0.72,
         ease: 'expo.out'
-      }, 0.42)
+      }, 0.72)
 
-      // Beat 2B (0.50s - 1.05s): El fondo se expande a TODA la pantalla (scale 28 covers 100vw x 100vh) y desaparece
+      // Beat 2B (0.82s - 1.55s): El fondo luminoso se expande a toda la pantalla y se disuelve limpio
       .to(expandBg, {
-        scale: 28,
+        scale: 30,
         opacity: 0.85,
         borderRadius: '0px',
-        duration: 0.62,
+        duration: 0.78,
         ease: 'expo.inOut'
-      }, 0.46)
+      }, 0.78)
       .to(expandBg, {
         opacity: 0,
-        duration: 0.35,
-        ease: 'power2.out'
-      }, 0.95)
-
-      // Beat 3 (0.85s - 1.28s): Recuadro de la foto se encoge y oculta detrás; foto toma protagonismo; "Portafolio" cierra detrás de ella
-      .to(frameShrink, {
-        scale: 0,
-        opacity: 0,
-        duration: 0.38,
-        ease: 'power3.in'
-      }, 0.85)
-      .to(portrait, {
-        scale: 1,
-        y: 0,
         duration: 0.45,
-        ease: 'expo.out'
-      }, 0.88)
-      .to([wordLeft, wordRight], {
-        x: 0,
-        duration: 0.46,
-        ease: 'expo.out'
-      }, 0.88)
+        ease: 'power2.out'
+      }, 1.38)
 
-      // Beat 4 (1.08s - 1.65s): Aparecen los 6 Iconos 3D flotando + etiquetas limpias
-      .to(cubes, {
+      // Beat 3 (1.42s - 2.15s): El recuadro celeste detrás de Evelyn se encoge y oculta; "Portafolio" cierra detrás de ella
+      .to(frameShrink, { scale: 0, opacity: 0, duration: 0.58, ease: 'power3.in' }, 1.42)
+      .to(portrait, { scale: 1, y: 0, duration: 0.68, ease: 'expo.out' }, 1.48)
+      .to([wordLeft, wordRight], { x: 0, duration: 0.72, ease: 'expo.out' }, 1.48)
+
+      // Aparecen encabezados "Evelyn Barrios" y pie de portada
+      .to([metaTop, cornerTags, baseline], {
+        opacity: 1,
+        y: 0,
+        duration: 0.65,
+        stagger: 0.1,
+        ease: 'power2.out'
+      }, 1.75)
+
+      // Beat 4 (2.08s - 3.30s): LAS 4 FOTOS APARECEN UNA POR UNA CON TIEMPO Y QUEDAN FLOTANDO
+      .to(photos, {
         scale: 1,
         opacity: 1,
-        rotationX: 14,
-        rotationY: -16,
         y: 0,
-        duration: 0.55,
-        stagger: 0.06,
-        ease: 'back.out(1.65)',
+        duration: 0.58,
+        stagger: 0.28,
+        ease: 'back.out(1.38)',
         onComplete: () => {
-          // Levitación continua suave en 3D para cada cubo
-          cubes.forEach((cube, idx) => {
-            gsap.to(cube, {
-              y: idx % 2 === 0 ? -12 : 10,
-              rotationZ: idx % 2 === 0 ? 3 : -3,
-              duration: 2.2 + (idx % 3) * 0.45,
+          photos.forEach((foto, idx) => {
+            gsap.to(foto, {
+              y: idx % 2 === 0 ? -9 : 9,
+              rotation: idx % 2 === 0 ? 1.1 : -1.1,
+              duration: 2.8 + (idx % 2) * 0.6,
               repeat: -1,
               yoyo: true,
               ease: 'sine.inOut'
             });
           });
         }
-      }, 1.08)
-      .to([metaTop, cornerTags, baseline], {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.08,
-        ease: 'power2.out'
-      }, 1.15);
+      }, 2.05);
 
     return tl;
   };
@@ -188,24 +241,48 @@ function iniciarCoreografiaHeroGSAP() {
 
   if (btnRebobinar) {
     btnRebobinar.addEventListener('click', () => {
-      if (window.__lenis__) {
-        window.__lenis__.scrollTo(0, { duration: 0.8, onComplete: () => ejecutarTimeline() });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setTimeout(() => ejecutarTimeline(), 350);
-      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => ejecutarTimeline(), 380);
     });
   }
 }
 
 /**
- * 2. ScrollTrigger Transiciones Fluidas Entre Secciones Full-Screen
- * Al salir arriba, cada sección se encoge y repliega hacia una esquina alterna;
- * la siguiente emerge suavemente desde el ángulo opuesto.
+ * 2. Parallax Magnético Suave en las 4 Fotos Flotantes
+ */
+function iniciarParallaxFotosHero() {
+  const stage = document.getElementById('heroSplitArena');
+  if (!stage || window.matchMedia('(pointer: coarse)').matches || !window.gsap) return;
+
+  const gsap = window.gsap;
+  const photos = stage.querySelectorAll('.hero-photo-spot[data-depth]');
+  if (!photos.length) return;
+
+  const setters = Array.from(photos).map((foto) => ({
+    depth: parseFloat(foto.getAttribute('data-depth') || '0.03'),
+    setX: gsap.quickTo(foto, 'x', { duration: 0.6, ease: 'power3' })
+  }));
+
+  stage.addEventListener('mousemove', (e) => {
+    const rect = stage.getBoundingClientRect();
+    const xNorm = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    setters.forEach(({ depth, setX }) => {
+      setX(xNorm * depth * 420);
+    });
+  }, { passive: true });
+
+  stage.addEventListener('mouseleave', () => {
+    setters.forEach(({ setX }) => setX(0));
+  });
+}
+
+/**
+ * 3. ScrollTrigger Transiciones Fluidas No-Bloqueantes (Visible en cualquier lugar del scroll)
  */
 function iniciarScrollTriggerSeccionesGSAP() {
+  const secciones = Array.from(document.querySelectorAll('.lui-section'));
   if (!window.gsap || !window.ScrollTrigger || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.lui-section').forEach((s) => s.classList.add('is-revealed'));
+    secciones.forEach((s) => s.classList.add('is-revealed'));
     return;
   }
 
@@ -213,138 +290,40 @@ function iniciarScrollTriggerSeccionesGSAP() {
   const ScrollTrigger = window.ScrollTrigger;
   gsap.registerPlugin(ScrollTrigger);
 
-  const secciones = Array.from(document.querySelectorAll('.lui-section'));
-
   secciones.forEach((sec, idx) => {
     const inner = sec.querySelectorAll(':scope > *:not(.lui-bg-title)');
     if (!inner.length) return;
 
-    const dirX = idx % 2 === 0 ? -95 : 95;
-    const esUltima = idx === secciones.length - 1;
-    const esTrayectoria = sec.id === 'trayectoria';
-
-    // Marcar .is-revealed en cuanto entra la sección
     ScrollTrigger.create({
       trigger: sec,
-      start: 'top 85%',
+      start: 'top 88%',
       onEnter: () => sec.classList.add('is-revealed'),
       onEnterBack: () => sec.classList.add('is-revealed')
     });
 
-    if (idx === 0) {
-      // Sección 1 (Hero 100vh): permanece nítida al inicio y al hacer scroll se repliega hacia la esquina superior izquierda
-      gsap.fromTo(
-        inner,
-        { x: 0, y: 0, scale: 1, rotation: 0, opacity: 1 },
-        {
-          x: -95,
-          y: -45,
-          scale: 0.84,
-          rotation: -1.6,
-          opacity: 0.08,
-          ease: 'none',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: sec,
-            start: 'bottom 78%',
-            end: 'bottom top',
-            scrub: 0.75
-          }
-        }
-      );
-      return;
-    }
+    if (idx === 0) return; // Hero maneja su propia timeline de apertura
 
-    // Secciones intermedias y final: una sola línea de tiempo continua (Cero colisión de propiedades)
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sec,
-        start: 'top bottom',
-        end: esUltima ? 'top 25%' : 'bottom top',
-        scrub: 0.8
-      }
-    });
+    const esTrayectoria = sec.id === 'trayectoria';
 
-    // Fase de entrada (0% -> 30%)
-    tl.fromTo(
+    // Entrada fluida al entrar en vista — SIEMPRE visible al 100% una vez revelada (no bloquea ni desaparece al leer)
+    gsap.fromTo(
       inner,
       {
-        x: 0,
-        y: esTrayectoria ? -48 : 65,
-        scale: 0.92,
-        rotation: 0,
-        opacity: 0.1
+        y: esTrayectoria ? -36 : 44,
+        opacity: 0
       },
       {
-        x: 0,
         y: 0,
-        scale: 1,
-        rotation: 0,
         opacity: 1,
-        duration: esUltima ? 1 : 0.3,
-        ease: 'none'
+        duration: 0.85,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sec,
+          start: 'top 82%',
+          toggleActions: 'play none none reverse'
+        }
       }
     );
-
-    if (!esUltima) {
-      // Meseta de lectura limpia (30% -> 68%)
-      tl.to(inner, { duration: 0.38 });
-
-      // Fase de salida hacia esquina alterna (68% -> 100%)
-      tl.to(inner, {
-        x: dirX,
-        y: -40,
-        scale: 0.85,
-        rotation: idx % 2 === 0 ? -1.4 : 1.4,
-        opacity: 0.08,
-        duration: 0.32,
-        ease: 'none'
-      });
-    }
-  });
-}
-
-/**
- * 3. Parallax Magnético 3D sobre los 6 Iconos Flotantes al mover el cursor
- */
-function iniciarParallax3DCubesHero() {
-  const stage = document.getElementById('heroSplitArena');
-  if (!stage || window.matchMedia('(pointer: coarse)').matches || !window.gsap) return;
-
-  const gsap = window.gsap;
-  const cubes = stage.querySelectorAll('.hero-3d-cube[data-depth]');
-  if (!cubes.length) return;
-
-  const setters = Array.from(cubes).map((cube) => ({
-    cube,
-    depth: parseFloat(cube.getAttribute('data-depth') || '0.04'),
-    setX: gsap.quickTo(cube, 'x', { duration: 0.5, ease: 'power3' }),
-    setRY: gsap.quickTo(cube, 'rotationY', { duration: 0.5, ease: 'power3' }),
-    setRX: gsap.quickTo(cube, 'rotationX', { duration: 0.5, ease: 'power3' })
-  }));
-
-  stage.addEventListener(
-    'mousemove',
-    (e) => {
-      const rect = stage.getBoundingClientRect();
-      const xNorm = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-      const yNorm = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-
-      setters.forEach(({ depth, setX, setRY, setRX }) => {
-        setX(xNorm * depth * 450);
-        setRY(-16 + xNorm * 14);
-        setRX(14 - yNorm * 12);
-      });
-    },
-    { passive: true }
-  );
-
-  stage.addEventListener('mouseleave', () => {
-    setters.forEach(({ setX, setRY, setRX }) => {
-      setX(0);
-      setRY(-16);
-      setRX(14);
-    });
   });
 }
 
@@ -403,17 +382,17 @@ function iniciarCanvasNodos() {
 
   const esTemaOscuro = () => document.documentElement.getAttribute('data-theme') === 'dark';
 
-  const totalNodos = ancho < 768 ? 14 : 26;
+  const totalNodos = ancho < 768 ? 14 : 24;
   const nodos = [];
 
   for (let i = 0; i < totalNodos; i += 1) {
     nodos.push({
       x: Math.random() * ancho,
       y: Math.random() * alto,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
+      vx: (Math.random() - 0.5) * 0.38,
+      vy: (Math.random() - 0.5) * 0.38,
       radio: Math.random() * 1.8 + 1,
-      baseAlpha: Math.random() * 0.25 + 0.15
+      baseAlpha: Math.random() * 0.24 + 0.14
     });
   }
 
@@ -462,15 +441,8 @@ function iniciarCanvasNodos() {
 
       if (distRaton < raton.radioInteraccion) {
         const factor = (raton.radioInteraccion - distRaton) / raton.radioInteraccion;
-        nodo.x -= (dxRaton / distRaton) * factor * 1.2;
-        nodo.y -= (dyRaton / distRaton) * factor * 1.2;
-
-        ctx.beginPath();
-        ctx.moveTo(nodo.x, nodo.y);
-        ctx.lineTo(raton.x, raton.y);
-        ctx.strokeStyle = `rgba(${colorR}, ${colorG}, ${colorB}, ${factor * 0.3})`;
-        ctx.lineWidth = 0.85;
-        ctx.stroke();
+        nodo.x -= (dxRaton / distRaton) * factor * 1.1;
+        nodo.y -= (dyRaton / distRaton) * factor * 1.1;
       }
 
       for (let j = i + 1; j < nodos.length; j += 1) {
@@ -479,13 +451,13 @@ function iniciarCanvasNodos() {
         const dy = otro.y - nodo.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 105) {
-          const alphaLinea = (1 - dist / 105) * 0.18;
+        if (dist < 100) {
+          const alphaLinea = (1 - dist / 100) * 0.16;
           ctx.beginPath();
           ctx.moveTo(nodo.x, nodo.y);
           ctx.lineTo(otro.x, otro.y);
           ctx.strokeStyle = `rgba(${colorR}, ${colorG}, ${colorB}, ${alphaLinea})`;
-          ctx.lineWidth = 0.65;
+          ctx.lineWidth = 0.6;
           ctx.stroke();
         }
       }

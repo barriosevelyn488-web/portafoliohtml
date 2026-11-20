@@ -75,11 +75,7 @@ export function iniciarPestanas() {
           }, 380);
         }
         marcarBotonActivo(idDestino);
-        if (window.__lenis__ && typeof window.__lenis__.scrollTo === 'function') {
-          window.__lenis__.scrollTo(seccion, { duration: 1.15 });
-        } else {
-          seccion.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        seccion.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
       if (typeof window.__cerrarMenuMovilDrawer__ === 'function') {
