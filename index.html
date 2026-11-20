@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Arquitectura Modular CSS -->
-  <link rel="stylesheet" href="css/main.css?v=4.3" />
+  <link rel="stylesheet" href="css/main.css?v=5.0" />
 
 
 
@@ -19,74 +19,178 @@
   <!-- Barra Láser de Descubrimiento de Scroll -->
   <div class="scroll-laser-progress" id="scrollLaserProgress" aria-hidden="true"></div>
 
-  <!-- INTRO INMERSIVA: Despliegue 3D de Expediente de Software -->
-  <aside id="introTechOverlay" class="intro-tech-overlay" aria-label="Intro interactiva de bienvenida">
-    <!-- Barra superior de estado -->
-    <div class="intro-top-bar">
-      <div class="intro-status-pill">
-        <span class="intro-status-dot"></span>
-        <span>ENTORNO COMPILADO // V2.4</span>
+  <!-- ==========================================================================
+       PORTADA CINÉTICA EDITORIAL (INSPIRADA EN BEHANCE 2026 — ADAPTADA A PROGRAMACIÓN)
+       Tipografía Gigante con Motion-Blur + Retrato Editorial B&W en Z-Depth + 4 Tarjetas 3D de Lenguajes
+       ========================================================================== -->
+  <aside id="introTechOverlay" class="al-cover-overlay" aria-label="Portada editorial interactiva Evelyn Barrios 2026">
+    <!-- Barra superior minimalista de la portada -->
+    <div class="al-cover-topbar">
+      <span class="al-meta-tag al-meta-top-left">// PORTAFOLIO DE INGENIERÍA</span>
+      <span class="al-meta-tag al-meta-top-center">DESARROLLO DE SOFTWARE &amp; ARQUITECTURA</span>
+      <div class="al-cover-actions">
+        <button type="button" id="btnToggleCoverPhoto" class="al-photo-switch-btn" title="Alternar retrato editorial (Estudio / Sombrero)">
+          <span>Retrato: Estudio B&amp;W</span>
+        </button>
+        <button type="button" id="btnSaltarIntro" class="al-skip-btn" title="Entrar directo al portafolio">
+          Entrar ↗
+        </button>
       </div>
-      <button type="button" id="btnSaltarIntro" class="intro-skip-btn" title="Saltar intro y entrar directo">
-        Saltar intro ✕
-      </button>
     </div>
 
-    <!-- Escenario 3D y Plano Origami -->
-    <div class="intro-origami-stage">
-      <div class="origami-dossier" id="origamiDossier">
-        <!-- Rayo láser de escaneo -->
-        <div class="origami-laser-scanner" aria-hidden="true"></div>
+    <!-- Escenario Central con Capas de Profundidad (Z-Depth Parallax) -->
+    <div class="al-cover-stage" id="alCoverStage">
 
-        <!-- Pliegue Superior (Flap Top) -->
-        <div class="origami-flap origami-flap-top" aria-hidden="true">
-          <span>// ARQUITECTURA DE SOFTWARE &amp; APIS REST</span>
-        </div>
-
-        <!-- Contenido Central del Expediente -->
-        <div class="origami-body-center">
-          <div class="origami-blueprint-header">
-            <span class="origami-blueprint-icon">⚙️</span>
-            <span>EXPEDIENTE TÉCNICO DE DESARROLLO</span>
+      <!-- CAPA 1 (Z-1): Tarjeta Superior Izquierda (detrás de la "P" de Portafolio) — Node.js & Express -->
+      <div class="al-float-card al-card-tl" data-depth="0.035" data-goto-section="proyectos" title="Ver proyectos Backend con Node.js y Express">
+        <div class="al-card-inner al-theme-node">
+          <div class="al-card-glow"></div>
+          <div class="al-3d-badge-group">
+            <div class="al-3d-tile al-tile-node">
+              <span class="al-tile-bevel"></span>
+              <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor"><path d="M12 2l9 5.2v10.4L12 22.8 3 17.6V7.2L12 2zm0 2.3L4.8 8.5v7l7.2 4.2 7.2-4.2v-7L12 4.3z"/></svg>
+              <strong>NODE</strong>
+            </div>
+            <div class="al-3d-tile al-tile-js">
+              <span class="al-tile-bevel"></span>
+              <strong>JS</strong>
+              <small>ES6+</small>
+            </div>
           </div>
-
-          <h1 class="origami-title">Evelyn Barrios</h1>
-          <p class="origami-subtitle">
-            Técnica en Desarrollo de Software · Backend, Bases de Datos Relacionales e Inteligencia Artificial
-          </p>
-
-          <div class="origami-tech-tags">
-            <span class="origami-tech-tag">Node.js &amp; Express</span>
-            <span class="origami-tech-tag">PostgreSQL 3NF</span>
-            <span class="origami-tech-tag">Flutter &amp; Dart</span>
-            <span class="origami-tech-tag">Docker</span>
-            <span class="origami-tech-tag">Clean Code</span>
+          <div class="al-card-caption">
+            <span class="al-card-kicker">// MOTOR BACKEND</span>
+            <strong>Node.js &amp; Express API</strong>
           </div>
-
-          <div class="origami-compile-bar">
-            <div class="origami-compile-fill"></div>
-          </div>
-
-          <!-- Botón de Enganche Principal: Desplegar Portafolio -->
-          <button type="button" id="btnDesplegarPortafolio" class="btn-origami-deploy">
-            <span class="btn-origami-glow" aria-hidden="true"></span>
-            <span class="btn-origami-icon" aria-hidden="true">⚡</span>
-            <span class="btn-origami-text">
-              <strong>CLICK AQUÍ PARA DESPLEGAR</strong>
-              <small>Desdoblar expediente de software</small>
-            </span>
-            <svg class="btn-origami-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Pliegue Inferior (Flap Bottom) -->
-        <div class="origami-flap origami-flap-bottom" aria-hidden="true">
-          <span>// POSTGRESQL · EXPRESS · DOCKER · SOLID</span>
         </div>
       </div>
+
+      <!-- CAPA 2 (Z-2): Palabra Gigante Cinética "Portafolio" con Horizontal Motion-Blur -->
+      <div class="al-giant-wordmark" id="alGiantWordmark" data-depth="0.015" aria-hidden="true">
+        <span class="al-char" style="--char-i: 0;">P</span><span class="al-char" style="--char-i: 1;">o</span><span class="al-char" style="--char-i: 2;">r</span><span class="al-char" style="--char-i: 3;">t</span><span class="al-char" style="--char-i: 4;">a</span><span class="al-char" style="--char-i: 5;">f</span><span class="al-char" style="--char-i: 6;">o</span><span class="al-char" style="--char-i: 7;">l</span><span class="al-char" style="--char-i: 8;">i</span><span class="al-char" style="--char-i: 9;">o</span>
+      </div>
+
+      <!-- CAPA 3 (Z-4): Tarjeta Media Derecha — Flutter, Dart, Docker & Linux -->
+      <div class="al-float-card al-card-mr" data-depth="0.045" data-goto-section="stack" title="Ver stack Cloud, Docker, Linux y Flutter">
+        <div class="al-card-inner al-theme-devops">
+          <div class="al-card-glow"></div>
+          <div class="al-3d-badge-group">
+            <div class="al-3d-tile al-tile-docker">
+              <span class="al-tile-bevel"></span>
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M22.5 11.5c-.3-.2-1.7-.3-2.6.4-.3.2-.5.5-.7.9-.9-.5-2.2-.4-2.8-.2-.5-1.5-1.9-2.6-3.6-2.6h-.3V8.5h3V6h-3V3.5h-2.5V6H8V3.5H5.5V6H3V8.5h7v1.5H3c-.6 0-1 .4-1 1 0 4.1 3.2 7.5 7.3 7.8 1.4.1 2.8-.2 4-.8 2.2-1.1 3.7-3.2 4.1-5.7.9-.1 2.3-.4 2.8-1.5.2-.4.4-.8.4-1.3-.1.6-.6 1.7-1.1 2z"/></svg>
+              <strong>DK</strong>
+            </div>
+            <div class="al-3d-tile al-tile-flutter">
+              <span class="al-tile-bevel"></span>
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M14.3 2.5L3.5 13.3l3.3 3.3L20.9 2.5h-6.6zm0 10.4l-4.9 4.9 4.9 4.9h6.6l-8.2-8.2 1.6-1.6z"/></svg>
+              <strong>FL</strong>
+            </div>
+            <div class="al-3d-tile al-tile-linux">
+              <span class="al-tile-bevel"></span>
+              <strong>LX</strong>
+              <small>CLI</small>
+            </div>
+          </div>
+          <div class="al-card-caption">
+            <span class="al-card-kicker">// CLOUD &amp; MOBILE</span>
+            <strong>Docker · Flutter · Linux</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAPA 4 (Z-5): Retrato Editorial B&W de Estudio de Evelyn Barrios (DELANTE de "Portafolio") -->
+      <div class="al-portrait-layer" id="alPortraitLayer" data-depth="0.028">
+        <div class="al-portrait-halo" aria-hidden="true"></div>
+        <img
+          src="img/evelyn-editorial-yo-bw.png"
+          alt="Evelyn Barrios — Retrato Editorial de Estudio"
+          class="al-portrait-img"
+          id="alCoverPortraitImg"
+        />
+      </div>
+
+      <!-- CAPA 5 (Z-6): Tarjeta Superior Derecha (solapando la "o" final) — PostgreSQL & MySQL 3NF -->
+      <div class="al-float-card al-card-tr" data-depth="0.06" data-goto-section="proyectos" title="Ver arquitectura de Bases de Datos 3NF (PostgreSQL & MySQL)">
+        <div class="al-card-inner al-theme-sql">
+          <div class="al-card-glow"></div>
+          <div class="al-sql-3d-render">
+            <div class="al-3d-tile al-tile-sql">
+              <span class="al-tile-bevel"></span>
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="6" rx="8" ry="3"></ellipse><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"></path><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"></path></svg>
+              <strong>SQL</strong>
+            </div>
+            <span class="al-3d-pill-tag">26 TABLAS · 3NF</span>
+          </div>
+          <div class="al-card-caption">
+            <span class="al-card-kicker">// BASES DE DATOS</span>
+            <strong>PostgreSQL &amp; MySQL</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAPA 6 (Z-6): Tarjeta Media Izquierda (estilo estudio negro mate) — TypeScript, Python & Git -->
+      <div class="al-float-card al-card-ml" data-depth="0.052" data-goto-section="stack" title="Ver lenguajes TypeScript, Python y arquitectura limpia">
+        <div class="al-card-inner al-theme-darkstudio">
+          <div class="al-card-glow"></div>
+          <div class="al-3d-badge-group">
+            <div class="al-3d-tile al-tile-ts">
+              <span class="al-tile-bevel"></span>
+              <strong>TS</strong>
+              <small>TYPE</small>
+            </div>
+            <div class="al-3d-tile al-tile-py">
+              <span class="al-tile-bevel"></span>
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M11.9 2c-3.4 0-5.4 1.5-5.4 4.4v2.2h5.4v.7H4.3C2 9.3 1 11.2 1 14.1c0 3 1.5 4.9 4.4 4.9h1.6v-2.3c0-1.8 1.6-3.3 3.5-3.3h5.3c1.6 0 2.9-1.3 2.9-2.9V6.4c0-2.7-2.1-4.4-6.8-4.4zm2.6 18.2c3.4 0 5.4-1.5 5.4-4.4v-2.2h-5.4v-.7h7.6c2.3 0 3.3-1.9 3.3-4.8 0-3-1.5-4.9-4.4-4.9h-1.6v2.3c0 1.8-1.6 3.3-3.5 3.3H10c-1.6 0-2.9 1.3-2.9 2.9v4.1c0 2.7 2.1 4.4 6.8 4.4z"/></svg>
+              <strong>PY</strong>
+            </div>
+            <div class="al-3d-tile al-tile-git">
+              <span class="al-tile-bevel"></span>
+              <strong>GIT</strong>
+              <small>FLOW</small>
+            </div>
+          </div>
+          <div class="al-card-caption">
+            <span class="al-card-kicker">// LENGUAJES &amp; IA</span>
+            <strong>TypeScript · Python · Git</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Etiquetas Editoriales Flotantes (exactamente como las etiquetas tipográficas de Ángel López) -->
+      <div class="al-editorial-label al-label-left">
+        <strong>BACKEND &amp; APIS REST</strong>
+        <span>ARQUITECTURA LIMPIA / SOLID</span>
+      </div>
+
+      <div class="al-editorial-label al-label-right">
+        <strong>BASES DE DATOS SQL 3NF</strong>
+        <span>INTELIGENCIA ARTIFICIAL / MOBILE</span>
+      </div>
+
+    </div>
+
+    <!-- Pie de Portada con Nombre, Año "2026 //" y Botón Cinético de Entrada -->
+    <div class="al-cover-bottombar">
+      <div class="al-bottom-author">
+        <strong>EVELYN BARRIOS</strong>
+        <span class="al-author-role">// TÉCNICA EN DESARROLLO DE SOFTWARE</span>
+      </div>
+
+      <button type="button" id="btnDesplegarPortafolio" class="al-enter-cta-btn">
+        <span class="al-cta-dot"></span>
+        <span>DESLIZAR O CLICK PARA EXPLORAR</span>
+        <span class="al-cta-arrow">↓</span>
+      </button>
+
+      <div class="al-bottom-year">
+        <strong>2026 //</strong>
+      </div>
+    </div>
+
+    <!-- Banda Negra Editorial Inferior (Asomo de Dossier igual al Módulo 1 de Behance) -->
+    <div class="al-cover-black-peek" aria-hidden="true">
+      <span>//EXPERIENCIA &amp; PROYECTOS</span>
+      <span>NODE.JS · POSTGRESQL · TYPESCRIPT · FLUTTER · DOCKER</span>
+      <span>GUATEMALA // 66+ REPOSITORIOS</span>
     </div>
   </aside>
 
@@ -230,7 +334,7 @@
   </header>
 
   <div class="myour-layout">
-    <!-- Panel visual izquierdo con fotografía y efectos dinámicos -->
+    <!-- Panel visual izquierdo con fotografía editorial y cubos 3D de lenguajes detrás -->
     <aside class="myour-left-panel" id="leftShowcasePanel" aria-label="Fotografía de Evelyn Barrios">
       <div class="left-bg-decor" aria-hidden="true">
         <div class="bg-glow-orb"></div>
@@ -239,14 +343,44 @@
         <div class="bg-diagonal-stripes"></div>
         <div class="bg-dots-matrix bg-dots-top"></div>
         <div class="bg-dots-matrix bg-dots-bottom"></div>
+
+        <!-- Palabra Gigante Vertical/Horizontal Estilo Editorial Detrás del Retrato -->
+        <div class="left-editorial-backdrop-word">CODE</div>
+
+        <!-- Iconos 3D Flotantes de Lenguajes de Programación Detrás de la Foto -->
+        <div class="left-floating-lang-badges">
+          <div class="left-lang-chip chip-node" title="Node.js & Express">
+            <strong>NODE</strong><span>API</span>
+          </div>
+          <div class="left-lang-chip chip-sql" title="PostgreSQL & MySQL 3NF">
+            <strong>SQL</strong><span>3NF</span>
+          </div>
+          <div class="left-lang-chip chip-ts" title="TypeScript & JavaScript">
+            <strong>TS</strong><span>ES6+</span>
+          </div>
+          <div class="left-lang-chip chip-py" title="Python & AI">
+            <strong>PY</strong><span>AI</span>
+          </div>
+          <div class="left-lang-chip chip-fl" title="Flutter & Dart">
+            <strong>FL</strong><span>DART</span>
+          </div>
+          <div class="left-lang-chip chip-dk" title="Docker & Linux">
+            <strong>DK</strong><span>LINUX</span>
+          </div>
+        </div>
       </div>
+
+      <!-- Selector rápido de estilo fotográfico en el panel izquierdo -->
+      <button type="button" id="btnSwitchLeftPortrait" class="left-portrait-style-btn" title="Alternar entre Retrato Editorial B&W y Color">
+        <span>✦ Estudio B&amp;W / Color</span>
+      </button>
 
       <div class="left-cutout-stage">
         <div class="cutout-halo-ring" aria-hidden="true"></div>
         <img
-          src="img/evelyn-azul-sin-fondo.png"
+          src="img/evelyn-editorial-yo-bw.png"
           alt="Evelyn Noemí Barrios Méndez — Técnica en Desarrollo de Software"
-          class="evelyn-cutout-img"
+          class="evelyn-cutout-img is-editorial-bw"
           id="mainPortraitImg"
         />
       </div>
@@ -264,7 +398,7 @@
               <span>GUATEMALA · DISPONIBLE · <strong id="ghRepoCount">61+</strong> REPOSITORIOS EN GITHUB</span>
             </div>
 
-            <h1 class="lui-hero-title">
+            <h1 class="lui-hero-title al-kinetic-heading">
               Evelyn <span class="celeste-word">Barrios</span>
             </h1>
 
@@ -326,6 +460,129 @@
             </div>
           </div>
 
+          <!-- CINTILLO MARQUEE CINÉTICO (ESTILO BEHANCE MOTION GRAPHICS) -->
+          <div class="al-kinetic-marquee" aria-hidden="true">
+            <div class="al-marquee-track">
+              <span>// ARQUITECTURA BACKEND</span>
+              <span class="al-m-star">✦</span>
+              <span>NODE.JS &amp; EXPRESS</span>
+              <span class="al-m-star">✦</span>
+              <span>POSTGRESQL 3NF (26 TABLAS)</span>
+              <span class="al-m-star">✦</span>
+              <span>TYPESCRIPT &amp; JAVASCRIPT ES6+</span>
+              <span class="al-m-star">✦</span>
+              <span>DART &amp; FLUTTER</span>
+              <span class="al-m-star">✦</span>
+              <span>PYTHON &amp; DOCKER</span>
+              <span class="al-m-star">✦</span>
+              <span>CLEAN ARCHITECTURE &amp; SOLID</span>
+              <span class="al-m-star">✦</span>
+              <span>// ARQUITECTURA BACKEND</span>
+              <span class="al-m-star">✦</span>
+              <span>NODE.JS &amp; EXPRESS</span>
+              <span class="al-m-star">✦</span>
+              <span>POSTGRESQL 3NF (26 TABLAS)</span>
+              <span class="al-m-star">✦</span>
+              <span>TYPESCRIPT &amp; JAVASCRIPT ES6+</span>
+              <span class="al-m-star">✦</span>
+            </div>
+          </div>
+
+          <!-- BLOQUE ÍNDICE EDITORIAL 3D: "CONTENIDO // 2024 - 2026 //" (4 TARJETAS VERTICALES CON ICONOS 3D GIGANTES) -->
+          <div class="al-contenido-showcase">
+            <div class="al-contenido-header">
+              <strong>CONTENIDO</strong>
+              <span>2024 - 2026 //</span>
+            </div>
+
+            <div class="al-contenido-grid">
+              <!-- 01: Backend & APIs -->
+              <article class="al-index-card al-idx-01" data-tab-target="proyectos" role="button" tabindex="0" aria-label="01 Backend y APIs REST">
+                <div class="al-idx-band">
+                  <span class="al-idx-num">01</span>
+                </div>
+                <div class="al-idx-body">
+                  <div class="al-idx-title-row">
+                    <h3>BACKEND &amp;<br/>APIS REST</h3>
+                    <span class="al-idx-asterisk">*</span>
+                  </div>
+                  <div class="al-idx-3d-monolith monolith-node" aria-hidden="true">
+                    <div class="monolith-face">
+                      <span>JS</span>
+                      <small>NODE.JS</small>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- 02: Bases de Datos 3NF -->
+              <article class="al-index-card al-idx-02" data-tab-target="proyectos" role="button" tabindex="0" aria-label="02 Bases de Datos SQL 3NF">
+                <div class="al-idx-band">
+                  <span class="al-idx-num">02</span>
+                </div>
+                <div class="al-idx-body">
+                  <div class="al-idx-title-row">
+                    <h3>BASES DE<br/>DATOS 3NF</h3>
+                    <span class="al-idx-asterisk">*</span>
+                  </div>
+                  <div class="al-idx-3d-monolith monolith-sql" aria-hidden="true">
+                    <div class="monolith-face">
+                      <span>SQL</span>
+                      <small>POSTGRES</small>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- 03: Lenguajes & Stack -->
+              <article class="al-index-card al-idx-03" data-tab-target="stack" role="button" tabindex="0" aria-label="03 Lenguajes y Arquitectura">
+                <div class="al-idx-band">
+                  <span class="al-idx-num">03</span>
+                </div>
+                <div class="al-idx-body">
+                  <div class="al-idx-title-row">
+                    <h3>LENGUAJES<br/>&amp; STACK</h3>
+                    <span class="al-idx-asterisk">*</span>
+                  </div>
+                  <div class="al-idx-3d-monolith monolith-ts" aria-hidden="true">
+                    <div class="monolith-face">
+                      <span>TS</span>
+                      <small>PYTHON</small>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- 04: Mobile, Cloud & CV -->
+              <article class="al-index-card al-idx-04" data-tab-target="trayectoria" role="button" tabindex="0" aria-label="04 Mobile, Docker y Trayectoria">
+                <div class="al-idx-band">
+                  <span class="al-idx-num">04</span>
+                </div>
+                <div class="al-idx-body">
+                  <div class="al-idx-title-row">
+                    <h3>MOBILE &amp;<br/>DEVOPS</h3>
+                    <span class="al-idx-asterisk">*</span>
+                  </div>
+                  <div class="al-idx-3d-monolith monolith-fl" aria-hidden="true">
+                    <div class="monolith-face">
+                      <span>FL</span>
+                      <small>DOCKER</small>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="al-contenido-footer-tags">
+              <strong>//PROYECTOS</strong>
+              <span>PRODUCCIÓN</span>
+              <span>ARQUITECTURA 3NF</span>
+              <span>APIS REST</span>
+              <span>FULL STACK</span>
+              <span>ACADÉMICOS</span>
+            </div>
+          </div>
+
           <div class="lui-bg-title" aria-hidden="true">DEVELOPER</div>
         </section>
 
@@ -365,7 +622,7 @@
         <polyline points="22,6 12,13 2,6"></polyline>
       </svg>
     </a>
-    <button type="button" id="btnRebobinarIntro" class="rail-icon-btn" title="Repetir animación de despliegue 3D">
+    <button type="button" id="btnRebobinarIntro" class="rail-icon-btn" title="Ver Portada Cinética 2026">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M1 4v6h6"></path>
         <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
@@ -383,6 +640,6 @@
   <div id="sec-modales"></div>
 
   <!-- Arquitectura Modular JavaScript (ES6 Modules) -->
-  <script type="module" src="js/main.js?v=4.3"></script>
+  <script type="module" src="js/main.js?v=5.0"></script>
 </body>
 </html>

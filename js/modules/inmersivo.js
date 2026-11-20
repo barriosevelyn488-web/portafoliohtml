@@ -1,10 +1,11 @@
 /* ==========================================================================
-   MÓDULO: EXPERIENCIA INMERSIVA Y ANIMACIONES TECH (inmersivo.js)
-   Ecosistema interactivo para perfil de desarrollo de software
+   MÓDULO: EXPERIENCIA CINÉTICA & MOTION GRAPHICS (inmersivo.js)
+   Inspirado en Portafolio Editorial Behance 2026 — Orientado a Programación
    ========================================================================== */
 
 export function iniciarExperienciaInmersiva() {
-  iniciarIntroOrigami();
+  iniciarPortadaCineticaBehance();
+  iniciarSelectorRetratoPanelIzquierdo();
   iniciarLaserScrollProgress();
   iniciarCanvasNodos();
   iniciarTilt3DFisico();
@@ -12,75 +13,178 @@ export function iniciarExperienciaInmersiva() {
 }
 
 /**
- * 0. Intro Inmersiva: Despliegue 3D de Expediente de Software (Origami Tech)
+ * 0. Portada Cinética Editorial (Motion-Blur Wordmark + Retrato Estudio B&W + 4 Tarjetas 3D de Lenguajes)
  */
-function iniciarIntroOrigami() {
+function iniciarPortadaCineticaBehance() {
   const overlay = document.getElementById('introTechOverlay');
-  const dossier = document.getElementById('origamiDossier');
+  const stage = document.getElementById('alCoverStage');
   const btnDesplegar = document.getElementById('btnDesplegarPortafolio');
   const btnSaltar = document.getElementById('btnSaltarIntro');
   const btnRebobinar = document.getElementById('btnRebobinarIntro');
+  const btnTogglePhoto = document.getElementById('btnToggleCoverPhoto');
+  const coverPortrait = document.getElementById('alCoverPortraitImg');
 
-  if (!overlay || !dossier || !btnDesplegar) return;
+  if (!overlay) return;
 
-  // Activar bloqueo de scroll mientras la intro está activa
   document.body.classList.add('intro-active');
+  let cerrando = false;
 
-  let desplegando = false;
+  const cerrarPortada = (seccionDestino = null) => {
+    if (cerrando || overlay.classList.contains('intro-hidden')) return;
+    cerrando = true;
 
-  const cerrarIntro = (esAnimado = true) => {
-    if (desplegando) return;
-    desplegando = true;
+    overlay.classList.add('is-unfolding');
+    document.body.classList.remove('intro-active');
 
-    if (esAnimado) {
-      dossier.classList.add('is-unfolding');
+    if (seccionDestino) {
+      const botonTab = document.querySelector(`.nav-pill-btn[data-tab-target="${seccionDestino}"]`);
+      if (botonTab) botonTab.click();
+    }
 
-      setTimeout(() => {
-        overlay.classList.add('intro-hidden');
-        document.body.classList.remove('intro-active');
-        document.body.classList.add('intro-reveal-complete');
-      }, 750);
-
-      setTimeout(() => {
-        overlay.style.display = 'none';
-        desplegando = false;
-      }, 1300);
-    } else {
+    setTimeout(() => {
       overlay.classList.add('intro-hidden');
-      document.body.classList.remove('intro-active');
-      document.body.classList.add('intro-reveal-complete');
       overlay.style.display = 'none';
-      desplegando = false;
-    }
+      cerrando = false;
+    }, 850);
   };
 
-  const reabrirIntro = () => {
+  const reabrirPortada = () => {
     overlay.style.display = 'flex';
-    // Forzar reflujo
+    // Reiniciar animaciones de caracteres y tarjetas
+    const chars = overlay.querySelectorAll('.al-char, .al-float-card, .al-portrait-img');
+    chars.forEach((el) => {
+      el.style.animation = 'none';
+      void el.offsetHeight;
+      el.style.animation = '';
+    });
+
     void overlay.offsetHeight;
-    overlay.classList.remove('intro-hidden');
-    dossier.classList.remove('is-unfolding');
+    overlay.classList.remove('intro-hidden', 'is-unfolding');
     document.body.classList.add('intro-active');
-    document.body.classList.remove('intro-reveal-complete');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    desplegando = false;
+    cerrando = false;
   };
 
-  btnDesplegar.addEventListener('click', () => cerrarIntro(true));
-
+  if (btnDesplegar) {
+    btnDesplegar.addEventListener('click', () => cerrarPortada());
+  }
   if (btnSaltar) {
-    btnSaltar.addEventListener('click', () => cerrarIntro(false));
+    btnSaltar.addEventListener('click', () => cerrarPortada());
   }
-
   if (btnRebobinar) {
-    btnRebobinar.addEventListener('click', reabrirIntro);
+    btnRebobinar.addEventListener('click', reabrirPortada);
   }
 
-  // Tecla Escape para saltar rápidamente
+  // Clic en cualquiera de las 4 tarjetas 3D de lenguajes abre el portafolio en esa sección
+  const tarjetasLenguajes = overlay.querySelectorAll('.al-float-card[data-goto-section]');
+  tarjetasLenguajes.forEach((card) => {
+    card.addEventListener('click', () => {
+      const target = card.getAttribute('data-goto-section');
+      cerrarPortada(target);
+    });
+  });
+
+  // Alternador de Retrato Editorial en la Portada
+  const modosRetrato = [
+    { src: 'img/evelyn-editorial-yo-bw.png', label: 'Retrato: Estudio B&W' },
+    { src: 'img/evelyn-editorial-hat-bw.png', label: 'Retrato: Sombrero B&W' },
+    { src: 'img/yo.png', label: 'Retrato: Estudio Color' }
+  ];
+  let indiceRetrato = 0;
+
+  if (btnTogglePhoto && coverPortrait) {
+    btnTogglePhoto.addEventListener('click', (e) => {
+      e.stopPropagation();
+      indiceRetrato = (indiceRetrato + 1) % modosRetrato.length;
+      coverPortrait.src = modosRetrato[indiceRetrato].src;
+      btnTogglePhoto.querySelector('span').textContent = modosRetrato[indiceRetrato].label;
+    });
+  }
+
+  // Entrar haciendo scroll con la rueda del mouse (igual que una portada web interactiva)
+  overlay.addEventListener(
+    'wheel',
+    (e) => {
+      if (e.deltaY > 18 && !cerrando) {
+        cerrarPortada();
+      }
+    },
+    { passive: true }
+  );
+
+  // Soporte swipe hacia arriba en pantallas táctiles
+  let touchStartY = null;
+  overlay.addEventListener(
+    'touchstart',
+    (e) => {
+      if (e.touches.length === 1) touchStartY = e.touches[0].clientY;
+    },
+    { passive: true }
+  );
+  overlay.addEventListener(
+    'touchend',
+    (e) => {
+      if (touchStartY !== null && e.changedTouches.length === 1) {
+        const dy = touchStartY - e.changedTouches[0].clientY;
+        if (dy > 45) cerrarPortada();
+      }
+      touchStartY = null;
+    },
+    { passive: true }
+  );
+
+  // Teclado: Escape / Enter / Space para entrar
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !overlay.classList.contains('intro-hidden')) {
-      cerrarIntro(false);
+    if (!overlay.classList.contains('intro-hidden')) {
+      if (e.key === 'Escape' || e.key === 'Enter') {
+        cerrarPortada();
+      }
     }
+  });
+
+  // Parallax Multicapa 3D en tiempo real sobre las 4 tarjetas, la tipografía gigante y el retrato
+  if (stage && !window.matchMedia('(pointer: coarse)').matches) {
+    const capas = stage.querySelectorAll('[data-depth]');
+    overlay.addEventListener(
+      'mousemove',
+      (e) => {
+        if (cerrando) return;
+        const xNorm = (e.clientX / window.innerWidth - 0.5) * 2;
+        const yNorm = (e.clientY / window.innerHeight - 0.5) * 2;
+
+        capas.forEach((capa) => {
+          const depth = parseFloat(capa.getAttribute('data-depth') || '0.02');
+          const moveX = (xNorm * depth * 520).toFixed(2);
+          const moveY = (yNorm * depth * 380).toFixed(2);
+          capa.style.translate = `${moveX}px ${moveY}px`;
+        });
+      },
+      { passive: true }
+    );
+  }
+}
+
+/**
+ * 0.5 Selector de Estilo de Retrato en el Panel Izquierdo Fijo
+ */
+function iniciarSelectorRetratoPanelIzquierdo() {
+  const btnSwitch = document.getElementById('btnSwitchLeftPortrait');
+  const mainImg = document.getElementById('mainPortraitImg');
+  if (!btnSwitch || !mainImg) return;
+
+  const variantes = [
+    { src: 'img/evelyn-editorial-yo-bw.png', bw: true, text: '✦ Estudio B&W' },
+    { src: 'img/evelyn-azul-sin-fondo.png', bw: false, text: '✦ Original Color' },
+    { src: 'img/evelyn-editorial-hat-bw.png', bw: true, text: '✦ Sombrero B&W' },
+    { src: 'img/yo.png', bw: false, text: '✦ Estudio Color' }
+  ];
+  let idx = 0;
+
+  btnSwitch.addEventListener('click', () => {
+    idx = (idx + 1) % variantes.length;
+    mainImg.src = variantes[idx].src;
+    mainImg.classList.toggle('is-editorial-bw', variantes[idx].bw);
+    btnSwitch.querySelector('span').textContent = variantes[idx].text;
   });
 }
 
@@ -117,7 +221,6 @@ function iniciarCanvasNodos() {
 
   const esTemaOscuro = () => document.documentElement.getAttribute('data-theme') === 'dark';
 
-  // Cantidad adaptativa según tamaño de pantalla
   const totalNodos = ancho < 768 ? 22 : 45;
   const nodos = [];
 
@@ -162,18 +265,15 @@ function iniciarCanvasNodos() {
     const colorG = oscuro ? 189 : 99;
     const colorB = oscuro ? 248 : 235;
 
-    // Actualizar y dibujar nodos
     for (let i = 0; i < nodos.length; i += 1) {
       const nodo = nodos[i];
 
       nodo.x += nodo.vx;
       nodo.y += nodo.vy;
 
-      // Rebote suave en bordes de pantalla
       if (nodo.x < 0 || nodo.x > ancho) nodo.vx *= -1;
       if (nodo.y < 0 || nodo.y > alto) nodo.vy *= -1;
 
-      // Interacción con ratón (repulsión suave)
       const dxRaton = raton.x - nodo.x;
       const dyRaton = raton.y - nodo.y;
       const distRaton = Math.sqrt(dxRaton * dxRaton + dyRaton * dyRaton);
@@ -183,7 +283,6 @@ function iniciarCanvasNodos() {
         nodo.x -= (dxRaton / distRaton) * factor * 1.8;
         nodo.y -= (dyRaton / distRaton) * factor * 1.8;
 
-        // Línea hacia el cursor
         ctx.beginPath();
         ctx.moveTo(nodo.x, nodo.y);
         ctx.lineTo(raton.x, raton.y);
@@ -192,7 +291,6 @@ function iniciarCanvasNodos() {
         ctx.stroke();
       }
 
-      // Conexión entre nodos cercanos (Red neuronal / Red de servidores)
       for (let j = i + 1; j < nodos.length; j += 1) {
         const otro = nodos[j];
         const dx = otro.x - nodo.x;
@@ -210,7 +308,6 @@ function iniciarCanvasNodos() {
         }
       }
 
-      // Dibujar punto del nodo
       ctx.beginPath();
       ctx.arc(nodo.x, nodo.y, nodo.radio, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${colorR}, ${colorG}, ${colorB}, ${nodo.baseAlpha})`;
@@ -220,7 +317,6 @@ function iniciarCanvasNodos() {
     frameId = requestAnimationFrame(animarNodos);
   };
 
-  // Pausar si la pestaña se oculta para ahorrar recursos
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
       if (frameId) cancelAnimationFrame(frameId);
@@ -239,7 +335,7 @@ function iniciarTilt3DFisico() {
   if (window.matchMedia('(pointer: coarse)').matches) return;
 
   const selectorTarjetas =
-    '.interactive-hover-card, .project-card, .hero-card-showcase, .oms-showcase-card, .circle-skill-card';
+    '.interactive-hover-card, .project-card, .hero-card-showcase, .oms-showcase-card, .circle-skill-card, .al-index-card';
 
   document.addEventListener('mousemove', (evento) => {
     const tarjeta = evento.target.closest(selectorTarjetas);
