@@ -454,11 +454,12 @@ function iniciarLaserScrollProgress() {
 }
 
 /**
- * 6. Canvas Interactivo Sutil de Red de Nodos Tech (60 FPS)
+ * 6. Canvas Interactivo Sutil de Red de Nodos + Símbolos de Programación y Música Cayendo (60 FPS)
  */
 function iniciarCanvasNodos() {
   const canvas = document.getElementById('ambientNetworkCanvas');
   if (!canvas) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
@@ -468,17 +469,42 @@ function iniciarCanvasNodos() {
 
   const esTemaOscuro = () => document.documentElement.getAttribute('data-theme') === 'dark';
 
-  const totalNodos = ancho < 768 ? 14 : 24;
+  const totalNodos = ancho < 768 ? 12 : 20;
   const nodos = [];
 
   for (let i = 0; i < totalNodos; i += 1) {
     nodos.push({
       x: Math.random() * ancho,
       y: Math.random() * alto,
-      vx: (Math.random() - 0.5) * 0.38,
-      vy: (Math.random() - 0.5) * 0.38,
-      radio: Math.random() * 1.8 + 1,
-      baseAlpha: Math.random() * 0.24 + 0.14
+      vx: (Math.random() - 0.5) * 0.34,
+      vy: (Math.random() - 0.5) * 0.34,
+      radio: Math.random() * 1.6 + 0.9,
+      baseAlpha: Math.random() * 0.16 + 0.08
+    });
+  }
+
+  // Lluvia sutil y minimalista combinando símbolos de programación y música
+  const SIMBOLOS_PROGRA = ['</>', '{}', '=>', '01', '[]', 'fn()', 'SQL', '#'];
+  const SIMBOLOS_MUSICA = ['♪', '♫', '♩', '♬'];
+  const totalFlotantes = ancho < 768 ? 14 : 24;
+  const flotantes = [];
+
+  for (let i = 0; i < totalFlotantes; i += 1) {
+    const esMusica = i % 2 === 1;
+    const pool = esMusica ? SIMBOLOS_MUSICA : SIMBOLOS_PROGRA;
+    flotantes.push({
+      simbolo: pool[Math.floor(Math.random() * pool.length)],
+      esMusica,
+      x: Math.random() * ancho,
+      y: Math.random() * alto,
+      vy: Math.random() * 0.34 + 0.24,
+      swayAmp: Math.random() * 0.26 + 0.1,
+      swayFreq: Math.random() * 0.014 + 0.008,
+      phase: Math.random() * Math.PI * 2,
+      size: esMusica ? Math.random() * 5 + 15 : Math.random() * 4 + 12,
+      angle: (Math.random() - 0.5) * 0.3,
+      rotSpeed: (Math.random() - 0.5) * 0.0024,
+      alpha: Math.random() * 0.11 + 0.21
     });
   }
 
@@ -503,15 +529,67 @@ function iniciarCanvasNodos() {
   );
 
   let frameId = null;
+  let tick = 0;
 
   const animarNodos = () => {
+    tick += 1;
     ctx.clearRect(0, 0, ancho, alto);
 
     const oscuro = esTemaOscuro();
-    const colorR = oscuro ? 56 : 2;
-    const colorG = oscuro ? 189 : 132;
-    const colorB = oscuro ? 248 : 199;
+    const colorR = oscuro ? 56 : 14;
+    const colorG = oscuro ? 189 : 165;
+    const colorB = oscuro ? 248 : 233;
 
+    // 1. Símbolos sutiles de programación y música cayendo suavemente en el fondo
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    for (let k = 0; k < flotantes.length; k += 1) {
+      const item = flotantes[k];
+      item.y += item.vy;
+      item.x += Math.sin(tick * item.swayFreq + item.phase) * item.swayAmp;
+      item.angle += item.rotSpeed;
+
+      const dxR = item.x - raton.x;
+      const dyR = item.y - raton.y;
+      const distR = Math.sqrt(dxR * dxR + dyR * dyR);
+      if (distR > 0 && distR < 95) {
+        const push = (95 - distR) / 95;
+        item.x += (dxR / distR) * push * 0.55;
+      }
+
+      if (item.y > alto + 28) {
+        item.y = -24;
+        item.x = Math.random() * ancho;
+      } else if (item.x < -30) {
+        item.x = ancho + 20;
+      } else if (item.x > ancho + 30) {
+        item.x = -20;
+      }
+
+      const fadeEdge =
+        item.y < 52 ? Math.max(0, item.y / 52) : item.y > alto - 52 ? Math.max(0, (alto - item.y) / 52) : 1;
+      const alphaFinal = item.alpha * fadeEdge;
+
+      ctx.save();
+      ctx.translate(item.x, item.y);
+      ctx.rotate(item.angle);
+      if (item.esMusica) {
+        ctx.font = `600 ${item.size}px Georgia, "Segoe UI Symbol", serif`;
+        ctx.fillStyle = oscuro
+          ? `rgba(196, 181, 253, ${alphaFinal})`
+          : `rgba(139, 92, 246, ${alphaFinal * 0.95})`;
+      } else {
+        ctx.font = `700 ${item.size}px "JetBrains Mono", Consolas, monospace`;
+        ctx.fillStyle = oscuro
+          ? `rgba(56, 189, 248, ${alphaFinal})`
+          : `rgba(14, 165, 233, ${alphaFinal})`;
+      }
+      ctx.fillText(item.simbolo, 0, 0);
+      ctx.restore();
+    }
+
+    // 2. Nodos y líneas de red tenues
     for (let i = 0; i < nodos.length; i += 1) {
       const nodo = nodos[i];
 
@@ -523,7 +601,7 @@ function iniciarCanvasNodos() {
 
       const dxRaton = raton.x - nodo.x;
       const dyRaton = raton.y - nodo.y;
-      const distRaton = Math.sqrt(dxRaton * dxRaton + dyRaton * dyRaton);
+      const distRaton = Math.sqrt(dxRaton * dxR + dyRaton * dyR);
 
       if (distRaton < raton.radioInteraccion) {
         const factor = (raton.radioInteraccion - distRaton) / raton.radioInteraccion;
@@ -538,7 +616,7 @@ function iniciarCanvasNodos() {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < 100) {
-          const alphaLinea = (1 - dist / 100) * 0.16;
+          const alphaLinea = (1 - dist / 100) * 0.12;
           ctx.beginPath();
           ctx.moveTo(nodo.x, nodo.y);
           ctx.lineTo(otro.x, otro.y);
@@ -739,7 +817,7 @@ function iniciarSobreMiConsolaGSAP() {
 }
 
 /**
- * 9. Trayectoria & Formación: Columna Izquierda entra desde la izquierda, Columna Derecha desde la derecha
+ * 9. Trayectoria & Formación: Línea de tiempo interactiva donde el eje crece y cada tarjeta se acerca al hacer scroll
  */
 function iniciarTrayectoriaCardsGSAP() {
   const secTrayectoria = document.getElementById('trayectoria');
@@ -754,71 +832,75 @@ function iniciarTrayectoriaCardsGSAP() {
   if (header) {
     gsap.fromTo(
       header,
-      { y: 28, opacity: 0 },
+      { y: 20, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 0.65,
+        duration: 0.45,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: secTrayectoria,
-          start: 'top 82%',
+          start: 'top 92%',
           toggleActions: 'play none none reverse'
         }
       }
     );
   }
 
-  const columnas = secTrayectoria.querySelectorAll('.luique-resume-grid > div');
-  const desplazamiento = window.innerWidth < 768 ? 64 : 150;
-
-  columnas.forEach((columna, colIdx) => {
-    const esColumnaIzquierda = colIdx === 0;
-    const xInicio = esColumnaIzquierda ? -desplazamiento : desplazamiento;
-    const rotInicio = esColumnaIzquierda ? -1.4 : 1.4;
-
-    const tituloCol = columna.querySelector('.resume-col-title');
-    if (tituloCol) {
-      gsap.fromTo(
-        tituloCol,
-        { x: esColumnaIzquierda ? -48 : 48, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.6,
-          delay: esColumnaIzquierda ? 0 : 0.08,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: tituloCol,
-            start: 'top 90%',
-            toggleActions: 'play none none reverse'
-          }
+  const timelineEl = document.getElementById('trayectoriaTimeline');
+  const axisProgress = document.getElementById('timelineAxisProgress');
+  if (timelineEl && axisProgress) {
+    gsap.fromTo(
+      axisProgress,
+      { scaleY: 0 },
+      {
+        scaleY: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: timelineEl,
+          start: 'top 76%',
+          end: 'bottom 60%',
+          scrub: 0.35
         }
-      );
-    }
+      }
+    );
+  }
 
-    const tarjetas = columna.querySelectorAll('.lui-accordion-item');
-    tarjetas.forEach((tarjeta, idxTarjeta) => {
-      const retardoEscalon = (esColumnaIzquierda ? 0 : 0.1) + Math.min(idxTarjeta, 2) * 0.07;
+  const rows = secTrayectoria.querySelectorAll('.timeline-row');
+  const isMobile = window.innerWidth <= 860;
 
-      gsap.fromTo(
-        tarjeta,
-        { x: xInicio, y: 14, rotation: rotInicio, opacity: 0 },
-        {
-          x: 0,
-          y: 0,
-          rotation: 0,
-          opacity: 1,
-          duration: 0.82,
-          delay: retardoEscalon,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: tarjeta,
-            start: 'top 92%',
-            toggleActions: 'play none none reverse'
-          }
+  rows.forEach((row) => {
+    const card = row.querySelector('.timeline-card');
+    if (!card) return;
+
+    const isLeft = row.classList.contains('timeline-side-left');
+    const offsetX = isMobile ? 26 : isLeft ? 48 : -48;
+
+    // Acercamiento progresivo tarjeta tras tarjeta vinculado directamente al scroll
+    gsap.fromTo(
+      card,
+      { scale: 0.74, y: 64, x: offsetX, opacity: 0.18 },
+      {
+        scale: 1,
+        y: 0,
+        x: 0,
+        opacity: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: row,
+          start: 'top 96%',
+          end: 'top 48%',
+          scrub: 0.5
         }
-      );
+      }
+    );
+
+    // Ilumina el nodo del año y resalta el borde mientras la tarjeta pasa por la zona focal
+    ScrollTrigger.create({
+      trigger: row,
+      start: 'top 66%',
+      end: 'bottom 34%',
+      toggleClass: { targets: row, className: 'is-timeline-active' }
     });
   });
 }

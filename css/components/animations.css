@@ -17,26 +17,25 @@
   transition: width 0.08s linear;
 }
 
-/* 2. Canvas de Red de Datos / Nodos Flotantes (Background Tech) */
+/* 2. Canvas de Red de Datos + Elementos Sutiles de Progra y Música (Background) */
 .ambient-network-canvas {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 0;
-  opacity: 0.55;
+  z-index: 1;
+  opacity: 0.85;
   transition: opacity 0.5s ease;
 }
 
 [data-theme="dark"] .ambient-network-canvas {
-  opacity: 0.75;
+  opacity: 0.92;
 }
 
 /* 3. Descubrimiento Cinemático y Fluido al Scroll (60 FPS sin conflictos) */
 .lui-section {
   transform-origin: center top;
-  will-change: opacity, transform;
 }
 
 /* Encabezados de sección con entrada suave */

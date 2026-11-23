@@ -14,7 +14,7 @@
   width: 100%;
   min-height: 100vh;
   position: relative;
-  z-index: 20;
+  z-index: auto;
 }
 
 .main-stage {

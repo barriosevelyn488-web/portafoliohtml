@@ -11,7 +11,7 @@
 @import url('./base.css?v=3.8');
 
 /* 3. Arquitectura de estructura (Flujo editorial full-viewport) */
-@import url('./layout.css?v=10.0');
+@import url('./layout.css?v=17.0');
 
 /* 4. Componentes modulares */
 @import url('./components/header.css?v=10.0');
@@ -22,8 +22,8 @@
 @import url('./components/projects.css?v=10.0');
 @import url('./components/modales.css?v=10.0');
 @import url('./components/contact.css?v=10.0');
-@import url('./components/animations.css?v=10.0');
-@import url('./components/intro-origami.css?v=15.0');
+@import url('./components/animations.css?v=17.0');
+@import url('./components/intro-origami.css?v=17.0');
 
 /* 5. Reglas responsivas master (Media queries unificadas) */
 @import url('./responsive.css?v=14.0');
