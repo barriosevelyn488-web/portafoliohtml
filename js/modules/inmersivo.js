@@ -832,39 +832,61 @@ function iniciarTrayectoriaCardsGSAP() {
   if (header) {
     gsap.fromTo(
       header,
-      { y: 20, opacity: 0 },
+      { y: 16 },
       {
         y: 0,
-        opacity: 1,
         duration: 0.45,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: secTrayectoria,
-          start: 'top 92%',
-          toggleActions: 'play none none reverse'
+          start: 'top 95%',
+          toggleActions: 'play none none none'
         }
       }
     );
   }
 
-  const timelineEl = document.getElementById('trayectoriaTimeline');
-  const axisProgress = document.getElementById('timelineAxisProgress');
-  if (timelineEl && axisProgress) {
-    gsap.fromTo(
-      axisProgress,
-      { scaleY: 0 },
-      {
-        scaleY: 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: timelineEl,
-          start: 'top 76%',
-          end: 'bottom 60%',
-          scrub: 0.35
+  const chapterGroups = secTrayectoria.querySelectorAll('.timeline-chapter-group');
+  chapterGroups.forEach((group) => {
+    const banner = group.querySelector('.timeline-chapter-banner');
+    const trackBox = group.querySelector('.timeline-master');
+    const axisProgress = group.querySelector('.timeline-axis-progress');
+
+    if (banner) {
+      gsap.fromTo(
+        banner,
+        { scale: 0.94, y: 12 },
+        {
+          scale: 1,
+          y: 0,
+          duration: 0.45,
+          ease: 'back.out(1.3)',
+          scrollTrigger: {
+            trigger: banner,
+            start: 'top 95%',
+            toggleActions: 'play none none none'
+          }
         }
-      }
-    );
-  }
+      );
+    }
+
+    if (trackBox && axisProgress) {
+      gsap.fromTo(
+        axisProgress,
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: trackBox,
+            start: 'top 76%',
+            end: 'bottom 58%',
+            scrub: 0.35
+          }
+        }
+      );
+    }
+  });
 
   const rows = secTrayectoria.querySelectorAll('.timeline-row');
   const isMobile = window.innerWidth <= 860;

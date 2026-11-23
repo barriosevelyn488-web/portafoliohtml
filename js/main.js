@@ -10,7 +10,7 @@ import {
   iniciarAnimacionesScroll,
   actualizarMetricasGitHub
 } from './modules/navegacion.js?v=14.0';
-import { iniciarExperienciaInmersiva } from './modules/inmersivo.js?v=17.0';
+import { iniciarExperienciaInmersiva } from './modules/inmersivo.js?v=18.0';
 
 async function iniciarAplicacion() {
   if (window.__PORTAFOLIO_INICIADO__) return;

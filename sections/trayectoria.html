@@ -1,6 +1,7 @@
 <!-- ==========================================================================
      MÓDULO HTML: SECCIÓN CURRÍCULUM / TRAYECTORIA (sections/trayectoria.html)
-     Línea de Tiempo Cronológica Interactiva (Educación + Experiencia)
+     Línea de Tiempo Organizada en 2 Capítulos Claros:
+     01 · Formación Académica -> 02 · Experiencia Técnica y Laboral
      con acercamiento progresivo tarjeta tras tarjeta al hacer scroll
      ========================================================================== -->
 <section class="lui-section section-flow-connect trayectoria-timeline-sec" data-tab-panel="trayectoria" id="trayectoria">
@@ -8,202 +9,220 @@
     <span class="lui-eyebrow">CURRÍCULUM PROFESIONAL</span>
     <h2 class="lui-title">Formación Académica y Trayectoria Técnica</h2>
     <p class="lui-lead">
-      Línea de tiempo cronológica que integra mi preparación académica y experiencia práctica en proyectos reales.
+      Línea de tiempo organizada por etapas: primero mi preparación académica y luego mi experiencia práctica en proyectos reales.
     </p>
   </div>
 
-  <!-- Leyenda visual de la Línea de Tiempo -->
-  <div class="timeline-legend" aria-label="Categorías de la línea de tiempo">
-    <span class="tl-legend-pill tl-legend-edu">
-      <span class="tl-legend-dot"></span>
-      <span>01 · Formación Académica</span>
-    </span>
-    <span class="tl-legend-pill tl-legend-exp">
-      <span class="tl-legend-dot"></span>
-      <span>02 · Experiencia Técnica y Laboral</span>
-    </span>
-  </div>
+  <!-- Contenedor Maestro con 2 Capítulos de Línea de Tiempo Separados -->
+  <div class="timeline-chapters-stack" id="trayectoriaTimeline">
 
-  <!-- Eje Central + Tarjetas alternadas acercándose al hacer scroll -->
-  <div class="timeline-master" id="trayectoriaTimeline">
-    <div class="timeline-axis-track" aria-hidden="true">
-      <div class="timeline-axis-progress" id="timelineAxisProgress"></div>
+    <!-- ==================== CAPÍTULO 01: FORMACIÓN ACADÉMICA ==================== -->
+    <div class="timeline-chapter-group timeline-chapter-edu" id="timelineGrupoEdu">
+      <div class="timeline-chapter-banner">
+        <span class="tl-chapter-pill tl-legend-edu">
+          <span class="tl-legend-dot"></span>
+          <span>01 · Formación Académica</span>
+        </span>
+      </div>
+
+      <div class="timeline-master">
+        <div class="timeline-axis-track" aria-hidden="true">
+          <div class="timeline-axis-progress timeline-progress-edu"></div>
+        </div>
+
+        <!-- 1. 2026 · Campuslands GT -->
+        <article class="timeline-row timeline-side-left" data-tl-kind="edu">
+          <div class="timeline-node-marker" aria-hidden="true">
+            <span class="timeline-node-ring"></span>
+            <span class="timeline-node-year">2026</span>
+          </div>
+          <div class="timeline-card lui-accordion-item">
+            <div class="timeline-card-inner">
+              <div class="timeline-kind-row">
+                <span class="tl-kind-tag tl-tag-edu">01 · Formación Académica</span>
+                <span class="acc-year-pill">2026 · Técnico Graduado</span>
+              </div>
+              <div class="lui-accordion-header">
+                <div class="acc-title-group">
+                  <h4>Técnico en Desarrollo de Software</h4>
+                  <span class="acc-subtitle">Campuslands GT | Zona 4, Guatemala</span>
+                </div>
+              </div>
+              <div class="lui-accordion-body">
+                <p>Formación práctica e intensiva enfocada en arquitectura limpia, desarrollo de APIs REST modulares con Node.js y Express, modelado de bases de datos relacionales (PostgreSQL, MySQL, SQLite en 3NF), aplicaciones móviles en Flutter/Dart y metodologías ágiles (Scrum y Git). <strong>Proyecto académico destacado:</strong> Campus Parking (solución web para automatizar el control operativo con JavaScript, HTML5, CSS3 y localStorage).</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. 2024 · USAC -->
+        <article class="timeline-row timeline-side-right" data-tl-kind="edu">
+          <div class="timeline-node-marker" aria-hidden="true">
+            <span class="timeline-node-ring"></span>
+            <span class="timeline-node-year">2024</span>
+          </div>
+          <div class="timeline-card lui-accordion-item">
+            <div class="timeline-card-inner">
+              <div class="timeline-kind-row">
+                <span class="tl-kind-tag tl-tag-edu">01 · Formación Académica</span>
+                <span class="acc-year-pill">2024 · Segundo semestre</span>
+              </div>
+              <div class="lui-accordion-header">
+                <div class="acc-title-group">
+                  <h4>Administración de Empresas</h4>
+                  <span class="acc-subtitle">Universidad de San Carlos de Guatemala (USAC)</span>
+                </div>
+              </div>
+              <div class="lui-accordion-body">
+                <p>Formación en gestión administrativa, procesos operativos y análisis de negocio. <strong>Proyecto académico:</strong> Investigación de campo sobre financiamiento a pequeñas empresas en Guatemala.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Base · Perito Contador -->
+        <article class="timeline-row timeline-side-left" data-tl-kind="edu">
+          <div class="timeline-node-marker" aria-hidden="true">
+            <span class="timeline-node-ring"></span>
+            <span class="timeline-node-year">BASE</span>
+          </div>
+          <div class="timeline-card lui-accordion-item">
+            <div class="timeline-card-inner">
+              <div class="timeline-kind-row">
+                <span class="tl-kind-tag tl-tag-edu">01 · Formación Académica</span>
+                <span class="acc-year-pill timeline-star-pill">★ Alumna Destacada</span>
+              </div>
+              <div class="lui-accordion-header">
+                <div class="acc-title-group">
+                  <h4>Perito Contador con Orientación en Computación</h4>
+                  <span class="acc-subtitle">Instituto por Cooperativa de Villa Hermosa</span>
+                </div>
+              </div>
+              <div class="lui-accordion-body">
+                <p>Fundamentos sólidos de lógica algorítmica, programación estructurada, bases de datos y sistemas contables aplicados. Reconocida como alumna destacada por excelencia académica y disciplina operativa.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
 
-    <!-- 1. 2026 · Formación: Campuslands GT -->
-    <article class="timeline-row timeline-side-left" data-tl-kind="edu">
-      <div class="timeline-node-marker" aria-hidden="true">
-        <span class="timeline-node-ring"></span>
-        <span class="timeline-node-year">2026</span>
+    <!-- ==================== CAPÍTULO 02: EXPERIENCIA TÉCNICA Y LABORAL ==================== -->
+    <div class="timeline-chapter-group timeline-chapter-exp" id="timelineGrupoExp">
+      <div class="timeline-chapter-banner">
+        <span class="tl-chapter-pill tl-legend-exp">
+          <span class="tl-legend-dot"></span>
+          <span>02 · Experiencia Técnica y Trayectoria Laboral</span>
+        </span>
       </div>
-      <div class="timeline-card lui-accordion-item">
-        <div class="timeline-card-inner">
-          <div class="timeline-kind-row">
-            <span class="tl-kind-tag tl-tag-edu">01 · Formación Académica</span>
-            <span class="acc-year-pill">2026 · Técnico Graduado</span>
-          </div>
-          <div class="lui-accordion-header">
-            <div class="acc-title-group">
-              <h4>Técnico en Desarrollo de Software</h4>
-              <span class="acc-subtitle">Campuslands GT | Zona 4, Guatemala</span>
-            </div>
-          </div>
-          <div class="lui-accordion-body">
-            <p>Formación práctica e intensiva enfocada en arquitectura limpia, desarrollo de APIs REST modulares con Node.js y Express, modelado de bases de datos relacionales (PostgreSQL, MySQL, SQLite en 3NF), aplicaciones móviles en Flutter/Dart y metodologías ágiles (Scrum y Git). <strong>Proyecto académico destacado:</strong> Campus Parking (solución web para automatizar el control operativo con JavaScript, HTML5, CSS3 y localStorage).</p>
-          </div>
-        </div>
-      </div>
-    </article>
 
-    <!-- 2. 2026 · Experiencia: Softplus OMS -->
-    <article class="timeline-row timeline-side-right" data-tl-kind="exp">
-      <div class="timeline-node-marker" aria-hidden="true">
-        <span class="timeline-node-ring"></span>
-        <span class="timeline-node-year">2026</span>
-      </div>
-      <div class="timeline-card lui-accordion-item">
-        <div class="timeline-card-inner">
-          <div class="timeline-kind-row">
-            <span class="tl-kind-tag tl-tag-exp">02 · Experiencia Técnica</span>
-            <span class="acc-year-pill">2026 – En desarrollo</span>
-          </div>
-          <div class="lui-accordion-header">
-            <div class="acc-title-group">
-              <h4>Liderazgo Técnico &amp; Desarrollo Backend</h4>
-              <span class="acc-subtitle">Softplus · OMS Backend (Gestión de Órdenes)</span>
-            </div>
-          </div>
-          <div class="lui-accordion-body">
-            <p>Lideré al equipo backend para cumplir los tiempos de entrega y desarrollé una solución con base de datos normalizada en PostgreSQL (3NF), validaciones robustas y manejo centralizado de errores en Node.js, Redis y WebSockets (tiempo real). Configuré el entorno de trabajo, despliegue con Docker y testing automatizado de cada API en Postman y Bruno. <em>(Contacto de referencia disponible bajo solicitud).</em></p>
-          </div>
+      <div class="timeline-master">
+        <div class="timeline-axis-track" aria-hidden="true">
+          <div class="timeline-axis-progress timeline-progress-exp"></div>
         </div>
-      </div>
-    </article>
 
-    <!-- 3. 2026 · Experiencia: AI Academy -->
-    <article class="timeline-row timeline-side-left" data-tl-kind="exp">
-      <div class="timeline-node-marker" aria-hidden="true">
-        <span class="timeline-node-ring"></span>
-        <span class="timeline-node-year">2026</span>
-      </div>
-      <div class="timeline-card lui-accordion-item">
-        <div class="timeline-card-inner">
-          <div class="timeline-kind-row">
-            <span class="tl-kind-tag tl-tag-exp">02 · Experiencia Técnica</span>
-            <span class="acc-year-pill">2026 – En desarrollo</span>
+        <!-- 1. 2026 · Softplus OMS -->
+        <article class="timeline-row timeline-side-left" data-tl-kind="exp">
+          <div class="timeline-node-marker" aria-hidden="true">
+            <span class="timeline-node-ring"></span>
+            <span class="timeline-node-year">2026</span>
           </div>
-          <div class="lui-accordion-header">
-            <div class="acc-title-group">
-              <h4>Auxiliar Académica y de Admisiones</h4>
-              <span class="acc-subtitle">AI Academy · Talleres de Inteligencia Artificial</span>
+          <div class="timeline-card lui-accordion-item">
+            <div class="timeline-card-inner">
+              <div class="timeline-kind-row">
+                <span class="tl-kind-tag tl-tag-exp">02 · Experiencia Técnica</span>
+                <span class="acc-year-pill">2026 – En desarrollo</span>
+              </div>
+              <div class="lui-accordion-header">
+                <div class="acc-title-group">
+                  <h4>Liderazgo Técnico &amp; Desarrollo Backend</h4>
+                  <span class="acc-subtitle">Softplus · OMS Backend (Gestión de Órdenes)</span>
+                </div>
+              </div>
+              <div class="lui-accordion-body">
+                <p>Lideré al equipo backend para cumplir los tiempos de entrega y desarrollé una solución con base de datos normalizada en PostgreSQL (3NF), validaciones robustas y manejo centralizado de errores en Node.js, Redis y WebSockets (tiempo real). Configuré el entorno de trabajo, despliegue con Docker y testing automatizado de cada API en Postman y Bruno. <em>(Contacto de referencia disponible bajo solicitud).</em></p>
+              </div>
             </div>
           </div>
-          <div class="lui-accordion-body">
-            <p>Apoyo docente y académico al profesor a cargo en talleres prácticos de Inteligencia Artificial. Realización de seguimiento a clientes en procesos de admisiones y ventas de talleres, escuchando activamente sus necesidades y resolviendo inquietudes técnicas y comerciales. <em>(Contacto de referencia disponible bajo solicitud).</em></p>
-          </div>
-        </div>
-      </div>
-    </article>
+        </article>
 
-    <!-- 4. 2026 · Experiencia: Alba -->
-    <article class="timeline-row timeline-side-right" data-tl-kind="exp">
-      <div class="timeline-node-marker" aria-hidden="true">
-        <span class="timeline-node-ring"></span>
-        <span class="timeline-node-year">2026</span>
-      </div>
-      <div class="timeline-card lui-accordion-item">
-        <div class="timeline-card-inner">
-          <div class="timeline-kind-row">
-            <span class="tl-kind-tag tl-tag-exp">02 · Experiencia Técnica</span>
-            <span class="acc-year-pill">2026 – En desarrollo</span>
+        <!-- 2. 2026 · AI Academy -->
+        <article class="timeline-row timeline-side-right" data-tl-kind="exp">
+          <div class="timeline-node-marker" aria-hidden="true">
+            <span class="timeline-node-ring"></span>
+            <span class="timeline-node-year">2026</span>
           </div>
-          <div class="lui-accordion-header">
-            <div class="acc-title-group">
-              <h4>Desarrolladora Mobile / Integración Técnica</h4>
-              <span class="acc-subtitle">Alba · Plataforma de Salud para Adultos Mayores</span>
+          <div class="timeline-card lui-accordion-item">
+            <div class="timeline-card-inner">
+              <div class="timeline-kind-row">
+                <span class="tl-kind-tag tl-tag-exp">02 · Experiencia Técnica</span>
+                <span class="acc-year-pill">2026 – En desarrollo</span>
+              </div>
+              <div class="lui-accordion-header">
+                <div class="acc-title-group">
+                  <h4>Auxiliar Académica y de Admisiones</h4>
+                  <span class="acc-subtitle">AI Academy · Talleres de Inteligencia Artificial</span>
+                </div>
+              </div>
+              <div class="lui-accordion-body">
+                <p>Apoyo docente y académico al profesor a cargo en talleres prácticos de Inteligencia Artificial. Realización de seguimiento a clientes en procesos de admisiones y ventas de talleres, escuchando activamente sus necesidades y resolviendo inquietudes técnicas y comerciales. <em>(Contacto de referencia disponible bajo solicitud).</em></p>
+              </div>
             </div>
           </div>
-          <div class="lui-accordion-body">
-            <p>Participé en el diseño y desarrollo móvil de Alba, una plataforma de salud y adherencia farma-geriátrica orientada a adultos mayores, cuidadores y personal médico. Bajo arquitectura limpia y modular en Flutter/Dart junto a Firebase, colaboré en un equipo multidisciplinario de 12 desarrolladores mediante un flujo ágil en Git. Contribuí en patrones de manejo de estado con Provider, servicios en segundo plano para detección de caídas con giroscopio/acelerómetro, códigos QR y estándares de accesibilidad WCAG AAA.</p>
-          </div>
-        </div>
-      </div>
-    </article>
+        </article>
 
-    <!-- 5. 2024 · Formación: USAC -->
-    <article class="timeline-row timeline-side-left" data-tl-kind="edu">
-      <div class="timeline-node-marker" aria-hidden="true">
-        <span class="timeline-node-ring"></span>
-        <span class="timeline-node-year">2024</span>
-      </div>
-      <div class="timeline-card lui-accordion-item">
-        <div class="timeline-card-inner">
-          <div class="timeline-kind-row">
-            <span class="tl-kind-tag tl-tag-edu">01 · Formación Académica</span>
-            <span class="acc-year-pill">2024 · Segundo semestre</span>
+        <!-- 3. 2026 · Alba -->
+        <article class="timeline-row timeline-side-left" data-tl-kind="exp">
+          <div class="timeline-node-marker" aria-hidden="true">
+            <span class="timeline-node-ring"></span>
+            <span class="timeline-node-year">2026</span>
           </div>
-          <div class="lui-accordion-header">
-            <div class="acc-title-group">
-              <h4>Administración de Empresas</h4>
-              <span class="acc-subtitle">Universidad de San Carlos de Guatemala (USAC)</span>
+          <div class="timeline-card lui-accordion-item">
+            <div class="timeline-card-inner">
+              <div class="timeline-kind-row">
+                <span class="tl-kind-tag tl-tag-exp">02 · Experiencia Técnica</span>
+                <span class="acc-year-pill">2026 – En desarrollo</span>
+              </div>
+              <div class="lui-accordion-header">
+                <div class="acc-title-group">
+                  <h4>Desarrolladora Mobile / Integración Técnica</h4>
+                  <span class="acc-subtitle">Alba · Plataforma de Salud para Adultos Mayores</span>
+                </div>
+              </div>
+              <div class="lui-accordion-body">
+                <p>Participé en el diseño y desarrollo móvil de Alba, una plataforma de salud y adherencia farma-geriátrica orientada a adultos mayores, cuidadores y personal médico. Bajo arquitectura limpia y modular en Flutter/Dart junto a Firebase, colaboré en un equipo multidisciplinario de 12 desarrolladores mediante un flujo ágil en Git. Contribuí en patrones de manejo de estado con Provider, servicios en segundo plano para detección de caídas con giroscopio/acelerómetro, códigos QR y estándares de accesibilidad WCAG AAA.</p>
+              </div>
             </div>
           </div>
-          <div class="lui-accordion-body">
-            <p>Formación en gestión administrativa, procesos operativos y análisis de negocio. <strong>Proyecto académico:</strong> Investigación de campo sobre financiamiento a pequeñas empresas en Guatemala.</p>
-          </div>
-        </div>
-      </div>
-    </article>
+        </article>
 
-    <!-- 6. Trayectoria Previa (3 Años) · Experiencia Comercial -->
-    <article class="timeline-row timeline-side-right" data-tl-kind="exp">
-      <div class="timeline-node-marker" aria-hidden="true">
-        <span class="timeline-node-ring"></span>
-        <span class="timeline-node-year">3 AÑOS</span>
-      </div>
-      <div class="timeline-card lui-accordion-item">
-        <div class="timeline-card-inner">
-          <div class="timeline-kind-row">
-            <span class="tl-kind-tag tl-tag-exp">02 · Trayectoria Comercial</span>
-            <span class="acc-year-pill">3 Años de Trayectoria</span>
+        <!-- 4. 3 Años · Experiencia Comercial Previa -->
+        <article class="timeline-row timeline-side-right" data-tl-kind="exp">
+          <div class="timeline-node-marker" aria-hidden="true">
+            <span class="timeline-node-ring"></span>
+            <span class="timeline-node-year">3 AÑOS</span>
           </div>
-          <div class="lui-accordion-header">
-            <div class="acc-title-group">
-              <h4>Encargada de Tienda &amp; Gestión Comercial</h4>
-              <span class="acc-subtitle">Zona Piel / Capiato · Herbal Plus &amp; Natural Shop</span>
+          <div class="timeline-card lui-accordion-item">
+            <div class="timeline-card-inner">
+              <div class="timeline-kind-row">
+                <span class="tl-kind-tag tl-tag-exp">02 · Trayectoria Comercial</span>
+                <span class="acc-year-pill">3 Años de Trayectoria</span>
+              </div>
+              <div class="lui-accordion-header">
+                <div class="acc-title-group">
+                  <h4>Encargada de Tienda &amp; Gestión Comercial</h4>
+                  <span class="acc-subtitle">Zona Piel / Capiato · Herbal Plus &amp; Natural Shop</span>
+                </div>
+              </div>
+              <div class="lui-accordion-body">
+                <p>1 año como encargada de tienda y adaptación en distintas sucursales comerciales presenciales (Zona Piel / Capiato). 2 años en gestión de ventas y seguimiento de clientes por WhatsApp y llamada para Herbal Plus y Natural Shop, elaboración de guías de envío, control de devoluciones y seguimiento de métricas operativas. Base formativa en escucha activa, negociación y resolución bajo presión.</p>
+              </div>
             </div>
           </div>
-          <div class="lui-accordion-body">
-            <p>1 año como encargada de tienda y adaptación en distintas sucursales comerciales presenciales (Zona Piel / Capiato). 2 años en gestión de ventas y seguimiento de clientes por WhatsApp y llamada para Herbal Plus y Natural Shop, elaboración de guías de envío, control de devoluciones y seguimiento de métricas operativas. Base formativa en escucha activa, negociación y resolución bajo presión.</p>
-          </div>
-        </div>
+        </article>
       </div>
-    </article>
+    </div>
 
-    <!-- 7. Base Académica · Perito Contador -->
-    <article class="timeline-row timeline-side-left" data-tl-kind="edu">
-      <div class="timeline-node-marker" aria-hidden="true">
-        <span class="timeline-node-ring"></span>
-        <span class="timeline-node-year">BASE</span>
-      </div>
-      <div class="timeline-card lui-accordion-item">
-        <div class="timeline-card-inner">
-          <div class="timeline-kind-row">
-            <span class="tl-kind-tag tl-tag-edu">01 · Formación Académica</span>
-            <span class="acc-year-pill timeline-star-pill">★ Alumna Destacada</span>
-          </div>
-          <div class="lui-accordion-header">
-            <div class="acc-title-group">
-              <h4>Perito Contador con Orientación en Computación</h4>
-              <span class="acc-subtitle">Instituto por Cooperativa de Villa Hermosa</span>
-            </div>
-          </div>
-          <div class="lui-accordion-body">
-            <p>Fundamentos sólidos de lógica algorítmica, programación estructurada, bases de datos y sistemas contables aplicados. Reconocida como alumna destacada por excelencia académica y disciplina operativa.</p>
-          </div>
-        </div>
-      </div>
-    </article>
   </div>
 
   <div class="lui-bg-title" aria-hidden="true">CURRICULUM</div>
